@@ -1,0 +1,130 @@
+/* styles.css — Calming wellness one-pager */
+
+/* ---------- Base / reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #2f3e3a;
+  background-color: #eef4f2;
+}
+
+/* ---------- Layout container ---------- */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background-color: #eef4f2;
+}
+
+.site-name {
+  margin: 1em 0;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 90px 24px;
+  background-color: #d9e7e2;
+}
+
+.hero-heading {
+  font-size: 2.8rem;
+  margin: 0 0 12px;
+  color: #1f4a40;
+}
+
+.hero-subheading {
+  font-size: 1.2rem;
+  max-width: 640px;
+  margin: 0 auto;
+  color: #40564f;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: 60px 0;
+  background-color: #ffffff;
+  border-top: 1px solid #dde7e3;
+}
+
+.section-heading {
+  font-size: 2rem;
+  color: #1f4a40;
+  margin: 0 0 20px;
+}
+
+.section p {
+  margin: 0 0 16px;
+  color: #33443f;
+}
+
+.section--alt {
+  background-color: #eef4f2;
+  border-top: none;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 40px 24px;
+  background-color: #2f3e3a;
+  color: #dce7e2;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: #a9cdc0;
+  text-decoration: underline;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: #2f7a6a;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  body {
+    font-size: 17px;
+  }
+
+  .hero {
+    padding: 70px 20px;
+  }
+
+  .hero-heading {
+    font-size: 2.3rem;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-heading {
+    font-size: 1.7rem;
+  }
+}
+
+/* ---------- JS reveal (only active when JS is on) ---------- */
+.js-enabled .reveal {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.js-enabled .reveal.is-visible {
+  opacity: 1;
+}
