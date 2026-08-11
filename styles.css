@@ -1,8 +1,30 @@
-/* styles.css — Calming wellness one-pager */
+/* styles.css — Stillwater Wellness one-pager, Oneness Wellness brand palette */
+
+/* ---------- Brand palette (from owlifestylesfoundation.org) ---------- */
+:root {
+  --brand-blue: #283890;   /* deep blue — primary (theme-color) */
+  --brand-green: #6dbc45;  /* vibrant lime green — accent CTA */
+  --brand-sand: #c1a178;   /* warm sand — accent */
+  --brand-teal: #25c4b8;   /* fun accent */
+  --brand-pink: #ff4d8d;   /* fun accent */
+  --bg: #f7faff;           /* page background */
+  --surface: #ffffff;      /* cards / surfaces */
+  --text: #141414;         /* body text */
+  --text-2: #3f3f3f;       /* secondary text */
+  --line: #dfe5f6;         /* soft blue-grey divider */
+}
 
 /* ---------- Base / reset ---------- */
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 body {
@@ -10,8 +32,8 @@ body {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 18px;
   line-height: 1.7;
-  color: #2f3e3a;
-  background-color: #eef4f2;
+  color: var(--text);
+  background-color: var(--bg);
 }
 
 /* ---------- Layout container ---------- */
@@ -23,44 +45,54 @@ body {
 
 /* ---------- Header ---------- */
 .site-header {
-  background-color: #eef4f2;
+  background-color: var(--surface);
+  border-bottom: 4px solid var(--brand-sand);
 }
 
 .site-name {
   margin: 1em 0;
+  color: var(--brand-blue);
+  font-weight: bold;
+  letter-spacing: 0.04em;
 }
 
 /* ---------- Hero ---------- */
 .hero {
   text-align: center;
   padding: 90px 24px;
-  background-color: #d9e7e2;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(37, 196, 184, 0.24), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 77, 141, 0.16), transparent 55%),
+    linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
 }
 
 .hero-heading {
   font-size: 2.8rem;
   margin: 0 0 12px;
-  color: #1f4a40;
+  color: var(--brand-blue);
 }
 
 .hero-subheading {
   font-size: 1.2rem;
   max-width: 640px;
   margin: 0 auto;
-  color: #40564f;
+  color: var(--text-2);
 }
 
 /* ---------- Sections ---------- */
 .section {
   padding: 60px 0;
-  background-color: #ffffff;
-  border-top: 1px solid #dde7e3;
+  background-color: var(--surface);
+  border-top: 1px solid var(--line);
 }
 
 .section-heading {
   font-size: 2rem;
-  color: #1f4a40;
+  color: var(--brand-blue);
   margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 4px solid var(--brand-sand);
+  display: inline-block;
 }
 
 .section p {
@@ -69,15 +101,15 @@ body {
 }
 
 .section--alt {
-  background-color: #eef4f2;
+  background-color: var(--bg);
   border-top: none;
 }
 
 /* ---------- Footer ---------- */
 .site-footer {
   padding: 40px 24px;
-  background-color: #2f3e3a;
-  color: #dce7e2;
+  background-color: var(--brand-blue);
+  color: #e7ebfa;
   text-align: center;
   font-size: 0.95rem;
 }
@@ -87,13 +119,35 @@ body {
 }
 
 .site-footer a {
-  color: #a9cdc0;
+  color: var(--brand-sand);
   text-decoration: underline;
 }
 
 /* ---------- Links ---------- */
 a {
-  color: #2f7a6a;
+  color: var(--brand-green);
+}
+
+/* ---------- Buttons (brand lime green — dark text for readable contrast) ---------- */
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  color: var(--text);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #5fae3d; /* slightly deeper lime for hover */
+}
+
+.hero-actions {
+  margin: 28px 0 0;
 }
 
 /* ---------- Responsive ---------- */

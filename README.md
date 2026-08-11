@@ -5,6 +5,7 @@ A simple one-page wellness website. It is a quiet place to pause and reset, with
 - **Breathing** — a simple guide to slow, steady breaths.
 - **Movement** — a few easy stretches to release tension.
 - **Rest** — reminders to slow down and let your body settle.
+- Gentle buttons guide you through the page in order — start with a breath, move, rest, and begin again whenever you like.
 
 The page is built with plain HTML, CSS, and JavaScript. It needs no server and no installation — it works entirely offline.
 
