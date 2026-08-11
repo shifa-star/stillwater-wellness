@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Slow-Down Series — Stillwater Wellness</title>
+  <style>
+    :root {
+      --page-bg: #f7faff;
+      --deep-blue: #283890;
+      --green: #6dbc45;
+      --sand: #C1A178;
+      --teal: #25c4b8;
+      --text: #33443f;
+      --muted: #5c6b66;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--page-bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      padding: 48px 24px 72px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 40px; }
+    .kicker {
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    h1 { font-size: 40px; color: var(--deep-blue); margin-bottom: 10px; }
+    .sub { font-size: 18px; color: var(--muted); max-width: 680px; margin: 0 auto; line-height: 1.5; }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+      justify-content: center;
+    }
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 12px 40px rgba(20, 20, 20, 0.10);
+      text-align: center;
+      width: 480px;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+    }
+    .card h2 {
+      font-size: 26px;
+      color: var(--deep-blue);
+      margin-top: 16px;
+    }
+    .card p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+    .tag {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+    .tag.breathe { background: rgba(37, 196, 184, 0.15); color: #0e8c82; }
+    .tag.move    { background: rgba(109, 188, 69, 0.18); color: #4c8a2e; }
+    .tag.rest    { background: rgba(193, 161, 120, 0.22); color: #a9854f; }
+    footer {
+      text-align: center;
+      margin-top: 56px;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <p class="kicker">Instagram preview · stillwater wellness</p>
+      <h1>A Slow-Down Series</h1>
+      <p class="sub">Three photo cards — real photos of real people doing Breathe, Move, and Rest. One accent colour each, one family. Ready to post to Instagram at 1080 × 1080.</p>
+    </header>
+
+    <div class="cards">
+      <div class="card">
+        <img src="cards/breathe_photo.png" alt="Breathe card: photo of a woman breathing calmly in a sunlit garden">
+        <h2>Breathe</h2>
+        <p>Card 1 of 3 · teal accent</p>
+        <span class="tag breathe">A SLOW-DOWN SERIES · 1 OF 3</span>
+      </div>
+
+      <div class="card">
+        <img src="cards/move_photo.png" alt="Move card: photo of a man stretching in a sunlit living room">
+        <h2>Move</h2>
+        <p>Card 2 of 3 · lime accent</p>
+        <span class="tag move">A SLOW-DOWN SERIES · 2 OF 3</span>
+      </div>
+
+      <div class="card">
+        <img src="cards/rest_photo.png" alt="Rest card: photo of a woman resting with tea">
+        <h2>Rest</h2>
+        <p>Card 3 of 3 · sand accent</p>
+        <span class="tag rest">A SLOW-DOWN SERIES · 3 OF 3</span>
+      </div>
+    </div>
+
+    <footer>STILLWATER WELLNESS · ONENESS WELLNESS LIFESTYLES FOUNDATION</footer>
+  </div>
+</body>
+</html>

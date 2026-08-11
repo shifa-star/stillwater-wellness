@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Slow-Down Series · Rest</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+  }
+
+  .card {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background: #283890;
+  }
+
+  /* Full-bleed photo background */
+  .card .photo {
+    position: absolute;
+    inset: 0;
+    width: 1080px;
+    height: 1080px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Soft dark overlay for legibility — dark at top for the kicker,
+     light in the middle so the photo still shows, bottom handled by the plaque + scrim */
+  .card .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.32) 0%,
+      rgba(0, 0, 0, 0.12) 28%,
+      rgba(0, 0, 0, 0.12) 58%,
+      rgba(0, 0, 0, 0.30) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Protective scrim: 110px black gradient rising from the ribbon line
+     (top of the plaque) up into the photo, so the italic body never gets lost */
+  .card .scrim {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 250px;
+    height: 110px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.18) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Text layers on the photo */
+  .card .content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 76px 84px 290px;
+  }
+
+  .kicker {
+    margin-top: 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #a9854f;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), 0 2px 10px rgba(0, 0, 0, 0.35);
+  }
+
+  .body {
+    margin-top: auto;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 40px;
+    font-weight: normal;
+    font-style: italic;
+    color: #ffffff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55), 0 4px 18px rgba(0, 0, 0, 0.4);
+    line-height: 1.4;
+    max-width: 860px;
+  }
+
+  .footer {
+    margin-top: 34px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 0.16em;
+    color: #ffffff;
+    opacity: 0.95;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
+    line-height: 1.35;
+  }
+  .footer .f-2 { margin-top: 8px; }
+
+  /* Owner logo — top-left, ~220px wide, subtle white glow so it reads on bright photos */
+  .card .logo {
+    position: absolute;
+    top: 36px;
+    left: 36px;
+    width: 220px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 2px 3px rgba(255, 255, 255, 0.25))
+            drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35));
+  }
+
+  /* SOLID deep-blue plaque band across the bottom, carrying ONLY the title */
+  .plaque {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 250px;
+    background: #283890;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 54px 48px 46px;
+  }
+
+  /* Accent ribbon: full-width 8px #a9854f forming the plaque's top edge as its lid */
+  .ribbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: #a9854f;
+  }
+
+  /* Finial pin carrier: a full-width, zero-height flex line centered on the
+     ribbon's vertical center axis (plaque top + 4px). The diamond below is
+     centered on this line, so it straddles the ribbon exactly. */
+  .diamond-carrier {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  /* Single sand-gold #C1A178 diamond finial, rotated 45°, centered on the
+     ribbon line above the title — the one ornament, not a scatter of dots. */
+  .diamond {
+    width: 26px;
+    height: 26px;
+    background: #C1A178;
+    transform: rotate(45deg);
+  }
+
+  .title {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 66px;
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 40px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <img class="photo" src="rest_photo.jpg" alt="A woman in her 60s resting peacefully on a sofa">
+    <div class="overlay"></div>
+    <div class="scrim"></div>
+
+    <img class="logo" src="rest_logo.png" alt="Oneness Wellness Lifestyles logo">
+
+    <div class="content">
+      <div class="kicker">A Slow-Down Series · 3 of 3</div>
+      <div class="body">Rest is part of wellness, not a reward for finishing everything else. Even a few quiet minutes away from screens helps.</div>
+      <div class="footer">
+        <div>STILLWATER WELLNESS ·</div>
+        <div class="f-2">ONENESS WELLNESS LIFESTYLES FOUNDATION</div>
+      </div>
+    </div>
+
+    <div class="plaque">
+      <div class="ribbon"></div>
+      <div class="diamond-carrier"><div class="diamond"></div></div>
+      <div class="title">Rest</div>
+    </div>
+  </div>
+</body>
+</html>
