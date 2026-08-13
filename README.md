@@ -19,3 +19,16 @@ There are two easy ways:
 That is all. No setup, no commands, no internet needed.
 
 Just open the page and take a moment for yourself.
+
+## Instagram cards
+
+The `instagram/` folder holds the A Slow-Down Series — six ready-to-post Instagram
+cards (Breathe, Move, Rest, Meditate, Visualize, Nourish):
+
+- `instagram/gallery_photo.html` — a preview of all six cards in one page.
+- `instagram/cards/<name>_photo.png` — the finished 1080 × 1080 card, ready to
+  post (Instagram's exact square size).
+- `instagram/cards/<name>_photo.jpg` — the original 2048 × 2048 photo.
+
+Ready-to-paste post captions for all six cards live in
+`~/Downloads/STILLWATER-INSTAGRAM-CARDS/captions.txt`.

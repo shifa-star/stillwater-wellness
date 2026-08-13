@@ -31,7 +31,7 @@
       margin-bottom: 12px;
     }
     h1 { font-size: 40px; color: var(--deep-blue); margin-bottom: 10px; }
-    .sub { font-size: 18px; color: var(--muted); max-width: 680px; margin: 0 auto; line-height: 1.5; }
+    .sub { font-size: 18px; color: var(--muted); max-width: 720px; margin: 0 auto; line-height: 1.5; }
     .cards {
       display: flex;
       flex-wrap: wrap;
@@ -72,9 +72,20 @@
       font-weight: bold;
       letter-spacing: 0.05em;
     }
-    .tag.breathe { background: rgba(37, 196, 184, 0.15); color: #0e8c82; }
-    .tag.move    { background: rgba(109, 188, 69, 0.18); color: #4c8a2e; }
-    .tag.rest    { background: rgba(193, 161, 120, 0.22); color: #a9854f; }
+    .tag.breathe   { background: rgba(37, 196, 184, 0.15); color: #0e8c82; }
+    .tag.move      { background: rgba(109, 188, 69, 0.18); color: #4c8a2e; }
+    .tag.rest      { background: rgba(193, 161, 120, 0.22); color: #a9854f; }
+    .tag.meditate  { background: rgba(37, 196, 184, 0.15); color: #0e8c82; }
+    .tag.visualize { background: rgba(193, 161, 120, 0.22); color: #a9854f; }
+    .tag.nourish   { background: rgba(109, 188, 69, 0.18); color: #4c8a2e; }
+    .group-title {
+      text-align: center;
+      font-size: 22px;
+      color: var(--deep-blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 48px 0 24px;
+    }
     footer {
       text-align: center;
       margin-top: 56px;
@@ -89,29 +100,54 @@
     <header>
       <p class="kicker">Instagram preview · stillwater wellness</p>
       <h1>A Slow-Down Series</h1>
-      <p class="sub">Three photo cards — real photos of real people doing Breathe, Move, and Rest. One accent colour each, one family. Ready to post to Instagram at 1080 × 1080.</p>
+      <p class="sub">Six photo cards — Breathe, Move, Rest, Meditate, Visualize, and Nourish. Real photos, one design family, ready to post to Instagram at 1080 × 1080.</p>
     </header>
 
+    <div class="group-title">Series One · Breathe · Move · Rest</div>
     <div class="cards">
       <div class="card">
         <img src="cards/breathe_photo.png" alt="Breathe card: photo of a woman breathing calmly in a sunlit garden">
         <h2>Breathe</h2>
-        <p>Card 1 of 3 · teal accent</p>
+        <p>Four counts in, six counts out</p>
         <span class="tag breathe">A SLOW-DOWN SERIES · 1 OF 3</span>
       </div>
 
       <div class="card">
-        <img src="cards/move_photo.png" alt="Move card: photo of a man stretching in a sunlit living room">
+        <img src="cards/move_photo.png" alt="Move card: photo of a woman walking a garden path at golden hour">
         <h2>Move</h2>
-        <p>Card 2 of 3 · lime accent</p>
+        <p>Movement doesn't have to be intense to count</p>
         <span class="tag move">A SLOW-DOWN SERIES · 2 OF 3</span>
       </div>
 
       <div class="card">
-        <img src="cards/rest_photo.png" alt="Rest card: photo of a woman resting with tea">
+        <img src="cards/rest_photo.png" alt="Rest card: photo of a woman resting with a cup of tea">
         <h2>Rest</h2>
-        <p>Card 3 of 3 · sand accent</p>
+        <p>Rest is part of the rhythm</p>
         <span class="tag rest">A SLOW-DOWN SERIES · 3 OF 3</span>
+      </div>
+    </div>
+
+    <div class="group-title">Series Two · Meditate · Visualize · Nourish</div>
+    <div class="cards">
+      <div class="card">
+        <img src="cards/meditate_photo.png" alt="Meditate card: photo of a woman meditating in a sunlit sunroom">
+        <h2>Meditate</h2>
+        <p>Stillness is where you come back to yourself</p>
+        <span class="tag meditate">A SLOW-DOWN SERIES · 1 OF 3</span>
+      </div>
+
+      <div class="card">
+        <img src="cards/visualize_photo.png" alt="Visualize card: photo of a woman in a navy blazer at a bright window">
+        <h2>Visualize</h2>
+        <p>See the life you want, one clear picture at a time</p>
+        <span class="tag visualize">A SLOW-DOWN SERIES · 2 OF 3</span>
+      </div>
+
+      <div class="card">
+        <img src="cards/nourish_photo.png" alt="Nourish card: photo of a woman at a sunny kitchen table with a bowl of food">
+        <h2>Nourish</h2>
+        <p>Food that feeds your body and your spirit</p>
+        <span class="tag nourish">A SLOW-DOWN SERIES · 3 OF 3</span>
       </div>
     </div>
 
