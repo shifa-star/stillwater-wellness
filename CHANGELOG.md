@@ -3,6 +3,15 @@
 Written by the merge train. One entry per merged batch, one atomic stamp:
 version + tag + changelog + README + update-script. Append-only.
 
+## 2026-08-16 — batch 13, v2.0.12 — Indigenous Circle Lodge
+
+- The home welcome now reads: "You have entered the Indigenous Circle
+  Lodge of Oneness Wellness Lifestyles, where wellness is not purchased
+  but remembered." — per Shifa, verbatim.
+- Fixed by a dispatched builder + paired judge workflow (2 agents,
+  seat-pinned) — PASS.
+- Changed file: index.html.
+
 ## 2026-08-16 — batch 12, v2.0.11 — home greeting in three lines
 
 - The home opening greeting now stands on exactly three lines, per Shifa:
@@ -109,3 +118,18 @@ version + tag + changelog + README + update-script. Append-only.
 - Home entry heading now reads "Every door leads to wholeness remembered."
 - Service worker: CACHE_NAME shell-v3 → shell-v4 so every device (including
   the computer that still showed the old photo layout) refreshes after one load.
+
+## 2026-08-15 — apparatus audit passed (batch 0)
+
+- Apparatus authored (GOAL, SCOPE, MASTER-SPEC, CHECKLIST, TODO, LEDGER,
+  QUALITY-CONTROL-RULEBOOK, LOOPS, DECISIONS, LAUNCH-COMMAND, dispatch-log,
+  HEARTBEAT, MORNING-REPORT, CURRENT-STATE, EXECUTION-PLAN,
+  PROJECT-MANIFEST; CAPACITY-LEDGER; CONTROL/project_state).
+- Frozen reference captured (the Stillwater Wellness site, six guides).
+- Independent audit (Law 30) returned FAIL 7.82 → fixes → re-audit 8.41 →
+  fixes (m5) → re-audit PASS (final ≥ 8.5).
+- No code merged yet — build not dispatched; batch 0 was apparatus-only.
+
+## 2026-08-15 — project started
+
+- (Seed row; superseded by the batch-0 entry above.)
