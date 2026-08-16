@@ -3,6 +3,19 @@
 Written by the merge train. One entry per merged batch, one atomic stamp:
 version + tag + changelog + README + update-script. Append-only.
 
+## 2026-08-16 — batch 15, v2.0.14 — Aloha with a palm tree
+
+- The greeting now opens with Aloha standing alone, a small palm tree
+  beside it, then the rest on their own lines, per Shifa:
+  line 1: Aloha 🌴
+  line 2: In Lak'ech Ala K'in
+  line 3: I am another yourself.
+  line 4: We are One.
+  line 5: A New Covenant...
+- Fixed by a dispatched builder + paired judge workflow (2 agents,
+  seat-pinned) — PASS.
+- Changed file: index.html.
+
 ## 2026-08-16 — batch 14, v2.0.13 — greeting on four lines
 
 - The home opening greeting now rests on four lines, per Shifa, so it
