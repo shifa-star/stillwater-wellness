@@ -3,6 +3,19 @@
 Written by the merge train. One entry per merged batch, one atomic stamp:
 version + tag + changelog + README + update-script. Append-only.
 
+## 2026-08-16 — batch 14, v2.0.13 — greeting on four lines
+
+- The home opening greeting now rests on four lines, per Shifa, so it
+  renders symmetrically on the phone:
+  line 1: Aloha, In Lak'ech Ala K'in:
+  line 2: I am another yourself.
+  line 3: We are One.
+  line 4: A New Covenant...
+- Same words as before, only the line breaks changed.
+- Fixed by a dispatched builder + paired judge workflow (2 agents,
+  seat-pinned) — PASS.
+- Changed file: index.html.
+
 ## 2026-08-16 — batch 13, v2.0.12 — Indigenous Circle Lodge
 
 - The home welcome now reads: "You have entered the Indigenous Circle
