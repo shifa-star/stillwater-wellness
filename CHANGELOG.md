@@ -27,3 +27,10 @@ version + tag + changelog + README + update-script. Append-only.
 - The home door now opens onto an inviting image: a woman walking a
   sunlit garden path at golden hour (the way into the lodge), before the
   Circle's greeting. If a missing photo, each page falls back gracefully.
+
+## 2026-08-16 — The welcome tree door (v2.0.2)
+
+- The home page now shows the welcome tree with its door — the lodge's
+  own photo — right before "Every door leads home." The portrait photo
+  is sized for the web (720x1280), keeps its full shape, and the page
+  falls back gracefully if the image is ever missing.

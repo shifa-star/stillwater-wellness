@@ -284,6 +284,16 @@ a {
   color: var(--text-2);       /* ~9.5:1 on the hero background */
 }
 
+/* ---------- The welcome tree door photo (portrait, above the entry heading) ---------- */
+.entry-photo {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 28px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(20, 20, 20, 0.16);
+}
+
 /* ---------- Entry tiles ---------- */
 .tiles-grid {
   display: grid;
