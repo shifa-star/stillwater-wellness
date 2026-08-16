@@ -40,8 +40,9 @@ The wellness home app lives in the `oneness-lifestyles-app/` folder:
 - Opens with the Circle greeting: **"In Lak'ech Ala K'in: I am another
   yourself. We are One."**
 - **Daily Attunement Reading** — the day's three-part reading (galactic
-  signature from the 13 Moon count, affirmation, Remedy of the Day),
-  with a Continue-in-Telegram door.
+  signature on the 28-day moon cycle — 28 readings repeating every 28
+  days — affirmation, Remedy of the Day), with a Continue-in-Telegram
+  door.
 - **Gentle check-in** — soft words to choose from (heavy, scattered, calm,
   tired, open, tender), each suggesting a matching practice.
 - **Six gentle guides** — Breathe, Move, Rest, Meditate, Visualize,
