@@ -57,6 +57,7 @@
       <!-- The reading card, filled by the gateway. Three parts, in order. -->
       <section id="reading-card" class="reading-card reveal" aria-labelledby="reading-heading" hidden>
         <p class="reading-date" id="reading-date"></p>
+        <p class="reading-day" id="reading-day" hidden></p>
 
         <article class="reading-part" id="part-signature" hidden>
           <p class="part-kicker">the day's signature</p>
@@ -68,12 +69,18 @@
           <p class="part-kicker">for your meditation</p>
           <h2 class="part-heading">Today's affirmation</h2>
           <p class="part-text" id="reading-affirmation"></p>
+          <p class="part-heptad" id="reading-heptad" hidden></p>
         </article>
 
         <article class="reading-part" id="part-remedy" hidden>
           <p class="part-kicker">gentle and natural</p>
           <h2 class="part-heading">The Remedy of the Day</h2>
+          <p class="part-remedy-name" id="reading-remedy-name" hidden></p>
           <p class="part-text" id="reading-remedy"></p>
+          <div class="remedy-caution" id="reading-remedy-caution" hidden>
+            <p class="remedy-caution-label">Caution:</p>
+            <p class="remedy-caution-text" id="reading-remedy-caution-text"></p>
+          </div>
         </article>
       </section>
 
@@ -104,12 +111,16 @@
   </footer>
 
   <script src="config.js"></script>
+  <script src="medicine-wheel.js"></script>
   <script>
     // U-03 Reading surface. The gateway address lives in config.js
     // (window.APP_CONFIG.GATEWAY_URL) — never hardcoded in this page. On
-    // success the three parts render in order. On failure the page shows the
-    // last-known reading from localStorage, else a calm waiting state. No
-    // error wall, no retry noise.
+    // success the three parts render in order. When the gateway is empty,
+    // unreachable, or unusable, the page renders today's built-in 28-day
+    // Perpetual Medicine Wheel reading (medicine-wheel.js) instead; only if
+    // the wheel is somehow unavailable does it fall back to the last-known
+    // reading from localStorage, then a calm waiting state. No error wall,
+    // no retry noise.
     (function () {
       'use strict';
 
@@ -174,10 +185,107 @@
         setSlot('reading-remedy', r.remedy, 'part-remedy');
         var dateEl = document.getElementById('reading-date');
         if (dateEl) dateEl.textContent = r.date;
+        setDayHeading();
         if (readingCard) {
           readingCard.hidden = false;
           readingCard.classList.add('is-visible');
         }
+      }
+
+      // ---- 28-day Perpetual Medicine Wheel ----
+
+      // Spoke number N = whole calendar days since the anchor day, mod 28,
+      // plus 1. Both dates are pinned to local noon so DST cannot shift the
+      // count. Returns 0 only when the wheel data is unavailable.
+      function dayOfCycle() {
+        var anchorISO = (window.MEDICINE_WHEEL && window.MEDICINE_WHEEL.anchorISO) || '';
+        if (!anchorISO) return 0;
+        var now = new Date();
+        var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        today.setHours(12, 0, 0, 0);
+        var anchor = new Date(anchorISO + 'T12:00:00');
+        if (isNaN(anchor.getTime())) return 0;
+        var wholeDays = Math.floor((today.getTime() - anchor.getTime()) / 86400000);
+        return ((wholeDays % 28) + 28) % 28 + 1;
+      }
+
+      // "DAY N | Medicine Wheel Reading" — set on both the gateway and wheel
+      // paths; stays hidden only if the wheel data is unavailable.
+      function setDayHeading() {
+        var el = document.getElementById('reading-day');
+        var n = dayOfCycle();
+        if (el && n >= 1 && n <= 28) {
+          el.textContent = 'DAY ' + n + ' | Medicine Wheel Reading';
+          el.hidden = false;
+        } else if (el) {
+          el.hidden = true;
+        }
+      }
+
+      // Render today's spoke from the built-in Medicine Wheel. Returns true
+      // when a spoke was shown; false lets the caller fall through to the
+      // stored reading / waiting state.
+      function showWheelReading() {
+        var wheel = window.MEDICINE_WHEEL;
+        if (!wheel || !wheel.spokes) return false;
+        var spoke = wheel.spokes[String(dayOfCycle())];
+        if (!spoke) return false;
+
+        var signature = textOf(spoke.plasma);
+        var affirmation = textOf(spoke.affirmation);
+        var heptad = textOf(spoke.heptad);
+        var remedyTitle = textOf(spoke.remedyTitle);
+        var remedyFor = textOf(spoke.remedyFor);
+        var remedyCaution = textOf(spoke.remedyCaution);
+
+        setSlot('reading-signature', signature, 'part-signature');
+
+        var affirmPart = document.getElementById('part-affirmation');
+        var affirmEl = document.getElementById('reading-affirmation');
+        var heptadEl = document.getElementById('reading-heptad');
+        if (affirmPart) {
+          affirmPart.hidden = (affirmation || heptad) ? false : true;
+        }
+        if (affirmEl) affirmEl.textContent = affirmation;
+        if (heptadEl) {
+          if (heptad) {
+            heptadEl.textContent = heptad;
+            heptadEl.hidden = false;
+          } else {
+            heptadEl.hidden = true;
+          }
+        }
+
+        var remedyPart = document.getElementById('part-remedy');
+        var nameEl = document.getElementById('reading-remedy-name');
+        var remedyEl = document.getElementById('reading-remedy');
+        var cautionEl = document.getElementById('reading-remedy-caution');
+        if (remedyPart) {
+          remedyPart.hidden = (remedyTitle || remedyFor || remedyCaution) ? false : true;
+        }
+        if (nameEl) {
+          if (remedyTitle) {
+            nameEl.textContent = remedyTitle;
+            nameEl.hidden = false;
+          } else {
+            nameEl.hidden = true;
+          }
+        }
+        if (remedyEl) remedyEl.textContent = remedyFor;
+        if (cautionEl) {
+          var cautionTextEl = document.getElementById('reading-remedy-caution-text');
+          if (cautionTextEl) cautionTextEl.textContent = remedyCaution;
+          cautionEl.hidden = remedyCaution ? false : true;
+        }
+
+        var dateEl = document.getElementById('reading-date');
+        if (dateEl) dateEl.textContent = formatDate();
+        setDayHeading();
+        if (readingCard) {
+          readingCard.hidden = false;
+          readingCard.classList.add('is-visible');
+        }
+        return true;
       }
 
       function showStatus(el) {
@@ -222,6 +330,13 @@
       }
 
       function offline() {
+        // First today's built-in Medicine Wheel reading; only if the wheel
+        // is somehow unavailable do we fall back to the stored reading,
+        // then the calm waiting state.
+        if (showWheelReading()) {
+          showStatus(null);
+          return;
+        }
         if (loadStored()) return;
         showStatus(statusOffline);
       }

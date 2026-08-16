@@ -212,6 +212,15 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* Day-of-cycle line: "DAY N | Medicine Wheel Reading", spaced like the date */
+.reading-day {
+  margin: 0 0 26px;
+  font-size: 1.8rem;               /* 32.4px — prominent */
+  font-weight: bold;
+  color: var(--brand-blue);        /* ~11:1 on white */
+  letter-spacing: 0.02em;
+}
+
 .reading-part {
   padding: 22px 0;
 }
@@ -237,6 +246,43 @@ body {
   margin: 0;
   font-size: 1.125rem;   /* 20.25px — comfortably above the WCAG floor */
   color: var(--text);
+}
+
+/* Heptad note under the affirmation, when the spoke carries one */
+.part-heptad {
+  margin: 10px 0 0;
+  font-size: 1rem;                 /* 1rem = 18px, WCAG floor */
+  font-style: italic;
+  color: var(--text-2);            /* ~8:1 on white */
+}
+
+/* Remedy of the Day: name line, then the "For" paragraph, then the caution */
+.part-remedy-name {
+  margin: 0 0 12px;
+  font-size: 1.25rem;              /* 22.5px */
+  font-weight: bold;
+  color: var(--brand-blue);        /* ~11:1 on white */
+}
+
+.remedy-caution {
+  margin: 16px 0 0;
+  padding: 14px 18px;
+  color: var(--text-2);            /* ~8:1 on surface */
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--brand-sand);
+  border-radius: 12px;
+}
+
+.remedy-caution-label {
+  margin: 0 0 6px;
+  font-weight: bold;
+  color: var(--text);              /* ~17:1 on surface */
+}
+
+.remedy-caution-text {
+  margin: 0;
+  font-size: 1rem;                 /* 1rem = 18px, WCAG floor */
 }
 
 /* ---------- Telegram door ---------- */

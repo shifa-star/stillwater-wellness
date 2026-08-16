@@ -1,3 +1,28 @@
+## 2026-08-16 — batch 16, v2.0.15 — the 28-day Perpetual Medicine Wheel
+
+- Shifa's 28-day Perpetual Medicine document (the medicine wheel) has
+  arrived, been extracted from her PDF, and built into the app.
+- The Daily Attunement Reading now always shows today's wheel reading on
+  the 28-day moon cycle: "DAY N | Medicine Wheel Reading" as the reading
+  heading, then the three parts — the radial plasma signature, the
+  affirmation (with its heptad note where the spoke carries one), and the
+  Remedy of the Day (name, what it is for, and its caution).
+- Day of cycle: whole calendar days since the anchor day (Day 1 = July 26,
+  2026, the 13 Moon calendar year start) mod 28, plus 1. The wheel's 28
+  spokes repeat every 28 days, every moon.
+- Today (2026-08-15) is Day 21 — Spoke 21, Golden Milk.
+- New app file medicine-wheel.js carries the 28 spoke readings, cleaned
+  and verified from the source document (all 28 present, heptad notes only
+  where the source has them, no invented content).
+- The gateway path is preserved: when config.js GATEWAY_URL is filled, the
+  page fetches it first as before; the built-in wheel is the always-on
+  fallback (and the current behavior while the gateway is empty).
+- Service worker: CACHE_NAME shell-v6 -> shell-v7, medicine-wheel.js
+  pre-cached so every device refreshes after one load.
+- Built by a dispatched builder + paired judge workflow (2 agents,
+  seat-pinned) — PASS on all checks. Changed files: medicine-wheel.js
+  (new), reading.html, reading.css, sw.js.
+
 # CHANGELOG — Oneness Lifestyles · Where the Healing Waters Flow
 
 Written by the merge train. One entry per merged batch, one atomic stamp:
