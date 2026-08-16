@@ -166,15 +166,55 @@ main {
 }
 
 /* ---------- Home entry section: flowing-water backdrop ----------
-   The water image is brightened to soft-foam tones (per Shifa: "soft foam
-   on sand") and sits under a light 55% veil so the flow stays clearly
-   visible. Text contrast stays >= 4.5:1 — brand blue on the pale foam
-   reads ~7:1, and all other text sits on white cards. */
+   A looping video of waves washing onto the shore (per Shifa: "soft foam
+   on sand") fills this section behind the cards. The video is decorative:
+   muted, looping, hidden from assistive tech. The poster frame (also
+   water-bg.jpg) shows before the video loads, for no-JS, and when the
+   reader prefers reduced motion. A light 55% veil keeps the flow clearly
+   visible while text contrast stays >= 4.5:1 — brand blue on the pale
+   foam reads ~7:1, and all other text sits on white cards. */
 .section.home-entry {
+  position: relative;
+  overflow: hidden;
+  /* Fallback while the video loads and for reduced-motion: the poster
+     still as a plain background layer beneath the video element. */
   background:
     linear-gradient(rgba(247, 250, 255, 0.55), rgba(247, 250, 255, 0.55)),
     url('images/water-bg.jpg') center / cover no-repeat;
   background-color: var(--bg);   /* fallback while the image loads */
+}
+
+.water-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  display: block;
+}
+
+/* The veil: a pale sheet over the video so cards and text keep contrast. */
+.home-entry::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(247, 250, 255, 0.55);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.home-entry > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Readers who prefer reduced motion see the calm still frame instead of
+   the moving video. */
+@media (prefers-reduced-motion: reduce) {
+  .water-backdrop {
+    display: none;
+  }
 }
 
 /* ---------- Footer ---------- */

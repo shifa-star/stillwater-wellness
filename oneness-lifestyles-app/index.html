@@ -39,7 +39,7 @@
           <div class="home-welcome">
             <p>You have entered the lodge of Oneness Wellness Lifestyles, where wellness is not purchased but remembered.</p>
             <p>I am Clan Mother Shifa, carrier of the lineage of Cherokee, Choctaw, Mayan, and Olmec ancestral medicine ways. This Circle is where I share them daily.</p>
-            <p>You are a founding member of this Circle. What grows here, grows because you stood in it first.</p>
+            <p>What grows here, grows because you stood in it now.</p>
             <p>Come in. Take your place. Let the day rise to meet you.</p>
           </div>
         </div>
@@ -47,6 +47,13 @@
 
       <!-- Entry tiles -->
       <section class="section home-entry" aria-labelledby="home-entry-heading">
+        <!-- Decorative backdrop: waves washing onto the shore, looping.
+             Muted + autoplay + playsinline so it plays on phones; hidden from
+             assistive tech (it carries no meaning); poster is the still frame
+             shown before the video loads and for no-JS / reduced-motion. -->
+        <video class="water-backdrop" autoplay muted loop playsinline preload="auto" poster="images/water-bg.jpg" aria-hidden="true" tabindex="-1">
+          <source src="images/water-bg.mp4" type="video/mp4">
+        </video>
         <div class="container">
           <img class="entry-photo" src="images/welcome-tree-door.jpg" alt="The welcome tree with its door at the lodge" onerror="this.style.display='none'">
           <h2 id="home-entry-heading" class="section-heading">Every door leads to wholeness remembered.</h2>
