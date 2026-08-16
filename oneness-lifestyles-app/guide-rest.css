@@ -1,0 +1,345 @@
+/* guide-rest.css — Oneness Lifestyles Rest guide, Oneness brand palette.
+   Palette tokens and font match the frozen reference (captures/site/styles.css)
+   exactly. WCAG adjustments over the site CSS: every text size stays >= 18px,
+   touch targets >= 44px, visible focus, reduced-motion honored. */
+
+/* ---------- Brand palette (from owlifestylesfoundation.org) ---------- */
+:root {
+  --brand-blue: #283890;   /* deep blue — primary (theme-color) */
+  --brand-green: #6dbc45;  /* vibrant lime green — accent CTA */
+  --brand-sand: #c1a178;   /* warm sand — accent */
+  --brand-teal: #25c4b8;   /* fun accent */
+  --brand-pink: #ff4d8d;   /* fun accent */
+  --bg: #f7faff;           /* page background */
+  --surface: #ffffff;      /* cards / surfaces */
+  --text: #141414;         /* body text */
+  --text-2: #3f3f3f;       /* secondary text */
+  --line: #dfe5f6;         /* soft blue-grey divider */
+
+  /* WCAG-safe derivations (frozen tokens above are unchanged) */
+  --brand-green-deep: #5fae3d;  /* green pill hover (from reference CSS) */
+  --brand-green-text: #357a24;  /* link green, >= 4.5:1 on white/surface */
+  --brand-sand-light: #e0cbaa;  /* footer link sand, >= 4.5:1 on brand blue */
+  --brand-blue-deep: #1e2a6e;   /* deeper blue for active-guide pill hover */
+}
+
+/* ---------- Base / reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;   /* WCAG: root 18px so 1rem = 18px and no text falls below the floor */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;   /* WCAG: base text >= 18px */
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Accessibility: visible focus + skip link ---------- */
+:focus-visible {
+  outline: 3px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--brand-sand-light);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  display: inline-block;
+  padding: 12px 20px;
+  min-height: 44px;
+  background-color: var(--brand-blue);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus-visible {
+  left: 0;
+  outline-offset: 0;
+}
+
+/* ---------- Layout container ---------- */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container-narrow {
+  max-width: 34rem;   /* ~60 chars at 18px — short, readable lines */
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background-color: var(--surface);
+  border-bottom: 4px solid var(--brand-sand);
+}
+
+.site-name {
+  margin: 0;
+  padding: 6px 0;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+.site-name a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;              /* WCAG: touch target >= 44px */
+  color: var(--brand-blue);      /* 10.2:1 on white */
+  text-decoration: none;
+}
+
+.site-name a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---------- Page hero ---------- */
+.page-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 240px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 18% 28%, rgba(37, 196, 184, 0.28), transparent 55%),
+    radial-gradient(ellipse at 82% 72%, rgba(255, 77, 141, 0.18), transparent 55%),
+    linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+}
+
+.page-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.15) 0%, rgba(20, 20, 20, 0.65) 100%);
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 24px 36px;
+}
+
+.page-hero-heading {
+  margin: 0 0 6px;
+  font-size: 2.2rem;
+  color: #ffffff;               /* >= 4.5:1 on the dark hero overlay */
+}
+
+.page-hero-kicker {
+  margin: 0;
+  font-size: 1.125rem;
+  color: #f2f5ff;
+}
+
+/* Fallback when the hero photo is not present yet: show the palette gradient
+   with the heading in brand blue on the light gradient. */
+.page-hero.no-img .page-hero-overlay { display: none; }
+.page-hero.no-img .page-hero-heading { color: var(--brand-blue); }
+.page-hero.no-img .page-hero-kicker { color: var(--text-2); }
+
+/* ---------- Section ---------- */
+.section {
+  padding: 44px 0 36px;
+  background-color: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.section p {
+  margin: 0 0 18px;
+  color: #33443f;               /* 10.3:1 on white */
+  font-size: 1.125rem;          /* >= 18px */
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--brand-green-text);  /* 5.3:1 on white */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Primary button ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+  padding: 12px 30px;
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  color: var(--text);             /* 7.8:1 on brand green */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.125rem;            /* >= 18px */
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--brand-green-deep);
+}
+
+/* ---------- Back-to-all link ---------- */
+.link-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+  padding: 8px 2px;
+  color: var(--brand-green-text);
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+/* ---------- Gentle navigation between the six guides ---------- */
+.guide-nav {
+  padding: 36px 0 44px;
+  background-color: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+.guide-nav-label {
+  margin: 0 0 16px;
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--brand-blue);       /* 9.7:1 on the page background */
+}
+
+.guide-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.guide-nav-list a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 2px solid var(--line);
+  background-color: var(--surface);
+  color: var(--brand-green-text); /* 5.3:1 on white */
+  font-size: 1rem;                /* >= 18px */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.guide-nav-list a:hover,
+.guide-nav-list a:focus-visible {
+  border-color: var(--brand-green);
+  background-color: #ffffff;
+}
+
+.guide-nav-list a.is-current {
+  background-color: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: #ffffff;                 /* 10.2:1 on brand blue */
+}
+
+.guide-nav-list a.is-current:hover,
+.guide-nav-list a.is-current:focus-visible {
+  background-color: var(--brand-blue-deep);
+  border-color: var(--brand-blue-deep);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 40px 24px;
+  background-color: var(--brand-blue);
+  color: #e7ebfa;      /* 8.6:1 on brand blue */
+  text-align: center;
+  font-size: 1rem;     /* 1rem = 18px (html root is 18px); >= WCAG floor */
+  line-height: 1.8;
+}
+
+.site-footer p {
+  margin: 0 0 8px;
+}
+
+.site-footer p:last-child {
+  margin-bottom: 0;
+}
+
+.site-footer a {
+  color: var(--brand-sand-light);  /* 6.4:1 on brand blue */
+  text-decoration: underline;
+}
+
+/* ---------- Responsive (mobile-first; text never below 18px) ---------- */
+@media (min-width: 1024px) {
+  .page-hero {
+    min-height: 340px;
+  }
+  .page-hero-heading {
+    font-size: 2.8rem;
+  }
+  .section {
+    padding: 56px 0 48px;
+  }
+  .guide-nav {
+    padding: 44px 0 52px;
+  }
+  .site-footer {
+    padding: 44px 24px;
+  }
+}
+
+/* ---------- JS reveal (only active when JS is on) ---------- */
+.js-enabled .reveal {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.js-enabled .reveal.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-enabled .reveal {
+    opacity: 1;
+    transition: none;
+  }
+}

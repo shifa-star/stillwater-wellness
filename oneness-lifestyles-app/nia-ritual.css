@@ -1,0 +1,536 @@
+/* nia-ritual.css — Oneness Lifestyles · Nia's daily self-check-in ritual (U-13).
+   Companion to nia-gate.html → nia-ritual.html. Button-driven only — no AI,
+   no generation, no fetch. Calibration is recaptured every session from that
+   session's stored direction; "nothing moved" is a real outcome with its own
+   troubleshooting (water, soft knees, posture). "Not today" is respected —
+   one arrival per day, rests after 3 declines (localStorage).
+   Palette tokens are byte-identical to the frozen reference
+   (captures/site/styles.css). WCAG: text >= 18px, contrast >= 4.5:1,
+   touch targets >= 44px, keyboard reachable, focus visible,
+   reduced-motion honored. */
+
+/* ---------- Brand palette (from captures/site/styles.css, byte-identical) ---------- */
+:root {
+  --brand-blue: #283890;   /* deep blue — primary (theme-color) */
+  --brand-green: #6dbc45;  /* vibrant lime green — accent CTA */
+  --brand-sand: #c1a178;   /* warm sand — accent */
+  --brand-teal: #25c4b8;   /* fun accent */
+  --brand-pink: #ff4d8d;   /* fun accent */
+  --bg: #f7faff;           /* page background */
+  --surface: #ffffff;      /* cards / surfaces */
+  --text: #141414;         /* body text */
+  --text-2: #3f3f3f;       /* secondary text */
+  --line: #dfe5f6;         /* soft blue-grey divider */
+
+  /* WCAG-safe derivations (frozen tokens above are unchanged) */
+  --brand-green-deep: #5fae3d;  /* green pill hover (from reference CSS) */
+  --brand-green-text: #357a24;  /* link green, >= 4.5:1 on white/surface */
+  --brand-sand-light: #e0cbaa;  /* footer link sand, >= 4.5:1 on brand blue */
+  --brand-teal-text: #0a6b63;  /* dark teal kicker, >= 4.5:1 on white */
+}
+
+/* ---------- Base / reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;   /* WCAG: root 18px so 1rem = 18px and no text falls below the floor */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;   /* WCAG: base text >= 18px */
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Accessibility: visible focus + skip link ---------- */
+:focus-visible {
+  outline: 3px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--brand-sand-light);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  display: inline-block;
+  padding: 12px 20px;
+  min-height: 44px;
+  background-color: var(--brand-blue);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus-visible {
+  left: 0;
+  outline-offset: 0;
+}
+
+/* ---------- Layout container ---------- */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background-color: var(--surface);
+  border-bottom: 4px solid var(--brand-sand);
+}
+
+.site-name {
+  margin: 1em 0;
+  color: var(--brand-blue);
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+.site-name a {
+  display: inline-block;
+  padding: 10px 0;          /* WCAG: comfortable touch target */
+  color: var(--brand-blue);
+  text-decoration: none;
+}
+
+/* ---------- Ritual hero ---------- */
+.ritual-hero {
+  text-align: center;
+  padding: 56px 20px 20px;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(37, 196, 184, 0.24), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 77, 141, 0.16), transparent 55%),
+    linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+}
+
+.ritual-kicker {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  color: var(--brand-teal-text);   /* >= 4.5:1 on bg */
+}
+
+.ritual-heading {
+  margin: 0 0 14px;
+  font-size: 2.2rem;
+  color: var(--brand-blue);
+}
+
+.ritual-lede {
+  max-width: 560px;
+  margin: 0 auto;
+  color: var(--text-2);
+}
+
+/* ---------- Ritual section / card ---------- */
+.ritual-section {
+  padding: 32px 20px 72px;
+}
+
+.ritual-card {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 36px 26px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(20, 20, 20, 0.08);
+}
+
+/* ---------- Ritual steps (a quiet thread, not a race) ---------- */
+.ritual-steps {
+  margin: 0 0 26px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ritual-steps li {
+  margin: 0;
+}
+
+.ritual-step-pill {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  font-size: 1rem;            /* >= 18px (WCAG floor) */
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.ritual-step-pill.is-active {
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+  font-weight: bold;
+}
+
+/* ---------- Ritual screens ---------- */
+.ritual-screen[hidden] {
+  display: none;
+}
+
+.ritual-screen-heading {
+  margin: 0 0 16px;
+  font-size: 1.6rem;
+  color: var(--brand-blue);
+  line-height: 1.3;
+}
+
+.ritual-screen p {
+  margin: 0 0 14px;
+  color: var(--text);
+}
+
+.ritual-screen .ritual-soft {
+  color: var(--text-2);
+}
+
+.ritual-note {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  background-color: var(--bg);
+  border-left: 4px solid var(--brand-sand);
+  border-radius: 8px;
+  color: var(--text-2);
+}
+
+.ritual-note p {
+  margin: 0;
+}
+
+/* ---------- Arrival form (the pre-filter door) ---------- */
+.ritual-form {
+  margin: 20px 0 0;
+}
+
+.ritual-label {
+  display: block;
+  margin: 0 0 6px;
+  font-weight: bold;
+  color: var(--text);
+}
+
+.ritual-hint {
+  margin: 0 0 10px;
+  font-size: 1rem;            /* >= 18px (WCAG floor) */
+  color: var(--text-2);
+}
+
+.ritual-input {
+  display: block;
+  width: 100%;
+  min-height: 48px;               /* WCAG: touch target >= 44px */
+  padding: 10px 16px;
+  font: inherit;
+  color: var(--text);
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+}
+
+.ritual-input:focus-visible {
+  border-color: var(--brand-blue);
+  outline: 3px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.ritual-feedback {
+  margin: 12px 0 0;
+  min-height: 1.6em;
+  color: var(--text-2);
+}
+
+/* ---------- Buttons (brand lime green — dark text for readable contrast) ---------- */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  min-height: 48px;               /* WCAG: touch target >= 44px */
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  color: var(--text);             /* >= 4.5:1 on brand green */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.125rem;            /* >= 18px (WCAG floor) */
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--brand-green-deep);
+}
+
+.btn-ghost {
+  background-color: var(--surface);
+  border: 2px solid var(--brand-blue);
+  color: var(--brand-blue);       /* >= 4.5:1 on white */
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  background-color: var(--bg);
+  border-color: var(--brand-blue);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  margin: 0 0 12px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-block:last-child {
+  margin-bottom: 0;
+}
+
+.btn-row {
+  margin: 18px 0 0;
+}
+
+/* ---------- Choice buttons (the observed answers) ---------- */
+.choice-list {
+  margin: 18px 0 0;
+}
+
+.choice-btn {
+  display: block;
+  width: 100%;
+  min-height: 48px;               /* WCAG: touch target >= 44px */
+  margin: 0 0 12px;
+  padding: 12px 18px;
+  font: inherit;
+  font-weight: bold;
+  text-align: left;
+  color: var(--brand-blue);
+  background-color: var(--surface);
+  border: 2px solid var(--brand-blue);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.choice-btn:last-child {
+  margin-bottom: 0;
+}
+
+.choice-btn:hover,
+.choice-btn:focus-visible {
+  background-color: var(--bg);
+}
+
+/* ---------- Statement card (retest) ---------- */
+.statement-card {
+  margin: 16px 0 0;
+  padding: 20px 18px;
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.statement-text {
+  margin: 0 0 8px;
+  font-size: 1.15rem;             /* >= 18px (WCAG floor) */
+  font-style: italic;
+  color: var(--brand-blue);
+  line-height: 1.5;
+}
+
+.statement-ask {
+  margin: 0 0 14px;
+  color: var(--text-2);
+}
+
+/* ---------- Retest summary ---------- */
+.summary-list {
+  margin: 8px 0 0;
+  padding-left: 22px;
+  color: var(--text);
+}
+
+.summary-list li {
+  margin: 0 0 8px;
+}
+
+.summary-heading {
+  margin: 18px 0 6px;
+  font-size: 1.125rem;            /* >= 18px (WCAG floor) */
+  color: var(--brand-blue);
+  font-weight: bold;
+}
+
+.summary-heading:first-of-type {
+  margin-top: 6px;
+}
+
+/* ---------- Sign-off ---------- */
+.signoff {
+  margin: 26px 0 0;
+  padding: 22px 18px;
+  background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.signoff-text {
+  margin: 0;
+  font-size: 1.15rem;             /* >= 18px (WCAG floor) */
+  font-weight: bold;
+  color: var(--brand-blue);
+}
+
+/* ---------- Back links ---------- */
+.ritual-back {
+  margin: 22px 0 0;
+}
+
+.ritual-back a {
+  display: inline-block;
+  padding: 12px 0;               /* WCAG: comfortable touch target */
+  color: var(--brand-green-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Glossary (defines terms, never the method) ---------- */
+.glossary-section {
+  padding: 8px 20px 72px;
+}
+
+.glossary-card {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 30px 26px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+}
+
+.glossary-heading {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  color: var(--brand-blue);
+}
+
+.glossary-intro {
+  margin: 0 0 18px;
+  color: var(--text-2);
+}
+
+.glossary-term {
+  margin: 0 0 12px;
+}
+
+.glossary-term strong {
+  color: var(--brand-blue);
+}
+
+.glossary-term p {
+  margin: 2px 0 0;
+}
+
+.glossary-note {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  background-color: var(--bg);
+  border-left: 4px solid var(--brand-sand);
+  border-radius: 8px;
+  color: var(--text-2);
+}
+
+.glossary-note p {
+  margin: 0;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--brand-green-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 40px 24px;
+  background-color: var(--brand-blue);
+  color: #e7ebfa;      /* >= 4.5:1 on brand blue */
+  text-align: center;
+  font-size: 1rem;     /* 1rem = 18px (root is 18px); >= WCAG floor */
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  display: inline-block;
+  padding: 8px 4px;
+  color: var(--brand-sand-light);  /* >= 4.5:1 on brand blue */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Responsive (mobile-first; text never below 18px) ---------- */
+@media (min-width: 1024px) {
+  .ritual-hero {
+    padding: 90px 24px 24px;
+  }
+  .ritual-heading {
+    font-size: 2.8rem;
+  }
+  .ritual-section {
+    padding: 40px 24px 96px;
+  }
+  .ritual-card,
+  .glossary-card {
+    padding: 44px 40px;
+  }
+}
+
+/* ---------- JS reveal (only active when JS is on) ---------- */
+.js-enabled .reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.js-enabled .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-enabled .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

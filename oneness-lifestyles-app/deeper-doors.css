@@ -1,0 +1,257 @@
+/* deeper-doors.css — the two deeper doors, Oneness brand palette.
+   Palette tokens and font match the frozen reference (captures/site/styles.css)
+   exactly; WCAG-safe derivations match the app shell (app.css). Every text
+   size stays >= 18px, touch targets >= 44px, visible focus, reduced-motion
+   honored. Companion page: deeper-doors.html. */
+
+/* ---------- Brand palette (from owlifestylesfoundation.org) ---------- */
+:root {
+  --brand-blue: #283890;   /* deep blue — primary (theme-color) */
+  --brand-green: #6dbc45;  /* vibrant lime green — accent CTA */
+  --brand-sand: #c1a178;   /* warm sand — accent */
+  --brand-teal: #25c4b8;   /* fun accent */
+  --brand-pink: #ff4d8d;   /* fun accent */
+  --bg: #f7faff;           /* page background */
+  --surface: #ffffff;      /* cards / surfaces */
+  --text: #141414;         /* body text */
+  --text-2: #3f3f3f;       /* secondary text */
+  --line: #dfe5f6;         /* soft blue-grey divider */
+
+  /* WCAG-safe derivations (frozen tokens above are unchanged) */
+  --brand-green-deep: #5fae3d;  /* green pill hover (from reference CSS) */
+  --brand-green-text: #357a24;  /* link green, >= 4.5:1 on white/surface */
+  --brand-sand-light: #e0cbaa;  /* footer link sand, >= 4.5:1 on brand blue */
+}
+
+/* ---------- Base / reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;   /* WCAG: root 18px so 1rem = 18px and no text falls below the floor */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;   /* WCAG: base text >= 18px */
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Accessibility: visible focus + skip link ---------- */
+:focus-visible {
+  outline: 3px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--brand-sand-light);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  display: inline-block;
+  padding: 12px 20px;
+  min-height: 44px;
+  background-color: var(--brand-blue);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus-visible {
+  left: 0;
+  outline-offset: 0;
+}
+
+/* ---------- Layout container ---------- */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background-color: var(--surface);
+  border-bottom: 4px solid var(--brand-sand);
+}
+
+.site-name {
+  margin: 1em 0;
+}
+
+.site-name a {
+  display: inline-block;
+  padding: 10px 0;
+  min-height: 44px;              /* WCAG: touch target >= 44px */
+  color: var(--brand-blue);      /* 9.6:1 on white */
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+/* ---------- Doorway hero ---------- */
+.hero {
+  text-align: center;
+  padding: 56px 20px;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(37, 196, 184, 0.24), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 77, 141, 0.16), transparent 55%),
+    linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+}
+
+.hero-heading {
+  font-size: 2.2rem;
+  margin: 0 0 12px;
+  color: var(--brand-blue);
+}
+
+.hero-subheading {
+  font-size: 1.2rem;
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--text-2);
+}
+
+/* ---------- Doors section ---------- */
+.doors-section {
+  padding: 48px 0;
+  background-color: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.doors {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+/* ---------- A single door ---------- */
+.door {
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--brand-sand);
+  border-radius: 12px;
+  padding: 28px 24px 32px;
+}
+
+.door-kicker {
+  margin: 0 0 8px;
+  color: var(--brand-blue);   /* 9.6:1 on #f7faff */
+  font-weight: bold;
+  font-size: 1rem;            /* >= 18px (WCAG floor) */
+  letter-spacing: 0.03em;
+}
+
+.door-heading {
+  font-size: 1.4rem;
+  color: var(--brand-blue);
+  margin: 0 0 16px;
+}
+
+.door p {
+  margin: 0 0 16px;
+  color: #33443f;             /* ~10:1 on white / #f7faff */
+}
+
+.door .door-action {
+  margin: 24px 0 0;
+}
+
+/* ---------- Buttons (brand lime green — dark text for readable contrast) ---------- */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  color: var(--text);             /* 7.8:1 on brand green */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.125rem;            /* >= 18px (WCAG floor) */
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--brand-green-deep);  /* slightly deeper lime for hover */
+}
+
+/* ---------- Way home ---------- */
+.doorway-back {
+  margin: 40px 0 0;
+  text-align: center;
+}
+
+.doorway-back a {
+  display: inline-block;
+  padding: 10px 0;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--brand-green-text); /* 5.3:1 on white */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 40px 24px;
+  background-color: var(--brand-blue);
+  color: #e7ebfa;      /* 8.6:1 on brand blue */
+  text-align: center;
+  font-size: 1rem;     /* 1rem = 18px (html root is 18px); >= WCAG floor */
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--brand-sand-light);  /* 6.5:1 on brand blue */
+  text-decoration: underline;
+}
+
+/* ---------- Responsive (mobile-first; text never below 18px) ---------- */
+@media (min-width: 900px) {
+  .doors {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding: 90px 24px;
+  }
+  .hero-heading {
+    font-size: 2.8rem;
+  }
+  .doors-section {
+    padding: 60px 0;
+  }
+}

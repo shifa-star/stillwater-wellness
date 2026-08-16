@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nia · Oneness Lifestyles</title>
+  <meta name="description" content="Nia's daily check-in — a private ritual for Mz. Felicia's active clients. The rest of Oneness Lifestyles stays open to everyone.">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="nia-gate.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ===== U-12 NIA GATE =====
+         The passcode door to Nia's daily check-in. The app stays open to
+         everyone; this page only guards the ritual. The correct passcode
+         leads to nia-ritual.html (built next wave — the target is expected). -->
+    <section class="gate-hero reveal">
+      <div class="container">
+        <p class="gate-kicker">A private daily ritual</p>
+        <h1 class="gate-heading">Nia</h1>
+        <p class="gate-lede">Nia is a gentle companion. She holds a short daily check-in — a quiet moment to pause, notice how you feel, and settle in.</p>
+      </div>
+    </section>
+
+    <section class="gate-section">
+      <div class="container">
+        <div class="gate-card reveal">
+          <h2 class="gate-card-heading">A private space</h2>
+          <p class="gate-card-copy">This ritual is woven for Mz. Felicia's active clients. She shares the passcode with them directly.</p>
+
+          <form id="gate-form" class="gate-form" novalidate>
+            <label class="gate-label" for="gate-passcode">Enter the passcode from Mz. Felicia</label>
+            <input id="gate-passcode" class="gate-input" type="password" name="passcode" autocomplete="off" spellcheck="false" aria-describedby="gate-feedback">
+            <button type="submit" class="btn gate-button">Enter the ritual</button>
+            <p id="gate-feedback" class="gate-feedback" aria-live="polite"></p>
+          </form>
+
+          <p class="gate-note">The rest of the app stays open to everyone. The reading, the guides, and the check-in wait for all.</p>
+          <p class="gate-back"><a href="index.html">Back to Oneness Lifestyles</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Oneness Lifestyles · Where the Healing Waters Flow. <a href="#top">Back to top</a></p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    // U-12 Nia gate. The passcode VALUE lives in config.js (window.APP_CONFIG),
+    // never in this page. This is a door, not a wall — the app stays open to
+    // everyone; this page only guards Nia's ritual.
+    (function () {
+      'use strict';
+
+      var passcode = (window.APP_CONFIG && window.APP_CONFIG.NIA_PASSCODE) || '';
+
+      var form = document.getElementById('gate-form');
+      var input = document.getElementById('gate-passcode');
+      var feedback = document.getElementById('gate-feedback');
+
+      function say(text) {
+        if (feedback) {
+          feedback.textContent = text;
+        }
+      }
+
+      function reveal() {
+        var items = document.querySelectorAll('.reveal');
+        for (var i = 0; i < items.length; i++) {
+          items[i].classList.add('is-visible');
+        }
+      }
+
+      function init() {
+        document.documentElement.classList.add('js-enabled');
+        reveal();
+
+        if (!form || !input) {
+          return;
+        }
+
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          var value = input.value.trim();
+
+          if (value === '') {
+            say('The passcode comes from Mz. Felicia, who shares it with her clients.');
+            input.focus();
+            return;
+          }
+
+          if (passcode !== '' && value === passcode) {
+            window.location.href = 'nia-ritual.html';
+            return;
+          }
+
+          say('That does not seem right yet — take a breath and try again.');
+          input.select();
+          input.focus();
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

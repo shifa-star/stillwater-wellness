@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meditate — Oneness Lifestyles</title>
+  <meta name="description" content="Meditate — a gentle guide for quiet moments of stillness">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="guide-meditate.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-hero">
+      <img class="page-hero-img" src="images/meditate_photo.jpg" alt="Meditate — photo of a woman meditating in a sunlit sunroom" onerror="this.style.display='none'">
+      <div class="page-hero-overlay" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <h1 class="page-hero-heading">Meditate</h1>
+        <p class="page-hero-kicker">A Slow-Down Series · One</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <p>Stillness is where you come back to yourself. A few quiet minutes of sitting with your breath can settle a busy mind, even when it doesn't feel like you are doing anything at all.</p>
+        <p>You do not need to clear your thoughts or sit for a long time. Find a comfortable place, close your eyes, and let the thoughts come and go like weather. Then, when you are ready, return to your day a little lighter.</p>
+        <p><a class="btn" href="guide-visualize.html">Next: Visualize</a></p>
+        <nav class="guide-nav" aria-label="The six gentle guides">
+          <ul>
+            <li><a href="guide-breathe.html">Breathe</a></li>
+            <li><a href="guide-move.html">Move</a></li>
+            <li><a href="guide-rest.html">Rest</a></li>
+            <li><a href="guide-meditate.html" aria-current="page">Meditate</a></li>
+            <li><a href="guide-visualize.html">Visualize</a></li>
+            <li><a href="guide-nourish.html">Nourish</a></li>
+          </ul>
+        </nav>
+        <p><a class="link-back" href="index.html">All six actions</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Be gentle with yourself today. <a href="#top">Back to top</a></p>
+      <p>Oneness Lifestyles · Where the Healing Waters Flow</p>
+    </div>
+  </footer>
+
+  <script>
+    // Offline capability: register the app-shell service worker.
+    // Runs only in secure contexts (https or localhost), where the API exists.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function (err) {
+          // Progressive enhancement — offline failure must not break the app.
+          console.warn('Service worker registration failed', err);
+        });
+      });
+    }
+
+    // Gentle reveal: content is fully present when JS is off or motion is reduced.
+    (function () {
+      'use strict';
+      function revealAll() {
+        var items = document.querySelectorAll('.reveal');
+        for (var i = 0; i < items.length; i++) {
+          items[i].classList.add('is-visible');
+        }
+      }
+      function init() {
+        try {
+          document.documentElement.classList.add('js-enabled');
+          var items = document.querySelectorAll('.reveal');
+          if (!items.length) return;
+          if (!('IntersectionObserver' in window)) {
+            revealAll();
+            return;
+          }
+          var observer = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1 });
+          for (var j = 0; j < items.length; j++) {
+            observer.observe(items[j]);
+          }
+        } catch (err) {
+          revealAll();
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Breathe — Oneness Lifestyles</title>
+  <meta name="description" content="Breathe — Oneness Lifestyles · Where the Healing Waters Flow">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="guide-breathe.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-hero">
+      <img class="page-hero-img" src="images/breathe_photo.jpg" alt="Breathe — photo of a woman breathing calmly in a sunlit garden" onerror="this.style.display='none'">
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content">
+        <h1 class="page-hero-heading">Breathe</h1>
+        <p class="page-hero-kicker">A Slow-Down Series · One</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <p>Your breath is always with you. A few slow, even breaths can help quiet a busy mind and settle the body before you move on with your day.</p>
+        <p>Try this: sit comfortably, close your eyes if you like, and take four gentle counts in through your nose, then four slow counts out through your mouth.</p>
+        <p><a class="btn" href="guide-move.html">Next: Move gently</a></p>
+        <p><a class="link-back" href="index.html">All six actions</a></p>
+      </div>
+    </section>
+
+    <nav class="section section--alt reveal" aria-label="The six gentle actions">
+      <div class="container">
+        <h2 class="section-heading">The six gentle actions</h2>
+        <p class="nav-intro">Six gentle threads, woven together. Follow the one that calls to you.</p>
+        <ul class="guide-nav-list">
+          <li><a class="guide-nav-link" href="guide-breathe.html" aria-current="page">Breathe</a></li>
+          <li><a class="guide-nav-link" href="guide-move.html">Move</a></li>
+          <li><a class="guide-nav-link" href="guide-rest.html">Rest</a></li>
+          <li><a class="guide-nav-link" href="guide-meditate.html">Meditate</a></li>
+          <li><a class="guide-nav-link" href="guide-visualize.html">Visualize</a></li>
+          <li><a class="guide-nav-link" href="guide-nourish.html">Nourish</a></li>
+        </ul>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Be gentle with yourself today. <a href="#top">Back to top</a></p>
+      <p>Oneness Lifestyles · Where the Healing Waters Flow</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      function revealAll() {
+        var items = document.querySelectorAll('.reveal');
+        for (var i = 0; i < items.length; i++) {
+          items[i].classList.add('is-visible');
+        }
+      }
+
+      function init() {
+        try {
+          document.documentElement.classList.add('js-enabled');
+
+          var items = document.querySelectorAll('.reveal');
+          if (!items.length) return;
+
+          if (!('IntersectionObserver' in window)) {
+            revealAll();
+            return;
+          }
+
+          var observer = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1 });
+
+          for (var j = 0; j < items.length; j++) {
+            observer.observe(items[j]);
+          }
+        } catch (err) {
+          revealAll();
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

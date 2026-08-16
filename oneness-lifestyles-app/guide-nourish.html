@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nourish — Oneness Lifestyles</title>
+  <meta name="description" content="Nourish — the gentle guide to eating and resting well · Oneness Lifestyles">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="guide-nourish.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ===== U-11 NOURISH GUIDE =====
+         Words carried verbatim from the frozen reference
+         (captures/site/guide-nourish.html). The hero photo itself is not
+         rebuilt; if the image is ever added at images/nourish_photo.jpg it
+         shows, otherwise the palette gradient hero stands in. -->
+    <section class="page-hero" aria-label="Nourish">
+      <img class="page-hero-img" src="images/nourish_photo.jpg" alt="Nourish — photo of a woman at a sunny kitchen table with a bowl of food" onerror="this.closest('.page-hero').classList.add('no-photo')">
+      <div class="page-hero-overlay" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <h1 class="page-hero-heading">Nourish</h1>
+        <p class="page-hero-kicker">A Slow-Down Series · Three</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <p>Good food, good water, good rest — the body thrives on what you give it. Eating well is not about rules or perfection; it is about kindness you can repeat every day.</p>
+        <p>Let each meal be a small way of caring for yourself. Choose something that will feed your body and your spirit, eat without rushing, and let the nourishment carry you gently through the rest of the day.</p>
+        <p><a class="btn" href="guide-meditate.html">Begin again</a></p>
+        <p><a class="link-back" href="index.html">All six actions</a></p>
+      </div>
+    </section>
+
+    <section class="guide-nav" aria-label="The six gentle guides">
+      <div class="container">
+        <h2 class="guide-nav-heading">The six gentle guides</h2>
+        <nav aria-label="Guides">
+          <ul class="guide-nav-list">
+            <li><a href="guide-breathe.html">Breathe</a></li>
+            <li><a href="guide-move.html">Move</a></li>
+            <li><a href="guide-rest.html">Rest</a></li>
+            <li><a href="guide-meditate.html">Meditate</a></li>
+            <li><a href="guide-visualize.html">Visualize</a></li>
+            <li><a href="guide-nourish.html" aria-current="page">Nourish</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Be gentle with yourself today. <a href="#top">Back to top</a></p>
+      <p class="footer-foundation">Oneness Wellness Lifestyles Foundation</p>
+      <p class="footer-year">Oneness Lifestyles · Where the Healing Waters Flow</p>
+      <p class="footer-year">© <span id="year"></span> Oneness Lifestyles</p>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal-on-view for .reveal sections, and the footer year.
+    // Matches the frozen reference behaviour; reduced-motion is handled in CSS.
+    (function () {
+      'use strict';
+      function revealAll() {
+        var items = document.querySelectorAll('.reveal');
+        for (var i = 0; i < items.length; i++) {
+          items[i].classList.add('is-visible');
+        }
+      }
+      function init() {
+        try {
+          document.documentElement.classList.add('js-enabled');
+          var items = document.querySelectorAll('.reveal');
+          if (!items.length) return;
+          if (!('IntersectionObserver' in window)) {
+            revealAll();
+            return;
+          }
+          var observer = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1 });
+          for (var j = 0; j < items.length; j++) {
+            observer.observe(items[j]);
+          }
+        } catch (err) {
+          revealAll();
+        }
+        var yearEl = document.getElementById('year');
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

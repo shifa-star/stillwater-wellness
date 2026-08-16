@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nia's Ritual — Oneness Lifestyles</title>
+  <meta name="description" content="Nia's daily self-check-in ritual — a private, button-driven check-in for Mz. Felicia's active clients. No AI. One arrival per day.">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="nia-ritual.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ===== U-13 NIA RITUAL (button-driven) =====
+         Reached from nia-gate.html. Fixed sequence: zip up, calibrate,
+         retest, close. Inline buttons only — no AI, no generation, no fetch.
+         Calibration is recaptured every session from that session's stored
+         direction (sessionStorage) — never a hardcoded "forward = yes".
+         "Nothing moved" is a real outcome with its own troubleshooting
+         (water, soft knees, posture). "Not today" is respected — one arrival
+         per day, rests after 3 declines (localStorage).
+         The guardrail pre-filter (crisis + medical keyword checks) runs
+         before anything, on the arrival word. The reply is FIXED, never
+         generated. Terms are defined; the shift method is never taught.
+         No outcome promises. -->
+
+    <section class="ritual-hero reveal">
+      <div class="container">
+        <p class="ritual-kicker">A private daily ritual</p>
+        <h1 class="ritual-heading">Nia</h1>
+        <p class="ritual-lede">A quiet daily check-in, held for you. A pause in the weave of the day, just to be with yourself.</p>
+      </div>
+    </section>
+
+    <section class="ritual-section reveal">
+      <div class="container">
+        <div class="ritual-card">
+          <ol class="ritual-steps" aria-label="The four steps of the ritual">
+            <li><span class="ritual-step-pill" data-step="1">Zip</span></li>
+            <li><span class="ritual-step-pill" data-step="2">Calibrate</span></li>
+            <li><span class="ritual-step-pill" data-step="3">Retest</span></li>
+            <li><span class="ritual-step-pill" data-step="4">Close</span></li>
+          </ol>
+
+          <!-- ===== Arrival (the pre-filter door) ===== -->
+          <section class="ritual-screen" id="screen-arrival" data-step="0" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">Welcome, gentle one</h2>
+            <p>Today is yours to arrive in.</p>
+            <p>No pressure, no hurry.</p>
+            <p>A soft moment between you and your inner voice.</p>
+
+            <form id="arrival-form" class="ritual-form" novalidate>
+              <label class="ritual-label" for="arrival-word">How are you arriving today?</label>
+              <p class="ritual-hint" id="arrival-hint">You may type a word or two — or go straight in.</p>
+              <input id="arrival-word" class="ritual-input" type="text" name="arrival" autocomplete="off" spellcheck="false" aria-describedby="arrival-hint">
+              <p id="arrival-feedback" class="ritual-feedback" aria-live="polite"></p>
+              <div class="btn-row">
+                <button type="submit" class="btn btn-block">Begin the check-in</button>
+                <button type="button" class="btn btn-ghost btn-block" data-action="decline">Not today</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- ===== Step 1 · Zip up ===== -->
+          <section class="ritual-screen" id="screen-zip" data-step="1" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">First, we zip up</h2>
+            <p>Zip up is how we gather the self.</p>
+            <p>Feet settled. Spine soft and easy.</p>
+            <p>A quiet breath, in and out, through the nose. You come fully home into your own body.</p>
+            <div class="btn-row">
+              <button type="button" class="btn btn-block" data-route="screen-calibrate">I have zipped up</button>
+            </div>
+          </section>
+
+          <!-- ===== Step 2 · Calibrate ===== -->
+          <section class="ritual-screen" id="screen-calibrate" data-step="2" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">Now we calibrate</h2>
+            <p>Calibration finds how your body answers today.</p>
+            <p>It can shift from day to day. So we ask fresh, every single time. There is no wrong answer here.</p>
+            <div class="ritual-note">
+              <p>Ask your body a quiet yes question — something simple and true, like "is my body present with me right now?" Then notice what moves.</p>
+            </div>
+            <div class="choice-list" role="group" aria-label="What you observed">
+              <button type="button" class="choice-btn" data-action="calibrate" data-direction="forward">It moved forward</button>
+              <button type="button" class="choice-btn" data-action="calibrate" data-direction="back">It moved back</button>
+              <button type="button" class="choice-btn" data-action="calibrate" data-direction="side">It moved side to side</button>
+              <button type="button" class="choice-btn" data-action="calibrate" data-direction="none">Nothing moved</button>
+            </div>
+          </section>
+
+          <!-- ===== "Nothing moved" troubleshooting ===== -->
+          <section class="ritual-screen" id="screen-troubleshoot" data-step="2" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">Nothing moved — that is an answer too</h2>
+            <p>The body can be quiet at first. We settle it gently, three soft checks.</p>
+            <p>Water. A few slow sips, then settle again.</p>
+            <p>Soft knees. Unlock the knees, soften the jaw, let the shoulders drop.</p>
+            <p>Posture. Feet flat, spine tall and easy.</p>
+            <div class="btn-row">
+              <button type="button" class="btn btn-block" data-route="screen-calibrate">I have settled — let us try again</button>
+              <button type="button" class="btn btn-ghost btn-block" data-action="decline">Maybe another day</button>
+            </div>
+          </section>
+
+          <!-- ===== Step 3 · Retest ===== -->
+          <section class="ritual-screen" id="screen-retest" data-step="3" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">Then we retest</h2>
+            <p>A few quiet statements, one at a time.</p>
+            <p>Ask. Settle. Read the body's answer from today's direction — the one we just found.</p>
+            <div class="statement-card">
+              <p class="statement-text" id="statement-text"></p>
+              <p class="statement-ask" id="statement-ask">Ask your body — does this ring true?</p>
+            </div>
+            <div class="choice-list" role="group" aria-label="How your body answered">
+              <button type="button" class="choice-btn" data-action="retest" data-direction="forward">It moved forward</button>
+              <button type="button" class="choice-btn" data-action="retest" data-direction="back">It moved back</button>
+              <button type="button" class="choice-btn" data-action="retest" data-direction="side">It moved side to side</button>
+              <button type="button" class="choice-btn" data-action="retest" data-direction="none">Nothing moved</button>
+            </div>
+          </section>
+
+          <!-- ===== Retest summary ===== -->
+          <section class="ritual-screen" id="screen-summary" data-step="3" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">The mirror of your day</h2>
+            <p class="ritual-soft">Here is what rose to meet you —</p>
+            <h3 class="summary-heading">What rose to meet you</h3>
+            <ul class="summary-list" id="summary-yes"></ul>
+            <h3 class="summary-heading">What stayed quiet</h3>
+            <ul class="summary-list" id="summary-no"></ul>
+            <p class="ritual-note">This is a mirror, not a verdict. The weave is yours to tend, gently, as the day unfolds.</p>
+            <div class="btn-row">
+              <button type="button" class="btn btn-block" data-action="close">Close the check-in</button>
+            </div>
+          </section>
+
+          <!-- ===== Step 4 · Close + sign-off ===== -->
+          <section class="ritual-screen" id="screen-close" data-step="4" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">And so we close</h2>
+            <p>Thank you for arriving today.</p>
+            <p>Your check-in is a quiet thread, woven into the rest of your day. Carry it softly with you.</p>
+            <div class="signoff">
+              <p class="signoff-text">Manifesting Wellness, Wholeness Remembered. 💚</p>
+            </div>
+            <p class="ritual-back"><a href="index.html">Back to Oneness Lifestyles</a></p>
+            <p class="ritual-back"><a href="reading.html">The daily reading awaits</a></p>
+          </section>
+
+          <!-- ===== Not today ===== -->
+          <section class="ritual-screen" id="screen-not-today" data-step="0" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">That is alright</h2>
+            <p>No pressure, ever.</p>
+            <p>Invitation over engagement.</p>
+            <p>Nia will be here again tomorrow.</p>
+            <div class="btn-row">
+              <button type="button" class="btn btn-ghost btn-block" data-action="begin-after-all">Begin after all</button>
+              <button type="button" class="btn btn-block" data-route="index.html">Back to Oneness Lifestyles</button>
+            </div>
+          </section>
+
+          <!-- ===== Already arrived today ===== -->
+          <section class="ritual-screen" id="screen-already" data-step="0" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">You have already arrived today</h2>
+            <p>One arrival, one day. The ritual is complete.</p>
+            <p>Nia will greet you again tomorrow.</p>
+            <div class="btn-row">
+              <button type="button" class="btn btn-block" data-route="reading.html">Open the daily reading</button>
+              <button type="button" class="btn btn-ghost btn-block" data-route="index.html">Back to Oneness Lifestyles</button>
+            </div>
+          </section>
+
+          <!-- ===== Resting after three declines ===== -->
+          <section class="ritual-screen" id="screen-resting" data-step="0" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">Nia is resting</h2>
+            <p>Three gentle no's, and she rests.</p>
+            <p>She honors your pace, always. She will be here again when you are ready.</p>
+            <div class="btn-row">
+              <button type="button" class="btn btn-block" data-route="index.html">Back to Oneness Lifestyles</button>
+            </div>
+          </section>
+
+          <!-- ===== Care — the fixed pre-filter reply ===== -->
+          <section class="ritual-screen" id="screen-care" data-step="0" hidden>
+            <h2 class="ritual-screen-heading" tabindex="-1">Thank you for telling me</h2>
+            <p>What you are carrying matters.</p>
+            <p>This moment asks for more than a check-in can hold.</p>
+            <p>Please reach out to someone you trust, or to a crisis line near you. You are not alone, and you are worth that care.</p>
+            <div class="btn-row">
+              <button type="button" class="btn btn-block" data-route="index.html">Back to Oneness Lifestyles</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Words of the ritual (defines terms, never the method) ===== -->
+    <section class="glossary-section reveal" aria-labelledby="glossary-heading">
+      <div class="container">
+        <div class="glossary-card">
+          <h2 class="glossary-heading" id="glossary-heading">Words of the ritual</h2>
+          <p class="glossary-intro">In case you would like the plain words again.</p>
+          <div class="glossary-term">
+            <strong>Zip up</strong>
+            <p>Gathering the self. Settled feet, a soft spine, a quiet breath.</p>
+          </div>
+          <div class="glossary-term">
+            <strong>Calibrate</strong>
+            <p>Finding how your body answers today, fresh each session.</p>
+          </div>
+          <div class="glossary-term">
+            <strong>Retest</strong>
+            <p>Asking the settled statements, and reading the body's quiet reply.</p>
+          </div>
+          <div class="glossary-term">
+            <strong>Close</strong>
+            <p>The gentle end, carrying the day's thread with you.</p>
+          </div>
+          <div class="glossary-note">
+            <p>PUD and the sway are taught live by Mz. Felicia. Nia holds the ritual; the method stays with her.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Oneness Lifestyles · Where the Healing Waters Flow. <a href="#top">Back to top</a></p>
+    </div>
+  </footer>
+
+  <!-- Guardrail pre-filter module (U-14) and statement bank (U-15), loaded
+       before the ritual's own script. Both are local — the ritual stays fully
+       offline. window.NIA_GUARDRAILS is the single authority for care routing;
+       window.NIA_STATEMENTS is the labeled place for Mz. Felicia's statements. -->
+  <script src="nia-guardrails.js"></script>
+  <script src="statement-bank.js"></script>
+  <script>
+    // U-13 Nia ritual — button-driven, no AI. Fixed sequence: zip, calibrate,
+    // retest, close. The daily statement bank is read from
+    // window.NIA_STATEMENTS (statement-bank.js, U-15) — the clearly-labeled
+    // place waiting for Mz. Felicia's blessed list. A gentle sample keeps the
+    // flow demonstrable until that list fills.
+    // The guardrail pre-filter is window.NIA_GUARDRAILS (nia-guardrails.js,
+    // U-14) — the single authority, loaded before this script. It runs on the
+    // arrival word before anything else; the reply is FIXED, never generated.
+    (function () {
+      'use strict';
+
+      // ---- Constants (operator-adjustable, labeled) ----
+      var REST_DAYS = 3;   // how many days Nia rests after 3 declines
+      var STATE_KEY = 'niaRitualState';
+      var DIRECTION_KEY = 'niaSessionDirection';
+
+      // ---- Daily statement bank (from window.NIA_STATEMENTS, U-15) ----
+      // Read from statement-bank.js. When that labeled list is still empty,
+      // these gentle sample statements keep the ritual demonstrable.
+      var STATEMENT_BANK = (
+        window.NIA_STATEMENTS &&
+        Array.isArray(window.NIA_STATEMENTS.DAILY_STATEMENTS) &&
+        window.NIA_STATEMENTS.DAILY_STATEMENTS.length > 0
+      ) ? window.NIA_STATEMENTS.DAILY_STATEMENTS : [
+        'Today I choose to be gentle with myself.',
+        'I am open to the good this day brings.',
+        'I trust the journey I am on.'
+      ];
+
+      var screens = {};
+      var currentStatement = 0;
+      var summaryYes = [];
+      var summaryNo = [];
+      var sessionYesDirection = null;   // this session's calibrated yes direction
+
+      // ---- State helpers ----
+      function pad(n) {
+        return (n < 10 ? '0' : '') + n;
+      }
+
+      function todayStr() {
+        var d = new Date();
+        return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+      }
+
+      function addDaysStr(days) {
+        var d = new Date();
+        d.setDate(d.getDate() + days);
+        return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+      }
+
+      function loadState() {
+        var state = { arrived: '', declines: 0, lastDecline: '', restUntil: '' };
+        try {
+          var raw = window.localStorage.getItem(STATE_KEY);
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === 'object') {
+              for (var key in state) {
+                if (parsed[key] !== undefined) {
+                  state[key] = parsed[key];
+                }
+              }
+            }
+          }
+        } catch (err) {
+          // private mode — the ritual still works, just without memory
+        }
+        return state;
+      }
+
+      function saveState(state) {
+        try {
+          window.localStorage.setItem(STATE_KEY, JSON.stringify(state));
+        } catch (err) {
+          // no persistence available — continue silently
+        }
+      }
+
+      function recordDecline() {
+        var state = loadState();
+        state.lastDecline = todayStr();
+        state.declines = (state.declines || 0) + 1;
+        if (state.declines >= 3) {
+          state.restUntil = addDaysStr(REST_DAYS);
+          state.declines = 0;
+        }
+        saveState(state);
+      }
+
+      function clearTodayDecline() {
+        var state = loadState();
+        if (state.lastDecline === todayStr() && (state.declines || 0) > 0) {
+          state.declines = state.declines - 1;
+          saveState(state);
+        }
+      }
+
+      function recordArrival() {
+        var state = loadState();
+        state.arrived = todayStr();
+        saveState(state);
+      }
+
+      // ---- Guardrail pre-filter ----
+      // Single authority: window.NIA_GUARDRAILS (nia-guardrails.js, U-14).
+      // A deterministic keyword check with FIXED caring replies, never
+      // generated. This page holds no keyword lists of its own.
+      function preFilter(word) {
+        if (!window.NIA_GUARDRAILS) {
+          return 'clean';
+        }
+        var verdict = window.NIA_GUARDRAILS.check(word);
+        return verdict && verdict.route === 'care' ? 'care' : 'clean';
+      }
+
+      // ---- Screen routing ----
+      function allScreens() {
+        return document.querySelectorAll('.ritual-screen');
+      }
+
+      function showScreen(id) {
+        var items = allScreens();
+        for (var i = 0; i < items.length; i++) {
+          if (items[i].id === id) {
+            items[i].hidden = false;
+          } else {
+            items[i].hidden = true;
+          }
+        }
+        setStep(document.getElementById(id));
+        var heading = document.querySelector('#' + id + ' .ritual-screen-heading');
+        if (heading) {
+          window.setTimeout(function () {
+            heading.focus();
+          }, 0);
+        }
+        if (window.scrollTo) {
+          window.scrollTo(0, 0);
+        }
+      }
+
+      function setStep(screenEl) {
+        var pills = document.querySelectorAll('.ritual-step-pill');
+        for (var i = 0; i < pills.length; i++) {
+          pills[i].classList.remove('is-active');
+          pills[i].removeAttribute('aria-current');
+        }
+        if (!screenEl) {
+          return;
+        }
+        var step = screenEl.getAttribute('data-step');
+        if (!step) {
+          return;
+        }
+        var match = document.querySelector('.ritual-step-pill[data-step="' + step + '"]');
+        if (match) {
+          match.classList.add('is-active');
+          match.setAttribute('aria-current', 'step');
+        }
+      }
+
+      // ---- Retest ----
+      function openRetest() {
+        currentStatement = 0;
+        summaryYes = [];
+        summaryNo = [];
+        showStatement();
+        showScreen('screen-retest');
+      }
+
+      function showStatement() {
+        if (currentStatement >= STATEMENT_BANK.length) {
+          showSummary();
+          return;
+        }
+        document.getElementById('statement-text').textContent = STATEMENT_BANK[currentStatement];
+      }
+
+      function sessionDirection() {
+        if (sessionYesDirection) {
+          return sessionYesDirection;
+        }
+        var stored = null;
+        try {
+          stored = window.sessionStorage.getItem(DIRECTION_KEY);
+        } catch (err) {
+          stored = null;
+        }
+        if (stored) {
+          sessionYesDirection = stored;
+        }
+        return sessionYesDirection;
+      }
+
+      function answerRetest(direction) {
+        var yesDirection = sessionDirection();
+
+        if (!yesDirection) {
+          // no calibration stored for this session — ask again fresh
+          showScreen('screen-calibrate');
+          return;
+        }
+
+        var statement = STATEMENT_BANK[currentStatement];
+        if (direction === 'none') {
+          summaryNo.push(statement);
+        } else if (direction === yesDirection) {
+          summaryYes.push(statement);
+        } else {
+          summaryNo.push(statement);
+        }
+
+        currentStatement = currentStatement + 1;
+        if (currentStatement >= STATEMENT_BANK.length) {
+          showSummary();
+        } else {
+          showStatement();
+        }
+      }
+
+      function showSummary() {
+        var yesList = document.getElementById('summary-yes');
+        var noList = document.getElementById('summary-no');
+        yesList.textContent = '';
+        noList.textContent = '';
+        var yes = summaryYes.length ? summaryYes : ['The day holds space for you.'];
+        var no = summaryNo.length ? summaryNo : ['Nothing asks for tending right now.'];
+        for (var i = 0; i < yes.length; i++) {
+          var liYes = document.createElement('li');
+          liYes.textContent = yes[i];
+          yesList.appendChild(liYes);
+        }
+        for (var j = 0; j < no.length; j++) {
+          var liNo = document.createElement('li');
+          liNo.textContent = no[j];
+          noList.appendChild(liNo);
+        }
+        showScreen('screen-summary');
+      }
+
+      // ---- Entry: resolve "not today", rests, and one arrival per day ----
+      function resolveEntry() {
+        var state = loadState();
+        var today = todayStr();
+
+        if (state.restUntil && today < state.restUntil) {
+          showScreen('screen-resting');
+          return;
+        }
+        if (state.arrived === today) {
+          showScreen('screen-already');
+          return;
+        }
+        if (state.declines >= 3) {
+          state.restUntil = addDaysStr(REST_DAYS);
+          state.declines = 0;
+          saveState(state);
+          showScreen('screen-resting');
+          return;
+        }
+        showScreen('screen-arrival');
+      }
+
+      // ---- Wire-up ----
+      function init() {
+        document.documentElement.classList.add('js-enabled');
+
+        // reveal static sections
+        var reveals = document.querySelectorAll('.reveal');
+        for (var i = 0; i < reveals.length; i++) {
+          reveals[i].classList.add('is-visible');
+        }
+
+        // gather screens
+        var items = allScreens();
+        for (var k = 0; k < items.length; k++) {
+          screens[items[k].id] = items[k];
+        }
+
+        // global click routing for buttons
+        document.addEventListener('click', function (event) {
+          var target = event.target.closest ? event.target.closest('button, a') : null;
+          if (!target || !target.tagName) {
+            return;
+          }
+          if (target.getAttribute('data-route')) {
+            var route = target.getAttribute('data-route');
+            event.preventDefault();
+            if (route.indexOf('.html') !== -1) {
+              window.location.href = route;
+            } else if (screens[route]) {
+              showScreen(route);
+            }
+            return;
+          }
+          if (target.getAttribute('data-action')) {
+            event.preventDefault();
+            var action = target.getAttribute('data-action');
+            if (action === 'decline') {
+              recordDecline();
+              showScreen('screen-not-today');
+            } else if (action === 'begin-after-all') {
+              clearTodayDecline();
+              showScreen('screen-arrival');
+            } else if (action === 'calibrate') {
+              calibrate(target.getAttribute('data-direction'));
+            } else if (action === 'retest') {
+              answerRetest(target.getAttribute('data-direction'));
+            } else if (action === 'close') {
+              recordArrival();
+              showScreen('screen-close');
+            }
+          }
+        });
+
+        // arrival form — the pre-filter runs BEFORE anything
+        var form = document.getElementById('arrival-form');
+        var arrivalWord = document.getElementById('arrival-word');
+        var feedback = document.getElementById('arrival-feedback');
+
+        function clearFeedback() {
+          if (feedback) {
+            feedback.textContent = '';
+          }
+        }
+
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          var word = arrivalWord ? arrivalWord.value.trim() : '';
+          var result = preFilter(word);
+          if (result === 'care') {
+            clearFeedback();
+            showScreen('screen-care');
+            return;
+          }
+          clearFeedback();
+          showScreen('screen-zip');
+        });
+
+        resolveEntry();
+      }
+
+      function calibrate(direction) {
+        if (direction === 'none') {
+          showScreen('screen-troubleshoot');
+          return;
+        }
+        // store THIS session's yes direction, and recapture it every session —
+        // never a hardcoded "forward = yes".
+        sessionYesDirection = direction;
+        try {
+          window.sessionStorage.setItem(DIRECTION_KEY, direction);
+        } catch (err) {
+          // no session storage — the in-memory direction still holds
+        }
+        openRetest();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

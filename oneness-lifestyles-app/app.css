@@ -1,0 +1,381 @@
+/* app.css — Oneness Lifestyles app shell, Oneness brand palette.
+   Palette tokens and font match the frozen reference (captures/site/styles.css)
+   exactly. WCAG adjustments over the site CSS: every text size stays >= 18px,
+   touch targets >= 44px, visible focus, reduced-motion honored. */
+
+/* ---------- Brand palette (from owlifestylesfoundation.org) ---------- */
+:root {
+  --brand-blue: #283890;   /* deep blue — primary (theme-color) */
+  --brand-green: #6dbc45;  /* vibrant lime green — accent CTA */
+  --brand-sand: #c1a178;   /* warm sand — accent */
+  --brand-teal: #25c4b8;   /* fun accent */
+  --brand-pink: #ff4d8d;   /* fun accent */
+  --bg: #f7faff;           /* page background */
+  --surface: #ffffff;      /* cards / surfaces */
+  --text: #141414;         /* body text */
+  --text-2: #3f3f3f;       /* secondary text */
+  --line: #dfe5f6;         /* soft blue-grey divider */
+
+  /* WCAG-safe derivations (frozen tokens above are unchanged) */
+  --brand-green-deep: #5fae3d;  /* green pill hover (from reference CSS) */
+  --brand-green-text: #357a24;  /* link green, >= 4.5:1 on white/surface */
+  --brand-sand-light: #e0cbaa;  /* footer link sand, >= 4.5:1 on brand blue */
+}
+
+/* ---------- Base / reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;   /* WCAG: root 18px so 1rem = 18px and no text falls below the floor */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;   /* WCAG: base text >= 18px */
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Accessibility: visible focus + skip link ---------- */
+:focus-visible {
+  outline: 3px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--brand-sand-light);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  display: inline-block;
+  padding: 12px 20px;
+  min-height: 44px;
+  background-color: var(--brand-blue);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus-visible {
+  left: 0;
+  outline-offset: 0;
+}
+
+/* ---------- Layout container ---------- */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background-color: var(--surface);
+  border-bottom: 4px solid var(--brand-sand);
+}
+
+.site-name {
+  margin: 1em 0;
+  color: var(--brand-blue);
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Main / home region ---------- */
+main {
+  display: block;
+}
+
+/* Placeholder home region — unit U-02 fills this region with the home
+   content (greeting, entry tiles, guides, ritual door, deeper doors). */
+.home-region {
+  min-height: 60vh;
+}
+
+/* ---------- Hero (component styling for unit U-02; no content here) ---------- */
+.hero {
+  text-align: center;
+  padding: 56px 20px;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(37, 196, 184, 0.24), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 77, 141, 0.16), transparent 55%),
+    linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+}
+
+.hero-heading {
+  font-size: 2.2rem;
+  margin: 0 0 12px;
+  color: var(--brand-blue);
+}
+
+.hero-subheading {
+  font-size: 1.2rem;
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--text-2);
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: 48px 0;
+  background-color: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.section-heading {
+  font-size: 1.6rem;
+  color: var(--brand-blue);
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 4px solid var(--brand-sand);
+  display: inline-block;
+}
+
+.section p {
+  margin: 0 0 16px;
+  color: #33443f;
+}
+
+.section--alt {
+  background-color: var(--bg);
+  border-top: none;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 40px 24px;
+  background-color: var(--brand-blue);
+  color: #e7ebfa;      /* 8.6:1 on brand blue */
+  text-align: center;
+  font-size: 1rem;     /* 1rem = 18px (html root is 18px); >= WCAG floor */
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--brand-sand-light);  /* 6.5:1 on brand blue */
+  text-decoration: underline;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--brand-green-text);   /* 5.3:1 on white */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Buttons (brand lime green — dark text for readable contrast) ---------- */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  color: var(--text);             /* 7.8:1 on brand green */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.125rem;            /* >= 18px (WCAG floor) */
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--brand-green-deep);  /* slightly deeper lime for hover */
+}
+
+.hero-actions {
+  margin: 28px 0 0;
+}
+
+/* ---------- Responsive (mobile-first; text never below 18px) ---------- */
+@media (min-width: 1024px) {
+  .hero {
+    padding: 90px 24px;
+  }
+  .hero-heading {
+    font-size: 2.8rem;
+  }
+  .section {
+    padding: 60px 0;
+  }
+  .section-heading {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- JS reveal (only active when JS is on) ---------- */
+.js-enabled .reveal {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.js-enabled .reveal.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-enabled .reveal {
+    opacity: 1;
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   HOME REGION (unit U-02) — appended to the app shell.
+   Palette tokens and the html root font-size are untouched. Every
+   user-facing text >= 18px and >= 4.5:1 on its background; every link
+   target >= 44px tall; focus-visible and reduced-motion already handled
+   above by the shell's global rules.
+   ========================================================================== */
+
+/* ---------- Front door greeting + Circle welcome ---------- */
+.home-greeting {
+  font-size: 1.35rem;         /* 24.3px — the front door */
+  font-style: italic;
+  color: var(--brand-blue);   /* ~9:1 on the hero background */
+  max-width: 640px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+.home-welcome {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.home-welcome p {
+  margin: 0 0 16px;
+  color: var(--text-2);       /* ~9.5:1 on the hero background */
+}
+
+/* ---------- Entry tiles ---------- */
+.tiles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0 0 40px;
+}
+
+.tile {
+  display: block;
+  padding: 22px 24px;
+  min-height: 44px;           /* WCAG touch floor */
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-left: 6px solid var(--brand-blue);
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tile:hover,
+.tile:focus-visible {
+  border-color: var(--brand-blue);
+  box-shadow: 0 2px 12px rgba(40, 56, 144, 0.14);
+}
+
+.tile-heading {
+  display: block;
+  font-size: 1.3rem;          /* 23.4px */
+  font-weight: bold;
+  color: var(--brand-blue);   /* ~10:1 on white */
+  margin-bottom: 6px;
+}
+
+.tile-text {
+  display: block;
+  color: var(--text-2);       /* ~10.5:1 on white */
+}
+
+/* ---------- The six gentle guides ---------- */
+.home-subheading {
+  font-size: 1.4rem;          /* 25.2px */
+  color: var(--brand-blue);
+  margin: 0 0 20px;
+}
+
+.guides-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 0 0 40px;
+}
+
+.guide-tile {
+  display: block;
+  padding: 18px 20px;
+  min-height: 44px;           /* WCAG touch floor */
+  background-color: var(--bg);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+
+.guide-tile:hover,
+.guide-tile:focus-visible {
+  border-color: var(--brand-sand);
+}
+
+.guide-name {
+  display: block;
+  font-size: 1.25rem;         /* 22.5px */
+  font-weight: bold;
+  color: var(--brand-blue);
+  margin-bottom: 4px;
+}
+
+.guide-line {
+  display: block;
+  color: var(--text-2);       /* ~9.5:1 on bg */
+}
+
+/* ---------- Brand sign-off ---------- */
+.home-signoff {
+  text-align: center;
+}
+
+.home-signoff .signoff-text {
+  font-size: 1.2rem;          /* 21.6px */
+  font-weight: bold;
+  color: var(--brand-blue);   /* ~9:1 on bg */
+  margin: 0;
+}
+
+/* ---------- Home grids at desktop width (mobile-first above) ---------- */
+@media (min-width: 1024px) {
+  .tiles-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .guides-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

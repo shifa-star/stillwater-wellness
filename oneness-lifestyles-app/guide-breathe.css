@@ -1,0 +1,336 @@
+/* guide-breathe.css — Oneness Lifestyles · Where the Healing Waters Flow.
+   Breathe guide page. Palette tokens match the frozen reference
+   (captures/site/styles.css) exactly. WCAG: text >= 18px, contrast
+   >= 4.5:1, touch targets >= 44px, keyboard reachable, focus visible,
+   reduced-motion honored. */
+
+/* ---------- Brand palette (from owlifestylesfoundation.org) ---------- */
+:root {
+  --brand-blue: #283890;   /* deep blue — primary (theme-color) */
+  --brand-green: #6dbc45;  /* vibrant lime green — accent CTA */
+  --brand-sand: #c1a178;   /* warm sand — accent */
+  --brand-teal: #25c4b8;   /* fun accent */
+  --brand-pink: #ff4d8d;   /* fun accent */
+  --bg: #f7faff;           /* page background */
+  --surface: #ffffff;      /* cards / surfaces */
+  --text: #141414;         /* body text */
+  --text-2: #3f3f3f;       /* secondary text */
+  --line: #dfe5f6;         /* soft blue-grey divider */
+
+  /* WCAG-safe derivations (frozen tokens above are unchanged) */
+  --brand-green-deep: #5fae3d;  /* green pill hover (from reference CSS) */
+  --brand-green-text: #357a24;  /* link green, >= 4.5:1 on white/surface */
+  --brand-sand-light: #e0cbaa;  /* footer link sand, >= 4.5:1 on brand blue */
+}
+
+/* ---------- Base / reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;   /* WCAG: root 18px so 1rem = 18px and no text falls below the floor */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;   /* WCAG: base text >= 18px */
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Accessibility: visible focus + skip link ---------- */
+:focus-visible {
+  outline: 3px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--brand-sand-light);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  display: inline-block;
+  padding: 12px 20px;
+  min-height: 44px;
+  background-color: var(--brand-blue);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus-visible {
+  left: 0;
+  outline-offset: 0;
+}
+
+/* ---------- Layout container ---------- */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background-color: var(--surface);
+  border-bottom: 4px solid var(--brand-sand);
+}
+
+.site-name {
+  margin: 1em 0;
+  color: var(--brand-blue);
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+.site-name a {
+  display: inline-block;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+  padding: 10px 0;
+  color: var(--brand-blue);
+  text-decoration: none;
+}
+
+.site-name a:hover,
+.site-name a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Guide hero (palette look; imagery not rebuilt) ---------- */
+.page-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  padding: 64px 20px;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(37, 196, 184, 0.24), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 77, 141, 0.16), transparent 55%),
+    linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+}
+
+.page-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(247, 250, 255, 0.62);
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+.page-hero-heading {
+  margin: 0 0 10px;
+  font-size: 2.4rem;
+  color: var(--brand-blue);
+}
+
+.page-hero-kicker {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--text-2);
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: 48px 0;
+  background-color: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.section-heading {
+  font-size: 1.6rem;
+  color: var(--brand-blue);
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 4px solid var(--brand-sand);
+  display: inline-block;
+}
+
+.section p {
+  margin: 0 0 18px;
+  color: #33443f;
+}
+
+.section--alt {
+  background-color: var(--bg);
+  border-top: none;
+}
+
+.nav-intro {
+  max-width: 34em;
+}
+
+/* ---------- Gentle navigation between the six guides ---------- */
+.guide-nav-list {
+  list-style: none;
+  margin: 0 0 4px;
+  padding: 0;
+}
+
+.guide-nav-link {
+  display: block;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+  margin: 0 0 12px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  color: var(--brand-green-text); /* 5.3:1 on white */
+  font-weight: bold;
+  font-size: 1.125rem;
+  text-decoration: none;
+  text-align: center;
+}
+
+.guide-nav-link:hover,
+.guide-nav-link:focus-visible {
+  border-color: var(--brand-green);
+}
+
+.guide-nav-link[aria-current="page"] {
+  background-color: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: #ffffff;                 /* 10.2:1 on brand blue */
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--brand-green-text); /* 5.3:1 on white */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link-back {
+  display: inline-block;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+  padding: 12px 8px;
+  color: var(--brand-green-text);
+  font-weight: bold;
+  font-size: 1.125rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Buttons (brand lime green — dark text for readable contrast) ---------- */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  min-height: 44px;               /* WCAG: touch target >= 44px */
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  color: var(--text);             /* 7.8:1 on brand green */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.125rem;            /* >= 18px (WCAG floor) */
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--brand-green-deep);  /* slightly deeper lime for hover */
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 40px 24px;
+  background-color: var(--brand-blue);
+  color: #e7ebfa;      /* 8.6:1 on brand blue */
+  text-align: center;
+  font-size: 1rem;     /* 1rem = 18px (html root is 18px); >= WCAG floor */
+}
+
+.site-footer p {
+  margin: 0 0 6px;
+}
+
+.site-footer a {
+  display: inline-block;
+  padding: 4px 2px;
+  color: var(--brand-sand-light);  /* 6.5:1 on brand blue */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Responsive (mobile-first; text never below 18px) ---------- */
+@media (min-width: 640px) {
+  .guide-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .guide-nav-link {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-hero {
+    min-height: 380px;
+    padding: 90px 24px;
+  }
+
+  .page-hero-heading {
+    font-size: 2.8rem;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+}
+
+/* ---------- JS reveal (only active when JS is on) ---------- */
+.js-enabled .reveal {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.js-enabled .reveal.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-enabled .reveal {
+    opacity: 1;
+    transition: none;
+  }
+}

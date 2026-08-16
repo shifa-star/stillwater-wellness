@@ -1,0 +1,176 @@
+/* guide-move.css — Oneness Lifestyles Move guide (U-07).
+   Declares the frozen palette tokens byte-identical to the reference
+   (captures/site/styles.css), then the page's own palette look:
+   page-hero, gentle guide nav between the six guides, guide body,
+   and the back-home link. WCAG: text >= 18px, contrast >= 4.5:1,
+   touch targets >= 44px, keyboard reachable, focus visible,
+   reduced-motion honored. Loaded after app.css. */
+
+/* ---------- Brand palette (from owlifestylesfoundation.org) ---------- */
+:root {
+  --brand-blue: #283890;   /* deep blue — primary (theme-color) */
+  --brand-green: #6dbc45;  /* vibrant lime green — accent CTA */
+  --brand-sand: #c1a178;   /* warm sand — accent */
+  --brand-teal: #25c4b8;   /* fun accent */
+  --brand-pink: #ff4d8d;   /* fun accent */
+  --bg: #f7faff;           /* page background */
+  --surface: #ffffff;      /* cards / surfaces */
+  --text: #141414;         /* body text */
+  --text-2: #3f3f3f;       /* secondary text */
+  --line: #dfe5f6;         /* soft blue-grey divider */
+
+  /* WCAG-safe derivations (frozen tokens above are unchanged) */
+  --brand-green-deep: #5fae3d;  /* green pill hover (from reference CSS) */
+  --brand-green-text: #357a24;  /* link green, >= 4.5:1 on white/surface */
+  --brand-sand-light: #e0cbaa;  /* footer link sand, >= 4.5:1 on brand blue */
+}
+
+/* ---------- Page hero (palette look, words carried verbatim) ---------- */
+.page-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 300px;
+  overflow: hidden;
+  background-color: var(--brand-blue);
+}
+
+.page-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Deep enough at every point of the gradient that the light hero text
+     holds >= 4.5:1 (computed against the teal end of the placeholder). */
+  background: linear-gradient(
+    180deg,
+    rgba(40, 56, 144, 0.75) 0%,
+    rgba(18, 24, 61, 0.85) 100%
+  );
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 48px 24px;
+}
+
+.page-hero-heading {
+  margin: 0 0 8px;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.page-hero-kicker {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: #e7ebfa;   /* >= 4.5:1 on the overlaid brand blue */
+}
+
+/* ---------- Gentle guide nav (between the six guides) ---------- */
+.guide-nav {
+  background-color: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.guide-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 16px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.guide-nav li {
+  margin: 0;
+}
+
+.guide-nav a,
+.guide-nav .current {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;          /* WCAG: touch target >= 44px */
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 1rem;           /* 1rem = 18px (root is 18px); >= WCAG floor */
+  text-decoration: none;
+}
+
+.guide-nav a {
+  color: var(--brand-blue);          /* ~10:1 on white */
+  border: 1px solid var(--brand-blue);
+}
+
+.guide-nav a:hover,
+.guide-nav a:focus-visible {
+  background-color: var(--brand-blue);
+  color: #ffffff;
+}
+
+.guide-nav .current {
+  background-color: var(--brand-blue);
+  color: #ffffff;
+  font-weight: bold;
+  border: 1px solid var(--brand-blue);
+}
+
+/* ---------- Guide body (words carried verbatim from the site) ---------- */
+.section p {
+  margin: 0 0 16px;
+  color: #33443f;   /* ~10.4:1 on white (matches reference section text) */
+}
+
+/* ---------- Back-home link ("All six actions") ---------- */
+.link-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;            /* WCAG: touch target >= 44px */
+  padding: 8px 0;
+  color: var(--brand-green-text);  /* >= 4.5:1 on white */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 1rem;
+}
+
+/* ---------- Header site-name link touch target ---------- */
+.site-name a {
+  display: inline-block;
+  min-height: 44px;   /* WCAG: touch target >= 44px */
+  padding: 10px 2px;
+}
+
+/* ---------- Footer link touch target ---------- */
+.site-footer a {
+  display: inline-block;
+  min-height: 44px;            /* WCAG: touch target >= 44px */
+  padding: 10px 2px;
+  line-height: 1.4;
+}
+
+.site-footer p + p {
+  margin-top: 10px;
+}
+
+/* ---------- Responsive (mobile-first; text never below 18px) ---------- */
+@media (min-width: 1024px) {
+  .page-hero {
+    min-height: 380px;
+  }
+
+  .page-hero-heading {
+    font-size: 2.8rem;
+  }
+}

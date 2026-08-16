@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rest — Oneness Lifestyles</title>
+  <meta name="description" content="Rest — a gentle pause, a nap, or a quiet minute away from screens.">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="guide-rest.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- U-08: Rest guide. Body text and hero alt text are carried verbatim
+         from captures/site/guide-rest.html. The hero photo (images/rest_photo.jpg)
+         is a planned asset; until it arrives, onerror drops it and the CSS shows
+         the palette gradient fallback. -->
+    <section class="page-hero" id="page-hero">
+      <img class="page-hero-img" src="images/rest_photo.jpg" alt="Rest — photo of a woman resting with a cup of tea" onerror="this.remove(); this.parentElement.classList.add('no-img')">
+      <div class="page-hero-overlay" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <h1 class="page-hero-heading">Rest</h1>
+        <p class="page-hero-kicker">A Slow-Down Series · Three</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container container-narrow">
+        <p>Rest is part of wellness, not a reward for finishing everything else. Giving yourself permission to pause, nap, or do nothing at all helps you feel more like yourself.</p>
+        <p>Even a few quiet minutes away from screens can make a real difference.</p>
+        <p><a class="btn" href="guide-breathe.html">Begin again</a></p>
+        <p><a class="link-back" href="index.html">All six actions</a></p>
+      </div>
+    </section>
+
+    <nav class="guide-nav reveal" aria-label="All six gentle guides">
+      <div class="container">
+        <p class="guide-nav-label">The six gentle guides</p>
+        <ul class="guide-nav-list">
+          <li><a href="guide-breathe.html">Breathe</a></li>
+          <li><a href="guide-move.html">Move</a></li>
+          <li><a class="is-current" href="guide-rest.html" aria-current="page">Rest</a></li>
+          <li><a href="guide-meditate.html">Meditate</a></li>
+          <li><a href="guide-visualize.html">Visualize</a></li>
+          <li><a href="guide-nourish.html">Nourish</a></li>
+        </ul>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Be gentle with yourself today. <a href="#top">Back to top</a></p>
+      <p class="footer-foundation">Oneness Lifestyles · Where the Healing Waters Flow</p>
+      <p class="footer-year">© <span id="year"></span> Oneness Lifestyles</p>
+    </div>
+  </footer>
+
+  <script>
+    // Offline capability: register the app-shell service worker.
+    // Runs only in secure contexts (https or localhost), where the API exists.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function (err) {
+          // Progressive enhancement — offline failure must not break the app.
+          console.warn('Service worker registration failed', err);
+        });
+      });
+    }
+
+    // Gentle reveal — content stays visible without JS or under reduced motion.
+    (function () {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+      var root = document.documentElement;
+      root.classList.add('js-enabled');
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        for (var i = 0; i < els.length; i += 1) { els[i].classList.add('is-visible'); }
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        for (var j = 0; j < entries.length; j += 1) {
+          if (entries[j].isIntersecting) {
+            entries[j].target.classList.add('is-visible');
+            io.unobserve(entries[j].target);
+          }
+        }
+      }, { threshold: 0.15 });
+      for (var k = 0; k < els.length; k += 1) { io.observe(els[k]); }
+    })();
+
+    // Footer year.
+    var yearEl = document.getElementById('year');
+    if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+  </script>
+</body>
+</html>

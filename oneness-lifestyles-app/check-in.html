@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A gentle check-in — Oneness Lifestyles</title>
+  <meta name="description" content="A quiet moment to notice how you feel, and a gentle way to meet it with one of the six guides.">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="check-in.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ===== U-05 GENTLE CHECK-IN =====
+         A quiet moment to notice how you feel. Each gentle word suggests a
+         matching guide (heavy → Rest, scattered → Breathe, calm → Meditate,
+         tired → Rest, open → Visualize, tender → Nourish). Nothing chosen is
+         stored beyond the session; nothing is persisted. -->
+    <section class="check-hero reveal">
+      <div class="container">
+        <p class="check-kicker">A quiet moment</p>
+        <h1 class="check-heading">A gentle check-in</h1>
+        <p class="check-lede">There is no right word here. Just a quiet pause to notice how you feel, and a gentle way to meet it.</p>
+      </div>
+    </section>
+
+    <section class="check-section">
+      <div class="container">
+        <div class="check-card reveal">
+          <h2 class="check-card-heading" id="prompt-heading">Which word feels true today?</h2>
+
+          <div class="word-grid" id="word-grid" role="group" aria-labelledby="prompt-heading">
+            <button type="button" class="word-tile" data-word="heavy">
+              <span class="word-name">heavy</span>
+              <span class="word-line">a little weighed down</span>
+            </button>
+            <button type="button" class="word-tile" data-word="scattered">
+              <span class="word-name">scattered</span>
+              <span class="word-line">thoughts all over</span>
+            </button>
+            <button type="button" class="word-tile" data-word="calm">
+              <span class="word-name">calm</span>
+              <span class="word-line">already at peace</span>
+            </button>
+            <button type="button" class="word-tile" data-word="tired">
+              <span class="word-name">tired</span>
+              <span class="word-line">low on energy</span>
+            </button>
+            <button type="button" class="word-tile" data-word="open">
+              <span class="word-name">open</span>
+              <span class="word-line">ready and curious</span>
+            </button>
+            <button type="button" class="word-tile" data-word="tender">
+              <span class="word-name">tender</span>
+              <span class="word-line">soft and sensitive</span>
+            </button>
+          </div>
+
+          <div id="suggestion" class="suggestion reveal" aria-live="polite" tabindex="-1"></div>
+
+          <p class="check-note">Nothing you choose is stored. This is only a gentle pause, held for this moment.</p>
+          <p class="check-back"><a href="index.html">Back to Oneness Lifestyles</a></p>
+
+          <noscript>
+            <div class="check-noscript">
+              <p>Pick the word that fits, and begin with its guide:</p>
+              <ul>
+                <li><a href="guide-rest.html">Rest</a> — for a heavy or tired day</li>
+                <li><a href="guide-breathe.html">Breathe</a> — for a scattered mind</li>
+                <li><a href="guide-meditate.html">Meditate</a> — for a calm moment</li>
+                <li><a href="guide-visualize.html">Visualize</a> — for an open heart</li>
+                <li><a href="guide-nourish.html">Nourish</a> — for a tender day</li>
+              </ul>
+            </div>
+          </noscript>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Oneness Lifestyles · Where the Healing Waters Flow. <a href="#top">Back to top</a></p>
+      <p class="footer-year">© <span id="year"></span> Oneness Lifestyles</p>
+    </div>
+  </footer>
+
+  <script>
+    // U-05 gentle check-in. Each word is a button; choosing one reveals a soft
+    // prompt and a link to its matching guide. The choice is kept only for
+    // this session (sessionStorage, nothing persisted) so a refresh returns
+    // the same gentle prompt. If sessionStorage is unavailable, the page
+    // simply asks again — nothing breaks.
+    (function () {
+      'use strict';
+
+      // The blessed six, and the guide each one suggests.
+      var matches = {
+        heavy:    { guide: 'Rest',     href: 'guide-rest.html' },
+        scattered: { guide: 'Breathe',  href: 'guide-breathe.html' },
+        calm:     { guide: 'Meditate', href: 'guide-meditate.html' },
+        tired:    { guide: 'Rest',     href: 'guide-rest.html' },
+        open:     { guide: 'Visualize', href: 'guide-visualize.html' },
+        tender:   { guide: 'Nourish',  href: 'guide-nourish.html' }
+      };
+
+      // Soft, non-judgmental prompts (Shifa tone; no clinical words).
+      var prompts = {
+        heavy: 'When the day feels heavy, rest can be the gentlest way back to yourself. A quiet pause is waiting for you.',
+        scattered: 'When thoughts feel scattered, the breath can gather them again. A few slow counts bring you back to now.',
+        calm: 'Calm is already yours. A quiet sitting lets it settle a little deeper around you.',
+        tired: 'When you are tired, rest is how you meet yourself kindly. A pause is waiting for you.',
+        open: 'An open heart can see far. A short visualization can light the path ahead.',
+        tender: 'Tenderness asks to be met gently. A little nourishment can hold you softly and help you bloom.'
+      };
+
+      var STORAGE_KEY = 'oneness-checkin-word';
+
+      var tiles = document.querySelectorAll('.word-tile');
+      var suggestion = document.getElementById('suggestion');
+
+      function save(word) {
+        try {
+          window.sessionStorage.setItem(STORAGE_KEY, word);
+        } catch (err) {
+          // Session storage unavailable — the check-in still works for this visit.
+        }
+      }
+
+      function load() {
+        try {
+          return window.sessionStorage.getItem(STORAGE_KEY) || '';
+        } catch (err) {
+          return '';
+        }
+      }
+
+      function prefersReducedMotion() {
+        return window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      }
+
+      function revealAll() {
+        var items = document.querySelectorAll('.reveal');
+        for (var i = 0; i < items.length; i += 1) {
+          items[i].classList.add('is-visible');
+        }
+      }
+
+      function showFor(word, moveFocus) {
+        var m = matches[word];
+        if (!m || !suggestion) {
+          return;
+        }
+
+        suggestion.innerHTML =
+          '<h2 class="suggestion-heading" tabindex="-1">' + m.guide + ' may be calling to you</h2>' +
+          '<p class="suggestion-copy">' + prompts[word] + '</p>' +
+          '<p class="suggestion-actions"><a class="btn" href="' + m.href + '">Open the ' + m.guide + ' guide</a></p>' +
+          '<p class="suggestion-again"><a href="#word-grid" id="choose-another">Choose another word</a></p>';
+
+        suggestion.classList.add('is-visible');
+
+        var againEl = document.getElementById('choose-another');
+        if (againEl) {
+          againEl.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (tiles.length) {
+              tiles[0].focus();
+            }
+          });
+        }
+
+        if (moveFocus) {
+          suggestion.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'nearest' });
+          var heading = suggestion.querySelector('.suggestion-heading');
+          if (heading) {
+            heading.focus();
+          }
+        }
+      }
+
+      function init() {
+        document.documentElement.classList.add('js-enabled');
+        revealAll();
+
+        for (var i = 0; i < tiles.length; i += 1) {
+          tiles[i].addEventListener('click', function () {
+            var word = this.getAttribute('data-word');
+            if (word) {
+              save(word);
+              showFor(word, true);
+            }
+          });
+        }
+
+        // If a word was chosen earlier in this session, gently return to it.
+        var remembered = load();
+        if (remembered && matches[remembered]) {
+          showFor(remembered, false);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+
+    // Footer year.
+    (function () {
+      var yearEl = document.getElementById('year');
+      if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+    })();
+  </script>
+</body>
+</html>

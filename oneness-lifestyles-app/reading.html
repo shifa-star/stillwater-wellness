@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Daily Attunement Reading · Oneness Lifestyles</title>
+  <meta name="description" content="Today's Daily Attunement Reading — the day's galactic signature, an affirmation for your meditation, and a gentle Remedy of the Day.">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="reading.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-top">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+    <div class="reading-hero">
+      <div class="container">
+        <p class="reading-kicker">a daily gift, freshly woven</p>
+        <h1 class="reading-heading" id="reading-heading">The Daily Attunement Reading</h1>
+        <p class="reading-sub">Each morning a new attunement arrives — a signature, an affirmation, and a gentle remedy.</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ===== U-03 READING SURFACE =====
+         Today's Daily Attunement Reading, fetched from the stable gateway
+         (config.js GATEWAY_URL, never hardcoded here). Three parts, in order:
+         galacticSignature, affirmation, remedyOfTheDay. Offline, the page
+         shows the last-known reading from localStorage; else a calm waiting
+         state. No error wall, no retry noise. -->
+
+    <section class="reading-section" aria-label="Today's reading">
+
+      <!-- Last-known reading note (shown only when offline + stored copy exists) -->
+      <p id="stored-note" class="stored-note" hidden>This is your most recent reading, held for you until the day's new gift arrives.</p>
+
+      <!-- Waiting / offline states -->
+      <div id="status-loading" class="reading-status reveal is-visible" role="status" aria-live="polite">
+        <p class="status-title">the reading is on its way</p>
+        <p class="status-copy">Rest here a moment. The day's gift is travelling toward you, and it will settle softly in your hands.</p>
+      </div>
+
+      <div id="status-offline" class="reading-status reveal" role="status" aria-live="polite" hidden>
+        <p class="status-title">the reading is still on its way</p>
+        <p class="status-copy">The day's gift has not reached the Circle yet. Rest easy and return soon — it will be here waiting, woven for you.</p>
+      </div>
+
+      <!-- The reading card, filled by the gateway. Three parts, in order. -->
+      <section id="reading-card" class="reading-card reveal" aria-labelledby="reading-heading" hidden>
+        <p class="reading-date" id="reading-date"></p>
+
+        <article class="reading-part" id="part-signature" hidden>
+          <p class="part-kicker">the day's signature</p>
+          <h2 class="part-heading">Your galactic signature</h2>
+          <p class="part-text" id="reading-signature"></p>
+        </article>
+
+        <article class="reading-part" id="part-affirmation" hidden>
+          <p class="part-kicker">for your meditation</p>
+          <h2 class="part-heading">Today's affirmation</h2>
+          <p class="part-text" id="reading-affirmation"></p>
+        </article>
+
+        <article class="reading-part" id="part-remedy" hidden>
+          <p class="part-kicker">gentle and natural</p>
+          <h2 class="part-heading">The Remedy of the Day</h2>
+          <p class="part-text" id="reading-remedy"></p>
+        </article>
+      </section>
+
+      <!-- Continue in Telegram door -->
+      <section class="telegram-door" aria-label="Continue in Telegram">
+        <div class="container">
+          <div class="door-card reveal">
+            <h2 class="door-heading">Continue in Telegram</h2>
+            <p class="door-copy">Carry today's attunement with you into the day. The healing guide waits in Telegram, day or night, gentle at every hour.</p>
+            <p class="door-action"><a class="btn" href="https://t.me/+ML3zaAw7J4ZlZjQx" rel="noopener">Continue in Telegram</a></p>
+          </div>
+        </div>
+      </section>
+
+      <p class="door-back"><a href="index.html">Return to the home door</a></p>
+    </section>
+
+    <!-- Brand sign-off -->
+    <section class="reading-signoff" aria-label="Sign-off">
+      <p class="signoff-text">Manifesting Wellness, Wholeness Remembered. 💚</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Oneness Lifestyles · Where the Healing Waters Flow. <a href="#top">Back to top</a></p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    // U-03 Reading surface. The gateway address lives in config.js
+    // (window.APP_CONFIG.GATEWAY_URL) — never hardcoded in this page. On
+    // success the three parts render in order. On failure the page shows the
+    // last-known reading from localStorage, else a calm waiting state. No
+    // error wall, no retry noise.
+    (function () {
+      'use strict';
+
+      var gatewayUrl = (window.APP_CONFIG && window.APP_CONFIG.GATEWAY_URL) || '';
+      var storageKey = (window.APP_CONFIG && window.APP_CONFIG.STORAGE_KEY) || 'oneness.daily-attunement.v1';
+
+      var statusLoading = document.getElementById('status-loading');
+      var statusOffline = document.getElementById('status-offline');
+      var readingCard = document.getElementById('reading-card');
+      var storedNote = document.getElementById('stored-note');
+
+      function textOf(value) {
+        return (value != null && String(value).trim() !== '') ? String(value).trim() : '';
+      }
+
+      function formatDate(input) {
+        var d = input ? new Date(input) : new Date();
+        if (isNaN(d.getTime())) d = new Date();
+        return d.toLocaleDateString(undefined, {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+      }
+
+      // The gateway may return a bare reading, an array, or a wrapped
+      // object. Normalize to a flat reading with the three parts.
+      function normalize(data) {
+        if (!data) return null;
+        if (Array.isArray(data)) data = data[0];
+        if (data && typeof data === 'object') {
+          if (data.reading && typeof data.reading === 'object') data = data.reading;
+          else if (data.data && typeof data.data === 'object') data = data.data;
+        }
+        if (!data || typeof data !== 'object') return null;
+
+        var signature = textOf(data.galacticSignature);
+        var affirmation = textOf(data.affirmation);
+        var remedy = textOf(data.remedyOfTheDay);
+        if (!signature && !affirmation && !remedy) return null;
+
+        return {
+          signature: signature,
+          affirmation: affirmation,
+          remedy: remedy,
+          date: textOf(data.date) || formatDate()
+        };
+      }
+
+      function setSlot(id, value, partId) {
+        var el = document.getElementById(id);
+        var part = document.getElementById(partId);
+        if (el && value) {
+          el.textContent = value;
+          if (part) part.hidden = false;
+        } else if (part) {
+          part.hidden = true;
+        }
+      }
+
+      function showReading(r) {
+        setSlot('reading-signature', r.signature, 'part-signature');
+        setSlot('reading-affirmation', r.affirmation, 'part-affirmation');
+        setSlot('reading-remedy', r.remedy, 'part-remedy');
+        var dateEl = document.getElementById('reading-date');
+        if (dateEl) dateEl.textContent = r.date;
+        if (readingCard) {
+          readingCard.hidden = false;
+          readingCard.classList.add('is-visible');
+        }
+      }
+
+      function showStatus(el) {
+        if (statusLoading) {
+          statusLoading.hidden = true;
+          statusLoading.classList.remove('is-visible');
+        }
+        if (statusOffline) {
+          statusOffline.hidden = true;
+          statusOffline.classList.remove('is-visible');
+        }
+        if (el) {
+          el.hidden = false;
+          el.classList.add('is-visible');
+        }
+      }
+
+      function storeReading(r) {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(r));
+        } catch (err) {
+          // Storage may be unavailable (private mode). The reading still shows today.
+        }
+      }
+
+      function loadStored() {
+        var raw = null;
+        try { raw = localStorage.getItem(storageKey); } catch (err) { raw = null; }
+        if (!raw) return false;
+        try {
+          var stored = normalize(JSON.parse(raw));
+          if (stored) {
+            showReading(stored);
+            if (storedNote) storedNote.hidden = false;
+            showStatus(null);
+            return true;
+          }
+        } catch (err) {
+          // Corrupt stored reading — fall through to the waiting state.
+        }
+        return false;
+      }
+
+      function offline() {
+        if (loadStored()) return;
+        showStatus(statusOffline);
+      }
+
+      function onData(data) {
+        var reading = normalize(data);
+        if (reading) {
+          showReading(reading);
+          storeReading(reading);
+          showStatus(null);
+          return true;
+        }
+        return false;
+      }
+
+      function init() {
+        document.documentElement.classList.add('js-enabled');
+
+        // Empty gateway placeholder means the operator has not filled it yet.
+        // Go straight to the fallback path — no pointless request.
+        if (!gatewayUrl) {
+          offline();
+          return;
+        }
+
+        var controller = ('AbortController' in window) ? new AbortController() : null;
+        var timer = null;
+        if (controller) {
+          timer = setTimeout(function () { controller.abort(); }, 8000);
+        }
+
+        fetch(gatewayUrl, {
+          cache: 'no-store',
+          signal: controller ? controller.signal : undefined
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('gateway not ok: ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            if (timer) clearTimeout(timer);
+            if (!onData(data)) offline();
+          })
+          .catch(function () {
+            if (timer) clearTimeout(timer);
+            offline();
+          });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

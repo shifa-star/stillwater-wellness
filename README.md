@@ -32,3 +32,27 @@ cards (Breathe, Move, Rest, Meditate, Visualize, Nourish):
 
 Ready-to-paste post captions for all six cards live in
 `~/Downloads/STILLWATER-INSTAGRAM-CARDS/captions.txt`.
+
+## Oneness Lifestyles · Where the Healing Waters Flow
+
+The wellness home app lives in the `oneness-lifestyles-app/` folder:
+
+- Opens with the Circle greeting: **"In Lak'ech Ala K'in: I am another
+  yourself. We are One."**
+- **Daily Attunement Reading** — the day's three-part reading (galactic
+  signature from the 13 Moon count, affirmation, Remedy of the Day),
+  with a Continue-in-Telegram door.
+- **Gentle check-in** — soft words to choose from (heavy, scattered, calm,
+  tired, open, tender), each suggesting a matching practice.
+- **Six gentle guides** — Breathe, Move, Rest, Meditate, Visualize,
+  Nourish. Free, always, no sign-up.
+- **Nia's daily self-check-in** — the energy-body calibration ritual,
+  gated by passcode.
+- **Two deeper doors** — @Onenesshealingbot and the free 15-minute
+  Attunement Conversation.
+
+It is a PWA: installable to a phone or computer home screen, works
+offline, one codebase, no app stores.
+
+Open `oneness-lifestyles-app/index.html` — or use the app at
+`/oneness-lifestyles-app/` on the GitHub Pages site.

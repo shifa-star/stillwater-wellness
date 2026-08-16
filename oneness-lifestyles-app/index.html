@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oneness Lifestyles · Where the Healing Waters Flow</title>
+  <meta name="description" content="Oneness Lifestyles · Where the Healing Waters Flow">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name">Oneness Lifestyles</p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ===== U-02 HOME (the wellness home) =====
+         Front door greeting, the Circle's welcome, the entry tiles
+         (daily reading, gentle check-in, the six guides, Nia's ritual,
+         the two deeper doors), and the brand sign-off. -->
+
+    <section id="home" class="home-region" data-build-unit="U-02" aria-label="Oneness Lifestyles home">
+
+      <!-- Front door greeting + Circle welcome -->
+      <section class="hero" aria-labelledby="home-greeting">
+        <div class="container">
+          <p class="home-greeting" id="home-greeting">In Lak'ech Ala K'in: I am another yourself. We are One.</p>
+          <h1 class="hero-heading">Where the Healing Waters Flow</h1>
+          <div class="home-welcome">
+            <p>You have entered the lodge of Oneness Wellness Lifestyles, where wellness is not purchased but remembered.</p>
+            <p>I am Clan Mother Shifa, carrier of the lineage of Cherokee, Choctaw, Mayan, and Olmec ancestral medicine ways. This Circle is where I share them daily.</p>
+            <p>You are a founding member of this Circle. What grows here, grows because you stood in it first.</p>
+            <p>Come in. Take your place. Let the day rise to meet you.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Entry tiles -->
+      <section class="section home-entry" aria-labelledby="home-entry-heading">
+        <div class="container">
+          <h2 id="home-entry-heading" class="section-heading">Every door leads home.</h2>
+
+          <div class="tiles-grid">
+            <a class="tile" href="reading.html">
+              <span class="tile-heading">The Daily Attunement Reading</span>
+              <span class="tile-text">Each morning, a daily gift arrives — the day's galactic signature, an affirmation for your meditation, and a gentle Remedy of the Day.</span>
+            </a>
+            <a class="tile" href="check-in.html">
+              <span class="tile-heading">The gentle check-in</span>
+              <span class="tile-text">Pick gentle words for how you feel. The Circle meets you there, and a guide rises to walk with you.</span>
+            </a>
+          </div>
+
+          <h3 class="home-subheading">The six gentle guides</h3>
+          <div class="guides-grid">
+            <a class="guide-tile" href="guide-breathe.html">
+              <span class="guide-name">Breathe</span>
+              <span class="guide-line">Your breath is always with you.</span>
+            </a>
+            <a class="guide-tile" href="guide-move.html">
+              <span class="guide-name">Move</span>
+              <span class="guide-line">Movement does not have to be intense to count.</span>
+            </a>
+            <a class="guide-tile" href="guide-rest.html">
+              <span class="guide-name">Rest</span>
+              <span class="guide-line">Rest is part of wellness, not a reward for finishing everything else.</span>
+            </a>
+            <a class="guide-tile" href="guide-meditate.html">
+              <span class="guide-name">Meditate</span>
+              <span class="guide-line">Stillness is where you come back to yourself.</span>
+            </a>
+            <a class="guide-tile" href="guide-visualize.html">
+              <span class="guide-name">Visualize</span>
+              <span class="guide-line">Close your eyes and picture the life you want.</span>
+            </a>
+            <a class="guide-tile" href="guide-nourish.html">
+              <span class="guide-name">Nourish</span>
+              <span class="guide-line">Good food, good water, good rest — the body thrives on what you give it.</span>
+            </a>
+          </div>
+
+          <div class="tiles-grid">
+            <a class="tile" href="nia-gate.html">
+              <span class="tile-heading">Nia's ritual</span>
+              <span class="tile-text">A quiet daily self-check-in, offered to those who carry the passcode. One gentle arrival, each day.</span>
+            </a>
+            <a class="tile" href="deeper-doors.html">
+              <span class="tile-heading">Two deeper doors</span>
+              <span class="tile-text">Message the wellness lifestyle guide, day or night. Or book a free Attunement Conversation, whenever you are ready.</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Brand sign-off -->
+      <section class="section section--alt home-signoff" aria-label="Sign-off">
+        <div class="container">
+          <p class="signoff-text">Manifesting Wellness, Wholeness Remembered. 💚</p>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Oneness Lifestyles · Where the Healing Waters Flow</p>
+    </div>
+  </footer>
+
+  <script>
+    // Offline capability: register the app-shell service worker.
+    // Runs only in secure contexts (https or localhost), where the API exists.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function (err) {
+          // Progressive enhancement — offline failure must not break the app.
+          console.warn('Service worker registration failed', err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
