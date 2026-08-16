@@ -40,3 +40,9 @@ version + tag + changelog + README + update-script. Append-only.
 - The welcome tree door photo is in the app shell's offline cache, and the
   cache version was bumped so every phone and computer that has the app
   installed picks up the new home page (with the photo) automatically.
+
+## 2026-08-16 — The welcome tree door stands alone (v2.0.4)
+
+- Removed the golden-hour path photo from the top of the home page. The
+  page now opens with the greeting, and the welcome tree door photo (above
+  "Every door leads home.") is the one image on the home page.
