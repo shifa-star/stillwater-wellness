@@ -1,8 +1,47 @@
-# CHANGELOG — Stillwater Wellness / Oneness Lifestyles
+# CHANGELOG — Oneness Lifestyles · Where the Healing Waters Flow
 
 Written by the merge train. One entry per merged batch, one atomic stamp:
 version + tag + changelog + README + update-script. Append-only.
 
+## 2026-08-16 — batch 12, v2.0.11 — home greeting in three lines
+
+- The home opening greeting now stands on exactly three lines, per Shifa:
+  line 1: Aloha, In Lak'ech Ala K'in:
+  line 2: I am another yourself. We are One.
+  line 3: A New Covenant...
+- The Daily Attunement Reading runs on a 28-day moon cycle: 28 readings
+  that repeat every 28 days (not 365, not a 13 Moon count). The medicine
+  wheel readings document is coming from Shifa; the reading surface keeps
+  its calm waiting state until the document lands.
+- Fixed by a dispatched builder + paired judge workflow (2 agents,
+  seat-pinned) — PASS.
+- Changed file: index.html.
+
+## 2026-08-16 — batch 8, v2.0.7 — video water backdrop + deeper doors copy
+
+- The home entry background is now a LOOPING VIDEO of waves washing onto
+  the shore (top-down aerial footage, Wikimedia Commons, CC licensed) —
+  no moon, no stars, no person, pure water and sand, per Shifa.
+  `images/water-bg.mp4` (720x404 h264, ~1.4 MB, 12 s, crossfaded to loop
+  seamlessly). Muted + autoplay + playsinline so it plays on phones;
+  `prefers-reduced-motion` shows the calm still frame instead.
+- `images/water-bg.jpg` replaced with a clean poster still from the same
+  footage (no figure, no sky) — the no-JS / pre-load / reduced-motion
+  fallback.
+- The entry section positions the video absolutely behind the cards with
+  a light veil (same soft-foam look as before), text contrast unchanged
+  (>= 4.5:1).
+- Service worker cache bumped to `oneness-lifestyles-shell-v5` and the
+  video is part of the offline shell.
+- Copy change: "You are a founding member of this Circle. What grows
+  here, grows because you stood in it first." → "What grows here, grows
+  because you stood in it now." (app is for everyone, not only founding
+  members — per Shifa).
+- Copy change: deeper doors subheading "The web opens wider here."
+  → "The door to wholeness remembered opens wider here." (kept "Two
+  doors wait — each warm, each open, each yours." unchanged).
+- Changed files: index.html, app.css, sw.js, images/water-bg.mp4,
+  images/water-bg.jpg, deeper-doors.html.
 ## 2026-08-15 — Oneness Lifestyles app lands (v2.0.0)
 
 - Added `oneness-lifestyles-app/` — the wellness home PWA: Circle greeting,
