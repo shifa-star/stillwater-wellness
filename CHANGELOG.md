@@ -18,3 +18,12 @@ version + tag + changelog + README + update-script. Append-only.
 - Placeholders (to fill before launch): n8n gateway address, Nia's passcode,
   the Attunement Conversation booking link, Mz. Felicia's statement bank
   and certification link.
+
+## 2026-08-16 — Guide photos and the open door (v2.0.1)
+
+- The six gentle guides now open with their card photos: Breathe, Move,
+  Rest, Meditate, Visualize, Nourish — each page's hero shows the photo
+  from the Circle's Instagram cards.
+- The home door now opens onto an inviting image: a woman walking a
+  sunlit garden path at golden hour (the way into the lodge), before the
+  Circle's greeting. If a missing photo, each page falls back gracefully.
