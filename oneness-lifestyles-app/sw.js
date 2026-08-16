@@ -4,7 +4,7 @@
 
 'use strict';
 
-var CACHE_NAME = 'oneness-lifestyles-shell-v5';
+var CACHE_NAME = 'oneness-lifestyles-shell-v6';
 
 // The app shell that must always be available offline.
 var SHELL = [
@@ -65,8 +65,30 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
-  // Cache-first with network fallback. Successful responses refresh the cache
-  // so the shell stays current while remaining available offline.
+  // Pages are network-first so fresh content (word changes, new text) always
+  // arrives on the next load, even while cached; the fresh copy refreshes the
+  // cache. Other shell assets (css, images, video) stay cache-first so the
+  // app loads fast and works offline. Offline navigation falls back to the
+  // cached shell.
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request).then(function (response) {
+        if (response && response.status === 200 && response.type === 'basic') {
+          var copy = response.clone();
+          caches.open(CACHE_NAME).then(function (cache) {
+            cache.put(request, copy);
+          });
+        }
+        return response;
+      }).catch(function () {
+        return caches.match(request).then(function (cached) {
+          return cached || caches.match('./index.html');
+        });
+      })
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(request).then(function (cached) {
       if (cached) {
