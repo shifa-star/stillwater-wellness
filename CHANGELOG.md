@@ -56,3 +56,17 @@ version + tag + changelog + README + update-script. Append-only.
   reads as soft ambient water texture; text contrast stays >= 4.5:1.
 - Service worker: CACHE_NAME shell-v2 → shell-v3, water-bg.jpg pre-cached so
   devices refresh after one load.
+
+## 2026-08-16 — visible flowing water + the new entry words (batch 7, v2.0.6)
+
+- Shifa: "The water is too faint. Let me see it like soft foam on sand ... Make
+  it more visible." Also: change "Every door leads home" to "Every door leads
+  to wholeness remembered."
+- water-bg.jpg is now a brightened, foam-toned crop of her moonlit water image
+  (1400x919, JPEG 72) — the water visibly flows, no people in frame.
+- .section.home-entry veil: 90% → 55% white so the flow reads clearly; brand
+  blue text on the pale foam still clears the WCAG 4.5:1 floor, and body text
+  sits on white cards.
+- Home entry heading now reads "Every door leads to wholeness remembered."
+- Service worker: CACHE_NAME shell-v3 → shell-v4 so every device (including
+  the computer that still showed the old photo layout) refreshes after one load.

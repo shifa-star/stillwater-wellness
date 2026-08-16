@@ -165,13 +165,14 @@ main {
   border-top: none;
 }
 
-/* ---------- Home entry section: faded flowing-water backdrop ----------
-   The water image sits under a 90% white veil so it reads as soft ambient
-   texture. Text contrast stays >= 4.5:1 (worst case against near-black
-   under the veil: ~7.7:1 for brand blue text). */
+/* ---------- Home entry section: flowing-water backdrop ----------
+   The water image is brightened to soft-foam tones (per Shifa: "soft foam
+   on sand") and sits under a light 55% veil so the flow stays clearly
+   visible. Text contrast stays >= 4.5:1 — brand blue on the pale foam
+   reads ~7:1, and all other text sits on white cards. */
 .section.home-entry {
   background:
-    linear-gradient(rgba(247, 250, 255, 0.9), rgba(247, 250, 255, 0.9)),
+    linear-gradient(rgba(247, 250, 255, 0.55), rgba(247, 250, 255, 0.55)),
     url('images/water-bg.jpg') center / cover no-repeat;
   background-color: var(--bg);   /* fallback while the image loads */
 }
