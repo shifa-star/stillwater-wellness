@@ -46,3 +46,13 @@ version + tag + changelog + README + update-script. Append-only.
 - Removed the golden-hour path photo from the top of the home page. The
   page now opens with the greeting, and the welcome tree door photo (above
   "Every door leads home.") is the one image on the home page.
+
+## 2026-08-16 — bigger door photo + faded flowing-water backdrop (batch 6, v2.0.5)
+
+- Shifa: "make the tree door image bigger and give it a faded background image of flowing water."
+- .entry-photo max-width 400px → 560px (CSS only, no HTML change).
+- New section backdrop: app/images/water-bg.jpg (1400x2046, web-optimized from
+  her Krea water image) under a 90% white veil via .section.home-entry —
+  reads as soft ambient water texture; text contrast stays >= 4.5:1.
+- Service worker: CACHE_NAME shell-v2 → shell-v3, water-bg.jpg pre-cached so
+  devices refresh after one load.

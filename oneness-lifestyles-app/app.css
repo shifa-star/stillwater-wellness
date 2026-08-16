@@ -165,6 +165,17 @@ main {
   border-top: none;
 }
 
+/* ---------- Home entry section: faded flowing-water backdrop ----------
+   The water image sits under a 90% white veil so it reads as soft ambient
+   texture. Text contrast stays >= 4.5:1 (worst case against near-black
+   under the veil: ~7.7:1 for brand blue text). */
+.section.home-entry {
+  background:
+    linear-gradient(rgba(247, 250, 255, 0.9), rgba(247, 250, 255, 0.9)),
+    url('images/water-bg.jpg') center / cover no-repeat;
+  background-color: var(--bg);   /* fallback while the image loads */
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   padding: 40px 24px;
@@ -279,7 +290,7 @@ a {
 .entry-photo {
   display: block;
   width: 100%;
-  max-width: 400px;
+  max-width: 560px;   /* enlarged per Shifa (was 400px) */
   margin: 0 auto 28px;
   border-radius: 18px;
   box-shadow: 0 10px 30px rgba(20, 20, 20, 0.16);

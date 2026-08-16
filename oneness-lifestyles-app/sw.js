@@ -4,7 +4,7 @@
 
 'use strict';
 
-var CACHE_NAME = 'oneness-lifestyles-shell-v2';
+var CACHE_NAME = 'oneness-lifestyles-shell-v3';
 
 // The app shell that must always be available offline.
 var SHELL = [
@@ -15,7 +15,8 @@ var SHELL = [
   './icon.svg',
   './icon-192.png',
   './icon-512.png',
-  './images/welcome-tree-door.jpg'
+  './images/welcome-tree-door.jpg',
+  './images/water-bg.jpg'
 ];
 
 self.addEventListener('install', function (event) {
