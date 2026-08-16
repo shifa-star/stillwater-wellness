@@ -34,3 +34,9 @@ version + tag + changelog + README + update-script. Append-only.
   own photo — right before "Every door leads home." The portrait photo
   is sized for the web (720x1280), keeps its full shape, and the page
   falls back gracefully if the image is ever missing.
+
+## 2026-08-16 — Cache refresh so the door photo appears everywhere (v2.0.3)
+
+- The welcome tree door photo is in the app shell's offline cache, and the
+  cache version was bumped so every phone and computer that has the app
+  installed picks up the new home page (with the photo) automatically.
