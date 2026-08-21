@@ -1,3 +1,39 @@
+## 2026-08-21 — batch 17, v2.0.16 — the Wellness Survey
+
+- A new door opens: **the Wellness Survey** — the app's first client-facing
+  form, a place where people can share how they have been, gently.
+- Step 1 is an **opt-in**: name, email, and a consent checkbox ("Send me
+  one gentle reminder when the wheel turns"). The questionnaire stays
+  closed until the person freely opts in; a clear privacy note explains
+  that nothing leaves their phone without their say-so.
+- Step 2 is the **questionnaire**: ten gentle multiple-choice questions
+  (sleep, energy, digestion, mood, movement, stress, tenderness, water,
+  what is calling for care, what they hope for), each with a soft hint
+  line so the question always makes sense. Answers are stored only on the
+  device, under oneness.wellness-survey.v1.
+- **Optional upload**: a photo, food diary, or scan (up to 15 MB) stays
+  private on the person's own phone, held in IndexedDB (oneness-files).
+  It is never sent anywhere.
+- **Quiet visit counting**: the app counts first visit, last visit, and
+  return visits — purely on-device, as encouragement ("Welcome back,
+  {name}. The Circle is glad you have returned."), never as a network
+  call and never as harassment.
+- Returning visitors are welcomed by name, with the form prefilled and a
+  note that they have shared before.
+- The three-day gentle email ("Aloha. Three days ago you shared your
+  wellness with the Circle...") is designed and agreed, and lives in
+  GoHighLevel — wired later through the reserved config.js GATEWAY_URL
+  gateway. **This build sends no email and no network requests**; the
+  page works fully offline, like the rest of the app.
+- Accessibility: every question is a real radio group (arrow keys move,
+  Tab leaves, screen readers announce), with a visible focus ring; all
+  gentle feedback is announced live.
+- Built by a dispatched builder + paired judge workflow (2 agents,
+  seat-pinned) — PASS on all checks (35/35 E2E browser checks, including
+  the keyboard-only pass and the privacy proof: zero external network
+  requests, zero XHR/fetch). Changed files: wellness.html (new),
+  wellness.css (new), index.html, sw.js (shell-v7 -> shell-v8).
+
 ## 2026-08-16 — batch 16, v2.0.15 — the 28-day Perpetual Medicine Wheel
 
 - Shifa's 28-day Perpetual Medicine document (the medicine wheel) has

@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Wellness Survey · Oneness Lifestyles</title>
+  <meta name="description" content="Ten gentle questions about how you have been. Your answers and any photo stay private on this device, only for you.">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="wellness.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- ===== THE WELLNESS SURVEY (batch 17, v2.0.16) =====
+         A gentle opt-in, ten quiet questions, and an optional on-device
+         upload. Everything is held privately on the person's own phone.
+         No network calls, no email in this build — the GoHighLevel
+         migration is future work via config.js GATEWAY_URL. -->
+
+    <section class="survey-hero reveal">
+      <div class="container">
+        <p class="survey-kicker">a quiet sharing</p>
+        <h1 class="survey-heading">The Wellness Survey</h1>
+        <p class="survey-lede">Ten gentle questions about how you have been — held privately on this device, only for you.</p>
+        <p id="welcome-back" class="survey-welcome" hidden></p>
+      </div>
+    </section>
+
+    <section class="survey-section reveal">
+      <div class="container">
+        <div class="survey-card">
+
+          <!-- ===== Step 1 · OPT-IN ===== -->
+          <section id="optin-section">
+            <h2 id="optin-heading">A gentle beginning</h2>
+            <p>Before the questions, a soft door — so we know where to send one gentle reminder, only if you ask for it.</p>
+
+            <form id="optin-form" class="survey-form" novalidate>
+              <label class="survey-label" for="optin-name">Your name</label>
+              <input id="optin-name" class="survey-input" type="text" name="name" autocomplete="name" aria-describedby="optin-feedback">
+              <label class="survey-label" for="optin-email">Your email</label>
+              <input id="optin-email" class="survey-input" type="email" name="email" autocomplete="email" aria-describedby="optin-feedback">
+
+              <div class="consent-block">
+                <input id="consent" class="consent-checkbox" type="checkbox" name="consent">
+                <label class="consent-label" for="consent">Send me one gentle reminder when the wheel turns.</label>
+                <p class="consent-statement">I am happy for Oneness Lifestyles to hold my name and email, and to send one gentle reminder when the wheel turns. Nothing else leaves this device.</p>
+                <p class="consent-note">Nothing leaves your phone without your say-so. Your answers and any photo, food diary, or scan stay on this device, only for you. The gentle reminder is the only thing that may ever leave — and only because you asked for it.</p>
+              </div>
+
+              <p id="optin-feedback" class="survey-feedback" aria-live="polite"></p>
+              <button type="submit" class="btn btn-block">Continue to the gentle questions</button>
+            </form>
+
+            <p class="optin-skip">I would rather not — <a href="index.html">back to the home door</a></p>
+          </section>
+
+          <!-- ===== Step 2 · QUESTIONNAIRE ===== -->
+          <section id="survey-section" hidden>
+            <h2 id="survey-heading" tabindex="-1">Ten gentle questions</h2>
+            <p>There are no right or wrong answers. Take your time.</p>
+
+            <form id="survey-form" class="survey-form" novalidate>
+              <fieldset class="question" data-qid="q1">
+                <legend class="question-text">
+                  <span class="question-label">How did sleep greet you last night?</span>
+                  <span class="question-hint" id="q1-hint">Sleep is the quiet foundation — this helps us know which remedy to suggest gently.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q1-hint">
+                  <input class="answer-input" type="radio" id="q1-a" name="q1" value="deeply">
+                  <label class="answer-pill" for="q1-a">Deeply and easily</label>
+                  <input class="answer-input" type="radio" id="q1-b" name="q1" value="restless">
+                  <label class="answer-pill" for="q1-b">A little restless</label>
+                  <input class="answer-input" type="radio" id="q1-c" name="q1" value="slow">
+                  <label class="answer-pill" for="q1-c">It took a while to arrive</label>
+                  <input class="answer-input" type="radio" id="q1-d" name="q1" value="barely">
+                  <label class="answer-pill" for="q1-d">I barely slept</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="question" data-qid="q2">
+                <legend class="question-text">
+                  <span class="question-label">How is your energy today?</span>
+                  <span class="question-hint" id="q2-hint">Your energy tells a gentle story about what your body is asking for.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q2-hint">
+                  <input class="answer-input" type="radio" id="q2-a" name="q2" value="bright">
+                  <label class="answer-pill" for="q2-a">Bright and full</label>
+                  <input class="answer-input" type="radio" id="q2-b" name="q2" value="steady">
+                  <label class="answer-pill" for="q2-b">Steady</label>
+                  <input class="answer-input" type="radio" id="q2-c" name="q2" value="low">
+                  <label class="answer-pill" for="q2-c">A little low</label>
+                  <input class="answer-input" type="radio" id="q2-d" name="q2" value="tired">
+                  <label class="answer-pill" for="q2-d">Very tired</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="question" data-qid="q3">
+                <legend class="question-text">
+                  <span class="question-label">How is your belly feeling?</span>
+                  <span class="question-hint" id="q3-hint">The belly keeps its own quiet rhythm — we honour it, never push it.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q3-hint">
+                  <input class="answer-input" type="radio" id="q3-a" name="q3" value="calm">
+                  <label class="answer-pill" for="q3-a">Calm and easy</label>
+                  <input class="answer-input" type="radio" id="q3-b" name="q3" value="heavy">
+                  <label class="answer-pill" for="q3-b">A little heavy</label>
+                  <input class="answer-input" type="radio" id="q3-c" name="q3" value="flares">
+                  <label class="answer-pill" for="q3-c">It flares up now and then</label>
+                  <input class="answer-input" type="radio" id="q3-d" name="q3" value="unsettled">
+                  <label class="answer-pill" for="q3-d">Often unsettled</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="question" data-qid="q4">
+                <legend class="question-text">
+                  <span class="question-label">How is your mood resting today?</span>
+                  <span class="question-hint" id="q4-hint">Your mood is a visitor and it is welcome here — no judgement.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q4-hint">
+                  <input class="answer-input" type="radio" id="q4-a" name="q4" value="light">
+                  <label class="answer-pill" for="q4-a">Light</label>
+                  <input class="answer-input" type="radio" id="q4-b" name="q4" value="content">
+                  <label class="answer-pill" for="q4-b">Content</label>
+                  <input class="answer-input" type="radio" id="q4-c" name="q4" value="low">
+                  <label class="answer-pill" for="q4-c">A little low</label>
+                  <input class="answer-input" type="radio" id="q4-d" name="q4" value="heavy">
+                  <label class="answer-pill" for="q4-d">Heavy</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="question" data-qid="q5">
+                <legend class="question-text">
+                  <span class="question-label">How has movement felt lately?</span>
+                  <span class="question-hint" id="q5-hint">Movement does not have to be intense to count.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q5-hint">
+                  <input class="answer-input" type="radio" id="q5-a" name="q5" value="easy">
+                  <label class="answer-pill" for="q5-a">Easy and enjoyable</label>
+                  <input class="answer-input" type="radio" id="q5-b" name="q5" value="some">
+                  <label class="answer-pill" for="q5-b">Some days I move</label>
+                  <input class="answer-input" type="radio" id="q5-c" name="q5" value="still">
+                  <label class="answer-pill" for="q5-c">I have been very still</label>
+                  <input class="answer-input" type="radio" id="q5-d" name="q5" value="resists">
+                  <label class="answer-pill" for="q5-d">My body resists</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="question" data-qid="q6">
+                <legend class="question-text">
+                  <span class="question-label">How does your nervous system feel?</span>
+                  <span class="question-hint" id="q6-hint">This helps us know which gentle remedy to suggest.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q6-hint">
+                  <input class="answer-input" type="radio" id="q6-a" name="q6" value="calm">
+                  <label class="answer-pill" for="q6-a">Calm</label>
+                  <input class="answer-input" type="radio" id="q6-b" name="q6" value="settled">
+                  <label class="answer-pill" for="q6-b">Mostly settled</label>
+                  <input class="answer-input" type="radio" id="q6-c" name="q6" value="edge">
+                  <label class="answer-pill" for="q6-c">Often on edge</label>
+                  <input class="answer-input" type="radio" id="q6-d" name="q6" value="stretched">
+                  <label class="answer-pill" for="q6-d">Very stretched</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="question" data-qid="q7">
+                <legend class="question-text">
+                  <span class="question-label">Where does your body feel tender?</span>
+                  <span class="question-hint" id="q7-hint">Tenderness is information, not failure — we meet it gently.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q7-hint">
+                  <input class="answer-input" type="radio" id="q7-a" name="q7" value="none">
+                  <label class="answer-pill" for="q7-a">Nowhere — I feel at ease</label>
+                  <input class="answer-input" type="radio" id="q7-b" name="q7" value="backneck">
+                  <label class="answer-pill" for="q7-b">In my back or neck</label>
+                  <input class="answer-input" type="radio" id="q7-c" name="q7" value="joints">
+                  <label class="answer-pill" for="q7-c">In my joints</label>
+                  <input class="answer-input" type="radio" id="q7-d" name="q7" value="belly">
+                  <label class="answer-pill" for="q7-d">In my belly</label>
+                  <input class="answer-input" type="radio" id="q7-e" name="q7" value="head">
+                  <label class="answer-pill" for="q7-e">In my head</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="question" data-qid="q8">
+                <legend class="question-text">
+                  <span class="question-label">How has water been with you today?</span>
+                  <span class="question-hint" id="q8-hint">Water is the first gentle remedy.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q8-hint">
+                  <input class="answer-input" type="radio" id="q8-a" name="q8" value="plenty">
+                  <label class="answer-pill" for="q8-a">I drink plenty</label>
+                  <input class="answer-input" type="radio" id="q8-b" name="q8" value="some">
+                  <label class="answer-pill" for="q8-b">A fair amount</label>
+                  <input class="answer-input" type="radio" id="q8-c" name="q8" value="little">
+                  <label class="answer-pill" for="q8-c">Not enough</label>
+                  <input class="answer-input" type="radio" id="q8-d" name="q8" value="forget">
+                  <label class="answer-pill" for="q8-d">I often forget</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="question" data-qid="q9">
+                <legend class="question-text">
+                  <span class="question-label">What is calling for the most care right now?</span>
+                  <span class="question-hint" id="q9-hint">There is no wrong answer — this simply helps us know where to begin.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q9-hint">
+                  <input class="answer-input" type="radio" id="q9-a" name="q9" value="sleep">
+                  <label class="answer-pill" for="q9-a">Sleep</label>
+                  <input class="answer-input" type="radio" id="q9-b" name="q9" value="rest">
+                  <label class="answer-pill" for="q9-b">Rest</label>
+                  <input class="answer-input" type="radio" id="q9-c" name="q9" value="movement">
+                  <label class="answer-pill" for="q9-c">Movement</label>
+                  <input class="answer-input" type="radio" id="q9-d" name="q9" value="belly">
+                  <label class="answer-pill" for="q9-d">The belly</label>
+                  <input class="answer-input" type="radio" id="q9-e" name="q9" value="mind">
+                  <label class="answer-pill" for="q9-e">My mind</label>
+                  <input class="answer-input" type="radio" id="q9-f" name="q9" value="unsure">
+                  <label class="answer-pill" for="q9-f">Not sure yet</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="question" data-qid="q10">
+                <legend class="question-text">
+                  <span class="question-label">What do you hope for in the days ahead?</span>
+                  <span class="question-hint" id="q10-hint">Whatever you hope for, the Circle is glad to hold it with you.</span>
+                </legend>
+                <div class="answer-list" role="radiogroup" aria-describedby="q10-hint">
+                  <input class="answer-input" type="radio" id="q10-a" name="q10" value="ease">
+                  <label class="answer-pill" for="q10-a">More ease</label>
+                  <input class="answer-input" type="radio" id="q10-b" name="q10" value="energy">
+                  <label class="answer-pill" for="q10-b">More energy</label>
+                  <input class="answer-input" type="radio" id="q10-c" name="q10" value="calm">
+                  <label class="answer-pill" for="q10-c">A calmer mind</label>
+                  <input class="answer-input" type="radio" id="q10-d" name="q10" value="belly">
+                  <label class="answer-pill" for="q10-d">A settled belly</label>
+                  <input class="answer-input" type="radio" id="q10-e" name="q10" value="met">
+                  <label class="answer-pill" for="q10-e">Just to be met gently</label>
+                </div>
+              </fieldset>
+
+              <!-- Optional upload — kept only on this device -->
+              <fieldset class="question upload-block">
+                <legend class="question-text">
+                  <span class="question-label">A little extra, if you like</span>
+                  <span class="question-hint">A photo, a food diary, or a scan — kept only on this device, only for you.</span>
+                </legend>
+                <input id="upload-file" class="upload-input" type="file" accept="image/*,.pdf,.txt,.jpg,.jpeg,.png,.heic,.webp">
+                <label class="btn btn-ghost upload-trigger" for="upload-file">Choose a photo, food diary, or scan</label>
+                <p id="upload-meta" class="upload-meta" hidden></p>
+                <button type="button" id="upload-remove" class="btn btn-ghost upload-remove" hidden>Remove the file</button>
+                <p class="upload-note">No file is needed. This is only if you would like to.</p>
+              </fieldset>
+
+              <p class="survey-disclaimer">This is a gentle mirror, not a diagnosis. If something feels heavy or urgent, please reach out to someone you trust, or to a crisis line near you.</p>
+              <p id="survey-feedback" class="survey-feedback" aria-live="polite"></p>
+              <button type="submit" class="btn btn-block">Hold my wellness gently</button>
+            </form>
+          </section>
+
+          <!-- ===== Step 3 · SUCCESS ===== -->
+          <section id="success-section" hidden>
+            <h2 id="success-heading" tabindex="-1" class="success-heading">Thank you, <span id="success-name"></span></h2>
+            <p>Your wellness is held gently, here in the Circle, on this device only.</p>
+            <p class="success-note">A gentle reminder will find you when the wheel turns — because you asked for it.</p>
+            <div class="signoff">
+              <p class="signoff-text">Manifesting Wellness, Wholeness Remembered. 💚</p>
+            </div>
+            <p class="survey-back"><a href="index.html">Back to Oneness Lifestyles</a></p>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+    <noscript>
+      <div class="container">
+        <p class="noscript-note">The Wellness Survey needs JavaScript to hold your answers privately on this device. With JavaScript on, nothing leaves your phone.</p>
+      </div>
+    </noscript>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Oneness Lifestyles · Where the Healing Waters Flow. <a href="#top">Back to top</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Offline capability: register the app-shell service worker.
+    // Runs only in secure contexts (https or localhost), where the API exists.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function (err) {
+          // Progressive enhancement — offline failure must not break the app.
+          console.warn('Service worker registration failed', err);
+        });
+      });
+    }
+  </script>
+
+  <script>
+    // The Wellness Survey — a gentle opt-in, ten quiet questions, and an
+    // optional upload, all held privately on this device. No network calls.
+    // FUTURE: when config.js GATEWAY_URL is filled, a gentle opt-in POST
+    // (name+email+consent) will go to window.APP_CONFIG.GATEWAY_URL. Not this
+    // build — the page stays fully on-device today.
+    (function () {
+      'use strict';
+
+      var STORAGE_KEY = 'oneness.wellness-survey.v1';
+      var FILE_DB = 'oneness-files';
+      var FILE_STORE = 'files';
+      var MAX_FILE_MB = 15;
+
+      var pendingFile = null;
+
+      // ---- Small helpers ----
+      function say(id, text) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.textContent = text;
+        }
+      }
+
+      // ---- Storage (all try/catch, private-mode safe) ----
+      function loadRecord() {
+        var rec = {};
+        try {
+          var raw = window.localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === 'object') {
+              rec = parsed;
+            }
+          }
+        } catch (err) {
+          // private mode — the survey still works, just without memory
+        }
+        return rec;
+      }
+
+      function saveRecord(rec) {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(rec));
+        } catch (err) {
+          // no persistence available — continue silently
+        }
+      }
+
+      function touchVisit() {
+        var rec = loadRecord();
+        var now = new Date().toISOString();
+        if (!rec.visits) {
+          rec.visits = { firstVisit: now, lastVisit: now, count: 1 };
+        } else {
+          rec.visits.count = (rec.visits.count || 0) + 1;
+          rec.visits.lastVisit = now;
+        }
+        saveRecord(rec);
+        return rec;
+      }
+
+      // ---- IndexedDB file wrapper (promise-based; a File IS a Blob, so no
+      //      base64 encoding or reading the file into memory is needed) ----
+      function idbOpen() {
+        return new Promise(function (resolve, reject) {
+          if (!window.indexedDB) {
+            reject(new Error('IndexedDB is not available'));
+            return;
+          }
+          var request = window.indexedDB.open(FILE_DB, 1);
+          request.onupgradeneeded = function () {
+            var db = request.result;
+            if (!db.objectStoreNames.contains(FILE_STORE)) {
+              db.createObjectStore(FILE_STORE, { keyPath: 'id' });
+            }
+          };
+          request.onsuccess = function () {
+            resolve(request.result);
+          };
+          request.onerror = function () {
+            reject(request.error || new Error('IndexedDB could not open'));
+          };
+        });
+      }
+
+      function idbSaveFile(file) {
+        return idbOpen().then(function (db) {
+          return new Promise(function (resolve, reject) {
+            var id = Date.now() + '-' + Math.random().toString(36).slice(2);
+            var tx = db.transaction(FILE_STORE, 'readwrite');
+            var store = tx.objectStore(FILE_STORE);
+            store.put({
+              id: id,
+              blob: file,
+              name: file.name,
+              type: file.type,
+              size: file.size,
+              savedAt: new Date().toISOString()
+            });
+            tx.oncomplete = function () {
+              db.close();
+              resolve({ id: id });
+            };
+            tx.onerror = function () {
+              db.close();
+              reject(tx.error || new Error('The file could not be kept on this device'));
+            };
+          });
+        });
+      }
+
+      function idbDeleteFile(id) {
+        return idbOpen().then(function (db) {
+          return new Promise(function (resolve, reject) {
+            var tx = db.transaction(FILE_STORE, 'readwrite');
+            var store = tx.objectStore(FILE_STORE);
+            store.delete(id);
+            tx.oncomplete = function () {
+              db.close();
+              resolve();
+            };
+            tx.onerror = function () {
+              db.close();
+              reject(tx.error || new Error('The old file could not be removed'));
+            };
+          });
+        });
+      }
+
+      // ---- Validation ----
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function validateOptin() {
+        var nameEl = document.getElementById('optin-name');
+        var emailEl = document.getElementById('optin-email');
+        var consentEl = document.getElementById('consent');
+        var name = nameEl ? nameEl.value.trim() : '';
+        var email = emailEl ? emailEl.value.trim() : '';
+
+        if (name === '') {
+          return { ok: false, msg: 'May we know a name to hold gently?', focusEl: nameEl };
+        }
+        if (!EMAIL_RE.test(email)) {
+          return { ok: false, msg: 'A gentle email helps the reminder find you.', focusEl: emailEl };
+        }
+        if (consentEl && !consentEl.checked) {
+          return { ok: false, msg: 'The gentle reminder only comes when you ask for it.', focusEl: consentEl };
+        }
+        return { ok: true, msg: '', focusEl: null };
+      }
+
+      function missingQuestions() {
+        var missing = [];
+        var fieldsets = document.querySelectorAll('.question[data-qid]');
+        for (var i = 0; i < fieldsets.length; i++) {
+          var fs = fieldsets[i];
+          if (!fs.querySelector('input[type="radio"]:checked')) {
+            missing.push(fs.getAttribute('data-qid'));
+          }
+        }
+        return missing;
+      }
+
+      function markMissing(missing) {
+        for (var i = 0; i < missing.length; i++) {
+          var fs = document.querySelector('.question[data-qid="' + missing[i] + '"]');
+          if (fs) {
+            fs.classList.add('is-missing');
+          }
+        }
+      }
+
+      function focusFirstMissing(missing) {
+        if (!missing.length) {
+          return;
+        }
+        var fs = document.querySelector('.question[data-qid="' + missing[0] + '"]');
+        if (fs) {
+          var firstRadio = fs.querySelector('.answer-input');
+          if (firstRadio && firstRadio.focus) {
+            firstRadio.focus();
+          }
+        }
+      }
+
+      // ---- Reveal / focus (nia-ritual idiom) ----
+      function revealAll() {
+        var items = document.querySelectorAll('.reveal');
+        for (var i = 0; i < items.length; i++) {
+          items[i].classList.add('is-visible');
+        }
+      }
+
+      function showSurvey() {
+        var optinSection = document.getElementById('optin-section');
+        var surveySection = document.getElementById('survey-section');
+        if (optinSection) {
+          optinSection.hidden = true;
+        }
+        if (surveySection) {
+          surveySection.hidden = false;
+        }
+        if (window.scrollTo) {
+          window.scrollTo(0, 0);
+        }
+        var heading = document.getElementById('survey-heading');
+        if (heading) {
+          window.setTimeout(function () {
+            heading.focus();
+          }, 0);
+        }
+      }
+
+      function showSuccess(firstName) {
+        var surveySection = document.getElementById('survey-section');
+        var successSection = document.getElementById('success-section');
+        if (surveySection) {
+          surveySection.hidden = true;
+        }
+        if (successSection) {
+          successSection.hidden = false;
+        }
+        var nameEl = document.getElementById('success-name');
+        if (nameEl) {
+          nameEl.textContent = firstName || '';
+        }
+        if (window.scrollTo) {
+          window.scrollTo(0, 0);
+        }
+        var heading = document.getElementById('success-heading');
+        if (heading) {
+          window.setTimeout(function () {
+            heading.focus();
+          }, 0);
+        }
+      }
+
+      // ---- Upload (kept in memory; written to IndexedDB only at submit) ----
+      function formatSize(bytes) {
+        if (bytes < 1024) {
+          return bytes + ' B';
+        }
+        if (bytes < 1024 * 1024) {
+          return (bytes / 1024).toFixed(1) + ' KB';
+        }
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+      }
+
+      function onFileSelected(file) {
+        if (!file) {
+          return;
+        }
+        var sizeMb = file.size / (1024 * 1024);
+        if (sizeMb > MAX_FILE_MB) {
+          say('survey-feedback', 'That file is a little large for this gentle space. Please choose one under 15 MB, or leave it aside.');
+          return;
+        }
+        pendingFile = file;
+        var meta = document.getElementById('upload-meta');
+        var remove = document.getElementById('upload-remove');
+        if (meta) {
+          meta.hidden = false;
+          meta.textContent = file.name + ' · ' + formatSize(file.size);
+        }
+        if (remove) {
+          remove.hidden = false;
+        }
+      }
+
+      function onFileRemoved() {
+        pendingFile = null;
+        var input = document.getElementById('upload-file');
+        var meta = document.getElementById('upload-meta');
+        var remove = document.getElementById('upload-remove');
+        if (input) {
+          input.value = '';
+        }
+        if (meta) {
+          meta.hidden = true;
+          meta.textContent = '';
+        }
+        if (remove) {
+          remove.hidden = true;
+        }
+      }
+
+      // ---- Handlers ----
+      function onOptinSubmit(event) {
+        event.preventDefault();
+        var result = validateOptin();
+        if (!result.ok) {
+          say('optin-feedback', result.msg);
+          if (result.focusEl && result.focusEl.focus) {
+            result.focusEl.focus();
+          }
+          return;
+        }
+        say('optin-feedback', '');
+
+        var rec = loadRecord();
+        var nameEl = document.getElementById('optin-name');
+        var emailEl = document.getElementById('optin-email');
+        var consentEl = document.getElementById('consent');
+        rec.firstName = nameEl ? nameEl.value.trim() : '';
+        rec.email = emailEl ? emailEl.value.trim() : '';
+        rec.consented = consentEl ? consentEl.checked : false;
+        saveRecord(rec);
+
+        showSurvey();
+      }
+
+      function onSurveySubmit(event) {
+        event.preventDefault();
+        var missing = missingQuestions();
+        if (missing.length > 0) {
+          markMissing(missing);
+          say('survey-feedback', 'A question or two is waiting gently for you — the ones softly glowing are still open.');
+          focusFirstMissing(missing);
+          return;
+        }
+        say('survey-feedback', '');
+
+        var rec = loadRecord();
+        var qids = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
+        var answers = {};
+        for (var i = 0; i < qids.length; i++) {
+          var checked = document.querySelector('input[name="' + qids[i] + '"]:checked');
+          if (checked) {
+            answers[qids[i]] = checked.value;
+          }
+        }
+        rec.answers = answers;
+        rec.completedAt = new Date().toISOString();
+
+        function finish(fileRef) {
+          rec.fileRef = fileRef;
+          saveRecord(rec);
+          showSuccess(rec.firstName);
+        }
+
+        if (pendingFile) {
+          // On re-submit with a new file, best-effort remove the old one first.
+          var oldRef = rec.fileRef;
+          var removeOld = (oldRef && oldRef.id)
+            ? idbDeleteFile(oldRef.id).catch(function () { return null; })
+            : Promise.resolve(null);
+
+          removeOld.then(function () {
+            return idbSaveFile(pendingFile);
+          }).then(function (fileRef) {
+            finish(fileRef);
+          }).catch(function () {
+            finish(null);
+            say('survey-feedback', 'Your answers are held safely. The file could not be kept on this device this time — no file was sent anywhere.');
+          });
+        } else {
+          finish(rec.fileRef || null);
+        }
+      }
+
+      // ---- Returning visitor ----
+      function renderWelcomeBack(rec) {
+        var el = document.getElementById('welcome-back');
+        if (!el) {
+          return;
+        }
+        var count = rec.visits ? rec.visits.count : 0;
+        if (count <= 1) {
+          return; // first visit — no welcome back
+        }
+        var firstName = rec.firstName || '';
+        var greeting = firstName
+          ? 'Welcome back, ' + firstName + '. The Circle is glad you have returned.'
+          : 'Welcome back. The Circle is glad you have returned.';
+        if (rec.completedAt) {
+          greeting += ' You have shared your wellness with us before — you are welcome to share again gently, or to rest.';
+        }
+        el.textContent = greeting;
+        el.hidden = false;
+
+        if (firstName) {
+          var nameEl = document.getElementById('optin-name');
+          if (nameEl) {
+            nameEl.value = firstName;
+          }
+        }
+        if (rec.email) {
+          var emailEl = document.getElementById('optin-email');
+          if (emailEl) {
+            emailEl.value = rec.email;
+          }
+        }
+      }
+
+      // ---- Wire-up ----
+      function init() {
+        document.documentElement.classList.add('js-enabled');
+        revealAll();
+
+        var rec = touchVisit();
+        renderWelcomeBack(rec);
+
+        var optinForm = document.getElementById('optin-form');
+        if (optinForm) {
+          optinForm.addEventListener('submit', onOptinSubmit);
+        }
+
+        var surveyForm = document.getElementById('survey-form');
+        if (surveyForm) {
+          surveyForm.addEventListener('submit', onSurveySubmit);
+        }
+
+        var uploadInput = document.getElementById('upload-file');
+        if (uploadInput) {
+          uploadInput.addEventListener('change', function () {
+            onFileSelected(this.files && this.files[0]);
+          });
+        }
+
+        var uploadRemove = document.getElementById('upload-remove');
+        if (uploadRemove) {
+          uploadRemove.addEventListener('click', onFileRemoved);
+        }
+
+        // A change in any answer clears that question's gentle "missing" glow.
+        var groups = document.querySelectorAll('.answer-list');
+        for (var i = 0; i < groups.length; i++) {
+          groups[i].addEventListener('change', function () {
+            var fs = this.closest ? this.closest('.question') : null;
+            if (fs) {
+              fs.classList.remove('is-missing');
+            }
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>
