@@ -202,6 +202,7 @@ a {
   margin: 10px 0 0;
   font-size: 0.78rem;
   line-height: 1.45;
+  text-align: center;
   color: var(--brand-sand-light);
   max-width: 34em;
   margin-left: auto;

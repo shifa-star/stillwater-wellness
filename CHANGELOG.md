@@ -1,3 +1,14 @@
+## 2026-08-23 — batch 21, v2.0.20 — centered footer note
+
+- Shifa: "center the footer text." — the small-print note at the foot of
+  every page is now explicitly centered (text-align: center) in all 9
+  stylesheets, so the note lines up dead-center on every device and
+  every screen width.
+- Service worker: CACHE_NAME shell-v11 -> shell-v12.
+- Applied inline by the conductor per the standing small-change doctrine —
+  verified in Chrome before publishing. Changed files: all 9 stylesheets,
+  sw.js.
+
 ## 2026-08-23 — batch 20, v2.0.19 — the gentle medical note
 
 - Shifa: "need to add a gentle medical disclaimer to the site. small

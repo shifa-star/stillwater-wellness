@@ -240,6 +240,7 @@ main {
   margin: 10px 0 0;
   font-size: 0.78rem;      /* small but readable */
   line-height: 1.45;
+  text-align: center;
   color: var(--brand-sand-light);  /* on brand blue, same as links */
   max-width: 34em;         /* keeps the note from spanning the whole row */
   margin-left: auto;
