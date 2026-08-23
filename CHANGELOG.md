@@ -1,3 +1,23 @@
+## 2026-08-23 — batch 18, v2.0.17 — the welcome tree door comes alive
+
+- The welcome tree photo at the top of the home page is now a living
+  video: Shifa's own phone footage of the walk into the lodge — a golden
+  sunlit path through the trees, right before "Every door leads to
+  wholeness remembered."
+- The video loops softly, plays silently (muted), starts on its own, and
+  is sized for phones (540x960, about 1.2 MB) so it loads quickly on any
+  connection.
+- The tree photo is still there beneath the video: it is the poster that
+  shows while the video loads, and it returns for anyone whose phone is
+  set to prefer reduced motion (their setting is respected) and for
+  devices that cannot play video.
+- Service worker: CACHE_NAME shell-v8 -> shell-v9, door11-video.mp4
+  pre-cached so every device refreshes after one load.
+- Applied inline by the conductor per the standing small-change doctrine
+  (same lane as Waves 6-16) — verified in Chrome: the video plays and
+  loops; the reduced-motion check shows the calm photo. Changed files:
+  index.html, app.css, sw.js, images/door11-video.mp4 (new).
+
 ## 2026-08-21 — batch 17, v2.0.16 — the Wellness Survey
 
 - A new door opens: **the Wellness Survey** — the app's first client-facing

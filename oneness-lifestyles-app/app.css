@@ -327,14 +327,41 @@ a {
   color: var(--text-2);       /* ~9.5:1 on the hero background */
 }
 
-/* ---------- The welcome tree door photo (portrait, above the entry heading) ---------- */
-.entry-photo {
+/* ---------- The welcome tree door photo (portrait, above the entry heading) ----------
+   A looping video of the walk into the lodge now lives here. The tree
+   photo stays beneath it as the poster layer: it shows for reduced-motion
+   (the video hides) and whenever the video cannot play. */
+.entry-photo-frame {
+  position: relative;
   display: block;
   width: 100%;
   max-width: 560px;   /* enlarged per Shifa (was 400px) */
   margin: 0 auto 28px;
   border-radius: 18px;
   box-shadow: 0 10px 30px rgba(20, 20, 20, 0.16);
+  overflow: hidden;
+}
+
+.entry-photo {
+  display: block;
+  width: 100%;
+}
+
+.entry-photo-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Readers who prefer reduced motion see the tree photo, not the moving
+   video — the photo below stays, the video hides. */
+@media (prefers-reduced-motion: reduce) {
+  .entry-photo-video {
+    display: none;
+  }
 }
 
 /* ---------- Entry tiles ---------- */
