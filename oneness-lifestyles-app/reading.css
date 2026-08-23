@@ -330,6 +330,17 @@ body {
   text-underline-offset: 3px;
 }
 
+/* Small print: the gentle medical note (under the caution, and in the footer). */
+.footer-note {
+  margin: 14px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--brand-sand-light);
+  max-width: 34em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ---------- Brand sign-off ---------- */
 .reading-signoff {
   margin: 40px 0 0;

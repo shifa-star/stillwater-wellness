@@ -187,6 +187,17 @@ a {
   text-underline-offset: 3px;
 }
 
+/* Small print: the gentle medical note at the foot of the page. */
+.footer-note {
+  margin: 10px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--brand-sand-light);
+  max-width: 34em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ---------- Buttons (brand lime green — dark text for readable contrast) ---------- */
 .btn {
   display: inline-block;

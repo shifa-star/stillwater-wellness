@@ -1,3 +1,27 @@
+## 2026-08-23 — batch 20, v2.0.19 — the gentle medical note
+
+- Shifa: "need to add a gentle medical disclaimer to the site. small
+  print on The Daily Attunement Reading page under the caution. and on
+  footer of every page."
+- **The Daily Attunement Reading page**, small print directly under the
+  Caution block: "This is a gentle mirror, not a diagnosis. The readings
+  and remedies are for reflection, not medical care. If something feels
+  heavy or urgent, please reach out to someone you trust, a qualified
+  professional, or to a crisis line near you."
+- **The footer of every page** (all 13 pages), small print in the same
+  gentle voice: "Shifa Ali Scott, Indigenous Natural Health and
+  Self-Healing Guide, sharing the ancestral Cherokee-Choctaw Mayan-Olmec
+  lineage medicine wheel — gentle wisdom for reflection, not medical
+  advice, diagnosis, or treatment."
+- The note is styled quiet and small (about 14px on the brand blue
+  footer), centered, and it is always visible — it does not depend on
+  JavaScript.
+- Service worker: CACHE_NAME shell-v10 -> shell-v11.
+- Applied inline by the conductor per the standing small-change doctrine —
+  verified in Chrome: both notes render on the reading page (one under
+  the caution, one in the footer), and the footer note renders on the
+  home page. Changed files: all 13 HTML pages, all 9 stylesheets, sw.js.
+
 ## 2026-08-23 — batch 19, v2.0.18 — only the video
 
 - Shifa: "the image and the video are showing on the page. i only want
