@@ -236,7 +236,7 @@ main {
 }
 
 /* Small print: the gentle medical note at the foot of every page. */
-.footer-note {
+.site-footer p.footer-note {
   margin: 10px 0 0;
   font-size: 0.78rem;      /* small but readable */
   line-height: 1.45;

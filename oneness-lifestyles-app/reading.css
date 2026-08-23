@@ -330,16 +330,22 @@ body {
   text-underline-offset: 3px;
 }
 
-/* Small print: the gentle medical note (under the caution, and in the footer). */
+/* Small print: the gentle medical note (under the caution, and in the footer).
+   Under the Caution it sits on the white card, so it reads in soft grey;
+   in the blue footer it reads in sand-light (rule below). */
 .footer-note {
-  margin: 14px 0 0;
+  margin: 14px auto 0;
   font-size: 0.78rem;
   line-height: 1.45;
   text-align: center;
-  color: var(--brand-sand-light);
+  color: var(--text-2);            /* on white: ~9.5:1 */
   max-width: 34em;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+/* In the blue footer the note reads sand-light and sits dead-center. */
+.site-footer p.footer-note {
+  margin: 10px auto 0;
+  color: var(--brand-sand-light);  /* ~6.5:1 on brand blue */
 }
 
 /* ---------- Brand sign-off ---------- */

@@ -336,6 +336,16 @@ a {
   text-underline-offset: 3px;
 }
 
+/* Small print: the gentle medical note at the foot of every page. */
+.site-footer p.footer-note {
+  margin: 10px auto 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--brand-sand-light);  /* on brand blue, same as links */
+  max-width: 34em;
+}
+
 /* ---------- Responsive (mobile-first; text never below 18px) ---------- */
 @media (min-width: 600px) {
   .word-grid {

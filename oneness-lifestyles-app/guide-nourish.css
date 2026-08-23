@@ -188,7 +188,7 @@ a {
 }
 
 /* Small print: the gentle medical note at the foot of the page. */
-.footer-note {
+.site-footer p.footer-note {
   margin: 10px 0 0;
   font-size: 0.78rem;
   line-height: 1.45;
