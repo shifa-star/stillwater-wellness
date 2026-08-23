@@ -1,3 +1,23 @@
+## 2026-08-23 — batch 19, v2.0.18 — only the video
+
+- Shifa: "the image and the video are showing on the page. i only want
+  the video." — the page was already the new one; her device was holding
+  the previous version's stylesheet, which still showed the photo.
+- The tree photo is now hidden by the stylesheet: **the video is the only
+  visual** on the home page. The photo element stays in the page as a
+  one-load strut (so a device that still holds the old stylesheet shows
+  the photo and video exactly stacked, never side by side) and its poster
+  still shows while the video loads.
+- The frame now holds the video's own shape (portrait 540x960), so the
+  page keeps its height from the very first paint.
+- Reduced motion (a phone setting): the video stays still and its calm
+  poster — the tree photo — shows instead. No one sees a blank space.
+- Service worker: CACHE_NAME shell-v9 -> shell-v10.
+- Applied inline by the conductor per the standing small-change doctrine —
+  verified in Chrome: photo hidden, video playing and looping, frame holds
+  its shape; reduced-motion shows the still poster. Changed files:
+  index.html, app.css, sw.js.
+
 ## 2026-08-23 — batch 18, v2.0.17 — the welcome tree door comes alive
 
 - The welcome tree photo at the top of the home page is now a living

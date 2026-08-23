@@ -55,9 +55,12 @@
           <source src="images/water-bg.mp4" type="video/mp4">
         </video>
         <div class="container">
-          <!-- The welcome tree with its door now moves: a looping video of
-               the walk into the lodge. The tree photo stays beneath it — it
-               is the poster, and it shows for reduced-motion and no-JS. -->
+          <!-- The looping video of the walk into the lodge — the only
+               visual here. The tree photo is hidden by the stylesheet; it
+               stays in the markup as a one-load strut for devices that
+               still hold the previous stylesheet, and its poster still
+               shows while the video loads and for reduced-motion (see the
+               script at the foot of the page). -->
           <div class="entry-photo-frame">
             <img class="entry-photo" src="images/welcome-tree-door.jpg" alt="The welcome tree with its door at the lodge" onerror="this.style.display='none'">
             <video class="entry-photo-video" autoplay muted loop playsinline preload="auto" poster="images/welcome-tree-door.jpg" aria-hidden="true" tabindex="-1">
@@ -137,6 +140,18 @@
       <p>Oneness Lifestyles · Where the Healing Waters Flow</p>
     </div>
   </footer>
+
+  <script>
+    // Reduced motion: the entry video stays still — its poster, the calm
+    // tree photo, shows instead of the moving path.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var entryVideo = document.querySelector('.entry-photo-video');
+      if (entryVideo) {
+        entryVideo.removeAttribute('autoplay');
+        entryVideo.pause();
+      }
+    }
+  </script>
 
   <script>
     // Offline capability: register the app-shell service worker.

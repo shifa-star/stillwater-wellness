@@ -327,15 +327,18 @@ a {
   color: var(--text-2);       /* ~9.5:1 on the hero background */
 }
 
-/* ---------- The welcome tree door photo (portrait, above the entry heading) ----------
-   A looping video of the walk into the lodge now lives here. The tree
-   photo stays beneath it as the poster layer: it shows for reduced-motion
-   (the video hides) and whenever the video cannot play. */
+/* ---------- The welcome tree door video (portrait, above the entry heading) ----------
+   The looping video of the walk into the lodge is the only visible
+   visual. The tree photo stays in the markup but hidden: it is a one-load
+   strut while devices still hold the previous stylesheet, and its poster
+   shows while the video loads and for reduced-motion (the inline script
+   pauses the video then, so its poster still shows). */
 .entry-photo-frame {
   position: relative;
   display: block;
   width: 100%;
   max-width: 560px;   /* enlarged per Shifa (was 400px) */
+  aspect-ratio: 540 / 960;   /* the video's own shape, so the frame never collapses */
   margin: 0 auto 28px;
   border-radius: 18px;
   box-shadow: 0 10px 30px rgba(20, 20, 20, 0.16);
@@ -343,8 +346,7 @@ a {
 }
 
 .entry-photo {
-  display: block;
-  width: 100%;
+  display: none;   /* the video is the only visual */
 }
 
 .entry-photo-video {
@@ -354,14 +356,6 @@ a {
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-/* Readers who prefer reduced motion see the tree photo, not the moving
-   video — the photo below stays, the video hides. */
-@media (prefers-reduced-motion: reduce) {
-  .entry-photo-video {
-    display: none;
-  }
 }
 
 /* ---------- Entry tiles ---------- */
