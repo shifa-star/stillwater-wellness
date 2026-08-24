@@ -25,9 +25,18 @@
 
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="doors-heading">
+      <!-- The moon over water — the same living water that flows through the
+           whole app. Silent loop; the still poster shows before it plays and
+           for reduced-motion / no-JS visitors. -->
+      <video class="moon-backdrop" autoplay muted loop playsinline preload="auto" poster="images/moon-over-water.jpg" aria-hidden="true" tabindex="-1">
+        <source src="images/moon-over-water.mp4" type="video/mp4">
+      </video>
+      <div class="hero-veil" aria-hidden="true"></div>
       <div class="container">
-        <h1 class="hero-heading" id="doors-heading">Two doors deeper</h1>
-        <p class="hero-subheading">The door to wholeness remembered opens wider here. Two doors wait — each warm, each open, each yours.</p>
+        <div class="hero-text">
+          <h1 class="hero-heading" id="doors-heading">Two doors deeper</h1>
+          <p class="hero-subheading">The door to wholeness remembered opens wider here. Two doors wait — each warm, each open, each yours.</p>
+        </div>
       </div>
     </section>
 

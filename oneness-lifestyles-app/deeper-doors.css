@@ -115,25 +115,75 @@ body {
 
 /* ---------- Doorway hero ---------- */
 .hero {
+  position: relative;
+  overflow: hidden;
   text-align: center;
   padding: 56px 20px;
+  /* Fallback ground while the video loads, and if it cannot play: the deep
+     blue of the night water, the brand glows kept subtle. */
   background:
-    radial-gradient(ellipse at 20% 30%, rgba(37, 196, 184, 0.24), transparent 55%),
-    radial-gradient(ellipse at 80% 70%, rgba(255, 77, 141, 0.16), transparent 55%),
-    linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
+    radial-gradient(ellipse at 20% 30%, rgba(37, 196, 184, 0.20), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 77, 141, 0.12), transparent 55%),
+    linear-gradient(180deg, #1d2a63 0%, #141d4a 100%);
+}
+
+/* The moon over water — silent loop, filling the hero behind the words. */
+.moon-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* A soft deep veil between the water and the words, so the heading and
+   subheading stay readable over the night scene. */
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(10, 14, 40, 0.58) 0%, rgba(10, 14, 40, 0.34) 50%, rgba(10, 14, 40, 0.64) 100%);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* The words rest on a soft panel of deep water-blue. */
+.hero-text {
+  display: inline-block;
+  max-width: 680px;
+  padding: 24px 28px;
+  background: rgba(16, 24, 64, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
 }
 
 .hero-heading {
   font-size: 2.2rem;
   margin: 0 0 12px;
-  color: var(--brand-blue);
+  color: #ffffff;
 }
 
 .hero-subheading {
   font-size: 1.2rem;
-  max-width: 640px;
-  margin: 0 auto;
-  color: var(--text-2);
+  margin: 0;
+  color: #e7ebfa;
+}
+
+/* Reduced motion: no looping video — the moon still rests over the water,
+   shown as the still frame behind the same veil. */
+@media (prefers-reduced-motion: reduce) {
+  .moon-backdrop {
+    display: none;
+  }
+  .hero {
+    background-image: url('images/moon-over-water.jpg');
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 /* ---------- Doors section ---------- */
