@@ -248,6 +248,16 @@ body {
   color: var(--text);
 }
 
+/* The five lines of the galactic signature — one verse line per paragraph */
+.five-lines p {
+  margin: 0 0 8px;
+  font-size: 1.125rem;   /* 20.25px — comfortably above the WCAG floor */
+  color: var(--text);
+}
+.five-lines p:last-child {
+  margin-bottom: 0;
+}
+
 /* Heptad note under the affirmation, when the spoke carries one */
 .part-heptad {
   margin: 10px 0 0;

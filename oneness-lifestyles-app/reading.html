@@ -65,6 +65,15 @@
           <p class="part-text" id="reading-signature"></p>
         </article>
 
+        <!-- The five-line reading, computed on-device from the verified
+             13-moon tables (galactic-signature.js). Lines 1-4 come straight
+             from the almanac's A-H letters; line 5 follows its guide rule. -->
+        <article class="reading-part" id="part-galactic" hidden>
+          <p class="part-kicker">the five-line reading</p>
+          <h2 class="part-heading">Your signature's five lines</h2>
+          <div class="five-lines" id="reading-five-lines"></div>
+        </article>
+
         <article class="reading-part" id="part-affirmation" hidden>
           <p class="part-kicker">for your meditation</p>
           <h2 class="part-heading">Today's affirmation</h2>
@@ -114,6 +123,7 @@
 
   <script src="config.js"></script>
   <script src="medicine-wheel.js"></script>
+  <script src="galactic-signature.js"></script>
   <script>
     // U-03 Reading surface. The gateway address lives in config.js
     // (window.APP_CONFIG.GATEWAY_URL) — never hardcoded in this page. On
@@ -181,6 +191,33 @@
         }
       }
 
+      // ---- Five-line Galactic Signature (galactic-signature.js) ----
+
+      // Today's five lines, computed on-device. The part shows only when the
+      // table is available (window.GalacticSignature) — the page works
+      // unchanged without it.
+      function showFiveLines() {
+        var gs = window.GalacticSignature;
+        var part = document.getElementById('part-galactic');
+        var box = document.getElementById('reading-five-lines');
+        if (!gs || !part || !box) return false;
+        var reading;
+        try {
+          reading = gs.readingOf(new Date());
+        } catch (err) {
+          return false;
+        }
+        if (!reading || !reading.lines || !reading.lines.length) return false;
+        box.textContent = '';
+        reading.lines.forEach(function (line) {
+          var p = document.createElement('p');
+          p.textContent = line;
+          box.appendChild(p);
+        });
+        part.hidden = false;
+        return true;
+      }
+
       function showReading(r) {
         setSlot('reading-signature', r.signature, 'part-signature');
         setSlot('reading-affirmation', r.affirmation, 'part-affirmation');
@@ -192,6 +229,7 @@
           readingCard.hidden = false;
           readingCard.classList.add('is-visible');
         }
+        showFiveLines();
       }
 
       // ---- 28-day Perpetual Medicine Wheel ----
@@ -287,6 +325,7 @@
           readingCard.hidden = false;
           readingCard.classList.add('is-visible');
         }
+        showFiveLines();
         return true;
       }
 
