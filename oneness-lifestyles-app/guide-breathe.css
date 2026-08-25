@@ -330,6 +330,35 @@ a {
   }
 }
 
+/* ---------- Living hero (batch 26): the photo breathes with her ----------
+   The woman in the photo breathes: a slow four-count in, four-count out
+   (9s cycle), scale 1.00 -> 1.055 -> 1.00 with a matching slow softness
+   settle, so the garden around her visibly comes and goes with her breath.
+   Content sits on its own z-layer above the motion; nothing moves but the
+   photo. Motion runs only when the reader has not asked for reduced
+   motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .page-hero-img {
+    transform-origin: 50% 42%;
+    animation: breathe-rise 9s ease-in-out infinite;
+  }
+
+  @keyframes breathe-rise {
+    0% {
+      transform: scale(1);
+      filter: saturate(1.02);
+    }
+    50% {
+      transform: scale(1.055);
+      filter: saturate(1.05) brightness(1.02);
+    }
+    100% {
+      transform: scale(1);
+      filter: saturate(1.02);
+    }
+  }
+}
+
 /* ---------- JS reveal (only active when JS is on) ---------- */
 .js-enabled .reveal {
   opacity: 0;

@@ -138,6 +138,35 @@ body {
   object-fit: cover;
 }
 
+/* ---------- Living hero (batch 26): the image softens, like closing
+   your eyes ----------
+   The photo eases into a hazy soft-focus, then back to clear — the
+   sensation of letting your vision go gently inward (11s cycle).
+   Content sits on its own z-layer above the motion; nothing moves but
+   the photo. Motion runs only when the reader has not asked for
+   reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .page-hero-img {
+    transform-origin: 50% 50%;
+    animation: soft-focus 11s ease-in-out infinite;
+  }
+
+  @keyframes soft-focus {
+    0% {
+      transform: scale(1);
+      filter: blur(0);
+    }
+    50% {
+      transform: scale(1.03);
+      filter: blur(2.5px);
+    }
+    100% {
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
+}
+
 .page-hero-overlay {
   position: absolute;
   inset: 0;

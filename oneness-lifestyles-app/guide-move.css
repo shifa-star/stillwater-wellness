@@ -176,6 +176,27 @@
   margin-right: auto;
 }
 
+/* ---------- Living hero (batch 26): she walks on ----------
+   The photo glides very slowly forward like the path is drawing her on
+   (24s cycle), scale 1.04 -> 1.13. Content sits on its own z-layer above
+   the motion; nothing moves but the photo. Motion runs only when the
+   reader has not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .page-hero-img {
+    transform-origin: 50% 60%;
+    animation: walk-on 24s ease-in-out infinite;
+  }
+
+  @keyframes walk-on {
+    0% {
+      transform: scale(1.04);
+    }
+    100% {
+      transform: scale(1.13);
+    }
+  }
+}
+
 /* ---------- Responsive (mobile-first; text never below 18px) ---------- */
 @media (min-width: 1024px) {
   .page-hero {

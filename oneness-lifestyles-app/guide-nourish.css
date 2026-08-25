@@ -144,6 +144,34 @@ body {
   display: none;
 }
 
+/* ---------- Living hero (batch 26): the table glows warm ----------
+   A soft golden light breathes over the table — the photo's warmth
+   slowly brightens and warms, then gives back, like a candle or the
+   late sun passing over the food (10s cycle). Content sits on its own
+   z-layer above the motion; nothing moves but the photo. Motion runs
+   only when the reader has not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .page-hero-img {
+    transform-origin: 50% 55%;
+    animation: table-glow 10s ease-in-out infinite;
+  }
+
+  @keyframes table-glow {
+    0% {
+      transform: scale(1.01);
+      filter: sepia(0.06) saturate(1.02) brightness(0.99);
+    }
+    50% {
+      transform: scale(1.045);
+      filter: sepia(0.12) saturate(1.08) brightness(1.03);
+    }
+    100% {
+      transform: scale(1.01);
+      filter: sepia(0.06) saturate(1.02) brightness(0.99);
+    }
+  }
+}
+
 .page-hero-overlay {
   position: absolute;
   inset: 0;

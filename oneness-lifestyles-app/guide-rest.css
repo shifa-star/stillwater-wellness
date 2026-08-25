@@ -171,6 +171,31 @@ body {
   color: #f2f5ff;
 }
 
+/* ---------- Living hero (batch 26): the room settles ----------
+   The whole room settles around her — a tiny, slow sink-and-rest,
+   like the couch and the tea and the light all giving in to stillness
+   (13s cycle). Content sits on its own z-layer above the motion;
+   nothing moves but the photo. Motion runs only when the reader has
+   not asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .page-hero-img {
+    transform-origin: 50% 70%;
+    animation: settle-in 13s ease-in-out infinite;
+  }
+
+  @keyframes settle-in {
+    0% {
+      transform: scale(1);
+    }
+    55% {
+      transform: scale(1.04);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
 /* Fallback when the hero photo is not present yet: show the palette gradient
    with the heading in brand blue on the light gradient. */
 .page-hero.no-img .page-hero-overlay { display: none; }
