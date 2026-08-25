@@ -492,6 +492,71 @@ a {
   text-align: center;
 }
 
+/* ---------- AMA Wellness Bot CTA ---------- */
+.bot-cta {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.bot-cta-text {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: var(--text-2);
+}
+
+.btn-telegram {
+  background-color: #2AABEE;  /* Telegram blue — brand colour of the app */
+  color: #ffffff;             /* >= 4.5:1 on Telegram blue */
+}
+
+.btn-telegram:hover,
+.btn-telegram:focus-visible {
+  background-color: #229ED9;
+}
+
+.bot-cta-note {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+
+/* ---------- AMA Wellness Bot — floating button (always visible) ---------- */
+.bot-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #2AABEE;  /* Telegram blue */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  z-index: 100;
+}
+
+.bot-float:hover,
+.bot-float:focus-visible {
+  background-color: #229ED9;
+  transform: scale(1.08);
+}
+
+.bot-float:focus-visible {
+  outline: 3px solid var(--brand-blue);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bot-float {
+    transition: none;
+  }
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   padding: 40px 24px;
