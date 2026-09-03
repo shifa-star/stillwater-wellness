@@ -410,6 +410,12 @@ a {
   color: var(--text-2);       /* ~10.5:1 on white */
 }
 
+.tile-full {
+  grid-column: 1 / -1;        /* span full width of grid on all breakpoints */
+  border-left-color: var(--brand-green);   /* distinct accent for this product card */
+}
+
+
 /* ---------- The six gentle guides ---------- */
 .home-subheading {
   font-size: 1.4rem;          /* 25.2px */
