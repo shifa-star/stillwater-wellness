@@ -410,9 +410,56 @@ a {
   color: var(--text-2);       /* ~10.5:1 on white */
 }
 
-.tile-full {
-  grid-column: 1 / -1;        /* span full width of grid on all breakpoints */
-  border-left-color: var(--brand-green);   /* distinct accent for this product card */
+/* ---------- Full-width product card (below the tile grid) ---------- */
+.skin-card {
+  display: block;
+  margin: 0 0 40px;
+  padding: 28px 24px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-left: 6px solid var(--brand-green);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  box-sizing: border-box;
+}
+.skin-card:hover,
+.skin-card:focus-visible {
+  border-color: var(--brand-green);
+  box-shadow: 0 2px 12px rgba(109, 188, 69, 0.18);
+}
+.skin-card .skin-name {
+  display: block;
+  font-size: 1.3rem;          /* 23.4px */
+  font-weight: bold;
+  color: var(--brand-green);
+  margin-bottom: 4px;
+}
+.skin-card .skin-sub {
+  display: block;
+  font-size: 1rem;
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+.skin-card .skin-tagline {
+  display: block;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.skin-card .skin-btn {
+  display: inline-block;
+  background: var(--brand-green);
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.skin-card .skin-btn:hover {
+  background: var(--brand-green-deep);
 }
 
 
