@@ -1,33 +1,33 @@
 # Stillwater Wellness
 
-A simple one-page wellness website. It is a quiet place to pause and reset, with a few gentle sections you can move through at your own pace:
+A quiet corner of the internet for slowing down, checking in with yourself, and making room for a little calm.
 
-- **Breathing** — a simple guide to slow, steady breaths.
-- **Movement** — a few easy stretches to release tension.
-- **Rest** — reminders to slow down and let your body settle.
-- Gentle buttons guide you through the page in order — start with a breath, move, rest, and begin again whenever you like.
+## Pages
 
-The page is built with plain HTML, CSS, and JavaScript. It needs no server and no installation — it works entirely offline.
+The site has a hub and six gentle guides:
+
+- **index.html** — the hub. Six action tiles (Breathe, Move, Rest, Meditate, Visualize, Nourish) in two rows matching the A Slow-Down Series, each linking to its own guide.
+- **breathe.html / move.html / rest.html / meditate.html / visualize.html / nourish.html** — one guide per action. Each page has a photo hero, a short written guide, a "Next" button that loops through its series, and a link back to the hub.
+
+Each guide is built in the same gentle voice: short sentences, present tense, always addressed to you.
 
 ## How to open it
 
-There are two easy ways:
+1. Double-click `index.html` in your file browser.
+2. Open it in any web browser (Chrome, Safari, Firefox, Edge) using File > Open File, or drag `index.html` into a browser window.
 
-1. **Double-click `index.html`** in your file browser.
-2. **Open it in any web browser** (Chrome, Safari, Firefox, Edge) using File > Open File, or by dragging `index.html` into a browser window.
+No setup, no commands, no internet needed.
 
-That is all. No setup, no commands, no internet needed.
+## Photos
 
-Just open the page and take a moment for yourself.
+The pages use web-optimized copies of the original photos, in `images/` (1080×1080 JPEG). The original 2048×2048 photos and the finished Instagram cards stay in `instagram/`.
 
 ## Instagram cards
 
-The `instagram/` folder holds the A Slow-Down Series — six ready-to-post Instagram
-cards (Breathe, Move, Rest, Meditate, Visualize, Nourish):
+The `instagram/` folder holds the A Slow-Down Series — six ready-to-post Instagram cards (Breathe, Move, Rest, Meditate, Visualize, Nourish):
 
 - `instagram/gallery_photo.html` — a preview of all six cards in one page.
-- `instagram/cards/<name>_photo.png` — the finished 1080 × 1080 card, ready to
-  post (Instagram's exact square size).
+- `instagram/cards/<name>_photo.png` — the finished 1080 × 1080 card, ready to post (Instagram's exact square size).
 - `instagram/cards/<name>_photo.jpg` — the original 2048 × 2048 photo.
 
 Ready-to-paste post captions for all six cards live in
@@ -57,3 +57,8 @@ offline, one codebase, no app stores.
 
 Open `oneness-lifestyles-app/index.html` — or use the app at
 `/oneness-lifestyles-app/` on the GitHub Pages site.
+
+
+## Changelog
+
+See CHANGELOG.md for the version history.
