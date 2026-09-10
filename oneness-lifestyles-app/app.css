@@ -410,11 +410,11 @@ a {
   color: var(--text-2);       /* ~10.5:1 on white */
 }
 
-/* ---------- Full-width product card (below the tile grid) ---------- */
+/* ---------- Full-width product card (breaks out of container) ---------- */
 .skin-card {
   display: block;
-  margin: 0 0 40px;
-  padding: 28px 24px;
+  margin: 0 calc(-50vw + 50%) 40px;
+  padding: 28px calc(50% - 500px);
   background-color: var(--surface);
   border: 2px solid var(--line);
   border-left: 6px solid var(--brand-green);
