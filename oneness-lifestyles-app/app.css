@@ -410,15 +410,18 @@ a {
   color: var(--text-2);       /* ~10.5:1 on white */
 }
 
-/* ---------- Full-width product card (full span in tile grid) ---------- */
+/* ---------- Full-width product card (separate section, breaks out of container) ---------- */
+.home-skin-card {
+  margin: 0 calc(-50vw + 50%) 0;
+}
 .skin-card {
-  grid-column: 1 / -1;
   display: block;
-  padding: 28px 24px;
+  margin: 0;
+  padding: 32px 24px;
   background-color: var(--surface);
   border: 2px solid var(--line);
   border-left: 6px solid var(--brand-green);
-  border-radius: 12px;
+  border-radius: 0;
   text-decoration: none;
   color: var(--text);
   box-sizing: border-box;
