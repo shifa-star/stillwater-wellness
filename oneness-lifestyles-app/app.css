@@ -432,7 +432,7 @@ a {
   display: block;
   font-size: 1.3rem;          /* 23.4px */
   font-weight: bold;
-  color: var(--brand-green);
+  color: var(--brand-blue);
   margin-bottom: 4px;
 }
 .skin-card .skin-sub {
