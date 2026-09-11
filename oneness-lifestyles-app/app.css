@@ -410,7 +410,11 @@ a {
   color: var(--text-2);       /* ~10.5:1 on white */
 }
 
-/* ---------- Full-width skin card in tile grid ---------- */
+/* ---------- Full-width skin card section ---------- */
+.home-skin {
+  background-color: var(--bg);
+  padding: 40px 0;
+}
 .skin-card {
   display: block;
   grid-column: 1 / -1;
