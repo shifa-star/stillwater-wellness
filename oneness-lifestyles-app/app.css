@@ -417,7 +417,6 @@ a {
 }
 .skin-card {
   display: block;
-  grid-column: 1 / -1;
   padding: 28px 24px;
   background-color: var(--surface);
   border: 2px solid var(--line);
