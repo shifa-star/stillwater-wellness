@@ -410,8 +410,8 @@ a {
   color: var(--text-2);       /* ~10.5:1 on white */
 }
 
-/* ---------- Full-width product card (below tiles, full viewport width) ---------- */
-.skin-card-wrap {
+/* ---------- Full-width product card section (between home-entry and signoff) ---------- */
+.home-skin {
   background-color: var(--bg);
   padding: 40px 0;
 }
