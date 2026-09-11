@@ -413,15 +413,17 @@ a {
 /* ---------- Full-width product card section (between home-entry and signoff) ---------- */
 .home-skin {
   background-color: var(--bg);
-  padding: 40px 0;
+  padding: 0;
+  margin: 0;
 }
 .skin-card {
   display: block;
-  padding: 28px;
+  margin: 0 calc(-50vw + 50%);
+  padding: 32px 24px;
   background-color: var(--surface);
   border: 2px solid var(--line);
   border-left: 6px solid var(--brand-green);
-  border-radius: 12px;
+  border-radius: 0;
   text-decoration: none;
   color: var(--text);
   box-sizing: border-box;
