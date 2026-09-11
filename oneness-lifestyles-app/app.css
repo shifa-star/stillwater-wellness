@@ -410,13 +410,10 @@ a {
   color: var(--text-2);       /* ~10.5:1 on white */
 }
 
-/* ---------- Full-width skin card section ---------- */
-.home-skin {
-  background-color: var(--bg);
-  padding: 40px 0;
-}
+/* ---------- Full-width product card (below the tile grid) ---------- */
 .skin-card {
   display: block;
+  margin: 0 0 40px;
   padding: 28px 24px;
   background-color: var(--surface);
   border: 2px solid var(--line);
