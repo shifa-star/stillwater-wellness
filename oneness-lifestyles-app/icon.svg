@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Oneness Lifestyles">
+  <rect width="512" height="512" rx="112" fill="#283890"/>
+  <path fill="#25c4b8" d="M-16 268 C 80 236 144 300 256 268 C 368 236 432 300 528 268 L 528 348 C 432 380 368 316 256 348 C 144 380 80 316 -16 348 Z"/>
+  <path fill="#6dbc45" d="M-16 356 C 80 324 144 388 256 356 C 368 324 432 388 528 356 L 528 428 C 432 460 368 396 256 428 C 144 460 80 396 -16 428 Z"/>
+</svg>

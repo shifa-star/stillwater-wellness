@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stream Room · Oneness Lifestyles</title>
+  <meta name="description" content="Watch Clan Mother Shifa live — YouTube and Facebook streams">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="app.css">
+  <style>
+    /* Stream Room specific styles */
+    .stream-room-hero {
+      background: var(--brand-blue);
+      color: #fff;
+      padding: 32px 0 24px;
+      text-align: center;
+    }
+    .stream-room-hero h1 {
+      font-size: 1.8rem;
+      font-weight: normal;
+      color: #fff;
+      margin: 0 0 8px;
+    }
+    .stream-room-hero p {
+      font-size: 1rem;
+      color: var(--brand-sand-light);
+      margin: 0;
+      font-style: italic;
+    }
+    .stream-section {
+      margin: 24px 0;
+    }
+    .stream-section-title {
+      font-size: 1.15rem;
+      color: var(--brand-blue);
+      font-weight: bold;
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+    }
+    .stream-card {
+      display: block;
+      padding: 20px 22px;
+      min-height: 44px;
+      background: var(--surface);
+      border: 2px solid var(--line);
+      border-left: 6px solid var(--brand-blue);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      margin-bottom: 16px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .stream-card:hover,
+    .stream-card:focus-visible {
+      border-color: var(--brand-blue);
+      box-shadow: 0 2px 12px rgba(40, 56, 144, 0.14);
+    }
+    .stream-card-title {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--brand-blue);
+      margin-bottom: 4px;
+    }
+    .stream-card-desc {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text-2);
+    }
+    .stream-card-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--brand-green);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .stream-card-btn:hover {
+      background: var(--brand-green-deep);
+    }
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .no-stream-message {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-2);
+    }
+    .no-stream-message p {
+      margin: 8px 0;
+    }
+    .platform-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .platform-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      min-height: 44px;
+      transition: opacity 0.2s ease;
+    }
+    .platform-link:hover,
+    .platform-link:focus-visible {
+      opacity: 0.85;
+    }
+    .platform-youtube {
+      background: #ff0000;
+      color: #fff;
+    }
+    .platform-facebook {
+      background: #1877f2;
+      color: #fff;
+    }
+    @media (min-width: 768px) {
+      .video-wrap {
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-name" aria-label="Oneness Lifestyles home">Oneness Lifestyles</a>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="stream-room-hero">
+      <div class="container">
+        <h1>Stream Room</h1>
+        <p>Watch Clan Mother Shifa live — as she shares, you are here with her</p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Watch live">
+      <div class="container" style="max-width:800px;">
+
+        <div class="stream-section">
+          <h2 class="stream-section-title">Now Playing</h2>
+
+          <!-- YouTube embed: shows latest video or channel page -->
+          <div class="video-wrap">
+            <iframe
+              src="https://www.youtube.com/embed?channel=UCShifaAliScott&rel=0&modestbranding=1"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+              title="Clan Mother Shifa livestream">
+            </iframe>
+          </div>
+
+          <!-- If no live stream is active, show fallback messaging -->
+          <div class="no-stream-message">
+            <p><strong>Not live right now?</strong></p>
+            <p>Check the recordings below, or follow us on YouTube &amp; Facebook to catch the next one.</p>
+          </div>
+        </div>
+
+        <div class="stream-section">
+          <h2 class="stream-section-title">Watch On YouTube</h2>
+          <div class="stream-card">
+            <span class="stream-card-title">YouTube Channel</span>
+            <span class="stream-card-desc">Full archive of every stream — recordings stay up so you can rewatch anytime.</span>
+            <a href="https://www.youtube.com/@ShifaAli-Scott" target="_blank" rel="noopener noreferrer" class="stream-card-btn">Go to YouTube</a>
+          </div>
+        </div>
+
+        <div class="stream-section">
+          <h2 class="stream-section-title">Watch On Facebook</h2>
+          <div class="stream-card">
+            <span class="stream-card-title">Facebook Page</span>
+            <span class="stream-card-desc">Live streams and recordings shared on the OWL Foundation Facebook page.</span>
+            <a href="https://facebook.com/shifa.owl" target="_blank" rel="noopener noreferrer" class="stream-card-btn">Go to Facebook</a>
+          </div>
+        </div>
+
+        <div class="stream-section">
+          <h2 class="stream-section-title">Follow the Circle</h2>
+          <p style="color:var(--text-2);margin-bottom:16px;">Get notified when we go live — join us on the platforms where the conversation lives.</p>
+          <div class="platform-links">
+            <a href="https://www.youtube.com/@ShifaAli-Scott" target="_blank" rel="noopener noreferrer" class="platform-link platform-youtube" aria-label="Subscribe on YouTube">
+              ▶ YouTube
+            </a>
+            <a href="https://facebook.com/shifa.owl" target="_blank" rel="noopener noreferrer" class="platform-link platform-facebook" aria-label="Follow on Facebook">
+              f Facebook
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p><a href="index.html" style="color:var(--brand-sand-light);text-decoration:underline;">← Back to Home</a></p>
+        <p class="footer-note">Oneness Lifestyles · Where the Healing Waters Flow</p>
+        <p class="footer-note">Shifa Ali Scott, Indigenous Natural Health and Self-Healing Guide</p>
+      </div>
+    </footer>
+
+    <script>
+      // Reduced motion: nothing to disable here, but honor the preference.
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.style.scrollBehavior = 'auto';
+      }
+    </script>
+
+    <script>
+      // Service worker registration (same as index.html)
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('./sw.js').catch(function (err) {
+            console.warn('Service worker registration failed', err);
+          });
+        });
+      }
+    </script>
+  </main>
+</body>
+</html>
