@@ -89,7 +89,7 @@ body {
 .container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 48px;
 }
 
 /* ---------- Header ---------- */
@@ -432,7 +432,7 @@ a {
   display: block;
   font-size: 1.3rem;          /* 23.4px */
   font-weight: bold;
-  color: var(--brand-blue);
+  color: var(--brand-green);
   margin-bottom: 4px;
 }
 .skin-card .skin-sub {

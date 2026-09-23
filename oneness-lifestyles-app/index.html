@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Oneness Lifestyles · Where the Healing Waters Flow</title>
-  <meta name="description" content="Oneness Lifestyles · Where the Healing Waters Flow">
+  <meta name="viewport" content="width=device-width, 1">
+  <title>The Sanctuary of Self Healing</title>
+  <meta name="description" content="The Sanctuary at the Oneness Wellness Center. Sit with Clan Mother Shifa.">
   <meta name="theme-color" content="#283890">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,116 +24,130 @@
   </header>
 
   <main id="main" tabindex="-1">
-    <!-- ===== U-02 HOME (the wellness home) =====
-         Front door greeting, the Circle's welcome, the entry tiles
-         (daily reading, gentle check-in, the six guides, Nia's ritual,
-         the two deeper doors), and the brand sign-off. -->
+    <!-- ===== THE SANCTUARY HOME ===== -->
+    <section id="home" class="home-region" aria-label="The Sanctuary home">
 
-    <section id="home" class="home-region" data-build-unit="U-02" aria-label="Oneness Lifestyles home">
-
-      <!-- Front door greeting + Circle welcome -->
+      <!-- Hero: Sanctuary greeting -->
       <section class="hero" aria-labelledby="home-greeting">
         <div class="container">
-          <p class="home-greeting" id="home-greeting">Aloha 🌴<br>In Lak'ech Ala K'in<br>I am another yourself.<br>We are One.<br>A New Covenant...</p>
-          <h1 class="hero-heading">Where the Healing Waters Flow</h1>
+          <h1 class="hero-heading">The Sanctuary</h1>
+          <p class="home-greeting" id="home-greeting">Where the Healing Waters Flow</p>
+          <p style="text-align: center; font-style: italic; color: var(--brand-blue); margin-top: 12px;">Aloha 🌴<br>In Lak'ech Ala K'in<br>I am another yourself.<br>We are One.</p>
           <div class="home-welcome">
-            <p>You have entered the Indigenous Ancient Present-Future in The Sanctuary of Self Healing at the Oneness Wellness Center.</p>
-            <p>I am Clan Mother Shifa, carrier of the lineage of Cherokee, Choctaw, Mayan, and Olmec ancestral medicine ways. This Sanctuary is where I share them daily.</p>
-            <p>What grows here, grows because you stood in it now.</p>
+            <p>You have entered the Sanctuary of Self Healing at the Oneness Wellness Center.</p>
+            <p>I am Clan Mother Shifa. This is where I share the ancestral Cherokee-Choctaw Mayan-Olmec medicine ways — gentle wisdom for reflection, not medical advice, diagnosis, or treatment.</p>
             <p>The House is open. Come in. Sit with us. Take your place.</p>
-            <p>Let Wholeness Remembered rise to meet you.</p>
           </div>
         </div>
       </section>
 
-      <!-- Entry tiles -->
+      <!-- Entry tiles — what the public sees -->
       <section class="section home-entry" aria-labelledby="home-entry-heading">
-        <!-- Decorative backdrop: waves washing onto the shore, looping.
-             Muted + autoplay + playsinline so it plays on phones; hidden from
-             assistive tech (it carries no meaning); poster is the still frame
-             shown before the video loads and for no-JS / reduced-motion. -->
         <video class="water-backdrop" autoplay muted loop playsinline preload="auto" poster="images/water-bg.jpg" aria-hidden="true" tabindex="-1">
           <source src="images/water-bg.mp4" type="video/mp4">
         </video>
         <div class="container">
-          <!-- The looping video of the walk into the lodge — the only
-               visual here. The tree photo is hidden by the stylesheet; it
-               stays in the markup as a one-load strut for devices that
-               still hold the previous stylesheet, and its poster still
-               shows while the video loads and for reduced-motion (see the
-               script at the foot of the page). -->
           <div class="entry-photo-frame">
             <img class="entry-photo" src="images/welcome-tree-door.jpg" alt="The welcome tree with its door at the lodge" onerror="this.style.display='none'">
             <video class="entry-photo-video" autoplay muted loop playsinline preload="auto" poster="images/welcome-tree-door.jpg" aria-hidden="true" tabindex="-1">
               <source src="images/door11-video.mp4" type="video/mp4">
             </video>
           </div>
-          <h2 id="home-entry-heading" class="section-heading">Every door leads to wholeness remembered.</h2>
+          <h2 id="home-entry-heading" class="section-heading">Welcome to the Sanctuary</h2>
 
+          <!-- Public-facing tiles only -->
           <div class="tiles-grid">
+            <a class="tile" href="https://tinyurl.com/stillnessscan" target="_blank" rel="noopener noreferrer">
+              <span class="tile-heading">Sit with us</span>
+              <span class="tile-text">A flowing of coherent energy with Clan Mother Shifa. Book your sitting through the link below.</span>
+            </a>
+            <a class="tile" href="sitting-intake.html">
+              <span class="tile-heading">Sitting Intake</span>
+              <span class="tile-text">Before your sitting, share your story. Your answers stay private — only for you and for me.</span>
+            </a>
             <a class="tile" href="reading.html">
               <span class="tile-heading">The Daily Attunement Reading</span>
-              <span class="tile-text">Each morning, a daily gift arrives — the day's galactic signature, an affirmation for your meditation, and a gentle Remedy of the Day.</span>
-            </a>
-            <a class="tile" href="check-in.html">
-              <span class="tile-heading">The gentle check-in</span>
-              <span class="tile-text">Pick gentle words for how you feel. The Circle meets you there, and a guide rises to walk with you.</span>
+              <span class="tile-text">Each morning, a daily gift arrives — the day's galactic signature, an affirmation, and a gentle Remedy of the Day.</span>
             </a>
           </div>
 
-          <h3 class="home-subheading">The six gentle guides</h3>
-          <div id="guides" class="guides-grid">
-            <a class="guide-tile" href="guide-breathe.html">
-              <span class="guide-name">Breathe</span>
-              <span class="guide-line">Your breath is always with you.</span>
-            </a>
-            <a class="guide-tile" href="guide-move.html">
-              <span class="guide-name">Move</span>
-              <span class="guide-line">Movement does not have to be intense to count.</span>
-            </a>
-            <a class="guide-tile" href="guide-rest.html">
-              <span class="guide-name">Rest</span>
-              <span class="guide-line">Rest is part of wellness, not a reward for finishing everything else.</span>
-            </a>
-            <a class="guide-tile" href="guide-meditate.html">
-              <span class="guide-name">Meditate</span>
-              <span class="guide-line">Stillness is where you come back to yourself.</span>
-            </a>
-            <a class="guide-tile" href="guide-visualize.html">
-              <span class="guide-name">Visualize</span>
-              <span class="guide-line">Close your eyes and picture the life you want.</span>
-            </a>
-            <a class="guide-tile" href="guide-nourish.html">
-              <span class="guide-name">Nourish</span>
-              <span class="guide-line">Good food, good water, good rest — the body thrives on what you give it.</span>
-            </a>
+          <!-- What the sitting is -->
+          <div class="section" style="padding-top: 24px; padding-left: 48px; padding-right: 48px;">
+            <h3 class="home-subheading">What the sitting is</h3>
+            <p style="max-width: 640px; margin: 0 auto 24px; color: var(--text-2);">
+              A Quantum Frequency Therapy Sitting is a quiet, gentle session with Clan Mother Shifa.
+              It is not a medical procedure. It is not a diagnosis. It is a flowing of coherent energy
+              in a shared stream of conscious remembrance — a moment to remember wholeness.
+            </p>
           </div>
 
-          <div class="tiles-grid">
-            <a class="tile" href="nia-gate.html">
-              <span class="tile-heading">Nia's ritual</span>
-              <span class="tile-text">A quiet daily self-check-in, offered to those who carry the passcode. One gentle arrival, each day.</span>
-            </a>
-            <a class="tile" href="deeper-doors.html">
-              <span class="tile-heading">Two deeper doors</span>
-              <span class="tile-text">Message the wellness lifestyle guide, day or night. Or book a free Attunement Conversation, whenever you are ready.</span>
-            </a>
-            <a class="tile" href="ao-scan.html">
-              <span class="tile-heading">Quantum Frequency Therapy Sitting</span>
-              <span class="tile-text">Know and understand your body's frequency signals.</span>
-            </a>
-            <a class="tile" href="wellness.html">
-              <span class="tile-heading">The Wellness Survey</span>
-              <span class="tile-text">Ten gentle questions about how you have been — your answers and any photo stay private on this device, only for you.</span>
-            </a>
+          <!-- Stream Room notice -->
+          <div class="section" style="padding-top: 24px; padding-left: 48px; padding-right: 48px;">
+            <h3 class="home-subheading">Stream Room</h3>
+            <p style="max-width: 640px; margin: 0 auto 24px; color: var(--text-2);">
+              Live Thursdays, 1pm HST / 7pm EST
+            </p>
+            <a class="btn" href="stream-room.html">Enter the Stream Room</a>
           </div>
-          <!-- Full-width skin health card, below the tile grid -->
+
+          <!-- Skin line -->
           <a class="skin-card" href="https://onenesswellnesslifestyles.com/wholeness-remembered" target="_blank" rel="noopener noreferrer" aria-label="Oneness Adaptogenic Skin Health">
             <span class="skin-name">Oneness Adaptogenic Skin Health</span>
             <span class="skin-sub">Clan Mother Shifa Ali Scott · Skin-Adaptogenics · Sacred Science for the Living Vessel</span>
             <span class="skin-tagline">Your skin is not a surface. It is a gateway.</span>
             <span class="skin-btn">Begin the Protocol</span>
           </a>
+
+          <!-- If you have already sat — the rest of the house -->
+          <div class="section" style="padding-top: 48px; padding-left: 48px; padding-right: 48px;">
+            <h3 class="home-subheading" style="text-align: center;">If you have already sat</h3>
+            <p style="text-align: center; color: var(--text-2); margin-bottom: 32px;">
+              The rest of the house is here for those who have taken a sitting with me.
+            </p>
+
+            <div class="tiles-grid">
+              <a class="tile" href="check-in.html">
+                <span class="tile-heading">The gentle check-in</span>
+                <span class="tile-text">Pick gentle words for how you feel. The Circle meets you there, and a guide rises to walk with you.</span>
+              </a>
+              <a class="tile" href="nia-gate.html">
+                <span class="tile-heading">Nia's ritual</span>
+                <span class="tile-text">A quiet daily self-check-in, offered to those who carry the passcode. One gentle arrival, each day.</span>
+              </a>
+              <a class="tile" href="deeper-doors.html">
+                <span class="tile-heading">Two deeper doors</span>
+                <span class="tile-text">Message the wellness lifestyle guide, day or night. Or book a sitting, whenever you are ready.</span>
+              </a>
+            </div>
+
+            <h3 class="home-subheading" style="margin-top: 40px;">The six gentle guides</h3>
+            <div class="guides-grid">
+              <a class="guide-tile" href="guide-breathe.html">
+                <span class="guide-name">Breathe</span>
+                <span class="guide-line">Your breath is always with you.</span>
+              </a>
+              <a class="guide-tile" href="guide-move.html">
+                <span class="guide-name">Move</span>
+                <span class="guide-line">Movement does not have to be intense to count.</span>
+              </a>
+              <a class="guide-tile" href="guide-rest.html">
+                <span class="guide-name">Rest</span>
+                <span class="guide-line">Rest is part of wellness, not a reward for finishing everything else.</span>
+              </a>
+              <a class="guide-tile" href="guide-meditate.html">
+                <span class="guide-name">Meditate</span>
+                <span class="guide-line">Stillness is where you come back to yourself.</span>
+              </a>
+              <a class="guide-tile" href="guide-visualize.html">
+                <span class="guide-name">Visualize</span>
+                <span class="guide-line">Close your eyes and picture the life you want.</span>
+              </a>
+              <a class="guide-tile" href="guide-nourish.html">
+                <span class="guide-name">Nourish</span>
+                <span class="guide-line">Good food, good water, good rest — the body thrives on what you give it.</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -155,8 +169,6 @@
   </footer>
 
   <script>
-    // Reduced motion: the entry video stays still — its poster, the calm
-    // tree photo, shows instead of the moving path.
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var entryVideo = document.querySelector('.entry-photo-video');
       if (entryVideo) {
@@ -167,12 +179,9 @@
   </script>
 
   <script>
-    // Offline capability: register the app-shell service worker.
-    // Runs only in secure contexts (https or localhost), where the API exists.
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('./sw.js').catch(function (err) {
-          // Progressive enhancement — offline failure must not break the app.
           console.warn('Service worker registration failed', err);
         });
       });
