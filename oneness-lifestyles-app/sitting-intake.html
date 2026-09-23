@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, 1">
+  <title>Sitting Intake | Oneness Lifestyles</title>
+  <meta name="description" content="Share your story before your sitting with Clan Mother Shifa.">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="app.css">
+  <style>
+    .intake-section {
+      padding: 48px 0;
+    }
+    .intake-form {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .intake-form h2 {
+      font-size: 1.6rem;
+      color: var(--brand-blue);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 4px solid var(--brand-sand);
+      display: inline-block;
+    }
+    .form-section {
+      margin-bottom: 40px;
+    }
+    .form-section-title {
+      font-size: 1.3rem;
+      color: var(--brand-blue);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    .form-group .hint {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      font-style: italic;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: Georgia, serif;
+      background: var(--surface);
+      color: var(--text);
+      min-height: 44px;
+      box-sizing: border-box;
+    }
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: 3px solid var(--brand-blue);
+      outline-offset: 2px;
+      border-color: var(--brand-blue);
+    }
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .radio-group label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0;
+      cursor: pointer;
+      min-height: 44px;
+      padding: 8px 12px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      transition: border-color 0.2s ease;
+    }
+    .radio-group label:hover {
+      border-color: var(--brand-blue);
+    }
+    .radio-group input[type="radio"]:checked + span {
+      color: var(--brand-blue);
+      font-weight: bold;
+    }
+    .radio-group input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    .submit-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--brand-green);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      min-height: 44px;
+      transition: background 0.2s ease;
+    }
+    .submit-btn:hover {
+      background: var(--brand-green-deep);
+    }
+    .thank-you {
+      font-size: 1.3rem;
+      color: var(--brand-blue);
+      text-align: center;
+      margin: 32px 0;
+      font-style: italic;
+    }
+    .footer-note {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      text-align: center;
+      margin-top: 24px;
+      padding: 16px;
+      border-top: 1px solid var(--line);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .back-link {
+      display: block;
+      margin-top: 32px;
+      color: var(--brand-green-text);
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .scale-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .scale-group span {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      white-space: nowrap;
+    }
+    .scale-group input[type="range"] {
+      flex: 1;
+      height: 44px;
+      cursor: pointer;
+    }
+    .scale-group .scale-value {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--brand-blue);
+      min-width: 24px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html" style="color: inherit; text-decoration: none;">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="intake-section" aria-labelledby="intake-heading">
+      <div class="container">
+        <div class="intake-form">
+          <h1 id="intake-heading" class="section-heading">Sitting Intake</h1>
+          <p style="color: var(--text-2); margin-bottom: 32px;">
+            Before your sitting with Clan Mother Shifa, please share a little about yourself.
+            Your story stays private — only for you and for me.
+          </p>
+
+          <form id="intake-form">
+
+            <!-- WHO IS ARRIVING -->
+            <div class="form-section">
+              <h3 class="form-section-title">Who is arriving</h3>
+
+              <div class="form-group">
+                <label for="name">Name <span style="color: var(--brand-green);">*</span></label>
+                <input type="text" id="name" name="name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email <span style="color: var(--brand-green);">*</span></label>
+                <input type="email" id="email" name="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone">
+              </div>
+
+              <div class="form-group">
+                <label for="dob">Date of birth <span style="color: var(--brand-green);">*</span></label>
+                <input type="date" id="dob" name="dob" required>
+              </div>
+
+              <div class="form-group">
+                <label for="height">Height</label>
+                <input type="text" id="height" name="height" placeholder="e.g., 5'6&quot; or 168 cm">
+              </div>
+
+              <div class="form-group">
+                <label for="weight">Weight</label>
+                <input type="text" id="weight" name="weight" placeholder="e.g., 150 lbs or 68 kg">
+              </div>
+
+              <div class="form-group">
+                <label>How will you sit? <span style="color: var(--brand-green);">*</span></label>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="sitting_type" value="in-person" required>
+                    <span>In person (Hawaii)</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="sitting_type" value="virtual" required>
+                    <span>Virtual</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="found-how">How did you find the house?</label>
+                <input type="text" id="found-how" name="found_how" placeholder="A friend, a search, a flyer...">
+              </div>
+
+              <div class="form-group">
+                <label for="reason">What is bringing you to sit — in one sentence.</label>
+                <span class="hint">Not a diagnosis. The true sentence.</span>
+                <textarea id="reason" name="reason" rows="2"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="ordinary-thing">If the sitting could change one ordinary thing, what would it be?</label>
+                <span class="hint">Sleep. A jaw. How you walk into a room.</span>
+                <textarea id="ordinary-thing" name="ordinary_thing" rows="2"></textarea>
+              </div>
+            </div>
+
+            <!-- WHAT YOU ARE CARRYING -->
+            <div class="form-section">
+              <h3 class="form-section-title">What you are carrying</h3>
+
+              <div class="form-group">
+                <label for="body-place">Point to the place in the body that is speaking loudest right now.</label>
+                <input type="text" id="body-place" name="body_place" placeholder="e.g., chest, lower back, shoulders...">
+              </div>
+
+              <div class="form-group">
+                <label for="body-feel">What does that place feel like?</label>
+                <div class="radio-group">
+                  <label><input type="radio" name="body_feel" value="heavy"><span>Heavy</span></label>
+                  <label><input type="radio" name="body_feel" value="tight"><span>Tight</span></label>
+                  <label><input type="radio" name="body_feel" value="buzzing"><span>Buzzing</span></label>
+                  <label><input type="radio" name="body_feel" value="numb"><span>Numb</span></label>
+                  <label><input type="radio" name="body_feel" value="hot"><span>Hot or inflamed</span></label>
+                  <label><input type="radio" name="body_feel" value="tired"><span>Tired</span></label>
+                  <label><input type="radio" name="body_feel" value="other"><span>Other</span></label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="body-words">Your words, if the boxes are not enough</label>
+                <textarea id="body-words" name="body_words" rows="3"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="weather">What is the weather in you today — one sentence</label>
+                <textarea id="weather" name="weather" rows="2"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Energy — how worn or clear are you feeling?</label>
+                <div class="scale-group">
+                  <span>Worn</span>
+                  <input type="range" id="energy" name="energy" min="1" max="10" value="5">
+                  <span>Clear</span>
+                  <span class="scale-value" id="energy-val">5</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Rest — how wired or able to stop?</label>
+                <div class="scale-group">
+                  <span>Wired</span>
+                  <input type="range" id="rest" name="rest" min="1" max="10" value="5">
+                  <span>Stop</span>
+                  <span class="scale-value" id="rest-val">5</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="tried">What have you already tried — and what happened</label>
+                <textarea id="tried" name="tried" rows="3"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="shifted">If something actually shifted, what would be different on an ordinary Tuesday?</label>
+                <textarea id="shifted" name="shifted" rows="3"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="cost">What would it cost you if nothing changed?</label>
+                <span class="hint">(optional)</span>
+                <textarea id="cost" name="cost" rows="2"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="other">Anything the sitting should know that a form usually misses</label>
+                <textarea id="other" name="other" rows="3"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn" data-fs-submit-btn>Send to the house</button>
+
+            <div class="thank-you" data-fs-success>Maltyox. It is received.</div>
+            <div data-fs-error></div>
+
+            <p class="footer-note">
+              This is not a medical chart. It prepares the sitting. You may leave any line blank except name, email, date of birth, and how you will sit.
+            </p>
+          </form>
+
+          <a href="index.html" class="back-link">← Return to the Sanctuary</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Oneness Lifestyles · Where the Healing Waters Flow</p>
+      <p class="footer-note">Shifa Ali Scott, Indigenous Natural Health and Self-Healing Guide, sharing the ancestral Cherokee-Choctaw Mayan-Olmec lineage medicine wheel — gentle wisdom for reflection, not medical advice, diagnosis, or treatment.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Update scale display values
+    document.getElementById('energy').addEventListener('input', function() {
+      document.getElementById('energy-val').textContent = this.value;
+    });
+    document.getElementById('rest').addEventListener('input', function() {
+      document.getElementById('rest-val').textContent = this.value;
+    });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#intake-form', formId: 'xeaokjzd' });
+  </script>
+</body>
+</html>

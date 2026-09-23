@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Wellness Protocol · Oneness Lifestyles</title>
+  <meta name="description" content="Begin your personalized wellness journey with Clan Mother Shifa. Complete the health history intake to receive your 90-day protocol.">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="app.css">
+  <style>
+    /* Health History page styles — match app shell palette */
+
+    .protocol-hero {
+      background: var(--brand-blue);
+      color: #fff;
+      padding: 40px 0 28px;
+      text-align: center;
+    }
+
+    .protocol-hero .kicker {
+      font-size: 0.95rem;
+      color: var(--brand-sand-light);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .protocol-hero > .container {
+      text-align: center;
+    }
+    .protocol-hero h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      color: #fff;
+      margin: 0;
+      line-height: 1.25;
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+
+    .protocol-hero p {
+      font-size: 1.05rem;
+      color: #d0d8f0;
+      margin: 0;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    .protocol-card {
+      background: var(--surface);
+      border: 2px solid var(--line);
+      border-left: 6px solid var(--brand-green);
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin: 24px 0;
+    }
+
+    .protocol-card h2 {
+      font-size: 1.4rem;
+      color: var(--brand-blue);
+      margin: 0 0 12px;
+      font-weight: bold;
+    }
+
+    .protocol-card p {
+      font-size: 1rem;
+      color: var(--text-2);
+      margin: 0 0 16px;
+      line-height: 1.65;
+    }
+
+    .protocol-steps {
+      list-style: none;
+      margin: 0 0 20px;
+      padding: 0;
+    }
+
+    .protocol-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 16px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--brand-green);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .protocol-cta-wrap {
+      text-align: center;
+      padding: 0 0 20px;
+    }
+
+    .protocol-cta {
+      display: inline-block;
+      padding: 16px 40px;
+      background: var(--brand-green);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-decoration: none;
+      min-height: 44px;
+      transition: background 0.2s ease;
+      box-shadow: 0 4px 14px rgba(109, 188, 69, 0.35);
+    }
+
+    .protocol-cta:hover,
+    .protocol-cta:focus-visible {
+      background: var(--brand-green-deep);
+      box-shadow: 0 6px 20px rgba(109, 188, 69, 0.45);
+    }
+
+    .protocol-note {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      margin-top: 14px;
+      font-style: italic;
+    }
+
+    .protocol-benefits {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .protocol-benefits h3 {
+      font-size: 1.15rem;
+      color: var(--brand-blue);
+      margin: 0 0 14px;
+      font-weight: bold;
+    }
+
+    .benefit-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .benefit-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .benefit-list li::before {
+      content: '💚';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 0.9rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--brand-green-text);
+      text-decoration: underline;
+      font-size: 1rem;
+    }
+
+    .back-link:hover {
+      color: var(--brand-blue);
+    }
+
+    @media (min-width: 768px) {
+      .protocol-hero h1 {
+        font-size: 2.4rem;
+      }
+      .protocol-card {
+        padding: 36px 32px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+      <a href="stream-room.html" class="stream-room-btn" aria-label="Stream Room">Stream Room</a>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="protocol-hero">
+      <div class="container">
+        <p class="kicker">Your Personalized Path</p>
+        <h1>Your Wellness Protocol</h1>
+        <p>Begin your journey with Clan Mother Shifa. Complete the health history intake and she will craft a custom plan just for you.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="protocol-intro">
+      <div class="container" style="max-width:700px;">
+
+        <div class="protocol-card">
+          <h2 id="protocol-intro">What happens when you begin</h2>
+          <ol class="protocol-steps">
+            <li>
+              <span class="step-num">1</span>
+              <span>Fill out the <strong>Health History Intake Form</strong> — it asks about your wellness story so Clan Mother Shifa understands where you are.</span>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <span>Clan Mother Shifa reviews your answers with care and attention.</span>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <span>She reaches out to begin your <strong>90-day wellness protocol</strong> — your personal plan for healing and wholeness.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="protocol-benefits">
+          <h3>What you receive</h3>
+          <ul class="benefit-list">
+            <li>A personalized wellness plan crafted by Clan Mother Shifa</li>
+            <li>Ongoing guidance and support through your 90-day journey</li>
+            <li>Custom recommendations based on your health history</li>
+            <li>Access to ancestral wellness practices from the Cherokee-Choctaw-Mayan-Olmec lineage</li>
+            <li>A gentle, private experience — your information stays between us</li>
+          </ul>
+        </div>
+
+        <div class="protocol-cta-wrap">
+          <a href="https://onenesswellnesslifestyles.com/health-history" target="_blank" rel="noopener noreferrer" class="protocol-cta">
+            Begin Your Wellness Protocol
+          </a>
+          <p class="protocol-note">You will be taken to the Health History Intake Form. It takes about 10–15 minutes. When you're ready, click the button above to begin.</p>
+        </div>
+
+        <p style="text-align:center;">
+          <a href="index.html" class="back-link">← Back to Oneness Lifestyles</a>
+        </p>
+
+      </div>
+    </section>
+
+    <section class="section section--alt" style="text-align:center; padding: 32px 0;">
+      <div class="container">
+        <p style="font-size:1.1rem; color:var(--brand-blue); font-style:italic; margin:0;">
+          "What grows here, grows because you stood in it now."<br>
+          — Clan Mother Shifa
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Oneness Lifestyles · Where the Healing Waters Flow</p>
+      <p class="footer-note">Shifa Ali Scott, Indigenous Natural Health and Self-Healing Guide, sharing the ancestral Cherokee-Choctaw Mayan-Olmec lineage medicine wheel — gentle wisdom for reflection, not medical advice, diagnosis, or treatment.</p>
+    </div>
+  </footer>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function (err) {
+          console.warn('Service worker registration failed', err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
