@@ -204,8 +204,8 @@ body {
 }
 
 .section p {
-  margin: 0 0 16px;
-  color: #33443f;                  /* >= 4.5:1 on surface */
+  margin: 0 0 18px;
+  color: var(--text-2);
 }
 
 /* ---------- Links ---------- */

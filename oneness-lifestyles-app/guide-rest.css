@@ -147,7 +147,7 @@ body {
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 20, 20, 0.15) 0%, rgba(20, 20, 20, 0.65) 100%);
+  background: linear-gradient(180deg, rgba(238, 242, 255, 0.86) 0%, var(--bg) 100%);
 }
 
 .page-hero-content {
@@ -160,15 +160,17 @@ body {
 }
 
 .page-hero-heading {
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   font-size: 2.2rem;
-  color: #ffffff;               /* >= 4.5:1 on the dark hero overlay */
+  line-height: 1.15;
+  color: var(--brand-blue);
 }
 
 .page-hero-kicker {
   margin: 0;
   font-size: 1.125rem;
-  color: #f2f5ff;
+  color: var(--text-2);
+  letter-spacing: 0.03em;
 }
 
 /* ---------- Living hero (batch 26): the room settles ----------
@@ -211,8 +213,8 @@ body {
 
 .section p {
   margin: 0 0 18px;
-  color: #33443f;               /* 10.3:1 on white */
-  font-size: 1.125rem;          /* >= 18px */
+  color: var(--text-2);
+  font-size: 1.125rem;
 }
 
 /* ---------- Links ---------- */

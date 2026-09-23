@@ -28,13 +28,16 @@
 /* ---------- Page hero (palette look, words carried verbatim) ---------- */
 .page-hero {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  display: grid;
+  place-items: center;
   min-height: 300px;
+  padding: 64px 24px;
   overflow: hidden;
-  background-color: var(--brand-blue);
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(37, 196, 184, 0.24), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 77, 141, 0.16), transparent 55%),
+    linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
 }
 
 .page-hero-img {
@@ -48,33 +51,26 @@
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  /* Deep enough at every point of the gradient that the light hero text
-     holds >= 4.5:1 (computed against the teal end of the placeholder). */
-  background: linear-gradient(
-    180deg,
-    rgba(40, 56, 144, 0.75) 0%,
-    rgba(18, 24, 61, 0.85) 100%
-  );
+  background: linear-gradient(180deg, rgba(238, 242, 255, 0.86) 0%, var(--bg) 100%);
 }
 
 .page-hero-content {
   position: relative;
   z-index: 1;
-  padding: 48px 24px;
 }
 
 .page-hero-heading {
   margin: 0 0 8px;
-  font-size: 2.4rem;
-  line-height: 1.2;
-  color: #ffffff;
+  font-size: 2.2rem;
+  line-height: 1.15;
+  color: var(--brand-blue);
 }
 
 .page-hero-kicker {
   margin: 0;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
-  color: #e7ebfa;   /* >= 4.5:1 on the overlaid brand blue */
+  font-size: 1.125rem;
+  color: var(--text-2);
+  letter-spacing: 0.03em;
 }
 
 /* ---------- Gentle guide nav (between the six guides) ---------- */
@@ -129,8 +125,8 @@
 
 /* ---------- Guide body (words carried verbatim from the site) ---------- */
 .section p {
-  margin: 0 0 16px;
-  color: #33443f;   /* ~10.4:1 on white (matches reference section text) */
+  margin: 0 0 18px;
+  color: var(--text-2);
 }
 
 /* ---------- Back-home link ("All six actions") ---------- */

@@ -208,8 +208,8 @@ main {
 .section p {
   margin: 0 0 18px;
   font-size: 1.125rem;
-  color: #33443f;                 /* 10.3:1 on white */
-  max-width: 34em;                /* ~50-60 char reading lines */
+  color: var(--text-2);
+  max-width: 34em;
 }
 
 /* ---------- Links ---------- */

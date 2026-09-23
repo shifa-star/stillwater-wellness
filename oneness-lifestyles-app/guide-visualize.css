@@ -170,12 +170,7 @@ body {
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(40, 56, 144, 0.10) 0%,
-    rgba(40, 56, 144, 0.72) 60%,
-    rgba(20, 20, 20, 0.78) 100%
-  );
+  background: linear-gradient(180deg, rgba(238, 242, 255, 0.86) 0%, var(--bg) 100%);
 }
 
 .page-hero-content {
@@ -187,15 +182,15 @@ body {
 
 .page-hero-heading {
   margin: 0 0 8px;
-  color: #ffffff;   /* 10.2:1 on brand blue */
-  font-size: 2.2rem;   /* ~40px */
+  font-size: 2.2rem;
   line-height: 1.15;
+  color: var(--brand-blue);
 }
 
 .page-hero-kicker {
   margin: 0;
-  color: #e7ebfa;   /* 8.5:1 on brand blue */
-  font-size: 1rem;   /* 18px */
+  font-size: 1.125rem;
+  color: var(--text-2);
   letter-spacing: 0.03em;
 }
 
@@ -211,9 +206,8 @@ main {
 }
 
 .section p {
-  margin: 0 0 16px;
-  color: #33443f;   /* 10.4:1 on white */
-  font-size: 1rem;   /* 18px */
+  margin: 0 0 18px;
+  color: var(--text-2);
 }
 
 /* ---------- Gentle navigation between the six guides ---------- */
