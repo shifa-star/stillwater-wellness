@@ -143,6 +143,64 @@
       background: #1877f2;
       color: #fff;
     }
+    .source-lead {
+      color: var(--text-2);
+      margin: 0 0 16px;
+    }
+    .now-playing {
+      position: relative;
+    }
+    /* Radios stay available to keyboards; the labels are the visible control. */
+    .source-radio {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .source-switch {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 0 0 16px;
+    }
+    .source-tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 2px solid var(--brand-blue);
+      background: var(--surface);
+      color: var(--brand-blue);
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #source-youtube:checked ~ .source-switch label[for="source-youtube"],
+    #source-facebook:checked ~ .source-switch label[for="source-facebook"] {
+      background: var(--brand-blue);
+      color: #fff;
+    }
+    #source-youtube:focus-visible ~ .source-switch label[for="source-youtube"],
+    #source-facebook:focus-visible ~ .source-switch label[for="source-facebook"] {
+      outline: 3px solid var(--brand-sand);
+      outline-offset: 2px;
+    }
+    .source-panel-facebook {
+      display: none;
+    }
+    #source-facebook:checked ~ .source-panel-facebook {
+      display: block;
+    }
+    #source-facebook:checked ~ .source-panel-youtube {
+      display: none;
+    }
     @media (min-width: 768px) {
       .video-wrap {
         max-width: 720px;
@@ -175,22 +233,59 @@
 
         <div class="stream-section">
           <h2 class="stream-section-title">Now Playing</h2>
+          <div class="now-playing">
+            <input class="source-radio" type="radio" name="live-source" id="source-youtube" checked>
+            <input class="source-radio" type="radio" name="live-source" id="source-facebook">
 
-          <!-- YouTube embed: shows latest video or channel page -->
-          <div class="video-wrap">
-            <iframe
-                           src="https://www.youtube.com/embed/live_stream?channel=UCUNAE-FTYoYYOFEy94QHhMg&rel=0&modestbranding=1"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy"
-              title="Clan Mother Shifa livestream">
-            </iframe>
-          </div>
+            <p class="source-lead">Choose a source. YouTube plays here first. Facebook Live plays the OWL Foundation page in this room while that broadcast is on.</p>
 
-          <!-- If no live stream is active, show fallback messaging -->
-          <div class="no-stream-message">
-            <p><strong>Not live right now?</strong></p>
-            <p>Check the recordings below, or follow us on YouTube &amp; Facebook to catch the next one.</p>
+            <div class="source-switch">
+              <label class="source-tab" for="source-youtube" id="tab-youtube">YouTube</label>
+              <label class="source-tab" for="source-facebook" id="tab-facebook">Facebook Live</label>
+            </div>
+
+            <div class="source-panel source-panel-youtube" id="panel-youtube" role="region" aria-labelledby="tab-youtube">
+              <!-- YouTube channel live embed. Stays the default player. -->
+              <div class="video-wrap">
+                <iframe
+                  id="youtube-live"
+                  src="https://www.youtube.com/embed/live_stream?channel=UCUNAE-FTYoYYOFEy94QHhMg&rel=0&modestbranding=1"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowfullscreen
+                  loading="lazy"
+                  title="Clan Mother Shifa livestream on YouTube">
+                </iframe>
+              </div>
+              <div class="no-stream-message">
+                <p><strong>Not live right now?</strong></p>
+                <p>Check the recordings below, open Facebook Live in this room, or follow us on YouTube &amp; Facebook to catch the next one.</p>
+              </div>
+            </div>
+
+            <div class="source-panel source-panel-facebook" id="panel-facebook" role="region" aria-labelledby="tab-facebook">
+              <!-- Public Facebook video plugin for https://www.facebook.com/shifa.owl/live -->
+              <div class="video-wrap">
+                <iframe
+                  id="facebook-live"
+                  data-src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshifa.owl%2Flive&amp;show_text=false&amp;width=720"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen"
+                  allowfullscreen
+                  title="Clan Mother Shifa livestream on Facebook">
+                </iframe>
+                <noscript>
+                  <iframe
+                    src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshifa.owl%2Flive&amp;show_text=false&amp;width=720"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen"
+                    allowfullscreen
+                    title="Clan Mother Shifa livestream on Facebook">
+                  </iframe>
+                </noscript>
+              </div>
+              <div class="no-stream-message">
+                <p><strong>Not live on Facebook right now?</strong></p>
+                <p>This player is the public Facebook live embed for the OWL Foundation page, facebook.com/shifa.owl. While a public broadcast is on, it plays here. Between broadcasts, Facebook shows the video as unavailable. YouTube stays on the other tab, and the link below opens the page.</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -207,7 +302,7 @@
           <h2 class="stream-section-title">Watch On Facebook</h2>
           <div class="stream-card">
             <span class="stream-card-title">Facebook Page</span>
-            <span class="stream-card-desc">Live streams and recordings shared on the OWL Foundation Facebook page.</span>
+            <span class="stream-card-desc">The Facebook Live tab plays the broadcast in this room. The page keeps the stream and what stays up afterward.</span>
             <a href="https://facebook.com/shifa.owl" target="_blank" rel="noopener noreferrer" class="stream-card-btn">Go to Facebook</a>
           </div>
         </div>
@@ -235,6 +330,44 @@
         <p class="footer-note">Shifa Ali Scott, Indigenous Natural Health and Self-Healing Guide</p>
       </div>
     </footer>
+
+    <script>
+      // Load the public Facebook player only while that tab is showing,
+      // and stop the hidden player so the two sources do not talk over each other.
+      (function () {
+        var youtubeRadio = document.getElementById('source-youtube');
+        var facebookRadio = document.getElementById('source-facebook');
+        var youtubeFrame = document.getElementById('youtube-live');
+        var facebookFrame = document.getElementById('facebook-live');
+        if (!youtubeRadio || !facebookRadio || !youtubeFrame || !facebookFrame) return;
+
+        var youtubeSrc = youtubeFrame.getAttribute('src');
+        var facebookSrc = facebookFrame.getAttribute('data-src');
+
+        function showSource(which) {
+          var frame = which === 'facebook' ? facebookFrame : youtubeFrame;
+          var other = which === 'facebook' ? youtubeFrame : facebookFrame;
+          var src = which === 'facebook' ? facebookSrc : youtubeSrc;
+          if (which === 'facebook') facebookRadio.checked = true;
+          else youtubeRadio.checked = true;
+          other.removeAttribute('src');
+          window.requestAnimationFrame(function () {
+            if (frame.getAttribute('src') !== src) frame.setAttribute('src', src);
+          });
+        }
+
+        youtubeRadio.addEventListener('change', function () {
+          if (youtubeRadio.checked) showSource('youtube');
+        });
+        facebookRadio.addEventListener('change', function () {
+          if (facebookRadio.checked) showSource('facebook');
+        });
+
+        if (location.hash === '#facebook' || location.hash === '#facebook-live') {
+          showSource('facebook');
+        }
+      })();
+    </script>
 
     <script>
       // Reduced motion: nothing to disable here, but honor the preference.
