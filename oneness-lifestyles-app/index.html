@@ -172,6 +172,68 @@
     </div>
   </footer>
 
+  <!-- Home page only. Leaving this page unloads the track. -->
+  <audio id="sanctuary-audio" class="sanctuary-audio" loop preload="none">
+    <source src="audio/sanctuary-home.mp3" type="audio/mpeg">
+  </audio>
+  <button type="button" class="sanctuary-sound" id="sanctuary-sound" aria-pressed="false" aria-controls="sanctuary-audio" aria-label="Play sanctuary music">
+    <span class="sanctuary-sound-mark" aria-hidden="true">&#9834;</span>
+    <span class="sanctuary-sound-label">Sound</span>
+  </button>
+  <script>
+    (function () {
+      var audio = document.getElementById('sanctuary-audio');
+      var button = document.getElementById('sanctuary-sound');
+      if (!audio || !button) return;
+
+      var SOFT = 0.25;
+      // prefers-reduced-motion: do not start sound on your own. The Sound
+      // control stays on the page so listening is a choice.
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      audio.loop = true;
+      audio.volume = SOFT;
+      audio.pause();
+      if (reduceMotion) {
+        button.setAttribute('data-reduced-motion', 'true');
+      }
+
+      function setPlaying(playing) {
+        button.setAttribute('aria-pressed', playing ? 'true' : 'false');
+        button.setAttribute('aria-label', playing ? 'Pause sanctuary music' : 'Play sanctuary music');
+        var label = button.querySelector('.sanctuary-sound-label');
+        if (label) label.textContent = playing ? 'Sound on' : 'Sound';
+      }
+
+      button.addEventListener('click', function () {
+        if (!audio.paused && !audio.ended) {
+          audio.pause();
+          setPlaying(false);
+          return;
+        }
+        audio.volume = SOFT;
+        audio.muted = false;
+        var pending = audio.play();
+        if (pending && typeof pending.then === 'function') {
+          pending.then(function () {
+            setPlaying(true);
+          }).catch(function () {
+            setPlaying(false);
+          });
+        } else {
+          setPlaying(!audio.paused);
+        }
+      });
+
+      audio.addEventListener('play', function () { setPlaying(true); });
+      audio.addEventListener('pause', function () { setPlaying(false); });
+      audio.addEventListener('error', function () {
+        setPlaying(false);
+        button.setAttribute('aria-label', 'Sanctuary music is unavailable');
+      });
+    })();
+  </script>
+
   <script>
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var entryVideo = document.querySelector('.entry-photo-video');

@@ -527,3 +527,61 @@ a {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+/* ---------- Home sanctuary sound (index.html only) ----------
+   Clan Mother Shifa's track lives on the Sanctuary home page.
+   The control is a quiet pill: paused until a tap, then soft.
+   The audio element itself has no native controls. */
+.sanctuary-audio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sanctuary-sound {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px 8px 14px;
+  border: 2px solid var(--brand-sand);
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.94);
+  color: var(--brand-blue);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(40, 56, 144, 0.12);
+}
+
+.sanctuary-sound-mark {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.sanctuary-sound:hover,
+.sanctuary-sound:focus-visible {
+  border-color: var(--brand-blue);
+  background-color: #ffffff;
+}
+
+.sanctuary-sound[aria-pressed="true"] {
+  border-color: var(--brand-blue);
+}
+
+.sanctuary-sound[aria-pressed="true"] .sanctuary-sound-mark {
+  color: var(--brand-green-text);
+}
