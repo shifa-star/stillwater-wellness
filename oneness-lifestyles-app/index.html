@@ -190,12 +190,38 @@
       // prefers-reduced-motion: do not start sound on your own. The Sound
       // control stays on the page so listening is a choice.
       var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var audioCtx = null;
+      var gainNode = null;
 
       audio.loop = true;
       audio.volume = SOFT;
       audio.pause();
       if (reduceMotion) {
         button.setAttribute('data-reduced-motion', 'true');
+      }
+
+      // Element volume is ignored on iOS, so a gain node keeps the track
+      // soft there too. If the audio graph cannot be built, the element
+      // volume stays at the soft level.
+      function soften() {
+        var Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return;
+        try {
+          if (!audioCtx) {
+            audioCtx = new Ctx();
+            gainNode = audioCtx.createGain();
+            gainNode.gain.value = SOFT;
+            audioCtx.createMediaElementSource(audio).connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+          }
+          gainNode.gain.value = SOFT;
+          audio.volume = 1;
+          if (audioCtx.state === 'suspended') {
+            audioCtx.resume().catch(function () {});
+          }
+        } catch (err) {
+          audio.volume = SOFT;
+        }
       }
 
       function setPlaying(playing) {
@@ -211,7 +237,7 @@
           setPlaying(false);
           return;
         }
-        audio.volume = SOFT;
+        soften();
         audio.muted = false;
         var pending = audio.play();
         if (pending && typeof pending.then === 'function') {
