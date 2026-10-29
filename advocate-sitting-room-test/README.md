@@ -32,7 +32,7 @@ Theresa is the name string, matching the usual spelling in the advocate list. Te
 
 ## Request flow
 
-Landing copy: Wholeness Remembered / Aloha, beloved. The Sanctuary is open. The Circle is not. A public sitting is one hour, live or virtual. First sitting, one hundred dollars. Follow-up, seventy-five. The Circle is by invitation and is not offered here.
+Landing copy: Wholeness Remembered / Aloha, beloved. Under that greeting, the featured download is The Roadmap to Wholeness, the fourteen-page Self-Healing Advocate guide (`The_Roadmap_to_Wholeness.pdf`). The Sanctuary is open. The Circle is not. A public sitting is one hour, live or virtual. First sitting, one hundred dollars. Follow-up, seventy-five. The Circle is by invitation and is not offered here.
 
 When `ref`, `referrer`, or `from` is present and is not “No one”, the landing step says “{Name} sent you.” `via` or `how` pre-fills how the room was found: person, message, calendar, search or looked, unsure.
 
@@ -68,5 +68,8 @@ A draft is kept in `localStorage` under `oneness-sitting-request`:
 - `icon.svg`, `icon-192.png`, `icon-512.png` — copied from `oneness-lifestyles-app/`.
 - The header seal is `icon.svg`. This repository has no `seal.png`.
 - `og.jpg` — 1200×630 share image for this test path.
+- `The_Roadmap_to_Wholeness.pdf` — the fourteen-page guide, served from this folder so Pages does not send advocates through a sign-in wall:
+
+`https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/The_Roadmap_to_Wholeness.pdf`
 
 Palette: deep blue `#283890`, lime green `#6dbc45`, sand gold `#c1a178`, mist `#f7faff`.

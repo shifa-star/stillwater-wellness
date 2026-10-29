@@ -140,6 +140,46 @@ h1 {
   font-style: italic;
 }
 
+.guide {
+  margin: 1.35rem 0 0;
+  padding: 1.25rem 1.2rem 1.2rem;
+  border: 1px solid var(--sand-gold);
+  border-radius: 12px;
+  background:
+    linear-gradient(var(--lime-green), var(--lime-green)) top / 100% 4px no-repeat,
+    var(--stone);
+}
+
+.guide-title,
+.guide-line {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.guide-title {
+  margin: 0.35rem 0 0;
+  color: var(--deep-blue);
+  font-size: 1.65rem;
+  line-height: 1.25;
+}
+
+.guide-line {
+  margin: 0.45rem 0 0;
+  color: var(--ink);
+  font-size: 1.2rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.guide .fine {
+  margin-top: 0.55rem;
+}
+
+.guide .btn {
+  margin-top: 1rem;
+}
+
 .copy {
   display: flex;
   flex-direction: column;

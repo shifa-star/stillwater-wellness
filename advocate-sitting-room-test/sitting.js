@@ -46,6 +46,16 @@
     return "<p id=\"room-error\" class=\"form-error\" role=\"alert\">" + esc(error) + "</p>";
   }
 
+  function guideCard() {
+    return "<section class=\"guide\" aria-labelledby=\"guide-title\">" +
+      "<p class=\"kicker\">Self-Healing Advocate</p>" +
+      "<h2 id=\"guide-title\" class=\"guide-title\">The Roadmap to Wholeness</h2>" +
+      "<p class=\"guide-line\">Beyond Skin Care. Wholeness Remembered.</p>" +
+      "<p class=\"fine\">Fourteen pages.</p>" +
+      "<a class=\"btn btn-primary\" href=\"The_Roadmap_to_Wholeness.pdf\" download=\"The_Roadmap_to_Wholeness.pdf\">Download the guide</a>" +
+      "</section>";
+  }
+
   function releaseBlock(releasing) {
     if (!releasing) {
       return "<button type=\"button\" class=\"btn btn-ghost\" data-action=\"ask-release\" data-focus-key=\"ask-release\">Release these words</button>";
@@ -81,6 +91,7 @@
         "<p class=\"figure-title\">Wholeness Remembered</p>" +
         "<p class=\"figure-line\">Aloha, beloved.</p>" +
         "</figure>" +
+        guideCard() +
         "<div class=\"copy\">" +
         "<p class=\"copy-strong\">The Sanctuary is open. The Circle is not.</p>" +
         "<p class=\"muted\">A public sitting is one hour, in the room or across the water. You come as you are. We sit with what the body already knows.</p>" +
