@@ -66,7 +66,7 @@ A draft is kept in `localStorage` under `oneness-sitting-request`:
 
 - `favicon.svg` — favicon.
 - `icon.svg`, `icon-192.png`, `icon-512.png` — copied from `oneness-lifestyles-app/`.
-- The header seal is `icon.svg`. This repository has no `seal.png`.
+- The header seal is the existing Oneness Wellness logo, `../instagram/cards/breathe_logo.png`, shown small above Sanctuary. This repository has no `seal.png` and no `site.json`.
 - `og.jpg` — 1200×630 share image for this test path.
 - `The_Roadmap_to_Wholeness.pdf` — the fourteen-page guide, served from this folder so Pages does not send advocates through a sign-in wall:
 

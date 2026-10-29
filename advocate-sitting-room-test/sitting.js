@@ -96,7 +96,7 @@
       var sent = track.sentByName(request.referrer);
       var progress = track.hasProgress(request);
       return "<div class=\"step\">" +
-        "<p class=\"kicker\">Oneness Wellness Circle Sanctuary</p>" +
+        "<p class=\"kicker brand-line\">Oneness Wellness Lifestyles</p>" +
         "<h1 tabindex=\"-1\">Sanctuary Sitting Room</h1>" +
         (sent ? "<p class=\"sent-by\">" + esc(sent) + " sent you.</p>" : "") +
         "<figure class=\"figure\">" +
@@ -112,7 +112,7 @@
         "<p class=\"fine\">The Circle stays by invitation, after you have sat. It is not offered here.</p>" +
         "</div>" +
         "<div class=\"actions\">" +
-        "<button type=\"button\" class=\"btn btn-primary\" data-action=\"begin\" data-focus-key=\"begin\">" +
+        "<button type=\"button\" class=\"btn btn-positive\" data-action=\"begin\" data-focus-key=\"begin\">" +
         (progress ? "Continue your request" : "Request a sitting") +
         "</button>" +
         (progress
@@ -250,7 +250,7 @@
       "<p class=\"lede\">Send request opens the calendar, so the hour can be booked. Who referred you stays in this request.</p>" +
       "<div class=\"letter\" data-letter>" + esc(heldLetter) + "</div>" +
       "<div class=\"actions\">" +
-      "<a class=\"btn btn-primary\" href=\"" + esc(track.BOOKING_URL) + "\">Send request</a>" +
+      "<a class=\"btn btn-positive\" href=\"" + esc(track.BOOKING_URL) + "\">Send request</a>" +
       "<button type=\"button\" class=\"btn btn-quiet\" data-action=\"edit\" data-focus-key=\"edit\">Edit</button>" +
       releaseBlock(releasing) +
       "</div></div>";
