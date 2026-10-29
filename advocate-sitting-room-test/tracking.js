@@ -110,7 +110,7 @@
     var sitting = item.mode === "live" ? "Live" : item.mode === "virtual" ? "Virtual" : "";
     var lines = [
       "Sanctuary Sitting Room",
-      "Oneness Wellness Circle Sanctuary",
+      "Oneness Wellness Lifestyles",
       "",
       "Name: " + item.name.trim(),
       "Reach: " + item.reach.trim(),
