@@ -32,7 +32,7 @@ Theresa is the name string, matching the usual spelling in the advocate list. Te
 
 ## Request flow
 
-Landing copy: Wholeness Remembered / Aloha, beloved. Under that greeting, the featured download is The Roadmap to Wholeness, the fourteen-page Self-Healing Advocate guide (`The_Roadmap_to_Wholeness.pdf`). The Sanctuary is open. The Circle is not. A public sitting is one hour, live or virtual. First sitting, one hundred dollars. Follow-up, seventy-five. The Circle is by invitation and is not offered here.
+Landing copy: Wholeness Remembered / Aloha, beloved. Under that greeting, the featured download is The Roadmap to Wholeness, the fourteen-page Self-Healing Advocate guide (`The_Roadmap_to_Wholeness.pdf`). Beside it, Summer is a self-healing advocate for skin health questions, proof of lifestyle, and self-healing guidance. **Talk with Summer** opens https://t.me/adaptogentic_bot (`@adaptogentic_bot`). The Sanctuary is open. The Circle is not. A public sitting is one hour, live or virtual. First sitting, one hundred dollars. Follow-up, seventy-five. The Circle is by invitation and is not offered here.
 
 When `ref`, `referrer`, or `from` is present and is not “No one”, the landing step says “{Name} sent you.” `via` or `how` pre-fills how the room was found: person, message, calendar, search or looked, unsure.
 

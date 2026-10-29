@@ -56,6 +56,18 @@
       "</section>";
   }
 
+  var SUMMER_TELEGRAM_URL = "https://t.me/adaptogentic_bot";
+
+  function summerCard() {
+    return "<section class=\"guide\" aria-labelledby=\"summer-title\">" +
+      "<p class=\"kicker\">Self-Healing Advocate</p>" +
+      "<h2 id=\"summer-title\" class=\"guide-title\">Summer</h2>" +
+      "<p class=\"guide-line\">A self-healing advocate for skin health questions, proof of lifestyle, and self-healing guidance.</p>" +
+      "<p class=\"fine\">She meets you on Telegram.</p>" +
+      "<a class=\"btn btn-primary\" href=\"" + esc(SUMMER_TELEGRAM_URL) + "\" target=\"_blank\" rel=\"noopener noreferrer\">Talk with Summer</a>" +
+      "</section>";
+  }
+
   function releaseBlock(releasing) {
     if (!releasing) {
       return "<button type=\"button\" class=\"btn btn-ghost\" data-action=\"ask-release\" data-focus-key=\"ask-release\">Release these words</button>";
@@ -92,6 +104,7 @@
         "<p class=\"figure-line\">Aloha, beloved.</p>" +
         "</figure>" +
         guideCard() +
+        summerCard() +
         "<div class=\"copy\">" +
         "<p class=\"copy-strong\">The Sanctuary is open. The Circle is not.</p>" +
         "<p class=\"muted\">A public sitting is one hour, in the room or across the water. You come as you are. We sit with what the body already knows.</p>" +
