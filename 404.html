@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oneness Wellness</title>
+  <script>
+/* Maps /advocate-sitting-room-test and everything under it onto the site root. */
+(function (root, factory) {
+  var api = factory();
+  if (typeof module === "object" && module.exports) {
+    module.exports = api;
+  }
+  if (typeof window !== "undefined" && window.location) {
+    api.apply();
+  }
+  root.SittingRoomLegacyRedirect = api;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  var MARKER = "/advocate-sitting-room-test";
+
+  function targetFromLocation(loc) {
+    var path = loc && typeof loc.pathname === "string" ? loc.pathname : "/";
+    var search = loc && typeof loc.search === "string" ? loc.search : "";
+    var hash = loc && typeof loc.hash === "string" ? loc.hash : "";
+    var at = path.indexOf(MARKER);
+    if (at === -1) return "";
+    var boundary = path.charAt(at + MARKER.length);
+    if (boundary !== "" && boundary !== "/") return "";
+
+    var base = path.slice(0, at);
+    var rest = path.slice(at + MARKER.length);
+    if (rest === "" || rest === "/" || /^\/index\.html$/i.test(rest)) rest = "/";
+    if (rest.charAt(0) !== "/") rest = "/" + rest;
+    if (rest.indexOf("//") === 0 || rest.indexOf("\\") !== -1 || rest.indexOf("://") !== -1) return "";
+
+    var next = base + rest;
+    if (!next || next.charAt(0) !== "/") next = "/" + next;
+    return next + search + hash;
+  }
+
+  function pointRoom(target) {
+    if (typeof document === "undefined") return;
+    var room = document.getElementById("room");
+    if (room) room.href = target;
+  }
+
+  function apply() {
+    if (typeof window === "undefined" || !window.location) return "";
+    var target = targetFromLocation(window.location);
+    if (!target) return "";
+    pointRoom(target);
+    if (typeof document !== "undefined" && document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", function () {
+        pointRoom(target);
+      });
+    }
+    window.location.replace(target);
+    return target;
+  }
+
+  return {
+    targetFromLocation: targetFromLocation,
+    apply: apply
+  };
+});
+  </script>
+</head>
+<body>
+  <p>Beyond Skin Care. Wholeness Remembered.</p>
+  <p><a id="room" href="https://app.onenesswellnesslifestyles.com/">Continue to the Oneness Wellness Sanctuary Sitting Room</a></p>
+</body>
+</html>

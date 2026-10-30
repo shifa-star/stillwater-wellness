@@ -4,10 +4,10 @@ A quiet corner of the internet for slowing down, checking in with yourself, and 
 
 ## Pages
 
-The site has a hub and six gentle guides:
+The site root serves the Sanctuary Sitting Room. Six gentle guides remain beside it:
 
-- **index.html** — the hub. Six action tiles (Breathe, Move, Rest, Meditate, Visualize, Nourish) in two rows matching the A Slow-Down Series, each linking to its own guide.
-- **breathe.html / move.html / rest.html / meditate.html / visualize.html / nourish.html** — one guide per action. Each page has a photo hero, a short written guide, a "Next" button that loops through its series, and a link back to the hub.
+- **index.html** — Sanctuary Sitting Room at `https://app.onenesswellnesslifestyles.com/`. Shared advocate links keep `?ref=<Name>&via=person` on this address.
+- **breathe.html / move.html / rest.html / meditate.html / visualize.html / nourish.html** — one guide per action. Each page has a photo hero, a short written guide, a "Next" button that loops through its series, and a link back to the root page.
 
 Each guide is built in the same gentle voice: short sentences, present tense, always addressed to you.
 
