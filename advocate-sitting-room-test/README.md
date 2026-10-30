@@ -1,17 +1,15 @@
 # Sanctuary Sitting Room
 
-Temporary static test of the Oneness Wellness Sanctuary Sitting Room. Plain HTML, CSS, and JavaScript. It is meant to be served from this folder on the existing GitHub Pages site.
+Plain HTML, CSS, and JavaScript for the Oneness Wellness Sanctuary Sitting Room. The room is served at the site root. This folder's `index.html` redirects there.
 
 ## Pages URLs
 
-- https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/
-- https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/index.html
+- https://app.onenesswellnesslifestyles.com/
+- https://app.onenesswellnesslifestyles.com/index.html
 
-Styles, scripts, the favicon, the header mark, and `og.jpg` use relative paths, so both URLs load the same room. The share image is declared as an absolute Pages URL for this folder:
+`/advocate-sitting-room-test/` and `/advocate-sitting-room-test/index.html` redirect to the same root path and keep `ref`, `via`, and the hash. Styles, scripts, the favicon, the header mark, and `og.jpg` use paths relative to the root, so both root URLs load the same room. The share image is:
 
-`https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/og.jpg`
-
-This folder does not add a custom domain. DNS for the live house is unchanged.
+`https://app.onenesswellnesslifestyles.com/og.jpg`
 
 ## Advocate test links
 
@@ -19,16 +17,16 @@ Each link uses `?ref=<Name>&via=person`. The full list is also in [LINKS.md](LIN
 
 Theresa is the name string, matching the usual spelling in the advocate list. Teresa Borja and Theresa Borja are the same advocate.
 
-- [Anton](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Anton&via=person)
-- [Felicia](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Felicia&via=person)
-- [Floyd](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Floyd&via=person)
-- [Melinda](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Melinda&via=person)
-- [Miniimah](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Miniimah&via=person)
-- [Qaedah](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Qaedah&via=person)
-- [Rashidi](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Rashidi&via=person)
-- [Rita](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Rita&via=person)
-- [Theresa](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Theresa&via=person) (Teresa Borja / Theresa Borja)
-- [Wanda](https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/?ref=Wanda&via=person)
+- [Anton](https://app.onenesswellnesslifestyles.com/?ref=Anton&via=person)
+- [Felicia](https://app.onenesswellnesslifestyles.com/?ref=Felicia&via=person)
+- [Floyd](https://app.onenesswellnesslifestyles.com/?ref=Floyd&via=person)
+- [Melinda](https://app.onenesswellnesslifestyles.com/?ref=Melinda&via=person)
+- [Miniimah](https://app.onenesswellnesslifestyles.com/?ref=Miniimah&via=person)
+- [Qaedah](https://app.onenesswellnesslifestyles.com/?ref=Qaedah&via=person)
+- [Rashidi](https://app.onenesswellnesslifestyles.com/?ref=Rashidi&via=person)
+- [Rita](https://app.onenesswellnesslifestyles.com/?ref=Rita&via=person)
+- [Theresa](https://app.onenesswellnesslifestyles.com/?ref=Theresa&via=person) (Teresa Borja / Theresa Borja)
+- [Wanda](https://app.onenesswellnesslifestyles.com/?ref=Wanda&via=person)
 
 ## Request flow
 
@@ -66,10 +64,10 @@ A draft is kept in `localStorage` under `oneness-sitting-request`:
 
 - `favicon.svg` — favicon.
 - `icon.svg`, `icon-192.png`, `icon-512.png` — copied from `oneness-lifestyles-app/`.
-- The header seal is the existing Oneness Wellness logo, `../instagram/cards/breathe_logo.png`, shown small above Sanctuary. This repository has no `seal.png` and no `site.json`.
-- `og.jpg` — 1200×630 share image for this test path.
-- `The_Roadmap_to_Wholeness.pdf` — the fourteen-page guide, served from this folder so Pages does not send advocates through a sign-in wall:
+- The header seal is the existing Oneness Wellness logo, `instagram/cards/breathe_logo.png`, shown small above Sanctuary. This repository has no `seal.png` and no `site.json`.
+- `og.jpg` — 1200×630 share image.
+- `The_Roadmap_to_Wholeness.pdf` — the fourteen-page guide at the site root. A browser opening the previous folder path is sent to that file:
 
-`https://shifa-star.github.io/stillwater-wellness/advocate-sitting-room-test/The_Roadmap_to_Wholeness.pdf`
+`https://app.onenesswellnesslifestyles.com/The_Roadmap_to_Wholeness.pdf`
 
 Palette: deep blue `#283890`, lime green `#6dbc45`, sand gold `#c1a178`, mist `#f7faff`.
