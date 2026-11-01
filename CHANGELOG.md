@@ -5,6 +5,7 @@ All notable changes to this project are tracked here. This project follows
 
 ## [Unreleased]
 
+- Oneness Journey Phase 1 shell is served at `/journey/` (`https://app.onenesswellnesslifestyles.com/journey/`).
 - The Sanctuary Sitting Room is served at `/`. Open Graph, Twitter image, and canonical URLs use `https://app.onenesswellnesslifestyles.com/`.
 - `/advocate-sitting-room-test/` and `/advocate-sitting-room-test/index.html` redirect to the matching root path and keep the query string and hash.
 - `The_Roadmap_to_Wholeness.pdf` is at `/The_Roadmap_to_Wholeness.pdf`. The previous folder path redirects to that file.

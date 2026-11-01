@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Oneness Journey · Oneness Wellness Lifestyles Centers</title>
+  <meta name="description" content="Oneness Journey from Oneness Wellness Lifestyles Centers. We Are Healing Together, Wholeness Remembered.">
+  <meta name="theme-color" content="#283890">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://app.onenesswellnesslifestyles.com/journey/">
+  <meta property="og:title" content="Oneness Journey">
+  <meta property="og:description" content="We Are Healing Together, Wholeness Remembered.">
+  <meta property="og:image" content="https://app.onenesswellnesslifestyles.com/og.jpg">
+  <meta property="og:url" content="https://app.onenesswellnesslifestyles.com/journey/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon-192.png">
+  <link rel="stylesheet" href="journey.css">
+</head>
+<body>
+  <a class="skip-link" href="#today">Skip to today</a>
+  <main class="page">
+    <header class="mast">
+      <img class="seal" src="../instagram/cards/breathe_logo.png" width="1875" height="1042" alt="Oneness Wellness seal">
+      <p class="mast-name">Oneness Wellness Lifestyles Centers</p>
+      <p class="tagline">We Are Healing Together, Wholeness Remembered</p>
+    </header>
+
+    <section class="intro">
+      <p class="kicker">Oneness Journey</p>
+      <h1 id="cohort-name">The Wellness Blueprint 5-Day Challenge</h1>
+      <p class="cohort-note" id="cohort-note">Nov 9&ndash;13, 2026 &middot; Hawaii time</p>
+      <p class="status" id="cohort-status" aria-live="polite"></p>
+    </section>
+
+    <section class="lanes" aria-label="Choose your lane">
+      <div class="toggle" role="tablist" aria-label="Lane">
+        <button type="button" role="tab" id="lane-buyer" data-lane="buyer" aria-selected="true">Buyer</button>
+        <button type="button" role="tab" id="lane-advocate" data-lane="advocate" aria-selected="false">Advocate</button>
+      </div>
+      <div class="banner" id="banner-buyer" data-lane-panel="buyer">
+        <p class="banner-title">Welcome, beloved.</p>
+        <p>Your $5 VIP pass opens all five days. Each morning a short video, a workbook page, and an evening session wait for you here. Come as you are.</p>
+      </div>
+      <div class="banner banner-advocate" id="banner-advocate" data-lane-panel="advocate" hidden>
+        <p class="banner-title">Welcome, Advocate.</p>
+        <p>You walk the same five days as the circle you serve. Use this page to stay one step ahead and to guide with what you have lived.</p>
+        <p class="soft-note">A gentle ask: this door is for you. Please share the public invitation with others rather than forwarding this page.</p>
+      </div>
+    </section>
+
+    <nav class="days" aria-label="Choose a day">
+      <ol class="day-picker" id="day-picker"></ol>
+    </nav>
+
+    <article class="day-card" id="today" tabindex="-1" aria-live="polite"></article>
+
+    <section class="signin" aria-labelledby="signin-title">
+      <p class="kicker">Coming soon</p>
+      <h2 id="signin-title">Sign in with your challenge email</h2>
+      <p class="muted">Soon you will open your journey with a magic link sent to the email you used for the challenge. No passwords.</p>
+      <form class="signin-form" onsubmit="return false;" aria-describedby="signin-help">
+        <label for="signin-email" class="sr-only">Challenge email</label>
+        <input id="signin-email" type="email" placeholder="you@example.com" disabled>
+        <button type="submit" class="btn btn-ghost" disabled>Send my link</button>
+      </form>
+      <p class="fine" id="signin-help">Not live yet. Until then, everything you need is on this page.</p>
+    </section>
+
+    <footer class="foot">
+      <a class="btn btn-ghost" id="course-link" href="https://membership.onenesswellnesslifestyles.com/courses/products/429f9e94-85fa-407a-bfc0-92ad92bc3bf0" target="_blank" rel="noopener">Open the VIP Membership</a>
+      <p class="fine">Oneness Journey &middot; Oneness Wellness Lifestyles Centers</p>
+      <p class="fine"><a href="../">Return to the Sanctuary</a></p>
+    </footer>
+  </main>
+  <noscript><p class="page">This journey needs JavaScript. You can open the <a href="https://membership.onenesswellnesslifestyles.com/courses/products/429f9e94-85fa-407a-bfc0-92ad92bc3bf0">VIP Membership</a> directly.</p></noscript>
+  <script src="config.js"></script>
+  <script src="journey.js"></script>
+</body>
+</html>
