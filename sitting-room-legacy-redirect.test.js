@@ -9,18 +9,20 @@ function loc(pathname, search, hash) {
 }
 
 const cases = [
-  [loc("/advocate-sitting-room-test/", "?ref=Test&via=person", "#stage"), "/?ref=Test&via=person#stage"],
-  [loc("/advocate-sitting-room-test", "?ref=Anton&via=person", ""), "/?ref=Anton&via=person"],
-  [loc("/advocate-sitting-room-test/index.html", "?ref=Theresa&via=person", "#held"), "/?ref=Theresa&via=person#held"],
-  [loc("/advocate-sitting-room-test/INDEX.HTML", "?ref=Rita&via=person", ""), "/?ref=Rita&via=person"],
+  [loc("/advocate-sitting-room-test/", "?ref=Test&via=person", "#stage"), "/oneness-lifestyles-app/?ref=Test&via=person#stage"],
+  [loc("/advocate-sitting-room-test", "?ref=Anton&via=person", ""), "/oneness-lifestyles-app/?ref=Anton&via=person"],
+  [loc("/advocate-sitting-room-test/index.html", "?ref=Theresa&via=person", "#held"), "/oneness-lifestyles-app/?ref=Theresa&via=person#held"],
+  [loc("/advocate-sitting-room-test/INDEX.HTML", "?ref=Rita&via=person", ""), "/oneness-lifestyles-app/?ref=Rita&via=person"],
+  [loc("/advocate-sitting-room-test/", "?ref=A%20B&via=person&x=1", "#a"), "/oneness-lifestyles-app/?ref=A%20B&via=person&x=1#a"],
   [loc("/advocate-sitting-room-test/The_Roadmap_to_Wholeness.pdf", "?ref=Test&via=person", ""), "/The_Roadmap_to_Wholeness.pdf?ref=Test&via=person"],
   [loc("/advocate-sitting-room-test/og.jpg", "", ""), "/og.jpg"],
   [loc("/advocate-sitting-room-test/styles.css", "?v=1", "#x"), "/styles.css?v=1#x"],
-  [loc("/stillwater-wellness/advocate-sitting-room-test/", "?ref=Wanda&via=person", "#room"), "/stillwater-wellness/?ref=Wanda&via=person#room"],
+  [loc("/stillwater-wellness/advocate-sitting-room-test/", "?ref=Wanda&via=person", "#room"), "/stillwater-wellness/oneness-lifestyles-app/?ref=Wanda&via=person#room"],
   [loc("/stillwater-wellness/advocate-sitting-room-test/sitting.js", "", ""), "/stillwater-wellness/sitting.js"],
-  [loc("/stillwater-wellness/advocate-sitting-room-test/index.html", "?via=person&ref=Floyd", ""), "/stillwater-wellness/?via=person&ref=Floyd"],
+  [loc("/stillwater-wellness/advocate-sitting-room-test/index.html", "?via=person&ref=Floyd", ""), "/stillwater-wellness/oneness-lifestyles-app/?via=person&ref=Floyd"],
   [loc("/", "?ref=Test&via=person", ""), ""],
   [loc("/breathe.html", "", ""), ""],
+  [loc("/oneness-lifestyles-app/", "?ref=Test&via=person", ""), ""],
   [loc("/advocate-sitting-room-test-extra/", "?ref=Test", ""), ""],
   [loc("/advocate-sitting-room-test//evil.example", "", ""), ""]
 ];
@@ -36,7 +38,11 @@ assert.ok(rootIndex.includes('<meta property="og:url" content="https://app.onene
 assert.ok(rootIndex.includes('<meta property="og:image" content="https://app.onenesswellnesslifestyles.com/og.jpg">'));
 assert.ok(rootIndex.includes('<meta name="twitter:image" content="https://app.onenesswellnesslifestyles.com/og.jpg">'));
 assert.ok(rootIndex.includes('src="instagram/cards/breathe_logo.png"'));
+assert.ok(rootIndex.includes("The Roadmap to Wholeness"));
+assert.ok(rootIndex.includes("Talk with Summer"));
+assert.ok(rootIndex.includes("https://t.me/adaptogentic_bot"));
 assert.ok(!rootIndex.includes("advocate-sitting-room-test"));
+assert.ok(!rootIndex.includes("oneness-lifestyles-app"));
 assert.ok(!rootIndex.includes("github.io"));
 assert.ok(!rootIndex.includes("http-equiv"));
 assert.ok(!rootIndex.includes("../instagram"));
@@ -48,11 +54,32 @@ const script = fs.readFileSync("sitting-room-legacy-redirect.js", "utf8").trim()
 });
 
 const legacy = fs.readFileSync("advocate-sitting-room-test/index.html", "utf8");
-assert.ok(legacy.includes('<meta property="og:url" content="https://app.onenesswellnesslifestyles.com/">'));
-assert.ok(legacy.includes('<link rel="canonical" href="https://app.onenesswellnesslifestyles.com/">'));
+assert.ok(legacy.includes('<meta property="og:url" content="https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/">'));
+assert.ok(legacy.includes('<link rel="canonical" href="https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/">'));
+assert.ok(legacy.includes('<meta http-equiv="refresh" content="0; url=https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/">'));
+assert.ok(legacy.includes('<a id="room" href="https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/">'));
 assert.ok(legacy.includes("https://app.onenesswellnesslifestyles.com/og.jpg"));
 assert.ok(!legacy.includes("url=advocate-sitting-room-test"));
+assert.ok(!legacy.includes('href="https://app.onenesswellnesslifestyles.com/"'));
 assert.ok(!legacy.includes("github.io"));
+
+const guest = fs.readFileSync("oneness-lifestyles-app/index.html", "utf8");
+assert.ok(guest.includes("<title>The Sanctuary of Self Healing</title>"));
+assert.ok(guest.includes("Where the Healing Waters Flow"));
+assert.ok(guest.includes('id="sent-by"'));
+assert.ok(!guest.includes("The Roadmap to Wholeness"));
+assert.ok(!guest.includes("adaptogentic_bot"));
+assert.ok(!guest.includes("github.io"));
+
+["advocate-sitting-room-test/LINKS.md", "advocate-sitting-room-test/README.md", "README.md", "CHANGELOG.md"].forEach(function (file) {
+  const text = fs.readFileSync(file, "utf8");
+  assert.ok(!text.includes("github.io"), file);
+  assert.ok(!text.includes("https://app.onenesswellnesslifestyles.com/?ref="), file);
+  assert.ok(!text.includes("https://app.onenesswellnesslifestyles.com/index.html?ref="), file);
+});
+assert.ok(fs.readFileSync("advocate-sitting-room-test/LINKS.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Theresa&via=person"));
+assert.ok(fs.readFileSync("advocate-sitting-room-test/README.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Theresa&via=person"));
+assert.ok(fs.readFileSync("README.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=<Name>&via=person"));
 
 ["breathe.html", "move.html", "rest.html", "meditate.html", "visualize.html", "nourish.html"].forEach(function (file) {
   const html = fs.readFileSync(file, "utf8");

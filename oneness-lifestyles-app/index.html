@@ -33,6 +33,7 @@
         <div class="container">
           <h1 class="hero-heading">The Sanctuary of Self Healing</h1>
           <p class="home-greeting" id="home-greeting">Where the Healing Waters Flow</p>
+          <p id="sent-by" class="home-greeting" hidden></p>
           <p style="text-align: center; font-style: italic; color: var(--brand-blue); margin-top: 12px;">Aloha 🌴<br>In Lak'ech Ala K'in<br>I am another yourself.<br>We are One.</p>
           <div class="home-welcome">
             <p>You have entered the Sanctuary of Self Healing at the Oneness Wellness Center.</p>
@@ -270,6 +271,18 @@
     }
   </script>
 
+  <script>
+    (function () {
+      var line = document.getElementById("sent-by");
+      if (!line || !window.location) return;
+      var params = new URLSearchParams(window.location.search || "");
+      var name = params.get("ref") || params.get("referrer") || params.get("from") || "";
+      name = String(name).replace(/\s+/g, " ").trim().slice(0, 80);
+      if (!name || name.toLowerCase() === "no one") return;
+      line.textContent = name + " sent you.";
+      line.hidden = false;
+    })();
+  </script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {

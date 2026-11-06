@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Oneness Wellness</title>
   <script>
-/* Maps /advocate-sitting-room-test and everything under it onto the site root. */
+/* Public /advocate-sitting-room-test links open the guest Sanctuary.
+   The bare folder, a trailing slash, and index.html go to /oneness-lifestyles-app/
+   and keep the query string and hash. Other files under that folder still map onto the site root. */
 (function (root, factory) {
   var api = factory();
   if (typeof module === "object" && module.exports) {
@@ -29,7 +31,11 @@
 
     var base = path.slice(0, at);
     var rest = path.slice(at + MARKER.length);
-    if (rest === "" || rest === "/" || /^\/index\.html$/i.test(rest)) rest = "/";
+    if (rest === "" || rest === "/" || /^\/index\.html$/i.test(rest)) {
+      var guest = base + "/oneness-lifestyles-app/";
+      if (guest.charAt(0) !== "/") guest = "/" + guest;
+      return guest + search + hash;
+    }
     if (rest.charAt(0) !== "/") rest = "/" + rest;
     if (rest.indexOf("//") === 0 || rest.indexOf("\\") !== -1 || rest.indexOf("://") !== -1) return "";
 

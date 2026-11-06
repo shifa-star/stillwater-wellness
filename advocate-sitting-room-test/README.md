@@ -1,34 +1,44 @@
 # Sanctuary Sitting Room
 
-Plain HTML, CSS, and JavaScript for the Oneness Wellness Sanctuary Sitting Room. The room is served at the site root. This folder's `index.html` redirects there.
+The advocate-only Sanctuary Sitting Room is served at the site root. It holds The Roadmap to Wholeness, Summer, and the public sitting prices. Public share links do not open that room.
+
+This folder's `index.html` is the public entry. `/advocate-sitting-room-test`, `/advocate-sitting-room-test/`, and `/advocate-sitting-room-test/index.html` redirect to `/oneness-lifestyles-app/` and keep the full query string and hash. The host stays `https://app.onenesswellnesslifestyles.com`.
 
 ## Pages URLs
+
+Advocate room (not a share link):
 
 - https://app.onenesswellnesslifestyles.com/
 - https://app.onenesswellnesslifestyles.com/index.html
 
-`/advocate-sitting-room-test/` and `/advocate-sitting-room-test/index.html` redirect to the same root path and keep `ref`, `via`, and the hash. Styles, scripts, the favicon, the header mark, and `og.jpg` use paths relative to the root, so both root URLs load the same room. The share image is:
+Guest Sanctuary, where a share link lands:
+
+- https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/
+
+Styles, scripts, the favicon, the header mark, and `og.jpg` for the advocate room use paths relative to the root. The share image is:
 
 `https://app.onenesswellnesslifestyles.com/og.jpg`
 
 ## Advocate test links
 
-Each link uses `?ref=<Name>&via=person`. The full list is also in [LINKS.md](LINKS.md).
+Each public link is `https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=<Name>&via=person`. The full list is also in [LINKS.md](LINKS.md).
 
 Theresa is the name string, matching the usual spelling in the advocate list. Teresa Borja and Theresa Borja are the same advocate.
 
-- [Anton](https://app.onenesswellnesslifestyles.com/?ref=Anton&via=person)
-- [Felicia](https://app.onenesswellnesslifestyles.com/?ref=Felicia&via=person)
-- [Floyd](https://app.onenesswellnesslifestyles.com/?ref=Floyd&via=person)
-- [Melinda](https://app.onenesswellnesslifestyles.com/?ref=Melinda&via=person)
-- [Miniimah](https://app.onenesswellnesslifestyles.com/?ref=Miniimah&via=person)
-- [Qaedah](https://app.onenesswellnesslifestyles.com/?ref=Qaedah&via=person)
-- [Rashidi](https://app.onenesswellnesslifestyles.com/?ref=Rashidi&via=person)
-- [Rita](https://app.onenesswellnesslifestyles.com/?ref=Rita&via=person)
-- [Theresa](https://app.onenesswellnesslifestyles.com/?ref=Theresa&via=person) (Teresa Borja / Theresa Borja)
-- [Wanda](https://app.onenesswellnesslifestyles.com/?ref=Wanda&via=person)
+- [Anton](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Anton&via=person)
+- [Felicia](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Felicia&via=person)
+- [Floyd](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Floyd&via=person)
+- [Melinda](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Melinda&via=person)
+- [Miniimah](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Miniimah&via=person)
+- [Qaedah](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Qaedah&via=person)
+- [Rashidi](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Rashidi&via=person)
+- [Rita](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Rita&via=person)
+- [Theresa](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Theresa&via=person) (Teresa Borja / Theresa Borja)
+- [Wanda](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Wanda&via=person)
 
 ## Request flow
+
+This flow is the advocate room at `/`. Roadmap and Summer stay there. They are not part of the guest Sanctuary.
 
 Landing copy: Wholeness Remembered / Aloha, beloved. Under that greeting, the featured download is The Roadmap to Wholeness, the fourteen-page Self-Healing Advocate guide (`The_Roadmap_to_Wholeness.pdf`). Beside it, Summer is a self-healing advocate for skin health questions, proof of lifestyle, and self-healing guidance. **Talk with Summer** opens https://t.me/adaptogentic_bot (`@adaptogentic_bot`). The Sanctuary is open. The Circle is not. A public sitting is one hour, live or virtual. First sitting, one hundred dollars. Follow-up, seventy-five. The Circle is by invitation and is not offered here.
 
