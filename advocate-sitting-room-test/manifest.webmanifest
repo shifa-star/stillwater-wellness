@@ -1,7 +1,7 @@
 {
-  "name": "Sanctuary Sitting Room",
+  "name": "Advocate Support Portal",
   "short_name": "Oneness Wellness",
-  "description": "A public sitting at Oneness Wellness. The Sanctuary is open. The Circle is not.",
+  "description": "Advocate support, training, and community for Oneness Wellness Lifestyles.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
