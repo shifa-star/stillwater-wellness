@@ -1,6 +1,6 @@
 # Personal Invitation Links
 
-Advocates share the guest Sanctuary. Each Personal Invitation Link is `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person`. The advocate Sitting Room at `https://app.onenesswellnesslifestyles.com/` is not a share link.
+Advocates share the guest Sanctuary. Each Personal Invitation Link is `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person`. The Advocate Support Portal at `https://app.onenesswellnesslifestyles.com/` is not a share link.
 
 Theresa is the name string used in the link. Teresa Borja and Theresa Borja are the same advocate.
 

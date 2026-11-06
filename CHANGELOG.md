@@ -7,11 +7,11 @@ All notable changes to this project are tracked here. This project follows
 
 - Terms and Conditions page is served at `/terms/` (`https://app.onenesswellnesslifestyles.com/terms/`).
 - Oneness Journey Phase 1 shell is served at `/journey/` (`https://app.onenesswellnesslifestyles.com/journey/`).
-- The Sanctuary Sitting Room is served at `/`. Open Graph, Twitter image, and canonical URLs use `https://app.onenesswellnesslifestyles.com/`.
-- Personal Invitation Links are `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person`. The advocate Sitting Room, Roadmap, and Summer stay at `/`. When `ref` is present, the guest home says "{Name} sent you."
+- The Advocate Support Portal is served at `/`. Open Graph, Twitter image, and canonical URLs use `https://app.onenesswellnesslifestyles.com/`. The page holds The Roadmap to Wholeness and Talk with Summer. It does not show a guest invite line, a public sitting price, or a sitting request.
+- Personal Invitation Links are `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person`. When `ref` is present, the guest home says "{Name} sent you."
 - `/advocate-sitting-room-test`, `/advocate-sitting-room-test/`, and `/advocate-sitting-room-test/index.html` remain a legacy redirect to `/oneness-lifestyles-app/` and keep the query string and hash. That path is not a share link.
 - `The_Roadmap_to_Wholeness.pdf` is at `/The_Roadmap_to_Wholeness.pdf`. The previous folder path redirects to that file.
-- The six guide pages load `stillwater.css` so their layout stays put when `/styles.css` is the Sitting Room stylesheet.
+- The six guide pages load `stillwater.css` so their layout stays put when `/styles.css` is the Advocate Support Portal stylesheet.
 
 ## [1.4.0] - 2026-08-13
 ### Added
