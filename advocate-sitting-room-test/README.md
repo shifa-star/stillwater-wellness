@@ -1,8 +1,8 @@
 # Sanctuary Sitting Room
 
-The advocate-only Sanctuary Sitting Room is served at the site root. It holds The Roadmap to Wholeness, Summer, and the public sitting prices. Public share links do not open that room.
+The advocate-only Sanctuary Sitting Room is served at the site root. It holds The Roadmap to Wholeness, Summer, and the public sitting prices. Personal Invitation Links do not open that room.
 
-This folder's `index.html` is the public entry. `/advocate-sitting-room-test`, `/advocate-sitting-room-test/`, and `/advocate-sitting-room-test/index.html` redirect to `/oneness-lifestyles-app/` and keep the full query string and hash. The host stays `https://app.onenesswellnesslifestyles.com`.
+This folder is legacy only, for links already sent. Its `index.html` still redirects the bare folder, a trailing slash, and `index.html` to `/oneness-lifestyles-app/` and keeps the full query string and hash. Do not share this folder. The Personal Invitation Link is the guest Sanctuary. The host stays `https://app.onenesswellnesslifestyles.com`.
 
 ## Pages URLs
 
@@ -11,30 +11,30 @@ Advocate room (not a share link):
 - https://app.onenesswellnesslifestyles.com/
 - https://app.onenesswellnesslifestyles.com/index.html
 
-Guest Sanctuary, where a share link lands:
+Personal Invitation Link:
 
-- https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/
+- https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person
 
 Styles, scripts, the favicon, the header mark, and `og.jpg` for the advocate room use paths relative to the root. The share image is:
 
 `https://app.onenesswellnesslifestyles.com/og.jpg`
 
-## Advocate test links
+## Personal Invitation Links
 
-Each public link is `https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=<Name>&via=person`. The full list is also in [LINKS.md](LINKS.md).
+Each link is `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person`. The full list is also in [LINKS.md](LINKS.md).
 
 Theresa is the name string, matching the usual spelling in the advocate list. Teresa Borja and Theresa Borja are the same advocate.
 
-- [Anton](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Anton&via=person)
-- [Felicia](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Felicia&via=person)
-- [Floyd](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Floyd&via=person)
-- [Melinda](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Melinda&via=person)
-- [Miniimah](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Miniimah&via=person)
-- [Qaedah](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Qaedah&via=person)
-- [Rashidi](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Rashidi&via=person)
-- [Rita](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Rita&via=person)
-- [Theresa](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Theresa&via=person) (Teresa Borja / Theresa Borja)
-- [Wanda](https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Wanda&via=person)
+- [Anton](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Anton&via=person)
+- [Felicia](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Felicia&via=person)
+- [Floyd](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Floyd&via=person)
+- [Melinda](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Melinda&via=person)
+- [Miniimah](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Miniimah&via=person)
+- [Qaedah](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Qaedah&via=person)
+- [Rashidi](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Rashidi&via=person)
+- [Rita](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Rita&via=person)
+- [Theresa](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Theresa&via=person) (Teresa Borja / Theresa Borja)
+- [Wanda](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Wanda&via=person)
 
 ## Request flow
 

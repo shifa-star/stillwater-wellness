@@ -76,10 +76,14 @@ assert.ok(!guest.includes("github.io"));
   assert.ok(!text.includes("github.io"), file);
   assert.ok(!text.includes("https://app.onenesswellnesslifestyles.com/?ref="), file);
   assert.ok(!text.includes("https://app.onenesswellnesslifestyles.com/index.html?ref="), file);
+  assert.ok(!text.includes("advocate-sitting-room-test/?ref="), file);
+  assert.ok(!text.includes("advocate-sitting-room-test/index.html?ref="), file);
+  assert.ok(text.includes("https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref="), file);
 });
-assert.ok(fs.readFileSync("advocate-sitting-room-test/LINKS.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Theresa&via=person"));
-assert.ok(fs.readFileSync("advocate-sitting-room-test/README.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=Theresa&via=person"));
-assert.ok(fs.readFileSync("README.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=<Name>&via=person"));
+assert.ok(fs.readFileSync("advocate-sitting-room-test/LINKS.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Theresa&via=person"));
+assert.ok(fs.readFileSync("advocate-sitting-room-test/README.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Theresa&via=person"));
+assert.ok(fs.readFileSync("README.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person"));
+assert.ok(fs.readFileSync("CHANGELOG.md", "utf8").includes("https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person"));
 
 ["breathe.html", "move.html", "rest.html", "meditate.html", "visualize.html", "nourish.html"].forEach(function (file) {
   const html = fs.readFileSync(file, "utf8");
