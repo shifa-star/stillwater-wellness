@@ -6,7 +6,7 @@ A quiet corner of the internet for slowing down, checking in with yourself, and 
 
 The site root serves the Sanctuary Sitting Room. Six gentle guides remain beside it:
 
-- **index.html** — advocate-only Sanctuary Sitting Room at `https://app.onenesswellnesslifestyles.com/` (The Roadmap to Wholeness and Summer). Public share links are `https://app.onenesswellnesslifestyles.com/advocate-sitting-room-test/?ref=<Name>&via=person`. That path opens `/oneness-lifestyles-app/` and keeps `ref`, `via`, and the hash.
+- **index.html** — advocate-only Sanctuary Sitting Room at `https://app.onenesswellnesslifestyles.com/` (The Roadmap to Wholeness and Summer). Personal Invitation Links are `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person`.
 - **breathe.html / move.html / rest.html / meditate.html / visualize.html / nourish.html** — one guide per action. Each page has a photo hero, a short written guide, a "Next" button that loops through its series, and a link back to the root page.
 
 Each guide is built in the same gentle voice: short sentences, present tense, always addressed to you.
