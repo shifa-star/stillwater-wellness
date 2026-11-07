@@ -7,7 +7,7 @@ All notable changes to this project are tracked here. This project follows
 
 - Terms and Conditions page is served at `/terms/` (`https://app.onenesswellnesslifestyles.com/terms/`).
 - Oneness Journey Phase 1 shell is served at `/journey/` (`https://app.onenesswellnesslifestyles.com/journey/`).
-- The Advocate Support Portal is served at `/`. Open Graph, Twitter image, and canonical URLs use `https://app.onenesswellnesslifestyles.com/`. The page holds three doors: The Roadmap to Wholeness, Talk with Summer, and Community. Community opens the Self-Healing Advocates community and the 6 AM Reading and Remedy Circle (the Telegram porch). The page does not show a guest invite line, a public sitting price, or a sitting request.
+- The Advocate Support Portal is served at `/`. Open Graph, Twitter image, and canonical URLs use `https://app.onenesswellnesslifestyles.com/`. The page holds three doors: The Roadmap to Wholeness, Talk with Summer, and Community. Community opens the Self-Healing Advocates community, the Advocates-only Telegram group, and the 6 AM Reading and Remedy Circle (the Telegram porch). The page does not show a guest invite line, a public sitting price, or a sitting request.
 - Personal Invitation Links are `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person`. When `ref` is present, the guest home says "{Name} sent you."
 - `/advocate-sitting-room-test`, `/advocate-sitting-room-test/`, and `/advocate-sitting-room-test/index.html` remain a legacy redirect to `/oneness-lifestyles-app/` and keep the query string and hash. That path is not a share link.
 - `The_Roadmap_to_Wholeness.pdf` is at `/The_Roadmap_to_Wholeness.pdf`. The previous folder path redirects to that file.
