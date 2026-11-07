@@ -38,7 +38,7 @@ Theresa is the name string, matching the usual spelling in the advocate list. Te
 
 ## What the portal holds
 
-The featured download is The Roadmap to Wholeness, the fourteen-page Self-Healing Advocate guide (`The_Roadmap_to_Wholeness.pdf`). Beside it, Summer is a self-healing advocate for skin health questions, proof of lifestyle, and self-healing guidance. **Talk with Summer** opens https://t.me/adaptogentic_bot (`@adaptogentic_bot`). Community holds two links: the Self-Healing Advocates community at https://membership.onenesswellnesslifestyles.com/communities/groups/selfheailngadvocate/home, and the 6 AM Reading and Remedy Circle, the Telegram porch, at https://t.me/+ML3zaAw7J4ZlZjQx.
+The featured download is The Roadmap to Wholeness, the fourteen-page Self-Healing Advocate guide (`The_Roadmap_to_Wholeness.pdf`). Beside it, Summer is a self-healing advocate for skin health questions, proof of lifestyle, and self-healing guidance. **Talk with Summer** opens https://t.me/adaptogentic_bot (`@adaptogentic_bot`). Community holds three links: the Self-Healing Advocates community at https://membership.onenesswellnesslifestyles.com/communities/groups/selfheailngadvocate/home, the Advocates-only Telegram group at https://t.me/+o0aGOVEoX-hhNDRh, and the 6 AM Reading and Remedy Circle, the Telegram porch, at https://t.me/+ML3zaAw7J4ZlZjQx.
 
 The portal does not load the old share-door scripts, so a `ref`, `referrer`, or `from` on `/` does not paint an invite line. When one of those is present on the guest Sanctuary and is not “No one”, that home says “{Name} sent you.”
 
