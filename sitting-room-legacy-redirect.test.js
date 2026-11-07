@@ -50,6 +50,10 @@ assert.ok(rootIndex.includes(">Self-Healing Advocates community</a>"));
 assert.ok(rootIndex.includes("https://t.me/+ML3zaAw7J4ZlZjQx"));
 assert.ok(rootIndex.includes(">6 AM Reading and Remedy Circle</a>"));
 assert.ok(rootIndex.includes("Telegram porch"));
+assert.ok(rootIndex.includes("https://t.me/+o0aGOVEoX-hhNDRh"));
+assert.ok(rootIndex.includes(">Advocates-only Telegram group</a>"));
+assert.ok(rootIndex.indexOf("https://t.me/adaptogentic_bot") < rootIndex.indexOf('id="community-title"'));
+assert.ok(rootIndex.indexOf("https://t.me/+o0aGOVEoX-hhNDRh") > rootIndex.indexOf('id="community-title"'));
 assert.ok(!rootIndex.includes("sitting.js"));
 assert.ok(!rootIndex.includes("tracking.js"));
 assert.ok(!/Sanctuary|Sitting Room|sent you|one hundred|The Circle/i.test(rootIndex));
@@ -82,6 +86,7 @@ assert.ok(guest.includes('id="sent-by"'));
 assert.ok(guest.includes('name + " sent you."'));
 assert.ok(!guest.includes("The Roadmap to Wholeness"));
 assert.ok(!guest.includes("adaptogentic_bot"));
+assert.ok(!guest.includes("o0aGOVEoX-hhNDRh"));
 assert.ok(!guest.includes("github.io"));
 
 ["advocate-sitting-room-test/LINKS.md", "advocate-sitting-room-test/README.md", "README.md", "CHANGELOG.md"].forEach(function (file) {
