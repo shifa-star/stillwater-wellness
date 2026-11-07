@@ -59,26 +59,50 @@ h3 { margin: 0; font-size: 1.1rem; }
 .soft-note { font-size: 0.85rem; color: var(--muted); font-style: italic; border-top: 1px dashed rgba(193, 161, 120, 0.6); padding-top: 0.5rem; margin-top: 0.6rem !important; }
 
 .day-picker { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.45rem; }
-.day-btn { width: 100%; min-height: 64px; appearance: none; border: 1px solid rgba(40, 56, 144, 0.18); background: #fff; border-radius: 12px; cursor: pointer; font: inherit; color: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 0.4rem 0; transition: transform .15s ease, background .15s ease; }
+.day-btn { position: relative; width: 100%; min-height: 64px; appearance: none; border: 1px solid rgba(40, 56, 144, 0.18); background: #fff; border-radius: 12px; cursor: pointer; font: inherit; color: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 0.4rem 0; transition: transform .15s ease, background .15s ease; }
 .day-btn .num { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--deep-blue); line-height: 1; }
 .day-btn .lbl { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .day-btn[aria-current="true"] { background: var(--deep-blue); border-color: var(--deep-blue); transform: translateY(-2px); }
 .day-btn[aria-current="true"] .num, .day-btn[aria-current="true"] .lbl { color: var(--mist); }
 .day-btn.is-today::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--lime-green); margin-top: 3px; }
+.day-btn.is-complete:not([aria-current="true"]) { background: rgba(109, 188, 69, 0.16); border-color: rgba(109, 188, 69, 0.75); }
+.day-btn.is-complete::before { content: "\2713"; position: absolute; top: 3px; right: 4px; font-size: 0.72rem; line-height: 1; font-weight: 700; color: var(--deep-blue); }
+.day-btn[aria-current="true"].is-complete::before { color: #fff; }
+.day-btn.is-ahead:not([aria-current="true"]) { opacity: 0.58; }
 
 .day-card { background: #fff; border-radius: var(--radius); padding: 1.25rem 1.15rem 1.35rem; box-shadow: 0 10px 30px -18px rgba(28, 36, 88, 0.45); border-top: 3px solid var(--sand-gold); outline: none; }
 .day-card .spoke { margin: 0.6rem 0 0; padding: 0.75rem 0.9rem; background: var(--stone); border-radius: 10px; font-family: var(--font-display); }
 .day-card .spoke strong { color: var(--deep-blue); }
 .steps { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.7rem; }
-.step { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.8rem 0.85rem; border: 1px solid rgba(40, 56, 144, 0.12); border-radius: 12px; }
+.step { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.8rem 0.85rem; border: 1px solid rgba(40, 56, 144, 0.12); border-radius: 12px; background: #fff; }
+.step.is-done { background: rgba(109, 188, 69, 0.14); border-color: rgba(109, 188, 69, 0.65); }
 .step-icon { flex: none; width: 2.1rem; height: 2.1rem; border-radius: 50%; display: grid; place-items: center; background: rgba(109, 188, 69, 0.15); color: var(--deep-blue); font-size: 1rem; }
+.step.is-done .step-icon { background: var(--lime-green); color: #fff; }
 .step-body { flex: 1; min-width: 0; }
 .step-body p { margin: 0.15rem 0 0.5rem; color: var(--muted); font-size: 0.9rem; }
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0.55rem 1.1rem; border-radius: 999px; font: 600 0.92rem var(--font-ui); text-decoration: none; cursor: pointer; border: 1px solid var(--deep-blue); }
 .btn-primary { background: var(--deep-blue); color: var(--mist); }
 .btn-ghost { background: transparent; color: var(--deep-blue); }
 .btn[disabled] { opacity: 0.5; cursor: not-allowed; }
-.reflection { margin: 1rem 0 0; padding-top: 0.85rem; border-top: 1px solid rgba(193, 161, 120, 0.5); font-family: var(--font-display); font-style: italic; color: var(--ink); }
+.progress-line { margin: 0.7rem 0 0; font-size: 0.85rem; font-weight: 600; color: var(--deep-blue); }
+.ahead-note { margin: 0.45rem 0 0; font-size: 0.85rem; color: var(--muted); font-style: italic; }
+.reflection { margin: 0.15rem 0 0; font-family: var(--font-display); font-style: italic; color: var(--ink); }
+.mark.static { cursor: default; }
+.mark .box.on { background: var(--lime-green); border-color: var(--lime-green); }
+.mark .box.on::after { content: ""; width: 0.32rem; height: 0.62rem; border: solid #fff; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(-1px, -1px); }
+.field { width: 100%; min-height: 7rem; margin-top: 0.65rem; padding: 0.75rem 0.85rem; border-radius: 12px; border: 1px solid rgba(40, 56, 144, 0.25); font: inherit; color: var(--ink); background: var(--mist); resize: vertical; }
+.field:focus { outline: 3px solid var(--lime-green); outline-offset: 2px; }
+.reflect-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.65rem; margin-top: 0.65rem; }
+.save-state { margin: 0; min-height: 1.2em; }
+.mark { position: relative; display: flex; align-items: center; gap: 0.55rem; min-height: 44px; margin-top: 0.45rem; cursor: pointer; font-size: 0.85rem; font-weight: 600; color: var(--deep-blue); }
+.mark input { position: absolute; opacity: 0; width: 1.35rem; height: 1.35rem; margin: 0; }
+.mark .box { width: 1.35rem; height: 1.35rem; border: 2px solid var(--deep-blue); border-radius: 6px; display: grid; place-items: center; flex: none; background: #fff; }
+.mark input:checked + .box { background: var(--lime-green); border-color: var(--lime-green); }
+.mark input:checked + .box::after { content: ""; width: 0.32rem; height: 0.62rem; border: solid #fff; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg) translate(-1px, -1px); }
+.mark input:focus-visible + .box { outline: 3px solid var(--lime-green); outline-offset: 2px; }
+.feel { margin-top: 1rem; padding: 1rem 1rem 1.05rem; border-radius: 12px; background: var(--stone); }
+.feel h3 { font-size: 1.25rem; }
+.feel .field { background: #fff; }
 .next-door { margin-top: 0.9rem; }
 
 .signin { padding: 1.1rem; border-radius: var(--radius); border: 1px dashed rgba(40, 56, 144, 0.3); background: rgba(255, 255, 255, 0.6); }

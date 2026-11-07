@@ -5,6 +5,7 @@ All notable changes to this project are tracked here. This project follows
 
 ## [Unreleased]
 
+- Oneness Journey Phase 2 at `/journey/` saves local progress and the evening reflection per lane and cohort, and asks "How did this feel?" when Day 5 is complete.
 - Terms and Conditions page is served at `/terms/` (`https://app.onenesswellnesslifestyles.com/terms/`).
 - Oneness Journey Phase 1 shell is served at `/journey/` (`https://app.onenesswellnesslifestyles.com/journey/`).
 - The Advocate Support Portal is served at `/`. Open Graph, Twitter image, and canonical URLs use `https://app.onenesswellnesslifestyles.com/`. The page holds three doors: The Roadmap to Wholeness, Talk with Summer, and Community. Community opens the Self-Healing Advocates community, the Advocates-only Telegram group, and the 6 AM Reading and Remedy Circle (the Telegram porch). The page does not show a guest invite line, a public sitting price, or a sitting request.
