@@ -1,70 +1,52 @@
-# Sanctuary Sitting Room
+# Advocate Support Portal
 
-Plain HTML, CSS, and JavaScript for the Oneness Wellness Sanctuary Sitting Room. The room is served at the site root. This folder's `index.html` redirects there.
+The Advocate Support Portal is served at the site root. It holds three doors: The Roadmap to Wholeness, Talk with Summer, and Community. It does not offer a public sitting, sitting prices, or a sitting request. Personal Invitation Links do not open that page.
+
+This folder is legacy only, for links already sent. Its `index.html` still redirects the bare folder, a trailing slash, and `index.html` to `/oneness-lifestyles-app/` and keeps the full query string and hash. Do not share this folder. The Personal Invitation Link is the guest Sanctuary. The host stays `https://app.onenesswellnesslifestyles.com`.
 
 ## Pages URLs
+
+Advocate Support Portal (not a share link):
 
 - https://app.onenesswellnesslifestyles.com/
 - https://app.onenesswellnesslifestyles.com/index.html
 
-`/advocate-sitting-room-test/` and `/advocate-sitting-room-test/index.html` redirect to the same root path and keep `ref`, `via`, and the hash. Styles, scripts, the favicon, the header mark, and `og.jpg` use paths relative to the root, so both root URLs load the same room. The share image is:
+Personal Invitation Link:
+
+- https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person
+
+Styles, the favicon, the header mark, and `og.jpg` for the portal use paths relative to the root. The share image is:
 
 `https://app.onenesswellnesslifestyles.com/og.jpg`
 
-## Advocate test links
+## Personal Invitation Links
 
-Each link uses `?ref=<Name>&via=person`. The full list is also in [LINKS.md](LINKS.md).
+Each link is `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=<Name>&via=person`. The full list is also in [LINKS.md](LINKS.md).
 
 Theresa is the name string, matching the usual spelling in the advocate list. Teresa Borja and Theresa Borja are the same advocate.
 
-- [Anton](https://app.onenesswellnesslifestyles.com/?ref=Anton&via=person)
-- [Felicia](https://app.onenesswellnesslifestyles.com/?ref=Felicia&via=person)
-- [Floyd](https://app.onenesswellnesslifestyles.com/?ref=Floyd&via=person)
-- [Melinda](https://app.onenesswellnesslifestyles.com/?ref=Melinda&via=person)
-- [Miniimah](https://app.onenesswellnesslifestyles.com/?ref=Miniimah&via=person)
-- [Qaedah](https://app.onenesswellnesslifestyles.com/?ref=Qaedah&via=person)
-- [Rashidi](https://app.onenesswellnesslifestyles.com/?ref=Rashidi&via=person)
-- [Rita](https://app.onenesswellnesslifestyles.com/?ref=Rita&via=person)
-- [Theresa](https://app.onenesswellnesslifestyles.com/?ref=Theresa&via=person) (Teresa Borja / Theresa Borja)
-- [Wanda](https://app.onenesswellnesslifestyles.com/?ref=Wanda&via=person)
+- [Anton](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Anton&via=person)
+- [Felicia](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Felicia&via=person)
+- [Floyd](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Floyd&via=person)
+- [Melinda](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Melinda&via=person)
+- [Miniimah](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Miniimah&via=person)
+- [Qaedah](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Qaedah&via=person)
+- [Rashidi](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Rashidi&via=person)
+- [Rita](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Rita&via=person)
+- [Theresa](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Theresa&via=person) (Teresa Borja / Theresa Borja)
+- [Wanda](https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Wanda&via=person)
 
-## Request flow
+## What the portal holds
 
-Landing copy: Wholeness Remembered / Aloha, beloved. Under that greeting, the featured download is The Roadmap to Wholeness, the fourteen-page Self-Healing Advocate guide (`The_Roadmap_to_Wholeness.pdf`). Beside it, Summer is a self-healing advocate for skin health questions, proof of lifestyle, and self-healing guidance. **Talk with Summer** opens https://t.me/adaptogentic_bot (`@adaptogentic_bot`). The Sanctuary is open. The Circle is not. A public sitting is one hour, live or virtual. First sitting, one hundred dollars. Follow-up, seventy-five. The Circle is by invitation and is not offered here.
+The featured download is The Roadmap to Wholeness, the fourteen-page Self-Healing Advocate guide (`The_Roadmap_to_Wholeness.pdf`). Beside it, Summer is a self-healing advocate for skin health questions, proof of lifestyle, and self-healing guidance. **Talk with Summer** opens https://t.me/adaptogentic_bot (`@adaptogentic_bot`). Community holds three links: the Self-Healing Advocates community at https://membership.onenesswellnesslifestyles.com/communities/groups/selfheailngadvocate/home, the Advocates-only Telegram group at https://t.me/+o0aGOVEoX-hhNDRh, and the 6 AM Reading and Remedy Circle, the Telegram porch, at https://t.me/+ML3zaAw7J4ZlZjQx.
 
-When `ref`, `referrer`, or `from` is present and is not “No one”, the landing step says “{Name} sent you.” `via` or `how` pre-fills how the room was found: person, message, calendar, search or looked, unsure.
-
-The request then asks for the felt sense, what has been tried, what a shift would mean, who sent the visitor and how they found the room, then name, a way to reach them, live or virtual, and an optional note. The held letter ends with **Send request**, which opens:
-
-https://link.onenesswellnesslifestyles.com/widget/bookings/owlhcentersos
-
-A draft is kept in `localStorage` under `oneness-sitting-request`:
-
-```json
-{
-  "step": "stone",
-  "request": {
-    "sense": "",
-    "body": "",
-    "tried": "",
-    "shift": "",
-    "name": "",
-    "reach": "",
-    "mode": "",
-    "note": "",
-    "referrer": "",
-    "found": ""
-  }
-}
-```
-
-`step` is one of `stone`, `body`, `tried`, `shift`, `source`, `reach`, `held`. An empty landing step removes the key. Release clears the words from this device and keeps the link’s referrer, if one was in the address.
+The portal does not load the old share-door scripts, so a `ref`, `referrer`, or `from` on `/` does not paint an invite line. When one of those is present on the guest Sanctuary and is not “No one”, that home says “{Name} sent you.”
 
 ## Assets
 
 - `favicon.svg` — favicon.
 - `icon.svg`, `icon-192.png`, `icon-512.png` — copied from `oneness-lifestyles-app/`.
-- The header seal is the existing Oneness Wellness logo, `instagram/cards/breathe_logo.png`, shown small above Sanctuary. This repository has no `seal.png` and no `site.json`.
+- The header seal is the existing Oneness Wellness logo, `instagram/cards/breathe_logo.png`, shown small above Advocate Support. This repository has no `seal.png` and no `site.json`.
 - `og.jpg` — 1200×630 share image.
 - `The_Roadmap_to_Wholeness.pdf` — the fourteen-page guide at the site root. A browser opening the previous folder path is sent to that file:
 
