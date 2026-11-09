@@ -1,7 +1,7 @@
 /* Oneness Journey day engine: Hawaii cohort calendar, lanes, reflections.
-   Account sign-in stays off until auth-config.js enables a configured API.
-   While it is off, marks stay on this device. Signed-in marks go to the
-   member API and are not written into the device progress key. */
+   Account sign-in stays off until auth-config.js is enabled with a publishable
+   key. While it is off, marks stay on this device. Signed-in marks go to
+   Supabase and are not written into the device progress key. */
 (function () {
   "use strict";
   var cfg = window.ONENESS_JOURNEY_CONFIG;
@@ -24,7 +24,9 @@
   var deviceNote = false;
   var confirmError = false;
   var signOutFailed = false;
-  var localError = false;
+  var signInError = false;
+  var linkSent = false;
+  var enrollmentBlocked = false;
   var lastAcked = null;
   var total = cfg.days.length;
   var todayYmd = P.dateInZone(new Date(), cfg.cohort.timeZone);
@@ -147,11 +149,7 @@
 
   function persistenceLine() {
     if (!Account || !Account.persistenceLine) return "Your marks and words stay on this device.";
-    var mode = "signedOut";
-    if (!account.enabled) mode = "off";
-    else if (suppressDevice && !(account.signedIn && account.signedIn())) mode = "unreachable";
-    else if (account.signedIn && account.signedIn()) mode = "account";
-    return Account.persistenceLine({ enabled: account.enabled === true, mode: mode });
+    return Account.persistenceLine({ enabled: account.enabled === true, mode: panelMode() });
   }
 
   function clearDraft(kind) {
@@ -437,8 +435,10 @@
 
   function panelMode() {
     if (!account.enabled) return "off";
+    if (account.signedIn && account.signedIn() && enrollmentBlocked) return "enrollment";
     if (account.signedIn && account.signedIn()) return "account";
     if (suppressDevice) return "unreachable";
+    if (linkSent) return "linkSent";
     return "signedOut";
   }
 
@@ -450,7 +450,7 @@
       deviceNote: deviceNote,
       confirmError: confirmError,
       signOutFailed: signOutFailed,
-      localError: localError
+      signInError: signInError
     }));
     if (model.kind === "device-only") return;
     var panel = document.getElementById("account-panel");
@@ -462,20 +462,22 @@
     panel.appendChild(title);
     panel.appendChild(el("p", "muted", model.copy));
     if (model.note) panel.appendChild(el("p", "fine", model.note));
-    if (model.kind === "signed-out" && model.signInUrl) {
-      var link = el("a", "btn btn-primary", "Sign in");
-      link.id = "account-signin";
-      link.href = model.signInUrl;
-      panel.appendChild(link);
-    }
-    if (model.kind === "local-demo" && model.buttonLabel) {
-      ["member-a", "member-b"].forEach(function (name) {
-        var button = el("button", "btn btn-primary", model.buttonLabel(name));
-        button.type = "button";
-        button.setAttribute("data-test-member", name);
-        button.addEventListener("click", function () { signInLocal(name, button); });
-        panel.appendChild(button);
-      });
+    if (model.kind === "signed-out") {
+      var form = el("form", "signin-form");
+      form.addEventListener("submit", onEmailSignIn);
+      var input = document.createElement("input");
+      input.id = "account-email";
+      input.type = "email";
+      input.required = true;
+      input.autocomplete = "email";
+      input.placeholder = "you@example.com";
+      input.setAttribute("aria-label", "Enrollment email");
+      var send = el("button", "btn btn-primary", "Email me a sign-in link");
+      send.type = "submit";
+      send.id = "account-email-send";
+      form.appendChild(input);
+      form.appendChild(send);
+      panel.appendChild(form);
     }
     if (model.kind === "signed-in") {
       var out = el("button", "btn btn-ghost", "Sign out");
@@ -529,8 +531,9 @@
       });
       record = view.record;
       lastAcked = view.record;
-      deviceNote = loaded.deviceNote === true && view.source === "account";
-      accountPhase = loaded.error ? "error" : "saved";
+      deviceNote = loaded.deviceNote === true && view.source === "account" && loaded.reason !== "enrollment";
+      enrollmentBlocked = loaded.reason === "enrollment";
+      accountPhase = loaded.error && loaded.reason !== "enrollment" ? "error" : "saved";
       confirmError = false;
       paintAccount();
       renderDay(current, { skipCapture: true });
@@ -555,26 +558,25 @@
     showCurrentRecord();
   }
 
-  function signInLocal(name, button) {
-    if (!account.signInLocal) return;
+  function onEmailSignIn(event) {
+    event.preventDefault();
+    if (!account.signInWithEmail) return;
     captureDrafts();
-    button.disabled = true;
-    localError = false;
-    account.signInLocal(name).then(function (res) {
-      button.disabled = false;
-      if (!res.ok) {
-        localError = true;
+    var input = document.getElementById("account-email");
+    var button = document.getElementById("account-email-send");
+    if (button) button.disabled = true;
+    signInError = false;
+    account.signInWithEmail(input ? input.value : "").then(function (res) {
+      if (button) button.disabled = false;
+      if (!res || !res.ok) {
+        signInError = true;
+        linkSent = false;
         paintAccount();
         return;
       }
-      return account.boot().then(function (result) {
-        localError = false;
-        suppressDevice = result.mode === "unreachable";
-        confirmError = false;
-        signOutFailed = false;
-        paintAccount();
-        setLane(lane, { skipCapture: true });
-      });
+      signInError = false;
+      linkSent = true;
+      paintAccount();
     });
   }
 
@@ -592,7 +594,9 @@
       confirmError = false;
       deviceNote = false;
       suppressDevice = false;
-      localError = false;
+      signInError = false;
+      linkSent = false;
+      enrollmentBlocked = false;
       lastAcked = null;
       dropAccountDrafts();
       paintAccount();

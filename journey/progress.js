@@ -1,6 +1,6 @@
 /* Oneness Journey progress store (Phase 2).
    Device store only. The key is lane and cohort, never a member.
-   Signed-in progress is stored by the member API and must not be written
+   Signed-in progress is stored in Supabase and must not be written
    with save() or window.OnenessJourneySync. That hook is only for this
    device record. Device notes are not copied into an account.
 

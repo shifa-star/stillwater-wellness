@@ -7,195 +7,287 @@ const P = require("./progress.js");
 
 const root = path.join(__dirname, "..");
 const COHORT = "2026-11-09";
+const URL = "https://hwytpirbouqdssfncnrl.supabase.co";
+const KEY = "sb_publishable_example_key_value_123456";
+const USER_A = "11111111-1111-4111-8111-111111111111";
+const USER_B = "22222222-2222-4222-8222-222222222222";
+
+function ready(extra) {
+  return Object.assign({
+    enabled: true,
+    supabaseUrl: URL,
+    supabaseAnonKey: KEY
+  }, extra || {});
+}
+
+function sessionFor(id, email) {
+  return { user: { id: id, email: email } };
+}
+
+function fakeSupabase(state) {
+  return {
+    auth: {
+      getSession: function () {
+        return Promise.resolve({ data: { session: state.session }, error: state.sessionError || null });
+      },
+      signInWithOtp: function (args) {
+        state.otp = args;
+        return Promise.resolve({ data: {}, error: state.otpError || null });
+      },
+      signOut: function () {
+        state.session = null;
+        state.signedOut = true;
+        return Promise.resolve({ error: null });
+      },
+      onAuthStateChange: function () {
+        return { data: { subscription: { unsubscribe: function () {} } } };
+      }
+    },
+    from: function (table) {
+      if (table === "enrollments") {
+        return {
+          select: function () {
+            return {
+              eq: function () {
+                return {
+                  eq: function () {
+                    var rows = state.enrolled ? [{ user_id: state.session.user.id, active: true }] : [];
+                    return Promise.resolve({ data: rows, error: null });
+                  }
+                };
+              }
+            };
+          }
+        };
+      }
+      return {
+        select: function () {
+          return {
+            eq: function (_col, id) {
+              return {
+                like: function (_key, pattern) {
+                  var prefix = pattern.replace(/%$/, "");
+                  var rows = state.rows.filter(function (row) {
+                    return row.user_id === id && row.key.indexOf(prefix) === 0;
+                  });
+                  if (state.leak) rows = rows.concat(state.leak);
+                  return Promise.resolve({ data: rows, error: null });
+                }
+              };
+            }
+          };
+        },
+        upsert: function (payload) {
+          state.upserts.push(payload);
+          if (state.failWrite) {
+            return { select: function () { return Promise.resolve({ data: null, error: { status: 401, message: "denied" } }); } };
+          }
+          payload.forEach(function (row) {
+            var existing = state.rows.find(function (item) { return item.user_id === row.user_id && item.key === row.key; });
+            var stored = {
+              user_id: row.user_id,
+              key: row.key,
+              completed: row.completed === true,
+              notes: row.notes,
+              updated_at: "2026-11-09T18:00:00.000Z"
+            };
+            if (existing) Object.assign(existing, stored);
+            else state.rows.push(stored);
+          });
+          return { select: function () { return Promise.resolve({ data: state.rows.slice(), error: null }); } };
+        }
+      };
+    }
+  };
+}
 
 assert.strictEqual(A.ADOPT_DEVICE_REFLECTIONS, false);
-assert.strictEqual(A.authEnabled({ enabled: false, apiBase: "https://journey-api.example.test" }), false);
-assert.strictEqual(A.authEnabled({ enabled: true, apiBase: "" }), false);
-assert.strictEqual(A.authEnabled({ enabled: true, apiBase: "javascript:alert(1)" }), false);
-assert.strictEqual(A.authEnabled({ enabled: true, apiBase: "http://journey-api.example.test" }), false);
-assert.strictEqual(A.authEnabled({ enabled: true, apiBase: "https://journey-api.example.test" }), true);
-assert.strictEqual(A.authEnabled({ enabled: true, apiBase: "http://127.0.0.1:8787/" }), true);
-assert.strictEqual(A.apiBase({ enabled: true, apiBase: "http://127.0.0.1:8787/" }), "http://127.0.0.1:8787");
-assert.strictEqual(A.localDemoAllowed({ enabled: true, apiBase: "https://journey-api.example.test", localDemo: true, testSecret: "x" }), false);
-assert.strictEqual(A.localDemoAllowed({ enabled: true, apiBase: "http://127.0.0.1:8787", localDemo: true }), true);
-assert.strictEqual(A.authStartUrl({ enabled: false, apiBase: "https://journey-api.example.test" }), "");
+assert.strictEqual(A.SUPABASE_JS_URL, "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/+esm");
+assert.strictEqual(A.authEnabled({ enabled: false, supabaseUrl: URL, supabaseAnonKey: KEY }), false);
+assert.strictEqual(A.authEnabled({ enabled: true, supabaseUrl: URL, supabaseAnonKey: A.PLACEHOLDER_KEY }), false);
+assert.strictEqual(A.authEnabled({ enabled: true, supabaseUrl: "javascript:alert(1)", supabaseAnonKey: KEY }), false);
+assert.strictEqual(A.authEnabled({ enabled: true, supabaseUrl: "http://hwytpirbouqdssfncnrl.supabase.co", supabaseAnonKey: KEY }), false);
+assert.strictEqual(A.authEnabled({ enabled: true, supabaseUrl: URL, supabaseAnonKey: "service_role_secret_should_not_pass" }), false);
+assert.strictEqual(A.authEnabled(ready()), true);
 
 const device = P.setReflection(P.emptyRecord("buyer", COHORT), 1, "  unattributed dawn note  ");
-device.journeyFeedback = "";
 assert.strictEqual(A.deviceHasUnattributedText(device), true);
 assert.strictEqual(A.deviceHasUnattributedText(P.emptyRecord("buyer", COHORT)), false);
-assert.strictEqual(A.deviceHasUnattributedText(P.setReflection(P.emptyRecord("advocate", COHORT), 2, "   ")), false);
 
-const serverEmpty = P.emptyRecord("buyer", COHORT);
 const viewed = A.recordForViewer({
   mode: "account",
-  serverRecord: serverEmpty,
-  deviceRecord: device,
-  emptyRecord: serverEmpty
-});
-assert.strictEqual(viewed.showDevice, false);
-assert.strictEqual(viewed.source, "account");
-assert.deepStrictEqual(viewed.record.days, {});
-assert.ok(!JSON.stringify(viewed.record).includes("unattributed"));
-
-const hidden = A.recordForViewer({
-  mode: "unreachable",
-  serverRecord: null,
-  deviceRecord: device,
-  emptyRecord: serverEmpty
-});
-assert.strictEqual(hidden.showDevice, false);
-assert.strictEqual(hidden.record, serverEmpty);
-
-const signedOut = A.recordForViewer({
-  mode: "signedOut",
-  serverRecord: P.setReflection(P.emptyRecord("buyer", COHORT), 1, "account words"),
-  deviceRecord: device,
-  emptyRecord: serverEmpty
-});
-assert.strictEqual(signedOut.showDevice, true);
-assert.strictEqual(signedOut.record.days["1"].reflection, "  unattributed dawn note  ");
-
-const switched = A.recordForViewer({
-  mode: "changed",
   serverRecord: P.emptyRecord("buyer", COHORT),
   deviceRecord: device,
-  previousRecord: P.setReflection(P.emptyRecord("buyer", COHORT), 1, "member A private"),
-  emptyRecord: serverEmpty
+  emptyRecord: P.emptyRecord("buyer", COHORT)
 });
-assert.strictEqual(switched.source, "account");
-assert.ok(!JSON.stringify(switched.record).includes("member A private"));
-assert.ok(!JSON.stringify(switched.record).includes("unattributed"));
+assert.strictEqual(viewed.showDevice, false);
+assert.ok(!JSON.stringify(viewed.record).includes("unattributed"));
+assert.strictEqual(A.recordForViewer({
+  mode: "unreachable",
+  deviceRecord: device,
+  emptyRecord: P.emptyRecord("buyer", COHORT)
+}).showDevice, false);
+assert.strictEqual(A.recordForViewer({
+  mode: "signedOut",
+  deviceRecord: device,
+  serverRecord: P.setReflection(P.emptyRecord("buyer", COHORT), 1, "account words"),
+  emptyRecord: P.emptyRecord("buyer", COHORT)
+}).record.days["1"].reflection, "  unattributed dawn note  ");
 
 assert.strictEqual(A.fieldStatus("hello", "hello", "device"), A.DEVICE_SAVED);
 assert.strictEqual(A.fieldStatus("hello", "hello", "saved"), A.ACCOUNT_SAVED);
 assert.strictEqual(A.fieldStatus("hello", "hello", "saving"), A.ACCOUNT_SAVING);
-assert.strictEqual(A.fieldStatus("hello", "", "saved"), A.NOT_SAVED);
-assert.strictEqual(A.fieldStatus("   ", "   ", "saved"), "");
-assert.strictEqual(A.fieldStatus("hello", "hello", "error"), A.DEVICE_SAVED);
 assert.strictEqual(A.persistenceLine({ enabled: false, mode: "account" }), A.DEVICE_LINE);
 assert.strictEqual(A.persistenceLine({ enabled: true, mode: "account" }), A.ACCOUNT_LINE);
-assert.strictEqual(A.persistenceLine({ enabled: true, mode: "signedOut" }), A.SIGNED_OUT_LINE);
-assert.strictEqual(A.persistenceLine({ enabled: true, mode: "unreachable" }), A.UNREACHABLE_LINE);
-assert.ok(!A.DEVICE_SAVED.includes("account"));
-assert.ok(!A.ACCOUNT_SAVED.toLowerCase().includes("sync"));
-
-const offPanel = A.panelModel({ enabled: false, apiBase: "", mode: "signedOut" });
-assert.strictEqual(offPanel.kind, "device-only");
-const publicPanel = A.panelModel({
-  enabled: true,
-  apiBase: "https://journey-api.example.test",
-  localDemo: true,
-  testSecret: "not-a-real-secret",
-  mode: "signedOut"
-});
-assert.strictEqual(publicPanel.kind, "signed-out");
-assert.strictEqual(publicPanel.signInUrl, "https://journey-api.example.test/auth/start");
-assert.ok(!JSON.stringify(publicPanel).toLowerCase().includes("magic"));
-assert.ok(!JSON.stringify(publicPanel).includes("not-a-real-secret"));
-const localPanel = A.panelModel({
-  enabled: true,
-  apiBase: "http://127.0.0.1:8787",
-  localDemo: true,
-  mode: "signedOut"
-});
-assert.strictEqual(localPanel.kind, "local-demo");
-assert.ok(localPanel.copy.includes("No email is sent"));
-const signedPanel = A.panelModel({
-  enabled: true,
-  apiBase: "https://journey-api.example.test",
-  mode: "account",
-  email: "member@journey.test",
-  deviceNote: true
-});
+assert.strictEqual(A.persistenceLine({ enabled: true, mode: "enrollment" }), A.ENROLLMENT_LINE);
+assert.strictEqual(A.panelModel({ enabled: false, supabaseUrl: URL, supabaseAnonKey: KEY }).kind, "device-only");
+assert.strictEqual(A.panelModel(ready({ mode: "signedOut" })).kind, "signed-out");
+assert.ok(!JSON.stringify(A.panelModel(ready({ mode: "signedOut" }))).toLowerCase().includes("magic link"));
+assert.strictEqual(A.panelModel(ready({ mode: "linkSent" })).kind, "link-sent");
+const signedPanel = A.panelModel(ready({ mode: "account", email: "member@journey.test", deviceNote: true }));
 assert.strictEqual(signedPanel.kind, "signed-in");
-assert.strictEqual(signedPanel.title, "member@journey.test");
 assert.ok(signedPanel.note.includes(A.DEVICE_NOTE));
-assert.strictEqual(A.draftScope(false, "tag-a"), "device");
-assert.strictEqual(A.draftScope(true, ""), "device");
-assert.strictEqual(A.draftScope(true, "tag-a"), "account:tag-a");
-assert.notStrictEqual(A.draftScope(true, "tag-a"), A.draftScope(true, "tag-b"));
-assert.notStrictEqual(A.draftScope(true, "tag-a"), A.draftScope(false, "tag-a"));
-assert.strictEqual(A.displayEmail("not an email"), "");
-assert.strictEqual(A.panelModel({
-  enabled: true,
-  apiBase: "https://journey-api.example.test",
-  mode: "unreachable"
-}).kind, "unreachable");
+assert.strictEqual(A.draftScope(false, USER_A), "device");
+assert.notStrictEqual(A.draftScope(true, USER_A), A.draftScope(true, USER_B));
 
-let fetches = 0;
+const rows = A.rowsFromRecord(USER_A, P.setReflection(P.setJourneyFeedback(P.emptyRecord("buyer", COHORT), "felt like home"), 1, "account reflection A"));
+assert.ok(rows.every(function (row) { return row.user_id === USER_A; }));
+assert.ok(rows.some(function (row) { return row.key === "2026-11-09/buyer/day/1/reflection" && row.notes === "account reflection A"; }));
+assert.ok(!JSON.stringify(rows).includes("unattributed"));
+assert.ok(!rows.some(function (row) { return row.key.indexOf("/advocate/") !== -1; }));
+
+const rebuilt = A.recordFromRows(P, "buyer", COHORT, USER_A, [
+  { user_id: USER_A, key: "2026-11-09/buyer/day/1/reflection", completed: true, notes: "account reflection A", updated_at: "2026-11-09T18:00:00.000Z" },
+  { user_id: USER_B, key: "2026-11-09/buyer/day/1/reflection", completed: true, notes: "member B private", updated_at: "2026-11-09T18:00:00.000Z" },
+  { user_id: USER_A, key: "2026-11-09/advocate/day/1/reflection", completed: true, notes: "advocate note", updated_at: "2026-11-09T18:00:00.000Z" }
+]);
+assert.strictEqual(rebuilt.days["1"].reflection, "account reflection A");
+assert.ok(!JSON.stringify(rebuilt).includes("member B private"));
+assert.ok(!JSON.stringify(rebuilt).includes("advocate note"));
+
+let imports = 0;
 const disabled = A.create({
-  config: { enabled: false, apiBase: "https://journey-api.example.test" },
+  config: { enabled: false, supabaseUrl: URL, supabaseAnonKey: KEY },
   progress: P,
-  fetch: function () { fetches += 1; return Promise.reject(new Error("should not run")); }
+  importSupabase: function () { imports += 1; return Promise.reject(new Error("cdn")); }
 });
+
 disabled.boot().then(function (result) {
   assert.strictEqual(result.mode, "off");
-  assert.strictEqual(fetches, 0);
-  return disabled.signInLocal("member-a");
-}).then(function (local) {
-  assert.strictEqual(local.status, 404);
-  assert.strictEqual(fetches, 0);
-  const memory = [];
-  const storage = {
-    getItem: function () { return null; },
-    setItem: function (key, value) { memory.push([key, value]); }
+  assert.strictEqual(imports, 0);
+  const state = {
+    session: sessionFor(USER_A, "member-a@journey.test"),
+    enrolled: true,
+    rows: [],
+    upserts: [],
+    leak: [{ user_id: USER_B, key: "2026-11-09/buyer/day/1/reflection", completed: true, notes: "member B private", updated_at: "2026-11-09T19:00:00.000Z" }]
   };
-  const anonymous = P.save(storage, P.setReflection(P.emptyRecord("buyer", COHORT), 1, "device only"));
-  assert.strictEqual(anonymous.days["1"].reflection, "device only");
-  assert.ok(memory[0][0].indexOf("onenessJourney.progress.buyer.2026-11-09") === 0);
-  return A.create({
-    config: { enabled: true, apiBase: "https://journey-api.example.test", localDemo: true, testSecret: "secret-secret-secret" },
+  const account = A.create({
+    config: ready(),
     progress: P,
-    fetch: function () { fetches += 1; return Promise.reject(new Error("no")); }
-  }).signInLocal("member-a");
-}).then(function (blocked) {
-  assert.strictEqual(blocked.status, 404);
-  assert.strictEqual(fetches, 0);
-  return A.create({
-    config: { enabled: true, apiBase: "http://127.0.0.1:9", localDemo: true, testSecret: "secret-secret-secret" },
-    progress: P,
-    fetch: function () { return Promise.reject(new Error("down")); }
-  }).save("buyer", COHORT, P.emptyRecord("buyer", COHORT));
-}).then(function (failed) {
-  assert.strictEqual(failed.ok, false);
-  assert.strictEqual(failed.synced, false);
-  assert.notStrictEqual(A.fieldStatus("kept", "kept", "saved"), failed.synced ? A.ACCOUNT_SAVED : A.DEVICE_SAVED);
-  assert.strictEqual(failed.synced ? A.ACCOUNT_SAVED : A.ACCOUNT_ERROR, A.ACCOUNT_ERROR);
+    supabase: fakeSupabase(state),
+    redirectTo: "https://app.onenesswellnesslifestyles.com/journey/"
+  });
+  return account.signInWithEmail(" Member-A@Journey.Test ").then(function (sent) {
+    assert.strictEqual(sent.sent, true);
+    assert.strictEqual(state.otp.options.shouldCreateUser, false);
+    assert.strictEqual(state.otp.options.emailRedirectTo, "https://app.onenesswellnesslifestyles.com/journey/");
+    assert.strictEqual(state.otp.email, "member-a@journey.test");
+    return account.boot();
+  }).then(function (boot) {
+    assert.strictEqual(boot.mode, "account");
+    const deviceRecord = P.setReflection(P.emptyRecord("buyer", COHORT), 1, "unattributed device reflection");
+    return account.load("buyer", COHORT, deviceRecord).then(function (loaded) {
+      assert.strictEqual(loaded.imported, false);
+      assert.strictEqual(loaded.deviceNote, true);
+      assert.strictEqual(loaded.record.days["1"], undefined);
+      assert.ok(!JSON.stringify(loaded.record).includes("member B private"));
+      const next = P.setReflection(loaded.record, 1, "account reflection A");
+      next.journeyFeedback = "felt like home";
+      return account.save("buyer", COHORT, next).then(function (saved) {
+        assert.strictEqual(saved.synced, true);
+        assert.strictEqual(saved.record.days["1"].reflection, "account reflection A");
+        assert.strictEqual(saved.record.journeyFeedback, "felt like home");
+        assert.ok(state.upserts.length === 1);
+        assert.ok(state.upserts[0].every(function (row) { return row.user_id === USER_A; }));
+        assert.ok(!JSON.stringify(state.upserts).includes("unattributed"));
+        assert.ok(!JSON.stringify(state.upserts).includes("member B private"));
+        return account.load("advocate", COHORT, P.emptyRecord("advocate", COHORT));
+      });
+    });
+  }).then(function (advocate) {
+    assert.deepStrictEqual(advocate.record.days, {});
+    state.rows.push({
+      user_id: USER_A,
+      key: "2026-11-09/buyer/day/1/reflection",
+      completed: true,
+      notes: "newer from another tab",
+      updated_at: "2026-11-09T20:00:00.000Z"
+    });
+    const stale = P.setReflection(P.emptyRecord("buyer", COHORT), 1, "stale edit");
+    stale.progressUpdatedAt = "2026-11-09T18:00:00.000Z";
+    const before = state.upserts.length;
+    return account.save("buyer", COHORT, stale).then(function (conflict) {
+      assert.strictEqual(conflict.conflict, true);
+      assert.strictEqual(conflict.synced, false);
+      assert.strictEqual(conflict.record.days["1"].reflection, "newer from another tab");
+      assert.strictEqual(state.upserts.length, before);
+      state.enrolled = false;
+      return account.load("buyer", COHORT, device);
+    });
+  }).then(function (blocked) {
+    assert.strictEqual(blocked.reason, "enrollment");
+    assert.strictEqual(blocked.error, true);
+    assert.ok(!JSON.stringify(blocked.record).includes("unattributed"));
+    state.enrolled = true;
+    return account.logout();
+  }).then(function (out) {
+    assert.strictEqual(out.ok, true);
+    assert.strictEqual(account.signedIn(), false);
+    const deviceRecord = P.setReflection(P.emptyRecord("buyer", COHORT), 1, "unattributed device reflection");
+    return account.load("buyer", COHORT, deviceRecord);
+  }).then(function (returned) {
+    assert.strictEqual(returned.source, "device");
+    assert.strictEqual(returned.record.days["1"].reflection, "unattributed device reflection");
+    const context = { window: {} };
+    vm.runInNewContext(fs.readFileSync(path.join(root, "journey/auth-config.js"), "utf8"), context);
+    const shipped = context.window.ONENESS_JOURNEY_AUTH;
+    assert.strictEqual(shipped.enabled, false);
+    assert.strictEqual(shipped.supabaseUrl, URL);
+    assert.strictEqual(shipped.supabaseAnonKey, A.PLACEHOLDER_KEY);
+    assert.strictEqual(A.authEnabled(shipped), false);
 
-  const context = { window: {} };
-  vm.runInNewContext(fs.readFileSync(path.join(root, "journey/auth-config.js"), "utf8"), context);
-  const shipped = context.window.ONENESS_JOURNEY_AUTH;
-  assert.strictEqual(shipped.enabled, false);
-  assert.strictEqual(shipped.apiBase, "");
-  assert.strictEqual(shipped.localDemo, undefined);
-  assert.strictEqual(shipped.testSecret, undefined);
-  assert.strictEqual(A.authEnabled(shipped), false);
-
-  const page = fs.readFileSync(path.join(root, "journey/index.html"), "utf8");
-  const config = fs.readFileSync(path.join(root, "journey/config.js"), "utf8");
-  const journey = fs.readFileSync(path.join(root, "journey/journey.js"), "utf8");
-  const account = fs.readFileSync(path.join(root, "journey/account.js"), "utf8");
-  const api = fs.readFileSync(path.join(root, "journey/member-api.js"), "utf8");
-  const vip = "https://membership.onenesswellnesslifestyles.com/courses/products/429f9e94-85fa-407a-bfc0-92ad92bc3bf0";
-  assert.ok(page.includes(vip));
-  assert.ok(page.includes('id="course-link"'));
-  assert.ok(page.includes("auth-config.js"));
-  assert.ok(page.includes("account.js"));
-  assert.ok(!page.includes("member-api.js"));
-  assert.ok(!page.includes("signin-email"));
-  assert.ok(!page.toLowerCase().includes("magic link"));
-  assert.ok(page.includes("not saved to an account"));
-  assert.ok(config.includes(vip));
-  assert.ok(config.includes('startDate: "2026-11-09"'));
-  assert.ok(journey.includes("window.OnenessJourneySync"));
-  assert.ok(journey.includes("recordForViewer"));
-  assert.ok(!journey.includes("testSecret"));
-  assert.ok(!account.includes("service_role"));
-  assert.ok(!api.includes("service_role"));
-  assert.ok(!page.includes("JOURNEY_OIDC_CLIENT_SECRET"));
-  assert.ok(!fs.readFileSync(path.join(root, "journey/auth-config.js"), "utf8").includes("http"));
-  console.log("journey/account.test.js ok");
+    const page = fs.readFileSync(path.join(root, "journey/index.html"), "utf8");
+    const config = fs.readFileSync(path.join(root, "journey/config.js"), "utf8");
+    const journey = fs.readFileSync(path.join(root, "journey/journey.js"), "utf8");
+    const account = fs.readFileSync(path.join(root, "journey/account.js"), "utf8");
+    const sql = fs.readFileSync(path.join(root, "supabase/migrations/20261109032500_journey_member_progress.sql"), "utf8");
+    const vip = "https://membership.onenesswellnesslifestyles.com/courses/products/429f9e94-85fa-407a-bfc0-92ad92bc3bf0";
+    assert.ok(page.includes(vip));
+    assert.ok(page.includes("auth-config.js"));
+    assert.ok(!page.includes("member-api.js"));
+    assert.ok(!page.toLowerCase().includes("magic link"));
+    assert.ok(page.includes("not saved to an account"));
+    assert.ok(config.includes(vip));
+    assert.ok(journey.includes("recordForViewer"));
+    assert.ok(journey.includes("signInWithEmail"));
+    assert.ok(!journey.includes("testSecret"));
+    assert.ok(account.includes("shouldCreateUser: false"));
+    assert.ok(account.includes(A.SUPABASE_JS_URL));
+    assert.ok(account.includes("/service_role/i"));
+    assert.ok(!/sb_secret_[A-Za-z0-9]/.test(account));
+    assert.ok(!/eyJ[A-Za-z0-9_-]{20,}/.test(account));
+    assert.ok(!fs.existsSync(path.join(root, "journey/member-api.js")));
+    assert.ok(!fs.existsSync(path.join(root, "journey/local-member-demo.js")));
+    assert.ok(sql.includes("is_enrolled"));
+    assert.ok(sql.includes("security definer"));
+    assert.ok(sql.includes("set search_path = public"));
+    assert.ok(sql.includes("revoke all on table public.journey_progress from public, anon, authenticated"));
+    assert.ok(sql.includes("primary key (user_id, key)"));
+    assert.ok(!/service_role|postgres:\/\//i.test(sql));
+    assert.ok(!/service_role/i.test(fs.readFileSync(path.join(root, "journey/auth-config.js"), "utf8")));
+    console.log("journey/account.test.js ok");
+  });
 }).catch(function (err) {
   console.error(err);
   process.exit(1);

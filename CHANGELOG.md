@@ -5,7 +5,7 @@ All notable changes to this project are tracked here. This project follows
 
 ## [Unreleased]
 
-- Oneness Journey can keep progress with a member account, partitioned by member, cohort, and lane. Sign-in stays off in `journey/auth-config.js` until an identity provider and the member API are configured. Device progress is unchanged and is not copied into an account. See `journey/MEMBER-ACCOUNTS.md`.
+- Oneness Journey can keep progress in Supabase for an enrolled member. Sign-in stays off in `journey/auth-config.js` until the publishable key is set. Device progress is unchanged and is not copied into an account. See `docs/supabase-setup.md`.
 - Oneness Journey Phase 2 at `/journey/` saves local progress and the evening reflection per lane and cohort, and asks "How did this feel?" when Day 5 is complete.
 - Terms and Conditions page is served at `/terms/` (`https://app.onenesswellnesslifestyles.com/terms/`).
 - Oneness Journey Phase 1 shell is served at `/journey/` (`https://app.onenesswellnesslifestyles.com/journey/`).

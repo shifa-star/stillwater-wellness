@@ -61,7 +61,7 @@ Open `oneness-lifestyles-app/index.html` — or use the app at
 
 ## Oneness Journey
 
-`/journey/` is the 5-day challenge page. Marks and reflections stay in the browser. Account sign-in is built and tested, and it is left off until an identity provider and member API are configured. Setup, security, costs, and rollback are in `journey/MEMBER-ACCOUNTS.md`. VIP Membership links on that page are unchanged.
+`/journey/` is the 5-day challenge page. Marks and reflections stay in the browser. Account sign-in uses Supabase when it is turned on, and it is left off in `journey/auth-config.js`. Setup is in `docs/supabase-setup.md`. VIP Membership links on that page are unchanged.
 
 ## Changelog
 
