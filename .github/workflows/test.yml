@@ -1,0 +1,24 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run tests
+        run: |
+          node --check journey/journey.js
+          node --check journey/account.js
+          node --check journey/member-api.js
+          node --check journey/local-member-demo.js
+          node journey/progress.test.js
+          node journey/account.test.js
+          node journey/member-api.test.js
+          node sitting-room-legacy-redirect.test.js

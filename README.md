@@ -59,6 +59,10 @@ Open `oneness-lifestyles-app/index.html` — or use the app at
 `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/`.
 
 
+## Oneness Journey
+
+`/journey/` is the 5-day challenge page. Marks and reflections stay in the browser. Account sign-in is built and tested, and it is left off until an identity provider and member API are configured. Setup, security, costs, and rollback are in `journey/MEMBER-ACCOUNTS.md`. VIP Membership links on that page are unchanged.
+
 ## Changelog
 
 See CHANGELOG.md for the version history.
