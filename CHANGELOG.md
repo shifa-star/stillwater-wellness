@@ -5,6 +5,7 @@ All notable changes to this project are tracked here. This project follows
 
 ## [Unreleased]
 
+- Oneness Journey member sign-in is enabled with the Supabase publishable anon key. Device progress is unchanged and is not copied into an account. See `docs/supabase-setup.md`.
 - Oneness Journey Phase 2 at `/journey/` saves local progress and the evening reflection per lane and cohort, and asks "How did this feel?" when Day 5 is complete.
 - Terms and Conditions page is served at `/terms/` (`https://app.onenesswellnesslifestyles.com/terms/`).
 - Oneness Journey Phase 1 shell is served at `/journey/` (`https://app.onenesswellnesslifestyles.com/journey/`).

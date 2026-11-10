@@ -59,6 +59,10 @@ Open `oneness-lifestyles-app/index.html` — or use the app at
 `https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/`.
 
 
+## Oneness Journey
+
+`/journey/` is the 5-day challenge page. Marks and reflections stay in the browser until sign-in. Member sign-in is enabled with the Supabase publishable anon key in `journey/auth-config.js`. Setup is in `docs/supabase-setup.md`. VIP Membership links on that page are unchanged.
+
 ## Changelog
 
 See CHANGELOG.md for the version history.

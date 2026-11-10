@@ -1,5 +1,8 @@
 /* Oneness Journey progress store (Phase 2).
-   Local only. A later server sync can assign window.OnenessJourneySync.
+   Device store only. The key is lane and cohort, never a member.
+   Signed-in progress is stored in Supabase and must not be written
+   with save() or window.OnenessJourneySync. That hook is only for this
+   device record. Device notes are not copied into an account.
 
    localStorage key: onenessJourney.progress.<buyer|advocate>.<YYYY-MM-DD>
    The date is config.cohort.startDate, so the next cohort gets a fresh record.
