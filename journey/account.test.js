@@ -252,10 +252,12 @@ disabled.boot().then(function (result) {
     const context = { window: {} };
     vm.runInNewContext(fs.readFileSync(path.join(root, "journey/auth-config.js"), "utf8"), context);
     const shipped = context.window.ONENESS_JOURNEY_AUTH;
-    assert.strictEqual(shipped.enabled, false);
+    assert.strictEqual(shipped.enabled, true);
     assert.strictEqual(shipped.supabaseUrl, URL);
-    assert.strictEqual(shipped.supabaseAnonKey, A.PLACEHOLDER_KEY);
-    assert.strictEqual(A.authEnabled(shipped), false);
+    assert.notStrictEqual(shipped.supabaseAnonKey, A.PLACEHOLDER_KEY);
+    assert.ok(shipped.supabaseAnonKey.length >= 20);
+    assert.ok(!/service_role/i.test(shipped.supabaseAnonKey));
+    assert.strictEqual(A.authEnabled(shipped), true);
 
     const page = fs.readFileSync(path.join(root, "journey/index.html"), "utf8");
     const config = fs.readFileSync(path.join(root, "journey/config.js"), "utf8");
@@ -269,6 +271,7 @@ disabled.boot().then(function (result) {
     assert.ok(!page.toLowerCase().includes("magic link"));
     assert.ok(page.includes("not saved to an account"));
     assert.ok(config.includes(vip));
+    assert.ok(journey.includes("redirectTo: window.location.origin"));
     assert.ok(journey.includes("recordForViewer"));
     assert.ok(journey.includes("signInWithEmail"));
     assert.ok(!journey.includes("testSecret"));
@@ -285,7 +288,7 @@ disabled.boot().then(function (result) {
     assert.ok(sql.includes("revoke all on table public.journey_progress from public, anon, authenticated"));
     assert.ok(sql.includes("primary key (user_id, key)"));
     assert.ok(!/service_role|postgres:\/\//i.test(sql));
-    assert.ok(!/service_role/i.test(fs.readFileSync(path.join(root, "journey/auth-config.js"), "utf8")));
+    assert.ok(!/service_role/i.test(shipped.supabaseAnonKey));
     console.log("journey/account.test.js ok");
   });
 }).catch(function (err) {

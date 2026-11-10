@@ -1,7 +1,6 @@
 /* Oneness Journey day engine: Hawaii cohort calendar, lanes, reflections.
-   Account sign-in stays off until auth-config.js is enabled with a publishable
-   key. While it is off, marks stay on this device. Signed-in marks go to
-   Supabase and are not written into the device progress key. */
+   Sign-in uses the publishable anon key in auth-config.js. Signed-in marks go
+   to Supabase and are not written into the device progress key. */
 (function () {
   "use strict";
   var cfg = window.ONENESS_JOURNEY_CONFIG;
@@ -16,6 +15,7 @@
   var account = (Account && Account.create) ? Account.create({
     config: authConfig,
     progress: P,
+    redirectTo: window.location.origin.replace(/\/+$/, "") + "/journey/",
     fetch: typeof window.fetch === "function" ? function (url, opts) { return window.fetch(url, opts); } : null
   }) : { enabled: false, signedIn: function () { return false; }, email: function () { return ""; } };
   var accountPhase = "device";

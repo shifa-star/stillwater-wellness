@@ -1,6 +1,6 @@
 # Supabase setup for Oneness Journey
 
-The public page stays device-only until `journey/auth-config.js` has `enabled: true` and a real publishable key. This test project is `hwytpirbouqdssfncnrl` (`https://hwytpirbouqdssfncnrl.supabase.co`). Do not put the service-role key or the database password in the repo or in that file.
+Member sign-in is enabled in `journey/auth-config.js` with the public publishable anon key. This project is `hwytpirbouqdssfncnrl` (`https://hwytpirbouqdssfncnrl.supabase.co`). Do not put the service-role key or the database password in the repo or in that file.
 
 VIP Membership links are not part of this setup.
 
@@ -52,11 +52,7 @@ There is no separate Node server to start.
 
 ## 5. Publishable key
 
-**Project Settings → API.** Copy the anon / publishable key (it is public). Put it in `journey/auth-config.js` as `supabaseAnonKey`, replacing `YOUR_SUPABASE_ANON_KEY`.
-
-Leave `enabled` false until you have added yourself as a user and an enrollment and signed in on a test copy of the page. The shipped default is `enabled: false`, so the live site does not call Supabase and does not load the library.
-
-Do not copy the service-role key. It bypasses row security.
+The publishable anon key is already in `journey/auth-config.js`, and `enabled` is true. Do not replace it with the secret key. That key bypasses row security.
 
 ## 6. Before a real cohort
 
