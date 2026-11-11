@@ -4,7 +4,7 @@
 
 'use strict';
 
-var CACHE_NAME = 'oneness-lifestyles-shell-v25';
+var CACHE_NAME = 'oneness-lifestyles-shell-v26';
 
 // The app shell that must always be available offline.
 var SHELL = [
@@ -17,9 +17,14 @@ var SHELL = [
   './medicine-wheel.js',
   './galactic-signature.js',
   './manifest.webmanifest',
+  './sanctuary.webmanifest',
   './icon.svg',
   './icon-192.png',
   './icon-512.png',
+  './feather-eye.png',
+  './feather-eye-32.png',
+  './feather-eye-192.png',
+  './feather-eye-512.png',
   './images/welcome-tree-door.jpg',
   './images/door11-video.mp4',
   './images/water-bg.jpg',
