@@ -5,6 +5,7 @@ All notable changes to this project are tracked here. This project follows
 
 ## [Unreleased]
 
+- The January 13, 2027 gathering, Quantum Frequency Therapy + The Magic of Five Minutes, is served at `/jan13/` (`https://app.onenesswellnesslifestyles.com/jan13/`). The registration form posts JSON to `REGISTRATION_ENDPOINT` in `jan13/index.html` once that URL is set.
 - Oneness Journey member sign-in is enabled with the Supabase publishable anon key. Device progress is unchanged and is not copied into an account. See `docs/supabase-setup.md`.
 - Oneness Journey Phase 2 at `/journey/` saves local progress and the evening reflection per lane and cohort, and asks "How did this feel?" when Day 5 is complete.
 - Terms and Conditions page is served at `/terms/` (`https://app.onenesswellnesslifestyles.com/terms/`).
