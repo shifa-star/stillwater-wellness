@@ -19,3 +19,4 @@ jobs:
           node journey/progress.test.js
           node journey/account.test.js
           node sitting-room-legacy-redirect.test.js
+          node gathering-link.test.js

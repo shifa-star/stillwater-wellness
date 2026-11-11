@@ -34,6 +34,15 @@
           <h1 class="hero-heading">The Sanctuary of Self Healing</h1>
           <p class="home-greeting" id="home-greeting">Where the Healing Waters Flow</p>
           <p id="sent-by" class="home-greeting" hidden></p>
+          <section class="gathering-invite" aria-labelledby="gathering-heading">
+            <h2 id="gathering-heading" class="gathering-heading">Quantum Frequency Therapy + The Magic of Five Minutes</h2>
+            <p class="gathering-detail">Wednesday, January 13, 2027. Virtual.</p>
+            <p class="gathering-detail">Hosts: Clan Mother Shifa Ali Scott and Miniimah Saafir.</p>
+            <p class="gathering-tagline">We Are Healing Together, Wholeness Remembered</p>
+            <p class="hero-actions">
+              <a class="btn" id="jan13-invite" href="../jan13/">I'll Be There</a>
+            </p>
+          </section>
           <p style="text-align: center; font-style: italic; color: var(--brand-blue); margin-top: 12px;">Aloha 🌴<br>In Lak'ech Ala K'in<br>I am another yourself.<br>We are One.</p>
           <div class="home-welcome">
             <p>You have entered the Sanctuary of Self Healing at the Oneness Wellness Center.</p>
@@ -281,6 +290,16 @@
       if (!name || name.toLowerCase() === "no one") return;
       line.textContent = name + " sent you.";
       line.hidden = false;
+    })();
+  </script>
+  <script src="gathering-link.js"></script>
+  <script>
+    (function () {
+      var link = document.getElementById("jan13-invite");
+      if (!link || typeof window.gatheringHref !== "function" || !window.location) return;
+      try {
+        link.setAttribute("href", window.gatheringHref(window.location.href));
+      } catch (err) {}
     })();
   </script>
   <script>
