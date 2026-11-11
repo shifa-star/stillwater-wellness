@@ -5,6 +5,7 @@ All notable changes to this project are tracked here. This project follows
 
 ## [Unreleased]
 
+- The Sanctuary personal invitation at `/oneness-lifestyles-app/` uses the peacock feather eye as its favicon. The browser tab keeps the approved crop on a transparent background. The apple-touch icon, and the invitation manifest's 192 and 512 icons, place that crop on brand blue `#283890`. Other Sanctuary pages and the rest of the site keep the wave logo.
 - The Sanctuary home at `/oneness-lifestyles-app/` invites guests to Quantum Frequency Therapy + The Magic of Five Minutes on Wednesday, January 13, 2027. I'll Be There opens `/jan13/` and keeps `ref` and `via` when those are already on the page.
 - The January 13, 2027 gathering, Quantum Frequency Therapy + The Magic of Five Minutes, is served at `/jan13/` (`https://app.onenesswellnesslifestyles.com/jan13/`). The registration form posts JSON to `REGISTRATION_ENDPOINT` in `jan13/index.html` once that URL is set.
 - Oneness Journey member sign-in is enabled with the Supabase publishable anon key. Device progress is unchanged and is not copied into an account. See `docs/supabase-setup.md`.
