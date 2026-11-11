@@ -339,6 +339,78 @@ a {
   color: var(--text-2);       /* ~9.5:1 on the hero background */
 }
 
+/* January 13 invitation, in the hero so a guest sees it with the welcome. */
+.gathering-invite {
+  max-width: 640px;
+  margin: 8px auto 28px;
+  padding: 22px 22px 26px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-top: 6px solid var(--brand-sand);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.gathering-heading {
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: var(--brand-blue);
+  margin: 0 0 12px;
+}
+
+.gathering-detail {
+  margin: 0 0 8px;
+  color: var(--text-2);
+}
+
+.gathering-tagline {
+  margin: 12px 0 0;
+  font-style: italic;
+  color: var(--brand-blue);
+}
+
+.gathering-invite .hero-actions {
+  margin: 20px 0 0;
+}
+
+@media (max-width: 640px) {
+  /* Keep the invitation on the first screen. The hero container's
+     48px side padding is for the wider layout; a phone needs the
+     greeting and the card in the same view. */
+  #home .hero {
+    padding: 28px 0 36px;
+  }
+  #home .hero .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #home .hero-heading {
+    font-size: 1.9rem;
+    margin-bottom: 8px;
+  }
+  #home .home-greeting {
+    margin-bottom: 12px;
+  }
+  .gathering-heading {
+    font-size: 1.22rem;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .gathering-invite {
+    margin: 4px 0 16px;
+    padding: 16px 16px 18px;
+  }
+  .gathering-detail {
+    margin-bottom: 4px;
+  }
+  .gathering-tagline {
+    margin-top: 8px;
+  }
+  .gathering-invite .hero-actions {
+    margin-top: 14px;
+  }
+}
+
 /* ---------- The welcome tree door video (portrait, above the entry heading) ----------
    The looping video of the walk into the lodge is the only visible
    visual. The tree photo stays in the markup but hidden: it is a one-load
