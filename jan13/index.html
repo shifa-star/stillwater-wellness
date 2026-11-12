@@ -464,7 +464,7 @@
           <input type="hidden" id="ref" name="ref" value="" />
           <input type="hidden" id="via" name="via" value="" />
           <button type="submit">I'll Be There</button>
-          <p class="note" id="draft-note">This preview shows the page. Registrations will be collected once it is live.</p>
+          <p class="note" id="draft-note" hidden></p>
           <p id="thanks">We'll be glad to have you. We'll send the details for this virtual evening.</p>
           <p class="note" id="form-error" role="alert" hidden>We could not save your place just now. Please try again in a moment.</p>
         </form>
@@ -477,11 +477,9 @@
     </footer>
   </div>
   <script>
-    // Paste the live registration URL here when it is ready.
-    // Leave this empty until then. An empty value keeps preview behavior:
-    // submitting the form does not claim a place was saved.
-    // A future POST sends JSON: name, email, heard, ref, and via when it is present.
-    var REGISTRATION_ENDPOINT = "";
+    // Live registration webhook. POST sends JSON: name, email, heard, ref,
+    // and via when it is present. An empty value keeps preview behavior.
+    var REGISTRATION_ENDPOINT = "https://onenesswellnesslifestyles.app.n8n.cloud/webhook/jan13-registration";
 
     (function () {
       var params = new URLSearchParams(window.location.search);
