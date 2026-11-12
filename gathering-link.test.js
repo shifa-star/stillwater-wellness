@@ -90,6 +90,9 @@ assert.ok(!root.includes("jan13"));
 assert.ok(!root.includes("I'll Be There"));
 
 const jan13 = fs.readFileSync("jan13/index.html", "utf8");
-assert.ok(jan13.includes('var REGISTRATION_ENDPOINT = "";'));
+assert.ok(jan13.includes('var REGISTRATION_ENDPOINT = "https://onenesswellnesslifestyles.app.n8n.cloud/webhook/jan13-registration";'));
+assert.ok(jan13.includes('id="draft-note" hidden'));
+assert.ok(!jan13.includes("This preview shows the page. Registrations will be collected once it is live."));
+assert.ok(!/webhook\/[^"']*test/i.test(jan13));
 
 console.log("gathering link checks ok");
