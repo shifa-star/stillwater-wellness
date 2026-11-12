@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oneness Advocate Roadmap — Medicine Wheel</title>
+<title>The Advocate's Walk | Oneness Wellness</title>
 <style>
   :root {
     --uv: #4A0080;
@@ -21,8 +21,10 @@
   header p { color: var(--gold); font-style: italic; margin-top: 0.4rem; }
   .wheel-wrap { display: flex; justify-content: center; padding: 1rem; }
   svg { max-width: 520px; width: 100%; }
-  #wheel { transform-origin: 50% 50%; animation: wheel-spin 80s linear infinite; }
-  #wheel text { transform-box: fill-box; transform-origin: center; animation: wheel-spin 80s linear infinite reverse; }
+  .wheel-wrap { overflow: hidden; }
+  #wheel { overflow: hidden; }
+  #spin { transform-box: view-box; transform-origin: 200px 200px; animation: wheel-spin 80s linear infinite; }
+  #spin .lbl { transform-box: view-box; animation: wheel-spin 80s linear infinite reverse; }
   .arc { cursor: pointer; transition: filter 0.4s ease, opacity 0.4s ease; opacity: 0.85; }
   .arc:hover { opacity: 1; filter: brightness(1.15); }
   .arc.locked { opacity: 0.3; cursor: default; animation: locked-glow 3.6s ease-in-out infinite; }
@@ -63,7 +65,7 @@
   @keyframes gate-flash { from { transform: scale(0.3); opacity: 1; } to { transform: scale(4.2); opacity: 0; } }
   @keyframes gate-spark { to { transform: translate(var(--dx), var(--dy)) scale(0.15); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) {
-    #wheel, #wheel text, .arc.locked { animation: none; }
+    #spin, #spin .lbl, .arc.locked { animation: none; }
   }
 </style>
 </head>
@@ -76,72 +78,70 @@
 <div class="dots"><div class="dot" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div></div>
 <div class="wheel-wrap">
 <svg viewBox="0 0 400 400" id="wheel">
+<g id="spin">
   <circle cx="200" cy="200" r="190" fill="none" stroke="#D4A855" stroke-width="1.5" opacity="0.4"/>
+  <path class="arc" data-dir="0" d="M200,200 L200,10 A190,190 0 0,1 371.7,128.3 Z" fill="#6dbc45"/>
+  <path class="arc locked" data-dir="1" d="M200,200 L371.7,128.3 A190,190 0 0,1 371.7,271.7 Z" fill="#283890"/>
+  <path class="arc locked" data-dir="2" d="M200,200 L371.7,271.7 A190,190 0 0,1 200,390 Z" fill="#D4A855"/>
+  <path class="arc locked" data-dir="3" d="M200,200 L200,390 A190,190 0 0,1 28.3,271.7 Z" fill="#4A0080"/>
+  <g class="lbl" style="transform-origin: 269.3px 95.9px"><text x="269.3" y="89.9" text-anchor="middle" class="dir-label">EAST</text><text x="269.3" y="111.9" text-anchor="middle" class="glyph">&#9788;</text></g>
+  <g class="lbl" style="transform-origin: 325.0px 200.0px"><text x="325.0" y="194.0" text-anchor="middle" class="dir-label">SOUTH</text><text x="325.0" y="216.0" text-anchor="middle" class="glyph">&#9830;</text></g>
+  <g class="lbl" style="transform-origin: 269.3px 304.1px"><text x="269.3" y="298.1" text-anchor="middle" class="dir-label">WEST</text><text x="269.3" y="320.1" text-anchor="middle" class="glyph">&#9733;</text></g>
+  <g class="lbl" style="transform-origin: 130.7px 304.1px"><text x="130.7" y="298.1" text-anchor="middle" class="dir-label">NORTH</text><text x="130.7" y="320.1" text-anchor="middle" class="glyph">&#9783;</text></g>
   <circle cx="200" cy="200" r="60" class="center-stone"/>
   <text x="200" y="205" text-anchor="middle" class="glyph">&#9670;</text>
-  <path class="arc" data-dir="0" d="M200,200 L200,10 A190,190 0 0,1 371.7,128.3 Z" fill="#6dbc45"/>
-  <text x="286" y="95" class="dir-label">EAST</text>
-  <text x="286" y="112" class="glyph">&#9788;</text>
-  <path class="arc locked" data-dir="1" d="M200,200 L371.7,128.3 A190,190 0 0,1 371.7,271.7 Z" fill="#283890"/>
-  <text x="330" y="200" class="dir-label">SOUTH</text>
-  <text x="330" y="218" class="glyph">&#9830;</text>
-  <path class="arc locked" data-dir="2" d="M200,200 L371.7,271.7 A190,190 0 0,1 200,390 Z" fill="#D4A855"/>
-  <text x="286" y="330" class="dir-label">WEST</text>
-  <text x="286" y="348" class="glyph">&#9733;</text>
-  <path class="arc locked" data-dir="3" d="M200,200 L200,390 A190,190 0 0,1 28.3,271.7 Z" fill="#4A0080"/>
-  <text x="70" y="330" class="dir-label">NORTH</text>
-  <text x="70" y="348" class="glyph">&#9783;</text>
+</g>
 </svg>
 </div>
 <div class="panel" id="p0">
-  <h2>East — The Receiving</h2>
+  <h2>East: The Receiving</h2>
   <p class="season">Dawn. First light. The new advocate enters.</p>
   <p>You stand at the eastern gate and receive your first lamp: <strong>communication</strong>. Voice is the medicine of this direction.</p>
   <h3>Quests</h3>
-  <ul><li>Complete the Start Path onboarding</li><li>Read the handbook introduction</li><li>Send one real message to one real person in the Sitting Room</li></ul>
-  <div class="threshold"><strong>Threshold: The Receiving.</strong> You cannot cross until you've used your voice once — one genuine message, one genuine person.</div>
+  <ul><li>Complete the Start Path onboarding</li><li>Read The Roadmap to Wholeness introduction</li><li>Send one real message to one real person inviting them to Thursday QFT LIVE</li></ul>
+  <div class="threshold"><strong>Threshold: The Receiving.</strong> You cannot cross until you've used your voice once: one genuine message, one genuine person.</div>
   <div class="blessing">Clan Mother's blessing: "May your words find the ears they were meant for."</div>
-  <h3>Journal — "What called you to this path before you knew its name?"</h3>
+  <h3>Journal: "What called you to this path before you knew its name?"</h3>
   <textarea class="journal" data-dir="0" placeholder="Write here..."></textarea>
   <button class="btn" data-dir="0">Cross into South</button>
 </div>
 <div class="panel" id="p1">
-  <h2>South — The Kindling</h2>
+  <h2>South: The Kindling</h2>
   <p class="season">Summer. Growing heat. The quests burn.</p>
-  <p>The handbook modules open one by one. Each quality is a flame you tend.</p>
+  <p>The Roadmap to Wholeness modules open one by one. Each quality is a flame you tend.</p>
   <h3>Quests</h3>
-  <ul><li>Complete handbook modules on communication, empathy, assertiveness, creativity, perseverance</li><li>Sit in the Sitting Room test</li><li>Name, in writing, which quality stretched you most</li></ul>
+  <ul><li>Complete The Roadmap to Wholeness modules on communication, empathy, assertiveness, creativity, perseverance</li><li>Sit in Thursday QFT LIVE, the free Sitting Room</li><li>Name, in writing, which quality stretched you most</li></ul>
   <div class="threshold"><strong>Threshold: The Kindling.</strong> No naming, no crossing. Reflection is the key.</div>
   <div class="blessing">Clan Mother's blessing: "What burns in you is what lights others."</div>
-  <h3>Journal — "Which quality burned hottest in you, and what did it reveal?"</h3>
+  <h3>Journal: "Which quality burned hottest in you, and what did it reveal?"</h3>
   <textarea class="journal" data-dir="1" placeholder="Write here..."></textarea>
   <button class="btn" data-dir="1">Cross into West</button>
 </div>
 <div class="panel" id="p2">
-  <h2>West — The Giving</h2>
+  <h2>West: The Giving</h2>
   <p class="season">Harvest. What you sow returns.</p>
-  <p>Your referral links pull weight. Your rank climbs. But the gate asks for generosity.</p>
+  <p>Your Personal Invitation Link pulls weight. Your rank climbs. But the gate asks for generosity.</p>
   <h3>Quests</h3>
-  <ul><li>Activate your unique ref link</li><li>Record at least one conversion</li><li>Share one win — a story, a tip, a screenshot — back into the advocate circle</li></ul>
+  <ul><li>Activate your Personal Invitation Link</li><li>Record at least one conversion</li><li>Share one win (a story, a tip, a screenshot) back into the advocate circle</li></ul>
   <div class="threshold"><strong>Threshold: The Giving.</strong> What you give is what you keep.</div>
   <div class="blessing">Clan Mother's blessing: "The harvest belongs to those who planted for others."</div>
-  <h3>Journal — "What did you give away that came back multiplied?"</h3>
+  <h3>Journal: "What did you give away that came back multiplied?"</h3>
   <textarea class="journal" data-dir="2" placeholder="Write here..."></textarea>
   <button class="btn" data-dir="2">Cross into North</button>
 </div>
 <div class="panel" id="p3">
-  <h2>North — The Listening</h2>
+  <h2>North: The Listening</h2>
   <p class="season">Winter. Quiet authority. Your story is somebody else's medicine.</p>
   <p>You rest. You listen. You write. Leadership proven by reception, not output.</p>
   <h3>Quests</h3>
   <ul><li>Sit one full week without posting or recruiting</li><li>Hold space for others in the circle</li><li>Write your story in the journal below</li></ul>
   <div class="threshold"><strong>Threshold: The Listening.</strong> The Lantern rank opens only after the week of rest.</div>
   <div class="blessing">Clan Mother's blessing: "In stillness, you become the medicine."</div>
-  <h3>Journal — "What did you hear in someone else's story that was really yours?"</h3>
+  <h3>Journal: "What did you hear in someone else's story that was really yours?"</h3>
   <textarea class="journal" data-dir="3" placeholder="Write here..."></textarea>
   <button class="btn" data-dir="3" id="finalBtn">Complete the Walk</button>
 </div>
-<footer>Oneness Wellness Circle Sanctuary &mdash; Wholeness Remembered</footer>
+<footer>We Are Healing Together, Wholeness Remembered</footer>
 <script>
 const state = JSON.parse(localStorage.getItem('advocateWalk') || '{"crossed":[],"journals":{}}');
 function save() { localStorage.setItem('advocateWalk', JSON.stringify(state)); }
@@ -156,7 +156,7 @@ function render() {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('open'));
   const next = state.crossed.length < 4 ? state.crossed.length : 3;
   document.getElementById('p' + next).classList.add('open');
-  if (state.crossed.length === 4) document.getElementById('finalBtn').textContent = 'Walk Complete — Lantern';
+  if (state.crossed.length === 4) document.getElementById('finalBtn').textContent = 'Walk Complete: Lantern';
 }
 document.querySelectorAll('.arc').forEach(arc => {
   arc.addEventListener('click', () => {
