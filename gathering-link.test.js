@@ -95,4 +95,14 @@ assert.ok(jan13.includes('id="draft-note" hidden'));
 assert.ok(!jan13.includes("This preview shows the page. Registrations will be collected once it is live."));
 assert.ok(!/webhook\/[^"']*test/i.test(jan13));
 
+const heroCopy = jan13.slice(jan13.indexOf('class="hero-copy"'), jan13.indexOf("<h1>"));
+assert.ok(heroCopy.includes('class="eyebrow"'));
+assert.ok(heroCopy.includes('<p class="personal-invitation" id="personal-invitation" hidden></p>'));
+assert.ok(heroCopy.indexOf('class="eyebrow"') < heroCopy.indexOf('id="personal-invitation"'));
+assert.ok(jan13.includes('heard.value = via === "person"\n          ? "Personal invitation from " + ref\n          : "Personal invitation, " + ref;'));
+assert.ok(jan13.includes('inviteLine.textContent = via === "person"\n          ? "Personal invitation from " + ref\n          : "Personal invitation, " + ref;'));
+assert.ok(jan13.includes("inviteLine.hidden = false"));
+assert.ok(!jan13.includes("inviteLine.innerHTML"));
+assert.ok(!jan13.includes(".innerHTML"));
+
 console.log("gathering link checks ok");
