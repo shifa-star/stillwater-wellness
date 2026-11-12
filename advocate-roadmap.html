@@ -127,7 +127,7 @@
 </div>
 <footer>Oneness Wellness Circle Sanctuary &mdash; Wholeness Remembered</footer>
 <script>
-const state = JSON.parse(localStorage.getItem('advocateWalk') || '{"crossed":[],"journals":{}});
+const state = JSON.parse(localStorage.getItem('advocateWalk') || '{"crossed":[],"journals":{}}');
 function save() { localStorage.setItem('advocateWalk', JSON.stringify(state)); }
 function render() {
   document.querySelectorAll('.arc').forEach((arc, i) => {
