@@ -95,6 +95,15 @@
       margin-bottom: 22px;
     }
 
+    .personal-invitation {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--title-green);
+      margin-bottom: 22px;
+    }
+
     h1 {
       font-family: var(--serif);
       font-weight: 400;
@@ -368,6 +377,7 @@
       <img class="logo" src="assets/logo-cropped.png" alt="Oneness Wellness Lifestyles" />
       <div class="hero-copy">
         <p class="eyebrow">A joint virtual experience &nbsp;|&nbsp; Wednesday, January 13</p>
+        <p class="personal-invitation" id="personal-invitation" hidden></p>
         <h1>
           <span class="navy">Quantum Frequency Therapy</span>
           <span class="green">+ The Magic of Five Minutes</span>
@@ -495,6 +505,14 @@
         heard.value = via === "person"
           ? "Personal invitation from " + ref
           : "Personal invitation, " + ref;
+      }
+
+      var inviteLine = document.getElementById("personal-invitation");
+      if (inviteLine && ref) {
+        inviteLine.textContent = via === "person"
+          ? "Personal invitation from " + ref
+          : "Personal invitation, " + ref;
+        inviteLine.hidden = false;
       }
 
       var form = document.getElementById("reg");
