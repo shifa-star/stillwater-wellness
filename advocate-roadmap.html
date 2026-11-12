@@ -139,7 +139,7 @@ function render() {
   document.querySelectorAll('.journal').forEach(j => { j.value = state.journals[j.dataset.dir] || ''; });
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('open'));
   const next = state.crossed.length < 4 ? state.crossed.length : 3;
-  document.getElementById('p' + next).classList.add('open'));
+  document.getElementById('p' + next).classList.add('open');
   if (state.crossed.length === 4) document.getElementById('finalBtn').textContent = 'Walk Complete — Lantern';
 }
 document.querySelectorAll('.arc').forEach(arc => {
@@ -147,7 +147,7 @@ document.querySelectorAll('.arc').forEach(arc => {
     const i = +arc.dataset.dir;
     if (i === 0 || state.crossed.includes(i - 1)) {
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('open'));
-      document.getElementById('p' + i).classList.add('open'));
+      document.getElementById('p' + i).classList.add('open');
     }
   });
 });
