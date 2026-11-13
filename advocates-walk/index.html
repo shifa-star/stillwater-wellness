@@ -522,7 +522,7 @@ function fresh(){return {v:2,started:false,current:'east',
   flames:[false,false,false,false,false,false,false,false],naming:'',
   journal:{east:'',south:'',west:'',north:''},
   crossed:{east:false,south:false,west:false,north:false},sound:false,updatedAt:0,
-  badges:{},pilName:'',contactName:'',contactEmail:'',
+  badges:{},pilName:'',pilCode:'',contactName:'',contactEmail:'',
   gatherings:{saturday:[],qft:[]},streak:{days:[false,false,false,false,false]}};}
 var S=fresh(), storeOK=true;
 var localHad=false, cloud={db:null,user:null,id:null,doc:null,readonly:false,synced:false};
@@ -544,6 +544,8 @@ function normalize(d){
   if(typeof d.updatedAt==='number'&&isFinite(d.updatedAt)) f.updatedAt=d.updatedAt;
   if(!unlockedIn(f,f.current)) f.current='east';
   f.pilName=typeof d.pilName==='string'?d.pilName.slice(0,80):'';
+  f.pilCode=typeof d.pilCode==='string'?d.pilCode.slice(0,40):'';
+  if(!f.pilCode&&pilCode(f.pilName).ok) f.pilCode=pilCode(f.pilName).code;
   f.badges={};
   if(d.badges&&typeof d.badges==='object'&&!Array.isArray(d.badges)){
     Object.keys(d.badges).forEach(function(k){
@@ -708,7 +710,7 @@ function renderPanel(){
       if(q.href==='ROADMAP') h+='<div class="softlinks"><a href="'+LINKS.roadmap+'" target="_blank" rel="noopener">Open the full Roadmap</a></div>';
       if(q.href==='CIRCLE') h+='<div class="softlinks"><a href="'+LINKS.circle+'" target="_blank" rel="noopener">Enter the Advocate Circle</a></div>';
       if(q.href==='QFT') h+='<div class="softlinks"><a href="'+LINKS.qft+'" target="_blank" rel="noopener">Open Thursday QFT LIVE</a></div>';
-      if(d==='west'&&k===0) h+='<div id="pilBox"><label class="hint" for="pilName">Your name, as it should appear in your link</label><input class="field" id="pilName" type="text" maxlength="80" autocomplete="name" placeholder="Your name"><p class="pilout" id="pilOut"></p><div class="softlinks"><button type="button" class="btn quiet" id="copyPil">Copy my link</button></div><p class="hint" id="pilNote"></p></div>';
+      if(d==='west'&&k===0) h+='<div id="pilBox"><label class="hint" for="pilCode">Your Advocate Code, like Maria-7K3Q</label><input class="field" id="pilCode" type="text" maxlength="40" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="FirstName-XXXX"><p class="pilout" id="pilOut"></p><div class="softlinks"><button type="button" class="btn quiet" id="copyPil">Copy my link</button></div><p class="hint" id="pilNote"></p></div>';
       h+='</li>';
     }else{
       h+='<li class="quest"><span class="mark" data-mark="'+k+'" aria-hidden="true">✓</span><div class="qbody"><p>'+esc(q.text)+' <span class="sr" data-sr="'+k+'"></span></p>';
@@ -740,7 +742,7 @@ function renderPanel(){
   var p=$('panel'); p.innerHTML=h; p.setAttribute('aria-labelledby','lvTitle');
   $('journal').value=S.journal[d];
   if($('naming')) $('naming').value=S.naming;
-  if($('pilName')){$('pilName').value=S.pilName||'';renderPil();}
+  if($('pilCode')){$('pilCode').value=S.pilCode||'';renderPil();}
   refresh();
 }
 function refresh(){
@@ -767,14 +769,14 @@ $('panel').addEventListener('input',function(e){
   var t=e.target;
   if(t.id==='journal'){S.journal[S.current]=t.value;noteSaved();refresh();}
   else if(t.id==='naming'){S.naming=t.value;noteSaved();refresh();}
-  else if(t.id==='pilName'){S.pilName=t.value;noteSaved();renderPil();}
+  else if(t.id==='pilCode'){S.pilCode=t.value;noteSaved();renderPil();}
 });
 $('panel').addEventListener('click',function(e){
   var f=e.target.closest('.flame');
   if(f){openStep(+f.getAttribute('data-flame'));return;}
   if(e.target.closest('#openIntro')){openLore();return;}
   if(e.target.closest('#copyPil')){
-    var r=pilRef(S.pilName);
+    var r=pilRef(S.pilCode);
     if(!r.ok){renderPil();return;}
     copyOut(pilUrl(r.ref),'Your Personal Invitation Link is copied.');
     if($('pilNote')) $('pilNote').textContent='Your Personal Invitation Link is copied.';
@@ -1009,7 +1011,7 @@ function renderKeeps(){
   $('keepsBody').innerHTML=keeps.map(keepHTML).join('');
 }
 function hasContent(st){
-  return st.started&&(st.flames.some(Boolean)||st.naming.trim().length>0||(st.pilName&&st.pilName.trim())||
+  return st.started&&(st.flames.some(Boolean)||st.naming.trim().length>0||(st.pilName&&st.pilName.trim())||(st.pilCode&&st.pilCode.trim())||
     (st.badges&&Object.keys(st.badges).length)||(st.gatherings&&((st.gatherings.saturday||[]).length+(st.gatherings.qft||[]).length))||
     (st.streak&&st.streak.days&&st.streak.days.some(Boolean))||
     DIRS.some(function(k){return st.crossed[k]||st.quests[k].some(Boolean)||st.journal[k].trim().length>0;}));
@@ -1335,26 +1337,44 @@ function shake(){
   document.body.classList.add('shake');
   setTimeout(function(){document.body.classList.remove('shake');},520);
 }
-function pilRef(name){
-  var s=String(name||'').trim().replace(/\s+/g,'');
-  if(!s) return {ok:false,reason:'empty',ref:''};
-  if(/test/i.test(s)) return {ok:false,reason:'test',ref:''};
-  if(!/^[A-Za-z0-9._'-]+$/.test(s)) return {ok:false,reason:'chars',ref:''};
-  return {ok:true,reason:'',ref:s};
+/* Advocate Code: FirstName-XXXX. XXXX uses 2-9 and A-Z without I, L, O, with at least one digit.
+   The code is the ref in the Personal Invitation Link, so no two Advocates share a link. */
+var PIL_CODE_RE=/^([A-Za-z]{1,20})-([2-9A-HJKMNP-Z]{4})$/;
+function pilCode(raw){
+  var s=String(raw||'').trim().replace(/\s+/g,'');
+  if(!s) return {ok:false,reason:'empty',code:''};
+  var m=/^([A-Za-z]{1,20})[-_]([A-Za-z0-9]{4})$/.exec(s);
+  if(!m) return {ok:false,reason:'format',code:''};
+  var code=m[1].charAt(0).toUpperCase()+m[1].slice(1).toLowerCase()+'-'+m[2].toUpperCase();
+  if(/test/i.test(code)) return {ok:false,reason:'test',code:''};
+  if(!PIL_CODE_RE.test(code)||!/\d/.test(code.slice(-4))) return {ok:false,reason:'chars',code:''};
+  return {ok:true,reason:'',code:code};
 }
+function pilRef(raw){var c=pilCode(raw);return {ok:c.ok,reason:c.reason,ref:c.code};}
 function pilUrl(ref){return 'https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref='+encodeURIComponent(ref)+'&via=person';}
+var PAGE_PIL_CODE='';
+function pilFromPage(){
+  try{
+    var q=new URLSearchParams(window.location.search||'');
+    var c=pilCode(q.get('code')||'');
+    if(!c.ok) c=pilCode(q.get('ref')||'');
+    if(c.ok){PAGE_PIL_CODE=c.code; if(S.pilCode!==c.code){S.pilCode=c.code;saveLocal();}}
+  }catch(e){}
+}
 function renderPil(){
   var box=$('pilBox'); if(!box) return;
-  var r=pilRef(S.pilName);
+  if(PAGE_PIL_CODE&&document.activeElement!==$('pilCode')){if(S.pilCode!==PAGE_PIL_CODE){S.pilCode=PAGE_PIL_CODE;save();}if($('pilCode'))$('pilCode').value=S.pilCode;PAGE_PIL_CODE='';}
+  var r=pilRef(S.pilCode);
   var out=$('pilOut'), note=$('pilNote');
   if(!r.ok){
-    out.textContent='https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=Name&via=person';
-    if(r.reason==='test') note.textContent='Please write your name in the form you want on the invitation, without the word test, so the address stays clear.';
-    else if(r.reason==='chars') note.textContent='Use letters, numbers, a period, an apostrophe, or a hyphen in the name that appears in the link.';
-    else note.textContent='The live form is always this address, with your name in the ref. The word test is never used, and the root /?ref= form is never used.';
+    out.textContent='https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=YourCode&via=person';
+    if(r.reason==='test') note.textContent='That code cannot be used in a link. Please check the code Clan Mother sent you.';
+    else if(r.reason==='format'||r.reason==='chars') note.textContent='Your Advocate Code is your first name, a hyphen, and four letters or numbers, like Maria-7K3Q. Codes never use 0, O, 1, I, or L.';
+    else note.textContent='Enter the Advocate Code Clan Mother sent you. Your link is always this address, with your code in the ref. If you do not have your code yet, it is on its way.';
   }else{
+    if($('pilCode')&&$('pilCode').value!==r.ref&&document.activeElement!==$('pilCode')) $('pilCode').value=r.ref;
     out.textContent=pilUrl(r.ref);
-    note.textContent='This is your Personal Invitation Link. Share it when you invite someone, and feel the recognition.';
+    note.textContent='This is your Personal Invitation Link. It is yours alone. Share it when you invite someone, and feel the recognition.';
   }
 }
 function markGather(kind){
@@ -1517,6 +1537,7 @@ function worldTick(t){if(typeof renderFireflies==='function') renderFireflies(t)
 requestAnimationFrame(worldTick);
 
 load();
+pilFromPage();
 loadKeeps();
 renderKeeps();
 buildWheel();

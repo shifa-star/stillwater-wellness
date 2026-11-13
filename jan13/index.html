@@ -495,6 +495,11 @@
       var params = new URLSearchParams(window.location.search);
       var ref = params.get("ref") || "";
       var via = params.get("via") || "";
+      // Advocate Code (FirstName-XXXX): the full code stays in the hidden ref
+      // field so it is saved on the guest contact; people see the first name.
+      var refName = ref;
+      var refCode = /^([A-Za-z]{1,20})[-_]([2-9A-HJKMNP-Za-hjkmnp-z]{4})$/.exec(String(ref).trim());
+      if (refCode && /\d/.test(refCode[2])) refName = refCode[1].charAt(0).toUpperCase() + refCode[1].slice(1).toLowerCase();
       var refField = document.getElementById("ref");
       var viaField = document.getElementById("via");
       if (refField) refField.value = ref;
@@ -503,15 +508,15 @@
       var heard = document.getElementById("heard");
       if (heard && ref && !heard.value) {
         heard.value = via === "person"
-          ? "Personal invitation from " + ref
-          : "Personal invitation, " + ref;
+          ? "Personal invitation from " + refName
+          : "Personal invitation, " + refName;
       }
 
       var inviteLine = document.getElementById("personal-invitation");
       if (inviteLine && ref) {
         inviteLine.textContent = via === "person"
-          ? "Personal invitation from " + ref
-          : "Personal invitation, " + ref;
+          ? "Personal invitation from " + refName
+          : "Personal invitation, " + refName;
         inviteLine.hidden = false;
       }
 
