@@ -704,7 +704,7 @@ function renderPanel(){
     if(q.t==='check'){
       h+='<li class="quest"><input type="checkbox" id="'+id+'" data-q="'+k+'"'+(S.quests[d][k]?' checked':'')+'><label for="'+id+'">'+esc(q.text)+'</label>';
       if(q.open==='intro') h+='<div class="softlinks"><button type="button" class="btn quiet" id="openIntro">Read the introduction here</button></div>';
-      if(q.href==='START') h+='<div class="softlinks"><a href="'+LINKS.startPath+'" target="_blank" rel="noopener">Open the Start Path</a></div>';
+      if(q.href==='START') h+='<div class="softlinks"><a href="'+LINKS.startPath+'" target="_blank" rel="noopener">Open the Advocate Support Portal</a></div>';
       if(q.href==='ROADMAP') h+='<div class="softlinks"><a href="'+LINKS.roadmap+'" target="_blank" rel="noopener">Open the full Roadmap</a></div>';
       if(q.href==='CIRCLE') h+='<div class="softlinks"><a href="'+LINKS.circle+'" target="_blank" rel="noopener">Enter the Advocate Circle</a></div>';
       if(q.href==='QFT') h+='<div class="softlinks"><a href="'+LINKS.qft+'" target="_blank" rel="noopener">Open Thursday QFT LIVE</a></div>';
@@ -1235,7 +1235,7 @@ window.addEventListener('resize',measureWay);
 
 /* ---------- Living walk (ranks, map, gatherings, badges, motion) ---------- */
 var LINKS={
-  startPath:'https://onenesswellnesslifestyles.biz/affiliate',
+  startPath:'https://app.onenesswellnesslifestyles.com/',
   roadmap:'https://app.onenesswellnesslifestyles.com/The_Roadmap_to_Wholeness.pdf',
   qft:'https://www.eventbrite.com/e/quantum-frequency-therapy-live-experience-tickets-2003870657078',
   saturday:'https://www.eventbrite.com/e/roadmap-to-wholeness-tickets-2003870729294',
