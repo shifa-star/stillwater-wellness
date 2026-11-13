@@ -288,6 +288,10 @@
       var params = new URLSearchParams(window.location.search || "");
       var name = params.get("ref") || params.get("referrer") || params.get("from") || "";
       name = String(name).replace(/\s+/g, " ").trim().slice(0, 80);
+      // Advocate Code (FirstName-XXXX): greet with the first name only.
+      // Old name-only refs (no code suffix, e.g. Mary-Anne) are shown as before.
+      var code = /^([A-Za-z]{1,20})[-_]([2-9A-HJKMNP-Za-hjkmnp-z]{4})$/.exec(name);
+      if (code && /\d/.test(code[2])) name = code[1].charAt(0).toUpperCase() + code[1].slice(1).toLowerCase();
       if (!name || name.toLowerCase() === "no one") return;
       line.textContent = name + " sent you.";
       line.hidden = false;

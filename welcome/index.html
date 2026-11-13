@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Welcome, Self-Healing Advocate</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Mulish:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --uv:#4A0080; --gold:#D4A855; --rose:#E8B4B8; --green:#6DBC45; --blue:#283890; --cream:#FBF7F0;
+  --night:#16032b; --surface:#2a0a4c; --surface-2:#371060; --line:rgba(251,247,240,.18); --muted:rgba(251,247,240,.78);
+  --display:"Cormorant Garamond","Iowan Old Style","Palatino Linotype","Palatino","Book Antiqua",Georgia,"Times New Roman",serif;
+  --carve:"Cinzel","Trajan Pro","Cormorant Garamond","Palatino Linotype",Georgia,"Times New Roman",serif;
+  --body:"Mulish","Segoe UI","Helvetica Neue",system-ui,-apple-system,Arial,sans-serif;
+  --glow1:rgba(232,180,184,.42); --glow2:rgba(212,168,85,.30);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  min-height:100vh; font-family:var(--body); font-size:17px; line-height:1.6; color:var(--cream);
+  background:
+    radial-gradient(110% 60% at 50% -8%, var(--glow1) 0%, transparent 62%),
+    radial-gradient(70% 45% at 85% 0%, var(--glow2) 0%, transparent 70%),
+    linear-gradient(180deg,#3a0766 0%, var(--night) 70%);
+  background-color:var(--night); background-attachment:fixed;
+}
+[hidden]{display:none !important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;line-height:1.15}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--cream);outline-offset:3px;border-radius:6px}
+a{color:var(--gold)}
+a:hover{color:#e2bb6f}
+.skip{position:absolute;left:12px;top:12px;z-index:10;padding:.5em 1em;background:var(--gold);color:#22063d;font-weight:700;border-radius:999px;text-decoration:none;transform:translateY(-200%)}
+.skip:focus{transform:none}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:48px;padding:.6em 1.5em;
+  border-radius:999px;border:1px solid var(--gold);background:var(--gold);color:#22063d;font-weight:700;letter-spacing:.02em;
+  text-decoration:none;width:100%;text-align:center;
+}
+.btn:hover{background:#e2bb6f;color:#22063d}
+.btn.quiet{background:transparent;color:var(--cream);border-color:var(--line);font-weight:600;min-height:48px;padding:.5em 1.2em;font-size:.95rem}
+.btn.quiet:hover{border-color:var(--gold);color:var(--cream)}
+.btn[disabled],.btn.quiet[disabled]{background:transparent;color:var(--muted);border-color:var(--line);cursor:not-allowed}
+.btn[disabled]:hover,.btn.quiet[disabled]:hover{background:transparent;color:var(--muted);border-color:var(--line)}
+
+.page{width:min(100%,920px);margin:0 auto;padding:36px 20px 20px;display:flex;flex-direction:column;gap:28px}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:12px 0 8px}
+.hero .emblem{width:min(42vw,150px);height:auto}
+.hero h1{font-size:clamp(2.2rem,8vw,3.8rem);letter-spacing:.01em}
+.lede{max-width:34em;color:var(--muted)}
+.house{font-family:var(--carve);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rose)}
+
+.panel{
+  background:linear-gradient(180deg,var(--surface-2),var(--surface));
+  border:1px solid var(--line);border-radius:18px;
+  padding:28px clamp(18px,4vw,36px) 32px;
+  display:flex;flex-direction:column;gap:22px;
+}
+.panel h2{font-size:clamp(1.8rem,5vw,2.4rem);color:var(--cream)}
+.panel .intro{color:var(--muted);max-width:40em}
+
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:step}
+.steps>li{
+  display:grid;grid-template-columns:36px 1fr;gap:12px 14px;align-items:start;
+  padding:16px 16px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(22,3,43,.35);
+  counter-increment:step;
+}
+.steps>li::before{
+  content:counter(step);
+  width:36px;height:36px;margin-top:2px;border-radius:50%;
+  display:grid;place-items:center;
+  font-family:var(--carve);font-size:.95rem;font-weight:600;letter-spacing:.04em;
+  color:#22063d;background:var(--gold);
+}
+.stepbody{display:flex;flex-direction:column;gap:12px;min-width:0;grid-column:2}
+.steps h3{font-size:1.45rem;color:var(--gold)}
+.hint{color:var(--muted);font-size:.92rem}
+.example{font-size:.78rem;line-height:1.5;overflow-wrap:break-word;color:var(--cream)}
+
+#pilBox{display:flex;flex-direction:column;gap:8px}
+#pilBox label{color:var(--muted);font-size:.92rem}
+.field{width:100%;min-height:46px;padding:.5em .8em;border-radius:10px;border:1px solid var(--line);background:rgba(22,3,43,.6);color:var(--cream);font:inherit}
+.field::placeholder{color:rgba(251,247,240,.55)}
+.pilout{font-size:.78rem;line-height:1.5;overflow-wrap:break-word;color:var(--cream);border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:rgba(22,3,43,.4);min-height:2.6em}
+
+.gatherings{display:flex;flex-direction:column;gap:14px}
+.gathering{
+  border-left:3px solid var(--gold);padding:4px 0 4px 18px;
+  display:flex;flex-direction:column;gap:12px;align-items:flex-start;height:100%;
+}
+.gathering .btn{margin-top:auto}
+.gathering h3{font-size:1.35rem;color:var(--gold)}
+.when{font-family:var(--display);font-size:1.15rem;font-style:italic;color:var(--cream)}
+
+.portal{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:8px 0 4px}
+.portal p{color:var(--muted);max-width:32em}
+
+footer{max-width:920px;margin:0 auto;padding:10px 20px 40px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.seal{font-family:var(--display);font-style:italic;font-size:1.2rem;color:var(--rose)}
+.signoff{font-size:.92rem;color:var(--muted);margin:0}
+
+@media (min-width:640px){
+  .btn{width:auto;align-self:flex-start}
+  .portal .btn{align-self:center}
+}
+@media (min-width:820px){
+  .page{padding:48px 28px 28px;gap:32px}
+  .gatherings{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .steps>li{padding:18px 20px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#steps">Skip to first steps</a>
+
+<div class="page">
+  <header class="hero">
+    <p class="house">Oneness Wellness Lifestyles</p>
+    <svg class="emblem" viewBox="-100 -100 200 200" aria-hidden="true">
+      <circle r="92" fill="none" stroke="#D4A855" stroke-width="1.5"/>
+      <path d="M60.1 -60.1A85 85 0 0 1 60.1 60.1L38.9 38.9A55 55 0 0 0 38.9 -38.9Z" fill="#E8B4B8" fill-opacity=".8" transform="rotate(4)"/>
+      <path d="M60.1 -60.1A85 85 0 0 1 60.1 60.1L38.9 38.9A55 55 0 0 0 38.9 -38.9Z" fill="#6DBC45" fill-opacity=".8" transform="rotate(94)"/>
+      <path d="M60.1 -60.1A85 85 0 0 1 60.1 60.1L38.9 38.9A55 55 0 0 0 38.9 -38.9Z" fill="#D4A855" fill-opacity=".85" transform="rotate(184)"/>
+      <path d="M60.1 -60.1A85 85 0 0 1 60.1 60.1L38.9 38.9A55 55 0 0 0 38.9 -38.9Z" fill="#283890" stroke="#FBF7F0" stroke-opacity=".5" transform="rotate(274)"/>
+      <circle r="40" fill="#16032b" stroke="#D4A855" stroke-width="3"/>
+    </svg>
+    <h1>Welcome, Self-Healing Advocate</h1>
+    <p class="lede">This journey is self-healing together. Here, Advocates are clear on what to share and how to share it. These first steps are here when you are ready.</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="stepsHeading">
+      <h2 id="stepsHeading">Your first steps</h2>
+      <p class="intro">Begin wherever you are. Each step opens a door, and you may return to any of them at any time.</p>
+      <ol class="steps" id="steps">
+        <li>
+          <div class="stepbody">
+            <h3>Begin The Advocate's Walk</h3>
+            <p>A gentle walk around the medicine wheel, taken at your own pace.</p>
+            <a class="btn" id="beginWalk" href="/advocates-walk/" target="_blank" rel="noopener">Begin The Advocate's Walk <span class="sr">(opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="stepbody">
+            <h3>Write your dream list</h3>
+            <p>This is the Roadmap step called Your Dreams. Dreams get you started. Write the real version.</p>
+            <a class="btn quiet" href="https://app.onenesswellnesslifestyles.com/The_Roadmap_to_Wholeness.pdf#page=4" target="_blank" rel="noopener">Open Your Dreams in the Roadmap <span class="sr">(opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="stepbody">
+            <h3>Read The Roadmap to Wholeness</h3>
+            <p>Sit with the full Roadmap. It is the guide that steadies the work ahead.</p>
+            <a class="btn" href="https://app.onenesswellnesslifestyles.com/The_Roadmap_to_Wholeness.pdf" target="_blank" rel="noopener">Open The Roadmap to Wholeness <span class="sr">(opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="stepbody">
+            <h3>Enter the Advocate Circle</h3>
+            <p>Join fellow Advocates in the Self-Healing Advocates community.</p>
+            <a class="btn" href="https://membership.onenesswellnesslifestyles.com/communities/groups/selfheailngadvocate/home" target="_blank" rel="noopener">Enter the Advocate Circle <span class="sr">(opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="stepbody">
+            <h3>Join the Advocates Telegram group</h3>
+            <p>A place to stay close with other Advocates, in your own time.</p>
+            <a class="btn" href="https://t.me/+o0aGOVEoX-hhNDRh" target="_blank" rel="noopener">Join the Advocates Telegram group <span class="sr">(opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="stepbody">
+            <h3>Ask Summer, your Advocate teacher</h3>
+            <p>Summer is here anytime you want a guide beside you.</p>
+            <a class="btn" href="https://t.me/adaptogentic_bot" target="_blank" rel="noopener">Ask Summer <span class="sr">(opens in a new tab)</span></a>
+          </div>
+        </li>
+        <li>
+          <div class="stepbody">
+            <h3>Your Personal Invitation Link</h3>
+            <p>This is your own link to share when you invite someone. Clan Mother gives every Advocate a personal Advocate Code, like Maria-7K3Q, so no two links are ever the same. Your link always takes this form, with your code in the place of YourCode:</p>
+            <p class="example">https://<wbr>app.onenesswellnesslifestyles.com/<wbr>oneness-lifestyles-app/?<wbr>ref=YourCode&amp;via=person</p>
+            <div id="pilBox">
+              <label for="pilCode">Your Advocate Code, like Maria-7K3Q</label>
+              <input class="field" id="pilCode" type="text" maxlength="40" autocomplete="off" autocapitalize="off" placeholder="FirstName-XXXX" spellcheck="false">
+              <p class="pilout" id="pilOut">https://<wbr>app.onenesswellnesslifestyles.com/<wbr>oneness-lifestyles-app/?<wbr>ref=YourCode&amp;via=person</p>
+              <button class="btn quiet" id="copyPil" type="button" disabled>Copy my link</button>
+              <p class="hint" id="pilNote" role="status">Enter your Advocate Code to see your own link.</p>
+            </div>
+            <noscript><p class="hint">To build your link here, write your Advocate Code into this address in place of YourCode, then copy it: https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=YourCode&amp;via=person</p></noscript>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="panel" aria-labelledby="gatherHeading">
+      <h2 id="gatherHeading">Weekly gatherings</h2>
+      <p class="intro">You are welcome whenever you can join us.</p>
+      <div class="gatherings">
+        <article class="gathering">
+          <h3>Roadmap to Wholeness Advocate Training</h3>
+          <p class="when">Saturdays 12:00–1:00 PM HST (5:00–6:00 PM EST)</p>
+          <a class="btn" href="https://www.eventbrite.com/e/roadmap-to-wholeness-tickets-2003870729294" target="_blank" rel="noopener">Open Saturday training <span class="sr">(opens in a new tab)</span></a>
+        </article>
+        <article class="gathering">
+          <h3>Quantum Frequency Therapy Live Experience</h3>
+          <p class="when">Thursdays 1:00 PM HST (6:00 PM Eastern)</p>
+          <a class="btn" href="https://www.eventbrite.com/e/quantum-frequency-therapy-live-experience-tickets-2003870657078" target="_blank" rel="noopener">Open Thursday QFT LIVE <span class="sr">(opens in a new tab)</span></a>
+        </article>
+      </div>
+    </section>
+
+    <div class="portal">
+      <p>The Advocate Support Portal holds the Roadmap, the Circle, both Telegram groups, and Summer, all in one place.</p>
+      <a class="btn quiet" href="https://app.onenesswellnesslifestyles.com/">Open the Advocate Support Portal</a>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <p class="seal">We Are Healing Together, Wholeness Remembered</p>
+  <p class="signoff">Highest Love, Clan Mother Shifa Ali</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var input=document.getElementById('pilCode');
+  var out=document.getElementById('pilOut');
+  var note=document.getElementById('pilNote');
+  var copyBtn=document.getElementById('copyPil');
+  if(!input||!out||!note||!copyBtn) return;
+  var EXAMPLE='https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref=YourCode&via=person';
+
+  function showUrl(el, url){
+    el.replaceChildren();
+    var parts=String(url).split(/(\/\/|\/|\?|&)/);
+    parts.forEach(function(part,i){
+      if(part) el.appendChild(document.createTextNode(part));
+      if(i<parts.length-1) el.appendChild(document.createElement('wbr'));
+    });
+  }
+  /* Advocate Code: FirstName-XXXX. XXXX uses 2-9 and A-Z without I, L, O, with at least one digit. */
+  var PIL_CODE_RE=/^([A-Za-z]{1,20})-([2-9A-HJKMNP-Z]{4})$/;
+  function pilRef(raw){
+    var s=String(raw||'').trim().replace(/\s+/g,'');
+    if(!s) return {ok:false,reason:'empty',ref:''};
+    var m=/^([A-Za-z]{1,20})[-_]([A-Za-z0-9]{4})$/.exec(s);
+    if(!m) return {ok:false,reason:'chars',ref:''};
+    var code=m[1].charAt(0).toUpperCase()+m[1].slice(1).toLowerCase()+'-'+m[2].toUpperCase();
+    if(/test/i.test(code)) return {ok:false,reason:'blocked',ref:''};
+    if(!PIL_CODE_RE.test(code)||!/\d/.test(code.slice(-4))) return {ok:false,reason:'chars',ref:''};
+    return {ok:true,reason:'',ref:code};
+  }
+  function pilUrl(ref){
+    return 'https://app.onenesswellnesslifestyles.com/oneness-lifestyles-app/?ref='+encodeURIComponent(ref)+'&via=person';
+  }
+  function render(){
+    var r=pilRef(input.value);
+    if(!r.ok){
+      showUrl(out,EXAMPLE);
+      copyBtn.disabled=true;
+      if(r.reason==='blocked') note.textContent='That code cannot be used in a link. Please check the code Clan Mother sent you.';
+      else if(r.reason==='chars') note.textContent='Your Advocate Code is your first name, a hyphen, and four letters or numbers, like Maria-7K3Q. Codes never use 0, O, 1, I, or L.';
+      else note.textContent='Enter your Advocate Code to see your own link. If you do not have your code yet, it is on its way from Clan Mother.';
+    }else{
+      showUrl(out,pilUrl(r.ref));
+      copyBtn.disabled=false;
+      note.textContent='This is your Personal Invitation Link. It is yours alone.';
+    }
+  }
+  function copyLink(){
+    var r=pilRef(input.value);
+    if(!r.ok){render();return;}
+    var url=pilUrl(r.ref);
+    function done(){note.textContent='Your Personal Invitation Link is copied.';}
+    function fail(){note.textContent='The link is ready above. You can select it and copy it from there.';}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(done).catch(function(){
+        try{
+          var ta=document.createElement('textarea');
+          ta.value=url; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.left='-9999px';
+          document.body.appendChild(ta); ta.select();
+          var ok=document.execCommand('copy');
+          document.body.removeChild(ta);
+          if(ok) done(); else fail();
+        }catch(e){fail();}
+      });
+    }else{
+      fail();
+    }
+  }
+  input.addEventListener('input',render);
+  input.addEventListener('blur',function(){var r=pilRef(input.value);if(r.ok&&input.value!==r.ref)input.value=r.ref;});
+  copyBtn.addEventListener('click',copyLink);
+  try{
+    var q=new URLSearchParams(window.location.search||'');
+    var pre=pilRef(q.get('code')||'');
+    if(!pre.ok) pre=pilRef(q.get('ref')||'');
+    if(pre.ok&&!input.value) input.value=pre.ref;
+    var begin=document.getElementById('beginWalk');
+    if(begin) begin.href=pre.ok?'/advocates-walk/?code='+encodeURIComponent(pre.ref):'/advocates-walk/';
+  }catch(e){}
+  render();
+})();
+</script>
+</body>
+</html>
