@@ -79,7 +79,8 @@ assert.ok(guest.includes(">I'll Be There</a>"));
 assert.ok(guest.includes('src="gathering-link.js"'));
 assert.ok(guest.includes('params.get("ref") || params.get("referrer") || params.get("from")'));
 assert.ok(guest.includes('name + " sent you."'));
-assert.ok(!/test/i.test(guest));
+assert.strictEqual(guest.split("/\\d/.test(").length, 2);
+assert.ok(!/test/i.test(guest.split("/\\d/.test(").join("")));
 assert.ok(!/w-9|commission|warm-up|practitioner council|affiliate|summit/i.test(guest));
 
 const builder = fs.readFileSync("oneness-lifestyles-app/gathering-link.js", "utf8");
@@ -99,8 +100,9 @@ const heroCopy = jan13.slice(jan13.indexOf('class="hero-copy"'), jan13.indexOf("
 assert.ok(heroCopy.includes('class="eyebrow"'));
 assert.ok(heroCopy.includes('<p class="personal-invitation" id="personal-invitation" hidden></p>'));
 assert.ok(heroCopy.indexOf('class="eyebrow"') < heroCopy.indexOf('id="personal-invitation"'));
-assert.ok(jan13.includes('heard.value = via === "person"\n          ? "Personal invitation from " + ref\n          : "Personal invitation, " + ref;'));
-assert.ok(jan13.includes('inviteLine.textContent = via === "person"\n          ? "Personal invitation from " + ref\n          : "Personal invitation, " + ref;'));
+assert.ok(jan13.includes("if (refField) refField.value = ref;"));
+assert.ok(jan13.includes('heard.value = via === "person"\n          ? "Personal invitation from " + refName\n          : "Personal invitation, " + refName;'));
+assert.ok(jan13.includes('inviteLine.textContent = via === "person"\n          ? "Personal invitation from " + refName\n          : "Personal invitation, " + refName;'));
 assert.ok(jan13.includes("inviteLine.hidden = false"));
 assert.ok(!jan13.includes("inviteLine.innerHTML"));
 assert.ok(!jan13.includes(".innerHTML"));
