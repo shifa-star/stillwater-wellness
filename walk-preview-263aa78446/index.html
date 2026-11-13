@@ -114,7 +114,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .qbody{display:flex;flex-direction:column;gap:10px;min-width:0}
 .hint{color:var(--muted);font-size:.92rem}
 .flames{display:flex;flex-wrap:wrap;gap:8px}
-.flame{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:92px;padding:8px 8px 6px;border-radius:12px;border:1px solid var(--line);background:transparent;font-size:.82rem;color:var(--muted)}
+.flame{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:78px;max-width:118px;padding:8px 6px 6px;border-radius:12px;border:1px solid var(--line);background:transparent;font-size:.78rem;line-height:1.2;text-align:center;color:var(--muted)}
 .flame svg{width:26px;height:26px;fill:none;stroke:var(--muted);stroke-width:1.6}
 .flame[aria-pressed="true"]{border-color:var(--gold);color:var(--cream);background:rgba(212,168,85,.14)}
 .flame[aria-pressed="true"] svg{fill:var(--gold);stroke:var(--rose)}
@@ -243,6 +243,15 @@ body.shake{animation:worldshake .5s ease-in-out}
 #lanternMeter .bowl{flex:1;height:10px;border-radius:999px;border:1px solid var(--gold);background:rgba(22,3,43,.5);overflow:hidden}
 #lanternMeter .fuel{height:100%;width:0;background:var(--gold);transition:width .5s ease}
 #lanternMeter .lbl{font-size:.85rem;color:var(--muted);white-space:nowrap}
+.step-pips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.step-pip{width:11px;height:11px;border-radius:50%;border:1px solid var(--gold);background:transparent}
+.step-pip.on{background:var(--gold);box-shadow:0 0 8px rgba(212,168,85,.8)}
+.support{margin-top:8px}
+#summerDoor{position:fixed;left:14px;bottom:14px;z-index:8;display:inline-flex;align-items:center;gap:8px;padding:.55em .9em;border-radius:999px;border:1px solid var(--gold);background:rgba(22,3,43,.92);color:var(--cream);font-weight:700;font-size:.88rem;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,.4)}
+#summerDoor:hover,#summerDoor:focus{border-color:var(--rose);color:var(--gold)}
+#journalContact{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+#journalSendMsg{margin-top:8px}
+#copyJournal[hidden]{display:none}
 .badges{display:flex;flex-wrap:wrap;gap:6px}
 .badge{font-size:.78rem;letter-spacing:.04em;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:.2em .7em}
 .badge.got{border-color:var(--gold);color:var(--cream);background:rgba(212,168,85,.18)}
@@ -377,10 +386,20 @@ body.shake{animation:worldshake .5s ease-in-out}
     <div class="body">
       <p>Send your journal to Clan Mother, or move this walk to another device.</p>
       <div class="row">
-        <button class="btn quiet" id="copyJournal" type="button">Copy my journal</button>
+        <button class="btn" id="sendJournal" type="button">Send my journal to Clan Mother</button>
+        <button class="btn quiet" id="copyJournal" type="button" hidden>Copy my journal</button>
         <button class="btn quiet" id="copyCode" type="button">Copy a carry code</button>
         <button class="btn quiet" id="downloadCode" type="button">Download a carry file</button>
       </div>
+      <div id="journalContact" hidden>
+        <p class="hint">The first time, tell us your name and email so Clan Mother knows who the journal is from. They stay in this browser.</p>
+        <label for="contactName">Your name</label>
+        <input class="field" id="contactName" type="text" maxlength="120" autocomplete="name" placeholder="Your name">
+        <label for="contactEmail">Your email</label>
+        <input class="field" id="contactEmail" type="email" maxlength="160" autocomplete="email" placeholder="you@email.com">
+        <button class="btn" id="confirmSend" type="button">Send now</button>
+      </div>
+      <p id="journalSendMsg" role="status"></p>
       <textarea class="field" id="carryOut" rows="4" readonly hidden aria-label="Text to copy"></textarea>
       <label for="carryIn">Paste a carry code from another device</label>
       <textarea class="field" id="carryIn" rows="2" autocomplete="off" spellcheck="false"></textarea>
@@ -412,11 +431,50 @@ body.shake{animation:worldshake .5s ease-in-out}
 <dialog id="got" aria-labelledby="gotTitle"><div class="inner" id="gotInner"></div></dialog>
 <dialog id="lore" aria-labelledby="loreTitle"><div id="loreInner"></div></dialog>
 
+<a id="summerDoor" href="https://t.me/adaptogentic_bot" target="_blank" rel="noopener">Reach Summer, your guide</a>
 <script>
 (function(){
 'use strict';
 var DIRS=['east','south','west','north'];
-var QUALITIES=['Communication','Empathy','Assertiveness','Creativity','Perseverance'];
+var STEPS=[
+  {name:'Your Dreams',page:4,short:'Your Dreams',paras:[
+    'Dreams get you started. Before any list, any script, any goal, write your dreams down. Not the polite version. The real one.',
+    'Write a dream list of at least 25 items: health, family, home, travel, debt freedom, time freedom, service, legacy. Read it morning and evening for the first 90 days. Share your top three dreams with your mentor in your first counsel call. Revisit the list at every 60 to 90 day review. Cross off what arrived. Add what grew.',
+    'At company scale, our shared dream is simple to say and large to live: every person remembers their own power to heal, and AI enhances human health care in service of that remembering.'
+  ]},
+  {name:'Attitude',page:4,short:'Attitude',paras:[
+    'Attitude decides how long a person stays in the work. Skills can be taught in a week. Attitude is carried daily.',
+    'Positive: Speak about people and possibilities with hope. Optimism is a discipline here, not a mood. Focused: One daily rhythm, worked consistently, beats ten scattered efforts. Coachable: Receive counsel without defensiveness. Try the counsel before you judge it. Committed: Success comes from consistent hard work over time. Long enough is part of the law.',
+    'When a door closes, we do not chase and we do not collapse. We bless, we log what we learned, and we turn to the next name with a full heart.'
+  ]},
+  {name:'Your Contact List',page:5,short:'Your Contact List',paras:[
+    'Your list is your inventory. Build it once, work it forever, and never pre-judge a single name on it.',
+    'Build a living list of 75 to 100 names. Use the memory jogger: family, friends, neighbors, coworkers past and present, church and community, school ties, service providers, social media connections, people you admire from a distance. Write every name. Sift and sort later.',
+    'Code every name: S, Successful, resourceful — invite to The Sitting Room as a guest of honor. P, People person, well liked — invite to taste the 5-Day Wellness Blueprint. I, Influence in a community — ask who they know who needs this work. V, Visible need, product and experience fit — offer the experience directly, with care.',
+    'Two Priority Twenties: Top 20 Experience, the twenty people most likely to benefit from the experience right now, and Top 20 Influencers, the twenty people whose voice carries furthest. Work the twenties first. Then work the full list, name by name, with follow up.'
+  ]},
+  {name:'Leading with the Experience',page:6,short:'The Experience',paras:[
+    'Lead with the experience, not the explanation. People remember what they taste.',
+    'Simple. Convenient. Complete. Simple: One clear invitation, one clear first step. Convenient: On the phone, on Telegram, in the app, at The Sitting Room. Meet people where they already are. Complete: The first experience carries the whole flavor of the work: welcome, teaching, practice, and a next step.',
+    'The Porch: Everything Complimentary. Our logic is simple: invite people to what is complimentary first, so they can taste. Then bring them into the paid offers. On the porch, all Door 1, all free: The Quantum Frequency Experience, Thursdays, 1:00 PM HST; Mastermind Monday, Mondays, 3:00 PM HST; the podcast, Oneness Wellness Lifestyles; the app; and the daily 13 Moon reading with remedy every morning in the Telegram circle.',
+    'Lead every new person to the porch first. Let them taste. The paid doors open from there.'
+  ]},
+  {name:'Leading with the Invitation',page:8,short:'The Invitation',paras:[
+    'After the experience, some will ask how they can share this. That question is the doorway to Step 5. Extend the invitation clearly and without pressure: walk this path as a Self-Healing Advocate, learn the roadmap, and carry the experience to your own circle. Those who resonate, enroll. Those who do not, remain beloved guests. Both answers are honored.'
+  ]},
+  {name:'Goal Setting',page:10,short:'Goal Setting',paras:[
+    'A dream without a date drifts. Write goals in three horizons and review them with your mentor.',
+    'Short-term (this week): Five new conversations. Two Blueprint invitations. One follow up call daily. Long-term (this year): A circle of 25 Advocates. Monthly gatherings running without you in the room. Realistic (honest pace): Goals that stretch you and still fit your family, health, and season of life.'
+  ]},
+  {name:'Counsel and Mentoring',page:10,short:'Counsel',paras:[
+    'No one builds this alone. Plug into counsel early and stay plugged in.',
+    'Weekly: Attend The Sitting Room, Thursdays at 1:00 PM HST, live on Zoom, YouTube, and Facebook. Monthly: One counsel call with your mentor. Bring numbers, names, and one honest struggle. Always: Ask before you improvise on price, promise, or protocol. Counsel keeps the work clean.'
+  ]},
+  {name:'Get Started Now',page:10,short:'Get Started Now',paras:[
+    'Motion teaches what study cannot. In your first 24 hours as an Advocate: Complete your dream list (Step 1). Start your contact list with the first 25 names (Step 3). Enroll in the 5-Day Wellness Blueprint if you have not completed it. Share the experience with five people. Simply, warmly, today. Book your first counsel call.',
+    'New Advocate Checklist: Dream list written. List started. Blueprint completed. Five shares in 24 hours. Counsel call booked. App installed. Member platform contact record created.'
+  ]}
+];
 var L={
   east:{name:'East',title:'The Receiving',glyph:'☼',season:'Dawn',ord:'First gate',c:0,
     intro:'Dawn breaks over the wheel. You enter as a new Advocate and receive the first lamp: communication. Carry it gently. Its light is your own voice.',
@@ -428,14 +486,14 @@ var L={
     blessing:'May your words find the ears they were meant for.',
     prompt:'What called you to this path before you knew its name?'},
   south:{name:'South',title:'The Kindling',glyph:'♦︎',season:'Summer',ord:'Second gate',c:90,
-    intro:'The sun stands high. Five qualities burn here, and each one is a flame you tend.',
+    intro:'The sun stands high. Eight steps of The Roadmap to Wholeness burn here, and each one is a flame you tend.',
     quests:[
-      {t:'flames',text:'Complete the five qualities as you walk. Light each flame when that quality has stretched you.',short:'the five qualities'},
+      {t:'flames',text:'Sit with the eight Roadmap steps as you walk. Open each flame, read it, and mark it when you have sat with that step.',short:'the eight Roadmap steps'},
       {t:'check',text:'Sit in Thursday Quantum Frequency Therapy Live Experience, 1:00 PM HST / 6:00 PM Eastern.',short:'Thursday QFT LIVE',href:'QFT'},
-      {t:'write',text:'Name in writing which quality stretched you most.',short:'your naming'}],
+      {t:'write',text:'Name in writing which Roadmap step stretched you most.',short:'your naming'}],
     rule:'No naming, no crossing.',
     blessing:'What burns in you is what lights others.',
-    prompt:'Which quality burned hottest in you, and what did it reveal?'},
+    prompt:'Which Roadmap step burned hottest in you, and what did it reveal?'},
   west:{name:'West',title:'The Giving',glyph:'★',season:'Harvest',ord:'Third gate',c:180,
     intro:'The fields are full. What you received and kindled is ready to be given. Here the Advocate learns that an open hand is never empty.',
     quests:[
@@ -446,22 +504,22 @@ var L={
     blessing:'The harvest belongs to those who planted for others.',
     prompt:'What did you give away that came back multiplied?'},
   north:{name:'North',title:'The Listening',glyph:'☷',season:'Winter',ord:'Fourth gate',c:270,
-    intro:'Snow settles and the circle grows quiet. This is the season of quiet authority, where you rest, hold space, and let the story speak.',
+    intro:'Snow settles and the circle grows quiet. This is a 72-hour reflection cycle — a weekend-style pause for self-reflection and introspection. Stay gently present. Journal. Listen. Reach for support if you wish.',
     quests:[
-      {t:'check',text:'Sit one full week without posting or recruiting.',short:'the week of rest'},
+      {t:'check',text:'Keep a 72-hour reflection cycle: a weekend-style pause for self-reflection and introspection, while staying gently present.',short:'your 72-hour reflection'},
       {t:'check',text:'Be present. Hold space for fellow Advocates in the Circle.',short:'holding space'},
       {t:'journal',text:'Write your story in the journal.',short:'your story in the journal'}],
-    rule:'The Lantern rank opens only after the week of rest.',
+    rule:'The Lantern rank opens after a 72-hour reflection cycle.',
     blessing:'In stillness, you become the medicine.',
     prompt:'What did you hear in someone else’s story that was really yours?'}
 };
 var KEY='advocates-walk-v1';
-function fresh(){return {v:1,started:false,current:'east',
+function fresh(){return {v:2,started:false,current:'east',
   quests:{east:[false,false,false],south:[false,false,false],west:[false,false,false],north:[false,false,false]},
-  flames:[false,false,false,false,false],naming:'',
+  flames:[false,false,false,false,false,false,false,false],naming:'',
   journal:{east:'',south:'',west:'',north:''},
   crossed:{east:false,south:false,west:false,north:false},sound:false,updatedAt:0,
-  badges:{},pilName:'',
+  badges:{},pilName:'',contactName:'',contactEmail:'',
   gatherings:{saturday:[],qft:[]},streak:{days:[false,false,false,false,false]}};}
 var S=fresh(), storeOK=true;
 var localHad=false, cloud={db:null,user:null,id:null,doc:null,readonly:false,synced:false};
@@ -475,7 +533,10 @@ function normalize(d){
     if(d.journal&&typeof d.journal[k]==='string') f.journal[k]=d.journal[k].slice(0,20000);
     if(d.crossed) f.crossed[k]=!!d.crossed[k];
   });
-  if(Array.isArray(d.flames)) f.flames=[0,1,2,3,4].map(function(i){return !!d.flames[i];});
+  if(Array.isArray(d.flames)){
+    if(d.flames.length>=8) f.flames=[0,1,2,3,4,5,6,7].map(function(i){return !!d.flames[i];});
+    else f.flames=[false,false,false,false,false,false,false,false];
+  }
   if(typeof d.naming==='string') f.naming=d.naming.slice(0,500);
   if(typeof d.updatedAt==='number'&&isFinite(d.updatedAt)) f.updatedAt=d.updatedAt;
   if(!unlockedIn(f,f.current)) f.current='east';
@@ -485,7 +546,10 @@ function normalize(d){
     Object.keys(d.badges).forEach(function(k){
       if(typeof d.badges[k]==='number'&&isFinite(d.badges[k])) f.badges[k]=d.badges[k];
     });
+    if(f.badges.flames&&!f.flames.every(Boolean)) delete f.badges.flames;
   }
+  f.contactName=typeof d.contactName==='string'?d.contactName.slice(0,120):'';
+  f.contactEmail=typeof d.contactEmail==='string'?d.contactEmail.slice(0,160):'';
   f.gatherings={saturday:[],qft:[]};
   if(d.gatherings&&typeof d.gatherings==='object'){
     ['saturday','qft'].forEach(function(k){
@@ -629,7 +693,8 @@ function renderPanel(){
   var d=S.current,o=L[d],i=DIRS.indexOf(d),h='';
   h+='<div class="head"><p class="season">'+o.season+' · '+o.ord+'</p>'+
      '<h2 id="lvTitle"><span class="gl" aria-hidden="true">'+o.glyph+'</span>'+o.name+', '+o.title+'</h2>'+
-     '<p class="intro">'+esc(o.intro)+'</p></div>';
+     '<p class="intro">'+esc(o.intro)+'</p>'+
+     '<p class="hint support">You are supported. Reach Summer, your guide, whenever you want a hand beside you.</p></div>';
   h+='<section aria-labelledby="qH"><h3 id="qH">Three quests</h3><ul class="quests">';
   o.quests.forEach(function(q,k){
     var id='q-'+d+'-'+k;
@@ -644,13 +709,14 @@ function renderPanel(){
     }else{
       h+='<li class="quest"><span class="mark" data-mark="'+k+'" aria-hidden="true">✓</span><div class="qbody"><p>'+esc(q.text)+' <span class="sr" data-sr="'+k+'"></span></p>';
       if(q.t==='flames'){
-        h+='<div class="flames" role="group" aria-label="The five flames">';
-        QUALITIES.forEach(function(n,f){h+='<button type="button" class="flame" data-flame="'+f+'" aria-pressed="'+(S.flames[f]?'true':'false')+'">'+FLAME+'<span>'+n+'</span></button>';});
-        h+='</div><p class="hint">These five qualities are tended as you walk. They are not chapters of The Roadmap to Wholeness, which is eight steps from Your Dreams to Get Started Now. Light a flame when that quality has stretched you. <button type="button" class="btn quiet" id="openIntro">Read the Roadmap introduction</button></p>';
+        h+='<div class="flames" role="group" aria-label="The eight Roadmap steps">';
+        STEPS.forEach(function(st,f){h+='<button type="button" class="flame" data-flame="'+f+'" aria-pressed="'+(S.flames[f]?'true':'false')+'">'+FLAME+'<span>'+esc(st.short)+'</span></button>';});
+        h+='</div><p class="hint">Each flame opens that Roadmap step. Read it, then mark it to light the flame. The page number is on the panel, and a link opens the PDF at that page. <button type="button" class="btn quiet" id="openIntro">Read the Roadmap introduction</button></p>';
       }else if(q.t==='write'){
-        h+='<label class="hint" for="naming">The quality that stretched me most</label><input class="field" id="naming" type="text" maxlength="500" autocomplete="off" placeholder="Write its name, and a few words if you wish">';
+        h+='<label class="hint" for="naming">The Roadmap step that stretched me most</label><input class="field" id="naming" type="text" maxlength="500" autocomplete="off" placeholder="Write its name, and a few words if you wish">';
       }else{
         h+='<p class="hint">This quest completes when you write in the stone journal below.</p>';
+        if(d==='north') h+='<p class="hint">Gentle prompts for the 72 hours: write a few words in your journal today. Notice one story that touched you. Reach Summer if you want a guide beside you. This is a pause for reflection, not a week of silence.</p>';
       }
       h+='</div></li>';
     }
@@ -701,9 +767,7 @@ $('panel').addEventListener('input',function(e){
 });
 $('panel').addEventListener('click',function(e){
   var f=e.target.closest('.flame');
-  if(f){var k=+f.getAttribute('data-flame'),on=!S.flames[k];S.flames[k]=on;f.setAttribute('aria-pressed',on?'true':'false');save();refresh();renderLiving();
-    if(on){if(S.sound) chime(); flash(); queueGot('The flame of '+QUALITIES[k],'A quality you tend as you walk. The Roadmap itself is eight steps, from Your Dreams to Get Started Now.','flame'); checkAwards(false);}
-    return;}
+  if(f){openStep(+f.getAttribute('data-flame'));return;}
   if(e.target.closest('#openIntro')){openLore();return;}
   if(e.target.closest('#copyPil')){
     var r=pilRef(S.pilName);
@@ -1028,6 +1092,65 @@ function copyOut(text,okMsg){
   }catch(e){manual();}
 }
 $('copyJournal').addEventListener('click',function(){copyOut(journalText(),'Your journal is copied. Paste it into a message to Clan Mother.');});
+var JOURNAL_WEBHOOK='https://onenesswellnesslifestyles.app.n8n.cloud/webhook/advocate-walk-journal';
+function validEmail(s){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s||'').trim());}
+function journalPayload(){
+  return {
+    name:String(S.contactName||'').trim(),
+    email:String(S.contactEmail||'').trim(),
+    journal:{east:S.journal.east||'',south:S.journal.south||'',west:S.journal.west||'',north:S.journal.north||''},
+    gate:S.current,
+    rank:rankOf(S),
+    timestamp:new Date().toISOString(),
+    timestampHst:new Date().toLocaleString('en-US',{timeZone:'Pacific/Honolulu',dateStyle:'medium',timeStyle:'short'})+' HST',
+    source:'advocate-walk-v3'
+  };
+}
+function journalSendMsg(s){var n=$('journalSendMsg'); if(n) n.textContent=s||'';}
+function showCopyFallback(){var b=$('copyJournal'); if(b) b.hidden=false;}
+function askContactThenSend(){
+  var box=$('journalContact');
+  if(box){
+    box.hidden=false;
+    if($('contactName')) $('contactName').value=S.contactName||'';
+    if($('contactEmail')) $('contactEmail').value=S.contactEmail||'';
+    journalSendMsg('Please add your name and email once, then send.');
+    var n=$('contactName'); if(n) n.focus();
+  }
+}
+function sendJournalNow(){
+  var payload=journalPayload();
+  if(!payload.name||!validEmail(payload.email)){askContactThenSend();return;}
+  var btn=$('sendJournal'), conf=$('confirmSend');
+  if(btn) btn.disabled=true;
+  if(conf) conf.disabled=true;
+  journalSendMsg('Sending your journal to Clan Mother…');
+  fetch(JOURNAL_WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(function(r){if(!r.ok) throw new Error('http '+r.status); return r.json().catch(function(){return {ok:true};});})
+    .then(function(){
+      journalSendMsg('Your journal is on its way to Clan Mother.');
+      var box=$('journalContact'); if(box) box.hidden=true;
+    })
+    .catch(function(){
+      journalSendMsg('This did not go through just now. You can copy your journal and send it when you are ready.');
+      showCopyFallback();
+    })
+    .then(function(){if(btn) btn.disabled=false; if(conf) conf.disabled=false;});
+}
+$('sendJournal').addEventListener('click',function(){
+  if(S.contactName&&validEmail(S.contactEmail)) sendJournalNow();
+  else askContactThenSend();
+});
+$('confirmSend').addEventListener('click',function(){
+  S.contactName=(($('contactName')&&$('contactName').value)||'').trim();
+  S.contactEmail=(($('contactEmail')&&$('contactEmail').value)||'').trim();
+  if(!S.contactName||!validEmail(S.contactEmail)){
+    journalSendMsg('Please add your name and a real email so Clan Mother can write back if she needs to.');
+    return;
+  }
+  save();
+  sendJournalNow();
+});
 $('copyCode').addEventListener('click',function(){
   var code='AW1.'+btoa(unescape(encodeURIComponent(JSON.stringify(S))));
   copyOut(code,'Your carry code is copied. Paste it into Carry my walk on your other device.');
@@ -1111,7 +1234,8 @@ var LINKS={
   startPath:'https://onenesswellnesslifestyles.biz/affiliate',
   roadmap:'https://app.onenesswellnesslifestyles.com/The_Roadmap_to_Wholeness.pdf',
   qft:'https://www.eventbrite.com/e/quantum-frequency-therapy-live-experience-tickets-2003870657078',
-  saturday:'https://www.eventbrite.com/e/roadmap-to-wholeness-tickets-2003870729294'
+  saturday:'https://www.eventbrite.com/e/roadmap-to-wholeness-tickets-2003870729294',
+  summer:'https://t.me/adaptogentic_bot'
 };
 var BADGE_META={
   receiving:{title:'The Receiving',line:'You crossed the gate of the East.'},
@@ -1119,7 +1243,7 @@ var BADGE_META={
   giving:{title:'The Giving',line:'You crossed the gate of the West.'},
   listening:{title:'The Listening',line:'You crossed the gate of the North.'},
   lantern:{title:'The Lantern',line:'The wheel has turned full circle, and the Lantern is yours to carry.'},
-  flames:{title:'Five Flames',line:'You lit every quality: Communication, Empathy, Assertiveness, Creativity, and Perseverance.'},
+  flames:{title:'Eight Steps',line:'You sat with all eight Roadmap to Wholeness steps, from Your Dreams to Get Started Now.'},
   invitation:{title:'The Invitation',line:'You invited someone with your Personal Invitation Link, and felt the recognition.'},
   saturday:{title:'Saturday Training',line:'You sat in the Roadmap to Wholeness Advocate Training.'},
   qft:{title:'QFT LIVE',line:'You sat in the Thursday Quantum Frequency Therapy Live Experience.'},
@@ -1257,14 +1381,14 @@ function renderLiving(){
   }
   root.innerHTML=
     '<div class="livecard"><h3>Twelve quests</h3>'+map+'<p class="hint">'+n+' of 12 quests complete. Rank: '+esc(RANK_NAME[r])+'.</p></div>'+
-    '<div class="livecard"><h3>The lantern</h3><div id="lanternMeter"><div class="bowl" aria-hidden="true"><div class="fuel" style="width:'+(fuel/5*100)+'%"></div></div><span class="lbl">'+fuel+' of 5 flames</span></div><p class="hint">Each quality you tend fills the lantern. This is recognition you can see, not a score.</p></div>'+
+    '<div class="livecard"><h3>The lantern</h3><div id="lanternMeter"><div class="bowl" aria-hidden="true"><div class="fuel" style="width:'+(fuel/8*100)+'%"></div></div><span class="lbl">'+fuel+' of 8 steps</span></div><div class="step-pips" aria-label="Eight Roadmap steps">'+(function(){var s='';for(var i=0;i<8;i++) s+='<span class="step-pip'+(S.flames[i]?' on':'')+'" title="'+esc(STEPS[i].name)+' — Roadmap page '+STEPS[i].page+'"></span>';return s;})()+'</div><p class="hint">Each Roadmap step you sit with fills the lantern. This is recognition you can see, not a score.</p></div>'+
     '<div class="livecard"><h3>Keepsake badges</h3><div class="badges">'+badges+'</div></div>'+
     '<div class="livecard gath"><h3>Living gatherings</h3>'+
       '<div class="rowline"><span>Saturday Roadmap to Wholeness Advocate Training, 12:00–1:00 PM HST / 5:00–6:00 PM EST</span><button type="button" class="btn quiet" id="satMark">'+(satToday?'You sat today':'I sat this Saturday')+'</button></div>'+
       '<p class="meta">'+(sat.length?sat.length+' Saturday'+(sat.length>1?'s':'')+' remembered. ':'')+'<a href="'+LINKS.saturday+'" target="_blank" rel="noopener">Register or join</a></p>'+
       '<div class="rowline"><span>Thursday Quantum Frequency Therapy Live Experience, 1:00 PM HST / 6:00 PM Eastern</span><button type="button" class="btn quiet" id="qftMark">'+(qftToday?'You sat today':'I sat this Thursday')+'</button></div>'+
       '<p class="meta">'+(qft.length?qft.length+' Thursday'+(qft.length>1?'s':'')+' remembered. ':'')+'<a href="'+LINKS.qft+'" target="_blank" rel="noopener">Register or join</a></p>'+
-      '<p class="hint">These gatherings stay with you after a gate is crossed. A week of rest is always welcome.</p></div>'+
+      '<p class="hint">These gatherings stay with you after a gate is crossed. A 72-hour reflection, or a quieter weekend, is always welcome.</p></div>'+
     '<div class="livecard streak"><h3>Optional 5-Day Challenge</h3><p class="hint">A companion path, beside the wheel. It never closes a gate, and a paused day is simply a day you may return to.</p><div class="days">'+days+'</div></div>';
   var rl=$('rankLine'); if(rl) rl.textContent=rankLine(r);
 }
@@ -1315,6 +1439,31 @@ function renderFireflies(t){
   });
   x.globalAlpha=1;
 }
+function roadmapPageUrl(n){return LINKS.roadmap+'#page='+n;}
+function openStep(i){
+  var st=STEPS[i]; if(!st) return;
+  var h='<h2 id="loreTitle">Step '+(i+1)+': '+esc(st.name)+'</h2>';
+  h+='<p class="from">Roadmap page '+st.page+'</p><div class="lorebody">';
+  st.paras.forEach(function(p){h+='<p>'+esc(p)+'</p>';});
+  h+='<p>The words above are drawn from The Roadmap to Wholeness, Oneness Wellness Lifestyles, page '+st.page+'.</p></div>';
+  h+='<div class="close-row">';
+  if(!S.flames[i]) h+='<button type="button" class="btn" id="lightStep" data-step="'+i+'">I have sat with this step</button>';
+  else h+='<p class="hint">This step is lit.</p>';
+  h+='<a class="btn quiet" href="'+roadmapPageUrl(st.page)+'" target="_blank" rel="noopener">Open Roadmap page '+st.page+'</a>';
+  h+='<button type="button" class="btn quiet" id="loreClose">Close</button></div>';
+  $('loreInner').innerHTML=h;
+  openDlg($('lore'));
+}
+function lightStep(i){
+  if(!STEPS[i]||S.flames[i]) return;
+  S.flames[i]=true;
+  save(); refresh(); renderLiving(); renderPanel();
+  closeDlg($('lore'));
+  if(S.sound) chime();
+  flash();
+  queueGot('The flame of '+STEPS[i].name,'You sat with this Roadmap step. Roadmap page '+STEPS[i].page+'.','flame');
+  checkAwards(false);
+}
 function openLore(){
   var h='<p class="from">From The Roadmap to Wholeness</p><h2 id="loreTitle">How to begin</h2><div class="body">';
   h+='<p>Aloha, peaceful greetings, Beloved. Thank you for coming this far, and for holding this roadmap in your hands. You are here with a heart to help others, and that is no small thing. We acknowledge you, and we appreciate you, for being here on the mission: to love, heal, bless, prosper, and enlighten.</p>';
@@ -1353,7 +1502,11 @@ function hookLiving(){
 }
 
 $('got').addEventListener('click',function(e){if(e.target.closest('#gotOk')){closeDlg($('got'));gotBusy=false;showGot();}});
-$('lore').addEventListener('click',function(e){if(e.target.closest('#loreClose')) closeDlg($('lore'));});
+$('lore').addEventListener('click',function(e){
+  var light=e.target.closest('#lightStep');
+  if(light){lightStep(+light.getAttribute('data-step'));return;}
+  if(e.target.closest('#loreClose')) closeDlg($('lore'));
+});
 window.addEventListener('resize',function(){var cv=$('fireflies'); if(cv) cv._init=false;});
 function worldTick(t){if(typeof renderFireflies==='function') renderFireflies(t); if(!reduce.matches) requestAnimationFrame(worldTick);}
 requestAnimationFrame(worldTick);
