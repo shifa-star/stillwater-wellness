@@ -248,6 +248,9 @@ body.shake{animation:worldshake .5s ease-in-out}
 .step-pip.on{background:var(--gold);box-shadow:0 0 8px rgba(212,168,85,.8)}
 .support{margin-top:8px}
 #summerDoor{position:fixed;left:14px;bottom:14px;z-index:8;display:inline-flex;align-items:center;gap:8px;padding:.55em .9em;border-radius:999px;border:1px solid var(--gold);background:rgba(22,3,43,.92);color:var(--cream);font-weight:700;font-size:.88rem;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,.4)}
+#circleDoor{position:fixed;right:14px;bottom:14px;z-index:8;display:inline-flex;align-items:center;padding:.55em .9em;border-radius:999px;border:1px solid var(--gold);background:rgba(22,3,43,.92);color:var(--cream);font-weight:700;font-size:.88rem;text-decoration:none}
+#circleDoor:hover,#circleDoor:focus{border-color:var(--rose);color:var(--gold)}
+@media (max-width:560px){#summerDoor,#circleDoor{font-size:.7rem;padding:.45em .6em;gap:4px;bottom:10px;white-space:nowrap}#summerDoor{left:8px}#circleDoor{right:8px}body{padding-bottom:64px}}
 #summerDoor:hover,#summerDoor:focus{border-color:var(--rose);color:var(--gold)}
 #journalContact{display:flex;flex-direction:column;gap:8px;margin-top:10px}
 #journalSendMsg{margin-top:8px}
@@ -432,6 +435,7 @@ body.shake{animation:worldshake .5s ease-in-out}
 <dialog id="lore" aria-labelledby="loreTitle"><div id="loreInner"></div></dialog>
 
 <a id="summerDoor" href="https://t.me/adaptogentic_bot" target="_blank" rel="noopener">Reach Summer, your guide</a>
+<a id="circleDoor" href="https://membership.onenesswellnesslifestyles.com/communities/groups/selfheailngadvocate/home" target="_blank" rel="noopener">Enter the Advocate Circle</a>
 <script>
 (function(){
 'use strict';
@@ -499,7 +503,7 @@ var L={
     quests:[
       {t:'check',text:'Activate your Personal Invitation Link.',short:'your Personal Invitation Link'},
       {t:'check',text:'Invite someone with your Personal Invitation Link, and feel the recognition.',short:'your invitation'},
-      {t:'check',text:'Share one win back into the Advocate circle.',short:'one shared win'}],
+      {t:'check',text:'Share one win back into the Advocate circle: post it in the Self-Healing Advocates community.',short:'one shared win',href:'CIRCLE'}],
     rule:'What you give is what you keep.',
     blessing:'The harvest belongs to those who planted for others.',
     prompt:'What did you give away that came back multiplied?'},
@@ -507,7 +511,7 @@ var L={
     intro:'Snow settles and the circle grows quiet. This is a 72-hour reflection cycle — a weekend-style pause for self-reflection and introspection. Stay gently present. Journal. Listen. Reach for support if you wish.',
     quests:[
       {t:'check',text:'Keep a 72-hour reflection cycle: a weekend-style pause for self-reflection and introspection, while staying gently present.',short:'your 72-hour reflection'},
-      {t:'check',text:'Be present. Hold space for fellow Advocates in the Circle.',short:'holding space'},
+      {t:'check',text:'Be present. Hold space for fellow Advocates in the Circle: leave a message of encouragement in the Self-Healing Advocates community.',short:'holding space',href:'CIRCLE'},
       {t:'journal',text:'Write your story in the journal.',short:'your story in the journal'}],
     rule:'The Lantern rank opens after a 72-hour reflection cycle.',
     blessing:'In stillness, you become the medicine.',
@@ -703,6 +707,7 @@ function renderPanel(){
       if(q.open==='intro') h+='<div class="softlinks"><button type="button" class="btn quiet" id="openIntro">Read the introduction here</button></div>';
       if(q.href==='START') h+='<div class="softlinks"><a href="'+LINKS.startPath+'" target="_blank" rel="noopener">Open the Start Path</a></div>';
       if(q.href==='ROADMAP') h+='<div class="softlinks"><a href="'+LINKS.roadmap+'" target="_blank" rel="noopener">Open the full Roadmap</a></div>';
+      if(q.href==='CIRCLE') h+='<div class="softlinks"><a href="'+LINKS.circle+'" target="_blank" rel="noopener">Enter the Advocate Circle</a></div>';
       if(q.href==='QFT') h+='<div class="softlinks"><a href="'+LINKS.qft+'" target="_blank" rel="noopener">Open Thursday QFT LIVE</a></div>';
       if(d==='west'&&k===0) h+='<div id="pilBox"><label class="hint" for="pilName">Your name, as it should appear in your link</label><input class="field" id="pilName" type="text" maxlength="80" autocomplete="name" placeholder="Your name"><p class="pilout" id="pilOut"></p><div class="softlinks"><button type="button" class="btn quiet" id="copyPil">Copy my link</button></div><p class="hint" id="pilNote"></p></div>';
       h+='</li>';
@@ -1235,7 +1240,8 @@ var LINKS={
   roadmap:'https://app.onenesswellnesslifestyles.com/The_Roadmap_to_Wholeness.pdf',
   qft:'https://www.eventbrite.com/e/quantum-frequency-therapy-live-experience-tickets-2003870657078',
   saturday:'https://www.eventbrite.com/e/roadmap-to-wholeness-tickets-2003870729294',
-  summer:'https://t.me/adaptogentic_bot'
+  summer:'https://t.me/adaptogentic_bot',
+  circle:'https://membership.onenesswellnesslifestyles.com/communities/groups/selfheailngadvocate/home'
 };
 var BADGE_META={
   receiving:{title:'The Receiving',line:'You crossed the gate of the East.'},
