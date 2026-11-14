@@ -453,7 +453,7 @@ var STEPS=[
   {name:'Your Contact List',page:5,short:'Your Contact List',paras:[
     'Your list is your inventory. Build it once, work it forever, and never pre-judge a single name on it.',
     'Build a living list of 75 to 100 names. Use the memory jogger: family, friends, neighbors, coworkers past and present, church and community, school ties, service providers, social media connections, people you admire from a distance. Write every name. Sift and sort later.',
-    'Code every name: S, Successful, resourceful — invite to The Sitting Room as a guest of honor. P, People person, well liked — invite to taste the 5-Day Wellness Blueprint. I, Influence in a community — ask who they know who needs this work. V, Visible need, product and experience fit — offer the experience directly, with care.',
+    'Code every name: S, Successful, resourceful: invite to The Sitting Room as a guest of honor. P, People person, well liked: invite to taste the 5-Day Wellness Blueprint. I, Influence in a community: ask who they know who needs this work. V, Visible need, product and experience fit: offer the experience directly, with care.',
     'Two Priority Twenties: Top 20 Experience, the twenty people most likely to benefit from the experience right now, and Top 20 Influencers, the twenty people whose voice carries furthest. Work the twenties first. Then work the full list, name by name, with follow up.'
   ]},
   {name:'Leading with the Experience',page:6,short:'The Experience',paras:[
@@ -507,7 +507,7 @@ var L={
     blessing:'The harvest belongs to those who planted for others.',
     prompt:'What did you give away that came back multiplied?'},
   north:{name:'North',title:'The Listening',glyph:'☷',season:'Winter',ord:'Fourth gate',c:270,
-    intro:'Snow settles and the circle grows quiet. This is a 72-hour reflection cycle — a weekend-style pause for self-reflection and introspection. Stay gently present. Journal. Listen. Reach for support if you wish.',
+    intro:'Snow settles and the circle grows quiet. This is a 72-hour reflection cycle, a weekend-style pause for self-reflection and introspection. Stay gently present. Journal. Listen. Reach for support if you wish.',
     quests:[
       {t:'check',text:'Keep a 72-hour reflection cycle: a weekend-style pause for self-reflection and introspection, while staying gently present.',short:'your 72-hour reflection'},
       {t:'check',text:'Be present. Hold space for fellow Advocates in the Circle: leave a message of encouragement in the Self-Healing Advocates community.',short:'holding space',href:'CIRCLE'},
@@ -1406,7 +1406,7 @@ function renderLiving(){
   }
   root.innerHTML=
     '<div class="livecard"><h3>Twelve quests</h3>'+map+'<p class="hint">'+n+' of 12 quests complete. Rank: '+esc(RANK_NAME[r])+'.</p></div>'+
-    '<div class="livecard"><h3>The lantern</h3><div id="lanternMeter"><div class="bowl" aria-hidden="true"><div class="fuel" style="width:'+(fuel/8*100)+'%"></div></div><span class="lbl">'+fuel+' of 8 steps</span></div><div class="step-pips" aria-label="Eight Roadmap steps">'+(function(){var s='';for(var i=0;i<8;i++) s+='<span class="step-pip'+(S.flames[i]?' on':'')+'" title="'+esc(STEPS[i].name)+' — Roadmap page '+STEPS[i].page+'"></span>';return s;})()+'</div><p class="hint">Each Roadmap step you sit with fills the lantern. This is recognition you can see, not a score.</p></div>'+
+    '<div class="livecard"><h3>The lantern</h3><div id="lanternMeter"><div class="bowl" aria-hidden="true"><div class="fuel" style="width:'+(fuel/8*100)+'%"></div></div><span class="lbl">'+fuel+' of 8 steps</span></div><div class="step-pips" aria-label="Eight Roadmap steps">'+(function(){var s='';for(var i=0;i<8;i++) s+='<span class="step-pip'+(S.flames[i]?' on':'')+'" title="'+esc(STEPS[i].name)+': Roadmap page '+STEPS[i].page+'"></span>';return s;})()+'</div><p class="hint">Each Roadmap step you sit with fills the lantern. This is recognition you can see, not a score.</p></div>'+
     '<div class="livecard"><h3>Keepsake badges</h3><div class="badges">'+badges+'</div></div>'+
     '<div class="livecard gath"><h3>Living gatherings</h3>'+
       '<div class="rowline"><span>Saturday Roadmap to Wholeness Advocate Training, 12:00–1:00 PM HST / 5:00–6:00 PM EST</span><button type="button" class="btn quiet" id="satMark">'+(satToday?'You sat today':'I sat this Saturday')+'</button></div>'+
@@ -1496,16 +1496,16 @@ function openLore(){
   h+='<p>The Core Law: Success comes from doing the correct things, correctly, long enough. Under that law sits the learning rhythm, in three words: Learn. Apply. Teach.</p>';
   h+='<p>A Self-Healing Advocate is an advocate, not a salesperson and not a recruiter. The word self carries the whole teaching: no one can heal another person. Healing happens within, when a heart remembers. Our work is to share experiences, tools, and stories that help a person remember their own power. Self-care comes first, before the mission.</p>';
   h+='<p>Eight steps carry a person from a first dream to first action:</p><ol class="steps">';
-  h+='<li>Your Dreams — Write the dream list that gets the work started and keeps it honest.</li>';
-  h+='<li>Attitude — Carry a positive, focused, coachable spirit through every season.</li>';
-  h+='<li>Your Contact List — Build a living list of 75 to 100 names, coded, sorted, and served.</li>';
-  h+='<li>Leading with the Experience — Let people taste the work first, through the 5-Day Wellness Blueprint.</li>';
-  h+='<li>Leading with the Invitation — Invite those who resonate to walk the path as Advocates.</li>';
-  h+='<li>Goal Setting — Turn dreams into written short-term, long-term, and realistic goals.</li>';
-  h+='<li>Counsel and Mentoring — Stay plugged into counsel, no one builds this alone.</li>';
-  h+='<li>Get Started Now — Share with five people in the first 24 hours, momentum teaches.</li>';
+  h+='<li>Your Dreams: Write the dream list that gets the work started and keeps it honest.</li>';
+  h+='<li>Attitude: Carry a positive, focused, coachable spirit through every season.</li>';
+  h+='<li>Your Contact List: Build a living list of 75 to 100 names, coded, sorted, and served.</li>';
+  h+='<li>Leading with the Experience: Let people taste the work first, through the 5-Day Wellness Blueprint.</li>';
+  h+='<li>Leading with the Invitation: Invite those who resonate to walk the path as Advocates.</li>';
+  h+='<li>Goal Setting: Turn dreams into written short-term, long-term, and realistic goals.</li>';
+  h+='<li>Counsel and Mentoring: Stay plugged into counsel, no one builds this alone.</li>';
+  h+='<li>Get Started Now: Share with five people in the first 24 hours, momentum teaches.</li>';
   h+='</ol>';
-  h+='<p>These five Kindling flames — Communication, Empathy, Assertiveness, Creativity, and Perseverance — are qualities you tend as you walk. They are not chapters of The Roadmap to Wholeness. The Roadmap itself is the eight steps above. Light each flame when that quality has stretched you in the work.</p>';
+  h+='<p>These five Kindling flames (Communication, Empathy, Assertiveness, Creativity, and Perseverance) are qualities you tend as you walk. They are not chapters of The Roadmap to Wholeness. The Roadmap itself is the eight steps above. Light each flame when that quality has stretched you in the work.</p>';
   h+='<p>The words above are drawn from The Roadmap to Wholeness, Oneness Wellness Lifestyles.</p></div>';
   h+='<div class="close-row"><a class="btn" href="'+LINKS.roadmap+'" target="_blank" rel="noopener">Open the full Roadmap</a><button type="button" class="btn quiet" id="loreClose">Close</button></div>';
   $('loreInner').innerHTML=h;
