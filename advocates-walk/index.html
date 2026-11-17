@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function(){
+  try{
+    if(sessionStorage.getItem('ow-advocates-walk-opening')==='1')
+      document.documentElement.classList.add('opening-seen');
+  }catch(e){}
+})();
+</script>
 <title>The Advocate's Walk</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -303,9 +311,52 @@ body.shake{animation:worldshake .5s ease-in-out}
   *,*::before,*::after{animation:none !important;transition:none !important}
   .gate.locked .arc{stroke:var(--gold);filter:drop-shadow(0 0 7px var(--rose))}
 }
+
+/* Opening. Night purple from the lantern palette. */
+#opening{
+  position:fixed;inset:0;z-index:80;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  padding:20px 16px calc(20px + env(safe-area-inset-bottom));
+  background:
+    radial-gradient(110% 60% at 50% -8%, rgba(232,180,184,.42) 0%, transparent 62%),
+    radial-gradient(70% 45% at 85% 0%, rgba(212,168,85,.30) 0%, transparent 70%),
+    linear-gradient(180deg,#3a0766 0%, var(--night) 70%);
+  background-color:var(--night);
+  transition:opacity .8s ease;
+}
+html.opening-seen #opening{display:none !important}
+#opening.is-leaving{opacity:0;pointer-events:none}
+#opening .opening-frame{
+  width:min(92vw, 662px, calc((100dvh - 150px) * 662 / 776));
+  max-height:calc(100dvh - 150px);
+  aspect-ratio:662 / 776;
+  display:flex;align-items:center;justify-content:center;
+}
+#opening video{
+  width:100%;height:100%;object-fit:contain;background:transparent;
+}
+#openingEnter{
+  flex:0 0 auto;min-height:56px;min-width:min(88vw,260px);
+  padding:.8em 1.7em;font-size:1.15rem;letter-spacing:.03em;
+}
 </style>
 </head>
 <body data-dir="east">
+
+<div id="opening" role="dialog" aria-modal="true" aria-label="Opening">
+  <div class="opening-frame">
+    <video id="openingVideo" src="media/cosmic-voyage-opening.mp4" poster="media/cosmic-voyage-opening.jpg" muted playsinline webkit-playsinline preload="metadata" aria-label="Cosmic voyage" tabindex="-1"></video>
+  </div>
+  <button class="btn" id="openingEnter" type="button" aria-label="Enter the Walk">Enter the Walk</button>
+</div>
+<script>
+(function(){
+  if(document.documentElement.classList.contains('opening-seen')){
+    var early=document.getElementById('opening');
+    if(early) early.hidden=true;
+  }
+})();
+</script>
 
 <svg id="way" viewBox="0 0 120 230" aria-hidden="true">
   <defs>
@@ -1546,6 +1597,94 @@ requestAnimationFrame(wayTick);
 if(S.started) showGame();
 cloudNote();
 initCloud();
+})();
+</script>
+<script>
+(function(){
+  'use strict';
+  /* Opening runs after the Advocate Code reader. It does not read or change the address. */
+  var KEY='ow-advocates-walk-opening';
+  var opening=document.getElementById('opening');
+  var video=document.getElementById('openingVideo');
+  var enter=document.getElementById('openingEnter');
+  if(!opening||!video||!enter) return;
+
+  function seen(){
+    try{return sessionStorage.getItem(KEY)==='1';}catch(e){return false;}
+  }
+  function mark(){
+    try{sessionStorage.setItem(KEY,'1');}catch(e){}
+  }
+  function reduceMotion(){
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+  function lock(on){
+    var kids=document.body.children;
+    for(var i=0;i<kids.length;i++){
+      if(kids[i]===opening) continue;
+      if(on) kids[i].setAttribute('inert','');
+      else kids[i].removeAttribute('inert');
+    }
+  }
+  var leaving=false, gone=false;
+  function finish(){
+    if(gone) return;
+    gone=true;
+    try{video.pause();}catch(e){}
+    lock(false);
+    opening.hidden=true;
+    opening.setAttribute('aria-hidden','true');
+    var game=document.getElementById('game');
+    var panel=document.getElementById('panel');
+    var begin=document.getElementById('beginBtn');
+    var target=(game&&!game.hidden&&panel)?panel:begin;
+    if(target&&target.focus){
+      try{target.focus({preventScroll:true});}catch(e){try{target.focus();}catch(e2){}}
+    }
+  }
+  function dismiss(){
+    if(leaving||gone||opening.hidden) return;
+    leaving=true;
+    mark();
+    try{video.pause();}catch(e){}
+    if(reduceMotion()){finish();return;}
+    opening.classList.add('is-leaving');
+    var timer=setTimeout(finish,1000);
+    opening.addEventListener('transitionend',function(e){
+      if(e.target===opening&&e.propertyName==='opacity'){clearTimeout(timer);finish();}
+    });
+  }
+
+  if(seen()||document.documentElement.classList.contains('opening-seen')){
+    opening.hidden=true;
+    opening.setAttribute('aria-hidden','true');
+    return;
+  }
+
+  lock(true);
+  enter.addEventListener('click',dismiss);
+  video.addEventListener('ended',dismiss);
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Escape'||opening.hidden||gone) return;
+    e.preventDefault();
+    e.stopPropagation();
+    dismiss();
+  },true);
+
+  video.muted=true;
+  if(reduceMotion()){
+    video.autoplay=false;
+    video.removeAttribute('autoplay');
+    try{video.pause();}catch(e){}
+  }else{
+    video.autoplay=true;
+    video.setAttribute('autoplay','');
+    try{
+      var pending=video.play();
+      if(pending&&typeof pending.catch==='function') pending.catch(function(){});
+    }catch(e){}
+  }
+  try{enter.focus({preventScroll:true});}catch(e){try{enter.focus();}catch(e2){}}
 })();
 </script>
 </body>
