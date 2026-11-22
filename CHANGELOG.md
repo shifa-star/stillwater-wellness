@@ -5,6 +5,7 @@ All notable changes to this project are tracked here. This project follows
 
 ## [Unreleased]
 
+- Visitor-facing copy that called the Sanctuary "the app" now says "Sanctuary of Self Healing", including the free Porch list on The Advocate's Walk and the Nia gate note.
 - The Sanctuary home at `/oneness-lifestyles-app/` shows "The New Covenant" above "Where the Healing Waters Flow", and a card titled "What is the New Covenant?" that opens the Wisdom Teaching slides.
 - A personal invitation on `/jan13/` shows near the top, under the eyebrow and above the title, when `ref` is in the address. `via=person` reads "Personal invitation from " plus the name. Any other `ref` reads "Personal invitation, " plus the name. With no `ref`, that line stays hidden and the page looks the same. The "How did you hear about this event?" field still fills with the same words.
 - The Sanctuary personal invitation at `/oneness-lifestyles-app/` uses the peacock feather eye as its favicon. The browser tab keeps the approved crop on a transparent background. The apple-touch icon, and the invitation manifest's 192 and 512 icons, place that crop on brand blue `#283890`. Other Sanctuary pages and the rest of the site keep the wave logo.
