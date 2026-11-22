@@ -87,8 +87,10 @@ assert.ok(guest.indexOf('<p class="covenant-line">The New Covenant</p>') < guest
 assert.ok(guest.includes("What is the New Covenant?"));
 assert.ok(guest.includes("Open the Wisdom Teaching"));
 assert.ok(guest.includes('class="covenant-card" href="https://docs.google.com/presentation/d/1MzsZOrZdb-oIF4072Lyxaybu56e0Tug7S8-9dK8LA_U/mobilepresent?slide=id.p1" target="_blank" rel="noopener"'));
-assert.ok(guest.includes('id="sent-by"'));
-assert.ok(guest.includes('name + " sent you."'));
+assert.ok(!guest.includes('id="sent-by"'));
+assert.ok(!guest.includes("sent you."));
+assert.ok(guest.includes('id="invited-by"'));
+assert.ok(guest.includes('"Personally invited by "'));
 assert.ok(!guest.includes("The Roadmap to Wholeness"));
 assert.ok(!guest.includes("adaptogentic_bot"));
 assert.ok(!guest.includes("o0aGOVEoX-hhNDRh"));
