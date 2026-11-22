@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Locations</title>
+  <meta name="description" content="Two places to gather, rest, and remember wholeness.">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="sanctuary.webmanifest">
+  <link rel="icon" href="feather-eye.png" type="image/png" sizes="1282x1282">
+  <link rel="icon" href="feather-eye-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="feather-eye-192.png" sizes="192x192">
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="sanctuary-footer.css">
+  <style>
+    .locations-hero {
+      padding: 40px 0 20px;
+    }
+    .locations-hero .hero-subheading {
+      margin-top: 12px;
+    }
+    .locations-section {
+      padding-top: 8px;
+    }
+    .location-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 0 0 28px;
+    }
+    .location-card {
+      background-color: var(--surface);
+      border: 2px solid var(--line);
+      border-top: 6px solid var(--brand-sand);
+      border-radius: 12px;
+      padding: 22px 20px 20px;
+      text-align: left;
+    }
+    .location-card h2 {
+      margin: 0 0 10px;
+      color: var(--brand-blue);
+      font-size: 1.35rem;
+      line-height: 1.35;
+    }
+    .location-address {
+      margin: 0 0 12px;
+      color: #6a5842;
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .location-card p {
+      margin: 0 0 14px;
+      color: var(--text-2);
+    }
+    .location-card ul {
+      margin: 0 0 16px;
+      padding-left: 1.2em;
+      color: var(--text-2);
+    }
+    .location-card li {
+      margin: 0 0 10px;
+    }
+    .location-card li:last-child {
+      margin-bottom: 0;
+    }
+    .location-directions {
+      display: inline-block;
+      min-height: 44px;
+      padding: 10px 0;
+      color: var(--brand-blue);
+      font-weight: bold;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .locations-back {
+      margin: 0;
+      text-align: center;
+    }
+    .locations-back a {
+      display: inline-block;
+      min-height: 44px;
+      padding: 10px 0;
+      color: var(--brand-blue);
+      font-weight: bold;
+    }
+    @media (max-width: 640px) {
+      .locations-page .container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .locations-hero {
+        padding: 28px 0 8px;
+      }
+      .locations-hero .hero-heading {
+        font-size: 1.9rem;
+      }
+      .location-card h2 {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body id="top" class="locations-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <p class="site-name"><a href="index.html">Oneness Lifestyles</a></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero locations-hero" aria-labelledby="locations-heading">
+      <div class="container">
+        <h1 class="hero-heading" id="locations-heading">Our Locations</h1>
+        <p class="hero-subheading">Two places to gather, rest, and remember wholeness.</p>
+      </div>
+    </section>
+
+    <section class="section locations-section" aria-label="Locations">
+      <div class="container">
+        <div class="location-list">
+          <article class="location-card">
+            <h2>Oneness Wellness Center, Sanctuary of Self Healing</h2>
+            <p class="location-address">5257 Kalanianaʻole Highway (Simpson Manor), ʻĀina Haina, East Honolulu, HI 96821</p>
+            <p>A nearly one-acre oceanfront property in the ʻĀina Haina neighborhood of East Honolulu. Its historic former school building is an approximately 29,000 sq. ft. mixed-use space that once housed The Waldorf School and The Academy.</p>
+            <a class="location-directions" href="https://www.google.com/maps/search/?api=1&amp;query=5257%20Kalaniana%CA%BBole%20Highway%20%28Simpson%20Manor%29%2C%20%CA%BB%C4%80ina%20Haina%2C%20East%20Honolulu%2C%20HI%2096821" target="_blank" rel="noopener">Get Directions</a>
+          </article>
+
+          <article class="location-card">
+            <h2>Oneness Wellness Lifestyles @ The Waikiki Lanais</h2>
+            <p class="location-address">2452 Tusitala St, Honolulu, HI</p>
+            <p>A mix of rooftop gathering and fitness facilities.</p>
+            <ul>
+              <li>Rooftop Deck: gas BBQ grills, a shaded wet bar and outdoor kitchen, and picnic tables with 360-degree views of Diamond Head, the ocean, and the Ala Wai Canal.</li>
+              <li>Pool and Spa: a heated swimming pool, an adjacent hot tub, and saunas.</li>
+            </ul>
+            <a class="location-directions" href="https://www.google.com/maps/search/?api=1&amp;query=2452%20Tusitala%20St%2C%20Honolulu%2C%20HI" target="_blank" rel="noopener">Get Directions</a>
+          </article>
+        </div>
+        <p class="locations-back"><a href="index.html">Back to Oneness Lifestyles</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer invite-footer">
+    <div class="invite-footer-inner">
+      <p class="invite-footer-label">An Invitation</p>
+      <p class="invite-footer-heading">You were not only invited in. You may be called to invite others.</p>
+      <p class="invite-footer-body">Self-Healing Advocates share the doorway that opened for them. If this space has touched you, there is a seat for you in the Circle of Advocates.</p>
+      <p class="invite-footer-action"><a class="invite-footer-btn" href="https://onenesswellnesslifestyles.biz/affiliate" target="_blank" rel="noopener">Become a Self-Healing Advocate</a></p>
+      <p class="invite-footer-tagline">We Are Healing Together, Wholeness Remembered</p>
+      <p class="invite-footer-muted">Sanctuary of Self Healing · Where the Healing Waters Flow</p>
+      <p class="invite-footer-muted">Gentle wisdom for reflection, not medical advice, diagnosis, or treatment.</p>
+    </div>
+  </footer>
+</body>
+</html>
