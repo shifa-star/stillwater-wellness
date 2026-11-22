@@ -1,0 +1,107 @@
+/* Invitation footer for the Sanctuary of Self Healing.
+   Loaded after each page stylesheet so it covers the older blue footer. */
+
+footer.invite-footer {
+  background: linear-gradient(180deg, #4A0080, #2a0a4a);
+  padding: 56px 24px;
+  text-align: center;
+  color: #e9e1f2;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+footer.invite-footer .invite-footer-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+footer.invite-footer p {
+  margin: 0;
+}
+
+footer.invite-footer .invite-footer-label {
+  margin: 0 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  font-variant: small-caps;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #D4A855;
+}
+
+footer.invite-footer .invite-footer-heading {
+  margin: 0 0 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: normal;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+footer.invite-footer .invite-footer-body {
+  margin: 0 0 26px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #e9e1f2;
+}
+
+footer.invite-footer .invite-footer-action {
+  margin: 0 0 26px;
+}
+
+footer.invite-footer a.invite-footer-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  min-height: 44px;
+  border-radius: 999px;
+  background: #D4A855;
+  color: #2a0a4a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+footer.invite-footer a.invite-footer-btn:hover,
+footer.invite-footer a.invite-footer-btn:focus-visible {
+  background: #e0b96a;
+}
+
+footer.invite-footer .invite-footer-tagline {
+  margin: 0 0 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.45;
+  color: #E8B4B8;
+}
+
+footer.invite-footer .invite-footer-muted {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #c9b8dc;
+}
+
+footer.invite-footer .invite-footer-muted + .invite-footer-muted {
+  margin-top: 4px;
+}
+
+@media (max-width: 420px) {
+  footer.invite-footer {
+    padding: 48px 18px;
+  }
+
+  footer.invite-footer .invite-footer-label {
+    letter-spacing: 0.16em;
+  }
+
+  footer.invite-footer .invite-footer-heading {
+    font-size: 24px;
+  }
+
+  footer.invite-footer a.invite-footer-btn {
+    padding: 14px 20px;
+  }
+}

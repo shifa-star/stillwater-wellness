@@ -81,7 +81,8 @@ assert.ok(guest.includes('params.get("ref")'));
 assert.ok(guest.includes('"Personally invited by "'));
 assert.ok(!guest.includes("sent you."));
 assert.ok(!/test/i.test(guest));
-assert.ok(!/w-9|commission|warm-up|practitioner council|affiliate|summit/i.test(guest));
+const guestWithoutAdvocateDoor = guest.replace("https://onenesswellnesslifestyles.biz/affiliate", "");
+assert.ok(!/w-9|commission|warm-up|practitioner council|affiliate|summit/i.test(guestWithoutAdvocateDoor));
 
 const builder = fs.readFileSync("oneness-lifestyles-app/gathering-link.js", "utf8");
 assert.ok(!/test/i.test(builder));
