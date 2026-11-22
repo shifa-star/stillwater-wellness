@@ -328,6 +328,66 @@ a {
   line-height: 1.6;
 }
 
+/* Short line above the greeting. Same Georgia family, a little smaller.
+   The gold is brand sand deepened so it stays readable on the pale hero. */
+.covenant-line {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;         /* 20.7px, a little smaller than the greeting */
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: #6a5842;
+  max-width: 640px;
+  margin: 0 auto 8px;
+  line-height: 1.4;
+}
+
+.covenant-card {
+  display: block;
+  max-width: 640px;
+  margin: 4px auto 20px;
+  padding: 22px 22px 26px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-top: 6px solid var(--brand-sand);
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.covenant-card:hover,
+.covenant-card:focus-visible {
+  border-color: var(--brand-sand);
+  box-shadow: 0 2px 12px rgba(193, 161, 120, 0.28);
+}
+
+.covenant-card-title {
+  display: block;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  font-weight: bold;
+  color: var(--brand-blue);
+  margin: 0 0 16px;
+}
+
+.covenant-card-label {
+  display: inline-block;
+  padding: 12px 30px;
+  min-height: 44px;
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  color: var(--text);
+  font-weight: bold;
+  font-size: 1.125rem;
+  line-height: 20px;
+}
+
+.covenant-card:hover .covenant-card-label,
+.covenant-card:focus-visible .covenant-card-label {
+  background-color: var(--brand-green-deep);
+}
+
 .home-welcome {
   max-width: 640px;
   margin: 0 auto;
@@ -389,6 +449,18 @@ a {
     margin-bottom: 8px;
   }
   #home .home-greeting {
+    margin-bottom: 12px;
+  }
+  .covenant-line {
+    margin-bottom: 6px;
+  }
+  .covenant-card {
+    margin: 4px 0 14px;
+    padding: 16px 16px 18px;
+  }
+  .covenant-card-title {
+    font-size: 1.22rem;
+    line-height: 1.25;
     margin-bottom: 12px;
   }
   .gathering-heading {
