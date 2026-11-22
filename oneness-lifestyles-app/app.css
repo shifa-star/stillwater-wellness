@@ -341,6 +341,17 @@ a {
   line-height: 1.4;
 }
 
+.invited-by {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  color: #6a5842;
+  max-width: 640px;
+  margin: 0 auto 16px;
+  line-height: 1.4;
+}
+
 .covenant-card {
   display: block;
   max-width: 640px;
@@ -453,6 +464,9 @@ a {
   }
   .covenant-line {
     margin-bottom: 6px;
+  }
+  .invited-by {
+    margin-bottom: 10px;
   }
   .covenant-card {
     margin: 4px 0 14px;
