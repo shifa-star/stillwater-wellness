@@ -77,10 +77,10 @@ assert.ok(guest.includes("We Are Healing Together, Wholeness Remembered"));
 assert.ok(guest.includes('id="jan13-invite" href="../jan13/"'));
 assert.ok(guest.includes(">I'll Be There</a>"));
 assert.ok(guest.includes('src="gathering-link.js"'));
-assert.ok(guest.includes('params.get("ref") || params.get("referrer") || params.get("from")'));
-assert.ok(guest.includes('name + " sent you."'));
-assert.strictEqual(guest.split("/\\d/.test(").length, 2);
-assert.ok(!/test/i.test(guest.split("/\\d/.test(").join("")));
+assert.ok(guest.includes('params.get("ref")'));
+assert.ok(guest.includes('"Personally invited by "'));
+assert.ok(!guest.includes("sent you."));
+assert.ok(!/test/i.test(guest));
 assert.ok(!/w-9|commission|warm-up|practitioner council|affiliate|summit/i.test(guest));
 
 const builder = fs.readFileSync("oneness-lifestyles-app/gathering-link.js", "utf8");
