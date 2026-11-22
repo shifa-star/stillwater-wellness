@@ -36,6 +36,7 @@
           <p class="covenant-line">The New Covenant</p>
           <p class="home-greeting" id="home-greeting">Where the Healing Waters Flow</p>
           <p id="sent-by" class="home-greeting" hidden></p>
+          <p id="invited-by" class="invited-by" hidden></p>
           <a class="covenant-card" href="https://docs.google.com/presentation/d/1MzsZOrZdb-oIF4072Lyxaybu56e0Tug7S8-9dK8LA_U/mobilepresent?slide=id.p1" target="_blank" rel="noopener">
             <span class="covenant-card-title">What is the New Covenant?</span>
             <span class="covenant-card-label">Open the Wisdom Teaching</span>
@@ -299,6 +300,42 @@
       if (code && /\d/.test(code[2])) name = code[1].charAt(0).toUpperCase() + code[1].slice(1).toLowerCase();
       if (!name || name.toLowerCase() === "no one") return;
       line.textContent = name + " sent you.";
+      line.hidden = false;
+    })();
+  </script>
+  <script>
+    (function () {
+      var line = document.getElementById("invited-by");
+      if (!line || !window.location) return;
+      var KEY = "sosh_ref";
+
+      function inviteName(raw) {
+        var text = String(raw || "");
+        text = text.replace(/%20/gi, " ").replace(/[-_]+/g, " ");
+        text = text.replace(/[^A-Za-z .'\u2019]/g, "");
+        text = text.replace(/([a-z])([A-Z])/g, "$1 $2");
+        text = text.replace(/\s+/g, " ").trim();
+        if (text.length > 40) text = text.slice(0, 40).replace(/\s+$/g, "");
+        if (!text || text.toLowerCase() === "no one") return "";
+        return text;
+      }
+
+      var params = new URLSearchParams(window.location.search || "");
+      var raw = params.get("ref");
+      var name = "";
+      if (raw != null && String(raw).replace(/%20/gi, " ").trim() !== "") {
+        name = inviteName(raw);
+        if (name) {
+          try { window.localStorage.setItem(KEY, name); } catch (err) {}
+        }
+      } else {
+        try { name = inviteName(window.localStorage.getItem(KEY) || ""); } catch (err) { name = ""; }
+      }
+      if (!name) {
+        line.hidden = true;
+        return;
+      }
+      line.textContent = "Personally invited by " + name;
       line.hidden = false;
     })();
   </script>
