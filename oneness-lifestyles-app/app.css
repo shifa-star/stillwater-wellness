@@ -570,32 +570,28 @@ a {
 
 /* The Porch: free gatherings, beside the top doors. */
 .porch {
-  margin: 8px 0 40px;
+  margin: 4px 0 28px;
   text-align: center;
 }
 
 .porch .porch-label {
-  margin: 0 0 6px;
+  margin: 0 0 2px;
   font-size: 1rem;
+  line-height: 1.2;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #6a5842;
 }
 
 .porch .home-subheading {
-  margin-bottom: 16px;
-}
-
-.porch-list {
-  display: grid;
-  gap: 16px;
-  max-width: 640px;
-  margin: 0 auto;
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .porch-card {
-  margin: 0;
-  padding: 22px 24px 26px;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2px 12px;
   background-color: var(--surface);
   border: 2px solid var(--line);
   border-left: 6px solid var(--brand-blue);
@@ -603,25 +599,60 @@ a {
   text-align: left;
 }
 
+.porch-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title join"
+    "when join";
+  column-gap: 10px;
+  align-items: center;
+  padding: 6px 0;
+  border-top: 1px solid var(--line);
+}
+
+.porch-row:first-child {
+  border-top: none;
+}
+
 .porch-title {
-  margin: 0 0 8px;
-  font-size: 1.3rem;
-  line-height: 1.35;
+  grid-area: title;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.15;
+  font-weight: bold;
   color: var(--brand-blue);
 }
 
-.porch .porch-text {
-  margin: 0 0 18px;
+.porch .porch-when {
+  grid-area: when;
+  margin: 1px 0 0;
+  font-size: 1rem;
+  line-height: 1.2;
   color: var(--text-2);
 }
 
-@media (max-width: 640px) {
-  .porch-card {
-    padding: 18px 16px 20px;
-  }
-  .porch-title {
-    font-size: 1.2rem;
-  }
+.porch-join {
+  grid-area: join;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.porch-join:hover,
+.porch-join:focus-visible {
+  background-color: var(--brand-green-deep);
 }
 
 /* ---------- Full-width product card (below the tile grid) ---------- */
