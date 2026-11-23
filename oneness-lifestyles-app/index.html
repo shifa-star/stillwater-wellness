@@ -101,6 +101,11 @@
             <h3 id="porch-heading" class="home-subheading">The Porch</h3>
             <div class="porch-card">
               <div class="porch-row">
+                <h4 class="porch-title">Free Quantum Frequency Therapy Experience, featuring The Magic of 5 Minutes</h4>
+                <p class="porch-when">With Miniimah Saafir. Tuesday, January 13, 2027, on Zoom.</p>
+                <a class="porch-join" id="porch-jan13" href="../jan13/">Save My Seat</a>
+              </div>
+              <div class="porch-row">
                 <h4 class="porch-title">Quantum Frequency Therapy Live Experience</h4>
                 <p class="porch-when">Thursdays, 1:00 PM HST on Eventbrite</p>
                 <a class="porch-join" href="https://www.eventbrite.com/e/quantum-frequency-therapy-live-experience-tickets-2003870657078" target="_blank" rel="noopener">Join</a>
@@ -357,11 +362,14 @@
   <script src="gathering-link.js"></script>
   <script>
     (function () {
-      var link = document.getElementById("jan13-invite");
-      if (!link || typeof window.gatheringHref !== "function" || !window.location) return;
-      try {
-        link.setAttribute("href", window.gatheringHref(window.location.href));
-      } catch (err) {}
+      if (typeof window.gatheringHref !== "function" || !window.location) return;
+      ["jan13-invite", "porch-jan13"].forEach(function (id) {
+        var link = document.getElementById(id);
+        if (!link) return;
+        try {
+          link.setAttribute("href", window.gatheringHref(window.location.href));
+        } catch (err) {}
+      });
     })();
   </script>
   <script>

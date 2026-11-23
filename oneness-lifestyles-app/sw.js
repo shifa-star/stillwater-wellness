@@ -4,7 +4,7 @@
 
 'use strict';
 
-var CACHE_NAME = 'oneness-lifestyles-shell-v34';
+var CACHE_NAME = 'oneness-lifestyles-shell-v35';
 
 // The app shell that must always be available offline.
 var SHELL = [
