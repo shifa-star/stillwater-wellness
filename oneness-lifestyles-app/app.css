@@ -568,6 +568,56 @@ a {
   color: var(--text-2);       /* ~10.5:1 on white */
 }
 
+/* The Porch: free gatherings, beside the top doors. */
+.porch {
+  margin: 8px 0 40px;
+  text-align: center;
+}
+
+.porch .porch-label {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6a5842;
+}
+
+.porch .home-subheading {
+  margin-bottom: 16px;
+}
+
+.porch-card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 22px 24px 26px;
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-left: 6px solid var(--brand-blue);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.porch-title {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  color: var(--brand-blue);
+}
+
+.porch .porch-text {
+  margin: 0 0 18px;
+  color: var(--text-2);
+}
+
+@media (max-width: 640px) {
+  .porch-card {
+    padding: 18px 16px 20px;
+  }
+  .porch-title {
+    font-size: 1.2rem;
+  }
+}
+
 /* ---------- Full-width product card (below the tile grid) ---------- */
 .skin-card {
   display: block;
