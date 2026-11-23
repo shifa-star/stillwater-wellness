@@ -586,9 +586,15 @@ a {
   margin-bottom: 16px;
 }
 
-.porch-card {
+.porch-list {
+  display: grid;
+  gap: 16px;
   max-width: 640px;
   margin: 0 auto;
+}
+
+.porch-card {
+  margin: 0;
   padding: 22px 24px 26px;
   background-color: var(--surface);
   border: 2px solid var(--line);
