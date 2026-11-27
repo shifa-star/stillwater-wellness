@@ -56,6 +56,12 @@ const summaries = [
 assert.deepStrictEqual(access.visibleEditions(clientA, editions).map(function (e) { return e.id; }), ["ed-a"]);
 assert.deepStrictEqual(access.visibleEditions(clientB, editions).map(function (e) { return e.id; }), ["ed-b"]);
 assert.deepStrictEqual(access.visibleEditions(null, editions), []);
+assert.strictEqual(access.screenFor(shifa, null), "admin");
+assert.strictEqual(access.screenFor({ userId: "admin-2", email: "other@example.com", role: "admin" }, null), "admin");
+assert.strictEqual(access.screenFor(clientA, null), "missing");
+assert.strictEqual(access.screenFor(clientA, editionA), "client");
+assert.ok(client.indexOf("access.isAdmin") < client.indexOf("No edition yet"));
+assert.ok(client.includes('if (!edition && !admin)'));
 assert.deepStrictEqual(
   access.visibleSummaries(clientA, summaries, editions).map(function (s) { return s.id; }),
   ["s2"]

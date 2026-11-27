@@ -55,11 +55,18 @@
     if (gate) gate.classList.add("hidden");
     if (!host) return;
     host.classList.remove("hidden");
-    if (!edition) {
+    var admin = access.isAdmin(viewer);
+    if (!edition && !admin) {
       host.innerHTML = '<section class="card"><h2>No edition yet</h2><p>This sign-in is not attached to a client edition. Ask Clan Mother to invite this email. There is no public registration.</p></section>';
       return;
     }
-    var admin = access.isAdmin(viewer);
+    if (!edition) {
+      state.view = "admin";
+      host.innerHTML = adminLanding(viewer)
+        + adminHtml({ summaries: model.summaries || [], editions: model.editions || [], admin: true, edition: null });
+      bindEdition(viewer, null, true);
+      return;
+    }
     var summaries = access.visibleSummaries(viewer, model.summaries || [], [edition]);
     var scans = model.scans || [];
     var readings = model.readings || [];
@@ -71,6 +78,11 @@
       + viewHtml(view, { news: news, scans: scans, readings: readings, letters: letters, sleepLogs: sleepLogs, summaries: model.summaries || [], editions: model.editions || [], admin: admin, edition: edition })
       + bookAndHome();
     bindEdition(viewer, edition, admin);
+  }
+
+  function adminLanding(viewer) {
+    return '<p class="note">Signed in as ' + esc(viewer.email) + ".</p>"
+      + '<nav class="nav" aria-label="Edition sections"><button type="button" class="pill quiet" data-view="admin" aria-current="true">Review</button></nav>';
   }
 
   function shellHtml(viewer, edition, admin, view) {
@@ -304,6 +316,7 @@
       var viewer = viewerFrom(session, state.profile);
       state.editions = access.visibleEditions(viewer, (res && res.data) || []);
       state.edition = state.editions[0] || null;
+      if (access.isAdmin(viewer)) state.view = "admin";
       if (!state.edition) {
         renderEdition(currentModel());
         return;
@@ -357,13 +370,22 @@
     sb.rpc("portal_admin_create_edition", { p_email: email, p_display_name: name }).then(function () {
       return sb.from("portal_editions").select("id,client_email,client_user_id,display_name");
     }).then(function (res) {
-      state.editions = access.visibleEditions(viewerFrom(state.session, state.profile), (res && res.data) || []);
-      renderEdition(currentModel());
+      var viewer = viewerFrom(state.session, state.profile);
+      state.editions = access.visibleEditions(viewer, (res && res.data) || []);
+      if (!state.edition && state.editions[0]) state.edition = state.editions[0];
+      state.view = "admin";
+      if (!state.edition) {
+        renderEdition(currentModel());
+        return;
+      }
+      return loadEdition(state.edition.id).then(function () {
+        renderEdition(currentModel());
+      });
     });
   }
 
   function reviewSummary(id, action, body) {
-    if (!sb) return;
+    if (!sb || !state.edition) return;
     sb.rpc("portal_admin_set_summary", { p_id: id, p_action: action, p_body: body || null }).then(function () {
       return loadEdition(state.edition.id);
     }).then(function () { renderEdition(currentModel()); });
