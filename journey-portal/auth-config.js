@@ -1,8 +1,8 @@
 /* Sanctuary client portal sign-in.
-   Leave enabled false until the migration has been run and the publishable
-   anon key is pasted below. Never put a service role key or database password here. */
+   Uses the public publishable key. Never put a service role key or a
+   database password in this file. Signup stays off in the Supabase project. */
 window.ONENESS_PORTAL_AUTH = {
-  enabled: false,
+  enabled: true,
   supabaseUrl: "https://hwytpirbouqdssfncnrl.supabase.co",
-  supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY"
+  supabaseAnonKey: "sb_publishable_p7rpgqfvRk-XOeArkI276Q_7r_Pm2GW"
 };
