@@ -1,0 +1,24 @@
+{
+  "name": "Sanctuary Edition",
+  "short_name": "Edition",
+  "description": "We Are Healing Together, Wholeness Remembered",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ee",
+  "theme_color": "#283890",
+  "icons": [
+    {
+      "src": "../oneness-lifestyles-app/feather-eye-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../oneness-lifestyles-app/feather-eye-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
