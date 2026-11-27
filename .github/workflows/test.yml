@@ -20,3 +20,6 @@ jobs:
           node journey/account.test.js
           node sitting-room-legacy-redirect.test.js
           node gathering-link.test.js
+          node --check journey-portal/portal.js
+          node --check journey-portal/portal-access.js
+          node journey-portal/portal-rls.test.js

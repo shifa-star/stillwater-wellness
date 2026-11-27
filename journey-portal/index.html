@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sanctuary Edition</title>
+  <meta name="description" content="We Are Healing Together, Wholeness Remembered">
+  <meta name="theme-color" content="#283890">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="../oneness-lifestyles-app/feather-eye-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../oneness-lifestyles-app/feather-eye-192.png" sizes="192x192">
+  <link rel="stylesheet" href="portal.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="mast">
+      <img src="../oneness-lifestyles-app/feather-eye-192.png" alt="Peacock feather eye">
+      <div>
+        <h1 class="brand">Sanctuary Edition</h1>
+        <p class="tagline">We Are Healing Together, Wholeness Remembered</p>
+      </div>
+    </header>
+
+    <section id="gate" class="card">
+      <h2>Sign in</h2>
+      <p>This edition is private. There is no public registration. Clan Mother invites you, then you sign in with the same email.</p>
+      <form id="magic-form">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="username" required>
+        <div class="row">
+          <button class="pill" type="submit">Email me a sign-in link</button>
+        </div>
+      </form>
+      <form id="password-form">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password">
+        <div class="row">
+          <button class="pill quiet" type="submit">Sign in with password</button>
+        </div>
+      </form>
+      <p id="gate-status" class="status" role="status"></p>
+    </section>
+
+    <section id="edition" class="hidden"></section>
+  </main>
+
+  <footer class="legal">
+    <p>For education and awareness only, never medical advice or diagnosis. Your doctor's guidance leads; this runs alongside it.</p>
+    <p class="signoff">Highest Love, Clan Mother Shifa Ali</p>
+  </footer>
+
+  <script src="portal-access.js"></script>
+  <script src="auth-config.js"></script>
+  <script src="portal.js"></script>
+</body>
+</html>
