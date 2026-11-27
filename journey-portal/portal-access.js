@@ -12,6 +12,12 @@
     return viewer.role === "admin";
   }
 
+  function screenFor(viewer, edition) {
+    if (isAdmin(viewer)) return "admin";
+    if (!edition) return "missing";
+    return "client";
+  }
+
   function ownsEdition(viewer, edition) {
     if (!viewer || !viewer.userId || !edition) return false;
     return edition.client_user_id === viewer.userId;
@@ -99,6 +105,7 @@
   var api = {
     ADMIN_EMAIL: ADMIN_EMAIL,
     isAdmin: isAdmin,
+    screenFor: screenFor,
     canReadEdition: canReadEdition,
     canReadSummary: canReadSummary,
     visibleEditions: visibleEditions,
